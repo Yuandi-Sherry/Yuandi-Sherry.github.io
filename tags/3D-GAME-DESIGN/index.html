@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sherry&#39;s emmm... Unnamed Blog</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+<div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
+        <div class='av-pic' style="background-image: url(https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=12e5083b1330e924dba994632d610563/9922720e0cf3d7ca6e262a45fe1fbe096b63a934.jpg)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Sherry&#39;s emmm... Unnamed Blog</div>
+        
+            <div>Recording while Learning</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/Yuandi-Sherry">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <ul class="Index">
+  
+    <header class='PageTitle'>
+        <h1>{ 3D GAME DESIGN }</h1>
+    </header>
+  
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2018/03/27/Week03-Homework-Some-Basic-Knowledges/">Week03 Homework - Some Basic Knowledges</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2018-03-27T12:59:08.000Z" itemprop="datePublished">
+    2018-03-27
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/3D-GAME-DESIGN/">3D GAME DESIGN</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="解释-游戏对象（GameObjects）-和-资源（Assets）的区别与联系。"><a href="#解释-游戏对象（GameObjects）-和-资源（Assets）的区别与联系。" class="headerlink" title="解释 游戏对象（GameObjects） 和 资源（Assets）的区别与联系。"></a>解释 游戏对象（GameObjects） 和 资源（Assets）的区别与联系。</h2><ul>
+<li><strong>游戏对象</strong>是Unity中最基础的对象，它可以代表游戏角色、 游戏道具和游戏场景。它们本身不会并不会为游戏贡献很多，但是它们却作为<strong>组件</strong>（展现真正游戏效果）的容器发挥着重要作用。<a href="https://docs.unity3d.com/ScriptReference/GameObject.html" target="_blank" rel="noopener">^1</a></li>
+<li>资源是能够用在游戏中的事物，可以来自Unity外创建的文件，比如3D模型、音频文件、图像，或是任何Unity支持的其他文件类型。同时，Unity内部也可以创建很多资源类型，比如动画控制器、音频混合器和渲染纹理等等。<a href="https://docs.unity3d.com/Manual/AssetWorkflow.html" target="_blank" rel="noopener">^2</a></li>
+<li>区别在于：<ol>
+<li>游戏对象是游戏中的一个逻辑概念，有自身的属性和行为（比如玩家、大BOSS、场景）；而大部分游戏资源是来自外部的文件，仅作为游戏对象的组成部分（比如材料、音乐、图片）。</li>
+<li>游戏对象是游戏过程的一部分；资源是游戏编程过程的一部分。</li>
+</ol>
+</li>
+<li>联系在于：<ol>
+<li>游戏对象可以作为资源的一部分；</li>
+<li>游戏资源既可以成为游戏对象本身，也可以作为游戏对象的一种属性使游戏对象更为生动。</li>
+</ol>
+</li>
+</ul>
+<h2 id="编写一个代码，使用-debug-语句来验证MonoBehaviour基本行为或事件触发的条件"><a href="#编写一个代码，使用-debug-语句来验证MonoBehaviour基本行为或事件触发的条件" class="headerlink" title="编写一个代码，使用 debug 语句来验证MonoBehaviour基本行为或事件触发的条件"></a>编写一个代码，使用 debug 语句来验证MonoBehaviour基本行为或事件触发的条件</h2><ul>
+<li><p>基本行为包括 <code>Awake() Start() Update() FixedUpdate() LateUpdate()</code></p>
+</li>
+<li><p>常用事件包括 <code>OnGUI() OnDisable() OnEnable()</code></p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">testOrder</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Awake</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"Awake"</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"Start"</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"Update"</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">FixedUpdate</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"FixedUpdate"</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">LateUpdate</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"LateUpdate"</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"OnGUI"</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">OnDisable</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"OnDisable"</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">OnEnable</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Debug.Log(<span class="string">"OnEnable"</span>);  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/Yuandi-Sherry/3DGameDesign/raw/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/pro2.png" width="400" alt="Executing Order"></p>
+</li>
+</ul>
+<h2 id="查找脚本手册，了解GameObject，Transform，Component-对象"><a href="#查找脚本手册，了解GameObject，Transform，Component-对象" class="headerlink" title="查找脚本手册，了解GameObject，Transform，Component 对象"></a>查找脚本手册，了解GameObject，Transform，Component 对象</h2><ul>
+<li><p>分别翻译官方对三个对象的描述（Description）</p>
+<ul>
+<li><p><strong>GameObject</strong>: 游戏对象是Unity中最基础的对象，它可以代表游戏角色、 游戏道具和游戏场景。它们本身不会并不会为游戏贡献很多，但是它们却作为<strong>组件</strong>（展现真正游戏效果）的容器发挥着重要作用。<a href="https://docs.unity3d.com/ScriptReference/GameObject.html" target="_blank" rel="noopener">^1</a></p>
+</li>
+<li><p><strong>Transform</strong>: Transform（变换）组件决定了场景中每一个物体的位置、旋转角度和缩放大小。每一个游戏对象都有一个变换（组件）。<a href="https://docs.unity3d.com/Manual/class-Transform.html" target="_blank" rel="noopener">^3</a></p>
+</li>
+<li><p><strong>Component</strong>: 添加到游戏对象的一切事物的<strong>基类</strong>。注意：你的代码永远不会直接地创建<strong>组件</strong>；相反，你会写<strong>脚本代码</strong>并将脚本添加到<strong>游戏对象</strong>上。<a href="https://docs.unity3d.com/Manual/Components.html" target="_blank" rel="noopener">^4</a></p>
+</li>
+</ul>
+</li>
+<li><p>描述下图中 table 对象（实体）的属性、table 的 Transform 的属性、 table 的部件</p>
+<ul>
+<li><p>本题目要求是把可视化图形编程界面与 Unity API 对应起来，当你在 Inspector 面板上每一个内容，应该知道对应 API。</p>
+</li>
+<li><p>例如：table 的对象是 GameObject，第一个选择框是 activeSelf 属性。</p>
+</li>
+<li><p>table的对象是<strong>GameObject</strong>，它有如下属性：</p>
+<ul>
+<li><p>第一个选择框是<strong>activeSelf</strong>属性：通过停止勾选（可视化图形编程界面）或将其属性改为inactive（API中），GameObject可以被暂时从场景中移出。<a href="https://docs.unity3d.com/Manual/DeactivatingGameObjects.html" target="_blank" rel="noopener">^5</a></p>
+</li>
+<li><p>第二个框是<strong>Transform Component</strong></p>
+</li>
+<li><p>第三个框是<strong>Mesh Filter(网格过滤器)</strong>：网格过滤器从资源中获取一个网格，并将其传递给网格渲染器使其得以在屏幕上渲染。<a href="https://docs.unity3d.com/Manual/class-MeshFilter.html" target="_blank" rel="noopener">^6</a></p>
+</li>
+<li><p>第四个框是<strong>Box Collider(盒装对撞机)</strong>：是一个盒子形状的原型对撞机。<a href="https://docs.unity3d.com/ScriptReference/BoxCollider.html" target="_blank" rel="noopener">^7</a></p>
+<table border="1"><tr><td>属性</td><td>解释</td></tr><tr><td><a href="https://docs.unity3d.com/ScriptReference/BoxCollider-center.html" target="_blank" rel="noopener">center</a></td><td>在<strong>本地坐标系</strong>下盒子的中心坐标</td></tr><tr><td><a href="https://docs.unity3d.com/ScriptReference/BoxCollider-size.html" target="_blank" rel="noopener">size</a></td><td>在对象<strong>本地坐标系</strong>下盒子的大小</td></tr></table>
+</li>
+<li><p>第五个框（第三个选择框）是<strong>Mesh Renderer(网格渲染器)</strong>：网格渲染器从<strong>网格过滤器</strong>中获取几何图形，并将其在<strong>Transform Component</strong>所定义的位置上渲染出来。<a href="https://docs.unity3d.com/Manual/class-MeshRenderer.html" target="_blank" rel="noopener">^8</a></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>用UML 图描述 三者的关系（请使用 UMLet 14.1.1 stand-alone版本出图）</p>
+<p><img src="https://github.com/Yuandi-Sherry/3DGameDesign/raw/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/UML%20-%20GameObject%2C%20Component%2C%20Transform.jpg" width="500" alt="UML - GameObject, Component, Transform"></p>
+</li>
+</ul>
+<h2 id="整理相关学习资料，编写简单代码验证以下技术的实现："><a href="#整理相关学习资料，编写简单代码验证以下技术的实现：" class="headerlink" title="整理相关学习资料，编写简单代码验证以下技术的实现："></a>整理相关学习资料，编写简单代码验证以下技术的实现：</h2><ul>
+<li><p>查找对象<a href="https://docs.unity3d.com/ScriptReference/GameObject.Find.html" target="_blank" rel="noopener">^9</a>：</p>
+<ul>
+<li><p>通过名字查找：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> GameObject <span class="title">Find</span>(<span class="params"><span class="keyword">string</span> name</span>)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过标签查找单个对象：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> GameObject <span class="title">FindWithTag</span>(<span class="params"><span class="keyword">string</span> tag</span>)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过标签查找多个对象：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> GameObject[] <span class="title">FindGameObjectsWithTag</span>(<span class="params"><span class="keyword">string</span> tag</span>)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>添加子对象 </p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> GameObect <span class="title">CreatePrimitive</span>(<span class="params">PrimitiveType type</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">GameObject child = GameObject.CreatePrimitive(PrimitiveType.Sphere);</span><br><span class="line">child.transform.parent = <span class="keyword">this</span>.transform;<span class="comment">//这里child是孩子，this是parent</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>遍历对象树</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (Transform child <span class="keyword">in</span> transform) &#123;</span><br><span class="line">  Debug.Log(child.gameObject.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>清除所有子对象</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (Transform child <span class="keyword">in</span> transform) &#123;</span><br><span class="line">  Destroy(child.gameObject);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="资源预设（Prefabs）与-对象克隆-clone"><a href="#资源预设（Prefabs）与-对象克隆-clone" class="headerlink" title="资源预设（Prefabs）与 对象克隆 (clone)"></a>资源预设（Prefabs）与 对象克隆 (clone)</h2><ul>
+<li>预设（Prefabs）有什么好处？<a href="https://docs.unity3d.com/Manual/Prefabs.html" target="_blank" rel="noopener">^10</a><ul>
+<li>当需要创建一个在场景中要被多次使用的对象时，比如：NPC，游戏道具或者一小部分游戏场景。简单复制出来的多个对象，在需要修改的时候，需要一个一个单独编辑，会造成很大的不方便。<strong>预设</strong>就是这样一个可以存放实例（组件和性质齐全的游戏对象）的对象，其中的实例有着相同的属性，需要编辑的时候只需要编辑一个对象就可以对所有对象生效了。</li>
+</ul>
+</li>
+<li>预设与对象克隆 (clone or copy or Instantiate of Unity Object) 关系？<a href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html" target="_blank" rel="noopener">^11</a><ul>
+<li>对象克隆就是对一个游戏对象的简单复制，复制过后依然可以选择性更改其属性。克隆本体改变，克隆对象不会随之改变。</li>
+</ul>
+</li>
+<li><p>制作 table 预制，写一段代码将 table 预制资源实例化成游戏对象<a href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html" target="_blank" rel="noopener">^12</a></p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PrefabBeh</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> Transform prefab;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">      Instantiate(prefab, <span class="keyword">new</span> Vector3(i * <span class="number">8.0</span>F, <span class="number">0</span>, <span class="number">0</span>), Quaternion.identity);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  运行结果：<br>  <img src="https://github.com/Yuandi-Sherry/3DGameDesign/raw/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/tablePrefabResult.PNG" width="500" alt="prefabResult1"><br>  <img src="https://github.com/Yuandi-Sherry/3DGameDesign/raw/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/tablePrefabResult2.PNG" width="150" alt="prefabResult2"></p>
+</li>
+</ul>
+<h2 id="尝试解释组合模式（Composite-Pattern-一种设计模式）。使用-BroadcastMessage-方法向子对象发送消息"><a href="#尝试解释组合模式（Composite-Pattern-一种设计模式）。使用-BroadcastMessage-方法向子对象发送消息" class="headerlink" title="尝试解释组合模式（Composite Pattern / 一种设计模式）。使用 BroadcastMessage()方法向子对象发送消息"></a>尝试解释组合模式（Composite Pattern / 一种设计模式）。使用 <code>BroadcastMessage()</code>方法向子对象发送消息</h2><ul>
+<li><p>BroadcastMessage()</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">BroadcastMessage</span>(<span class="params"><span class="keyword">string</span> methodName, <span class="keyword">object</span> parameter = <span class="literal">null</span>, SendMessageOptions options = SendMessageOptions.RequireReceiver</span>)</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ParentCall.cs: </p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ParentCall</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.BroadcastMessage(<span class="string">"ApplyDamage"</span>, <span class="number">5.0</span>F,  SendMessageOptions.RequireReceiver);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">ApplyDamage</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    print(<span class="string">"table is called"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ChildCalled1.cs:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ChildCalled1</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">ApplyDamage</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        print(<span class="string">"Chair 1 is called"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>  运行结果：<br>  <img src="https://github.com/Yuandi-Sherry/3DGameDesign/raw/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/broadCast.PNG" width="300" alt="broadCast"></p>
+</li>
+</ul>
+<h3 id="其他参考资料"><a href="#其他参考资料" class="headerlink" title="其他参考资料"></a>其他参考资料</h3><ol>
+<li><a href="https://docs.unity3d.com/Manual/UsingTheInspector.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/UsingTheInspector.html</a></li>
+<li><a href="https://docs.unity3d.com/Manual/Prefabs.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/Prefabs.html</a></li>
+<li><a href="https://www.jianshu.com/p/005c6303d55c" target="_blank" rel="noopener">https://www.jianshu.com/p/005c6303d55c</a></li>
+</ol>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+</ul>
+
+
+
+            <footer>
+    <div>© 2018 - Sherry </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+</body>
+</html>
