@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Typora编辑的markdown文本post到Github Page时遇到的坑 | Sherry&#39;s emmm... Unnamed Blog</title>
+  <title>Sherry&#39;s emmm... Unnamed Blog</title>
   
   
   <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
@@ -49,14 +49,47 @@
 
     <div class="container">
         <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
+            <ul class="Index">
+  
     <header class='PageTitle'>
-        <h1>Typora编辑的markdown文本post到Github Page时遇到的坑</h1>
+        <h1>{ Github }</h1>
     </header>
+  
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2018/03/28/Typora编辑的markdown文本post到Github-Page时遇到的坑/">Typora编辑的markdown文本post到Github Page时遇到的坑</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2018-03-28T01:01:08.000Z" itemprop="datePublished">
+    2018-03-28
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Markdown/">Markdown</a> }
+  </li>
 
-    <section>
-      <h1 id="代码高亮问题"><a href="#代码高亮问题" class="headerlink" title="代码高亮问题"></a>代码高亮问题</h1><h2 id="修改-config-yml中highlight-enable"><a href="#修改-config-yml中highlight-enable" class="headerlink" title="修改_config.yml中highlight - enable"></a>修改_config.yml中highlight - enable</h2><p>使用hexo在根目录有_config.yml文件，一般在#writing后有hexo自带的代码高亮开关：<br>     <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#writing</span></span><br><span class="line">...</span><br><span class="line"><span class="selector-tag">highlight</span>:</span><br><span class="line">  <span class="selector-tag">enable</span>: <span class="selector-tag">true</span> #这里</span><br><span class="line">  <span class="selector-tag">line_number</span>: <span class="selector-tag">false</span></span><br><span class="line">  <span class="selector-tag">auto_detect</span>: <span class="selector-tag">false</span></span><br><span class="line">  <span class="selector-tag">tab_replace</span>:</span><br></pre></td></tr></table></figure></p>
+  <li class="meta-text">
+  { <a href="/tags/Github/">Github</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h1 id="代码高亮问题"><a href="#代码高亮问题" class="headerlink" title="代码高亮问题"></a>代码高亮问题</h1><h2 id="修改-config-yml中highlight-enable"><a href="#修改-config-yml中highlight-enable" class="headerlink" title="修改_config.yml中highlight - enable"></a>修改_config.yml中highlight - enable</h2><p>使用hexo在根目录有_config.yml文件，一般在#writing后有hexo自带的代码高亮开关：<br>     <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#writing</span></span><br><span class="line">...</span><br><span class="line"><span class="selector-tag">highlight</span>:</span><br><span class="line">  <span class="selector-tag">enable</span>: <span class="selector-tag">true</span> #这里</span><br><span class="line">  <span class="selector-tag">line_number</span>: <span class="selector-tag">false</span></span><br><span class="line">  <span class="selector-tag">auto_detect</span>: <span class="selector-tag">false</span></span><br><span class="line">  <span class="selector-tag">tab_replace</span>:</span><br></pre></td></tr></table></figure></p>
 <p>在初始化时这个默认为<code>true</code>，但当引用hexo theme时，有些主题会给出视觉效果更好的highlight并在readme中提示关闭系统自带。但倘若没有提示，默认情况下是应该开启的。所以在设置/更换主题时若没有出现预想的代码高亮效果可能是<code>enable</code>的状态不对。</p>
 <p>被hexo用户广泛使用的next系列主题enable是需要为<code>true</code>才能正确使用其预先设定的Tomorrow theme代码高亮。</p>
 <h2 id="Typora和Github-Page代码语言名称的语法区别"><a href="#Typora和Github-Page代码语言名称的语法区别" class="headerlink" title="Typora和Github Page代码语言名称的语法区别"></a>Typora和Github Page代码语言名称的语法区别</h2><p>之所以会遇到这个问题，还有一个原因就是编写Unity 3D的脚本使用的是C#语言。C#有很多同义词，如C#，Csharp, cs. 在markdown语言中为了更好地表示高亮代码，通常会在代码块引用开头```后+引用语言的名称。在Typora中选择栏里默认为“C#”，但原markdown文本无论是po到CSDN还是github page上都会多少出现一些语法的不兼容性，在CSDN上部分代码完全不出现代码块，在github page上只有<strong>代码块而没有高亮</strong>。</p>
@@ -80,39 +113,15 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">""</span> <span class="attr">width</span>=<span class="string">"50%"</span> <span class="attr">height</span>=<span class="string">"50%"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>其中<code>width</code>和<code>height</code>变为具体尺寸数值也是可以的。</p>
 
-
       
-
-    </section>
-    
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2018-03-28T01:01:08.000Z" itemprop="datePublished">
-              2018-03-28
-            </time>
-          </div>
-          
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/Markdown/">Markdown</a> }
-  </li>
-
-  <li class="meta-text">
-  { <a href="/tags/Github/">Github</a> }
-  </li>
-
-
-            </div>
-          
-      </section>
-    
-    
+    </div>
 </article>
 
+    </li>
   
-</div>
+</ul>
+
+
 
             <footer>
     <div>© 2018 - Sherry </div>
