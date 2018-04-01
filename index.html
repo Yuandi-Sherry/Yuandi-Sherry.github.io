@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Sherry&#39;s emmm... Unnamed Blog</title>
@@ -9,11 +9,11 @@
   
   <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
-<div class="Shell">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
     <aside class='SideBar'>
     <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
         <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
@@ -61,7 +61,7 @@
     <header class="title">
       
         <h1>
-          <a href="/2018/04/01/Week-04-Homework/">Week04 Homework - 游戏对象的运动</a>
+          <a href="/2018/04/01/Week04-Homework/">Week04 Homework - 游戏对象的运动</a>
         </h1>
       
       <div class='ListMeta'>
@@ -94,8 +94,8 @@
 <li><p>分速度计算公式如下：</p>
 <p>​    为简便计算，假设物体斜抛的水平方向初速度为<code>initialVelocityRight</code>，竖直方向初速度为<code>initialVelocityUp</code>：</p>
 <ul>
-<li>$V_x = initialVelocityRight$</li>
-<li>$V_y = initialVelocityUp - g\sum\delta t$</li>
+<li>$ V_x = initialVelocityRight $</li>
+<li>$ V_y = initialVelocityUp - g\sum\delta t $</li>
 </ul>
 </li>
 <li><p>关键代码如下：</p>
@@ -104,7 +104,7 @@
 </ul>
         
           <div class="more-link">
-            <a href="/2018/04/01/Week-04-Homework/#more">Read On »</a>
+            <a href="/2018/04/01/Week04-Homework/#more">Read On »</a>
           </div>
         
       
@@ -190,8 +190,8 @@
     <div>
       
         <h2 id="解释-游戏对象（GameObjects）-和-资源（Assets）的区别与联系。"><a href="#解释-游戏对象（GameObjects）-和-资源（Assets）的区别与联系。" class="headerlink" title="解释 游戏对象（GameObjects） 和 资源（Assets）的区别与联系。"></a>解释 游戏对象（GameObjects） 和 资源（Assets）的区别与联系。</h2><ul>
-<li><strong>游戏对象</strong>是Unity中最基础的对象，它可以代表游戏角色、 游戏道具和游戏场景。它们本身不会并不会为游戏贡献很多，但是它们却作为<strong>组件</strong>（展现真正游戏效果）的容器发挥着重要作用。<a href="https://docs.unity3d.com/ScriptReference/GameObject.html" target="_blank" rel="noopener">^1</a></li>
-<li>资源是能够用在游戏中的事物，可以来自Unity外创建的文件，比如3D模型、音频文件、图像，或是任何Unity支持的其他文件类型。同时，Unity内部也可以创建很多资源类型，比如动画控制器、音频混合器和渲染纹理等等。<a href="https://docs.unity3d.com/Manual/AssetWorkflow.html" target="_blank" rel="noopener">^2</a></li>
+<li><strong>游戏对象</strong>是Unity中最基础的对象，它可以代表游戏角色、 游戏道具和游戏场景。它们本身不会并不会为游戏贡献很多，但是它们却作为<strong>组件</strong>（展现真正游戏效果）的容器发挥着重要作用。<sup><a href="#fn_1" id="reffn_1">1</a></sup></li>
+<li>资源是能够用在游戏中的事物，可以来自Unity外创建的文件，比如3D模型、音频文件、图像，或是任何Unity支持的其他文件类型。同时，Unity内部也可以创建很多资源类型，比如动画控制器、音频混合器和渲染纹理等等。<sup><a href="#fn_2" id="reffn_2">2</a></sup></li>
 <li>区别在于：<ol>
 <li>游戏对象是游戏中的一个逻辑概念，有自身的属性和行为（比如玩家、大BOSS、场景）；而大部分游戏资源是来自外部的文件，仅作为游戏对象的组成部分（比如材料、音乐、图片）。</li>
 <li>游戏对象是游戏过程的一部分；资源是游戏编程过程的一部分。</li>
@@ -230,6 +230,23 @@
 <script>
 var sp = new Pager('data-pager-shell')
 
+</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
 </html>

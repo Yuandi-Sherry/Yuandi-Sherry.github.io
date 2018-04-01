@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-cmn-Hans">
 <head>
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Week03 Homework - Some Basic Knowledges | Sherry&#39;s emmm... Unnamed Blog</title>
@@ -9,11 +9,11 @@
   
   <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body>
-<div class="Shell">
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
     <aside class='SideBar'>
     <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
         <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
@@ -61,8 +61,8 @@
 
     <section>
       <h2 id="解释-游戏对象（GameObjects）-和-资源（Assets）的区别与联系。"><a href="#解释-游戏对象（GameObjects）-和-资源（Assets）的区别与联系。" class="headerlink" title="解释 游戏对象（GameObjects） 和 资源（Assets）的区别与联系。"></a>解释 游戏对象（GameObjects） 和 资源（Assets）的区别与联系。</h2><ul>
-<li><strong>游戏对象</strong>是Unity中最基础的对象，它可以代表游戏角色、 游戏道具和游戏场景。它们本身不会并不会为游戏贡献很多，但是它们却作为<strong>组件</strong>（展现真正游戏效果）的容器发挥着重要作用。<a href="https://docs.unity3d.com/ScriptReference/GameObject.html" target="_blank" rel="noopener">^1</a></li>
-<li>资源是能够用在游戏中的事物，可以来自Unity外创建的文件，比如3D模型、音频文件、图像，或是任何Unity支持的其他文件类型。同时，Unity内部也可以创建很多资源类型，比如动画控制器、音频混合器和渲染纹理等等。<a href="https://docs.unity3d.com/Manual/AssetWorkflow.html" target="_blank" rel="noopener">^2</a></li>
+<li><strong>游戏对象</strong>是Unity中最基础的对象，它可以代表游戏角色、 游戏道具和游戏场景。它们本身不会并不会为游戏贡献很多，但是它们却作为<strong>组件</strong>（展现真正游戏效果）的容器发挥着重要作用。<sup><a href="#fn_1" id="reffn_1">1</a></sup></li>
+<li>资源是能够用在游戏中的事物，可以来自Unity外创建的文件，比如3D模型、音频文件、图像，或是任何Unity支持的其他文件类型。同时，Unity内部也可以创建很多资源类型，比如动画控制器、音频混合器和渲染纹理等等。<sup><a href="#fn_2" id="reffn_2">2</a></sup></li>
 <li>区别在于：<ol>
 <li>游戏对象是游戏中的一个逻辑概念，有自身的属性和行为（比如玩家、大BOSS、场景）；而大部分游戏资源是来自外部的文件，仅作为游戏对象的组成部分（比如材料、音乐、图片）。</li>
 <li>游戏对象是游戏过程的一部分；资源是游戏编程过程的一部分。</li>
@@ -89,11 +89,11 @@
 <h2 id="查找脚本手册，了解GameObject，Transform，Component-对象"><a href="#查找脚本手册，了解GameObject，Transform，Component-对象" class="headerlink" title="查找脚本手册，了解GameObject，Transform，Component 对象"></a>查找脚本手册，了解GameObject，Transform，Component 对象</h2><ul>
 <li><p>分别翻译官方对三个对象的描述（Description）</p>
 <ul>
-<li><p><strong>GameObject</strong>: 游戏对象是Unity中最基础的对象，它可以代表游戏角色、 游戏道具和游戏场景。它们本身不会并不会为游戏贡献很多，但是它们却作为<strong>组件</strong>（展现真正游戏效果）的容器发挥着重要作用。<a href="https://docs.unity3d.com/ScriptReference/GameObject.html" target="_blank" rel="noopener">^1</a></p>
+<li><p><strong>GameObject</strong>: 游戏对象是Unity中最基础的对象，它可以代表游戏角色、 游戏道具和游戏场景。它们本身不会并不会为游戏贡献很多，但是它们却作为<strong>组件</strong>（展现真正游戏效果）的容器发挥着重要作用。<sup><a href="#fn_1" id="reffn_1">1</a></sup></p>
 </li>
-<li><p><strong>Transform</strong>: Transform（变换）组件决定了场景中每一个物体的位置、旋转角度和缩放大小。每一个游戏对象都有一个变换（组件）。<a href="https://docs.unity3d.com/Manual/class-Transform.html" target="_blank" rel="noopener">^3</a></p>
+<li><p><strong>Transform</strong>: Transform（变换）组件决定了场景中每一个物体的位置、旋转角度和缩放大小。每一个游戏对象都有一个变换（组件）。<sup><a href="#fn_3" id="reffn_3">3</a></sup></p>
 </li>
-<li><p><strong>Component</strong>: 添加到游戏对象的一切事物的<strong>基类</strong>。注意：你的代码永远不会直接地创建<strong>组件</strong>；相反，你会写<strong>脚本代码</strong>并将脚本添加到<strong>游戏对象</strong>上。<a href="https://docs.unity3d.com/Manual/Components.html" target="_blank" rel="noopener">^4</a></p>
+<li><p><strong>Component</strong>: 添加到游戏对象的一切事物的<strong>基类</strong>。注意：你的代码永远不会直接地创建<strong>组件</strong>；相反，你会写<strong>脚本代码</strong>并将脚本添加到<strong>游戏对象</strong>上。<sup><a href="#fn_4" id="reffn_4">4</a></sup></p>
 </li>
 </ul>
 </li>
@@ -105,16 +105,16 @@
 </li>
 <li><p>table的对象是<strong>GameObject</strong>，它有如下属性：</p>
 <ul>
-<li><p>第一个选择框是<strong>activeSelf</strong>属性：通过停止勾选（可视化图形编程界面）或将其属性改为inactive（API中），GameObject可以被暂时从场景中移出。<a href="https://docs.unity3d.com/Manual/DeactivatingGameObjects.html" target="_blank" rel="noopener">^5</a></p>
+<li><p>第一个选择框是<strong>activeSelf</strong>属性：通过停止勾选（可视化图形编程界面）或将其属性改为inactive（API中），GameObject可以被暂时从场景中移出。<sup><a href="#fn_5" id="reffn_5">5</a></sup></p>
 </li>
 <li><p>第二个框是<strong>Transform Component</strong></p>
 </li>
-<li><p>第三个框是<strong>Mesh Filter(网格过滤器)</strong>：网格过滤器从资源中获取一个网格，并将其传递给网格渲染器使其得以在屏幕上渲染。<a href="https://docs.unity3d.com/Manual/class-MeshFilter.html" target="_blank" rel="noopener">^6</a></p>
+<li><p>第三个框是<strong>Mesh Filter(网格过滤器)</strong>：网格过滤器从资源中获取一个网格，并将其传递给网格渲染器使其得以在屏幕上渲染。<sup><a href="#fn_6" id="reffn_6">6</a></sup></p>
 </li>
-<li><p>第四个框是<strong>Box Collider(盒装对撞机)</strong>：是一个盒子形状的原型对撞机。<a href="https://docs.unity3d.com/ScriptReference/BoxCollider.html" target="_blank" rel="noopener">^7</a></p>
-<table border="1"><tr><td>属性</td><td>解释</td></tr><tr><td><a href="https://docs.unity3d.com/ScriptReference/BoxCollider-center.html" target="_blank" rel="noopener">center</a></td><td>在<strong>本地坐标系</strong>下盒子的中心坐标</td></tr><tr><td><a href="https://docs.unity3d.com/ScriptReference/BoxCollider-size.html" target="_blank" rel="noopener">size</a></td><td>在对象<strong>本地坐标系</strong>下盒子的大小</td></tr></table>
+<li><p>第四个框是<strong>Box Collider(盒装对撞机)</strong>：是一个盒子形状的原型对撞机。<sup><a href="#fn_7" id="reffn_7">7</a></sup></p>
+<table border="1"><tr><td>属性</td><td>解释</td></tr><tr><td>[center](https://docs.unity3d.com/ScriptReference/BoxCollider-center.html)</td><td>在**本地坐标系**下盒子的中心坐标</td></tr><tr><td>[size](https://docs.unity3d.com/ScriptReference/BoxCollider-size.html)</td><td>在对象**本地坐标系**下盒子的大小</td></tr></table>
 </li>
-<li><p>第五个框（第三个选择框）是<strong>Mesh Renderer(网格渲染器)</strong>：网格渲染器从<strong>网格过滤器</strong>中获取几何图形，并将其在<strong>Transform Component</strong>所定义的位置上渲染出来。<a href="https://docs.unity3d.com/Manual/class-MeshRenderer.html" target="_blank" rel="noopener">^8</a></p>
+<li><p>第五个框（第三个选择框）是<strong>Mesh Renderer(网格渲染器)</strong>：网格渲染器从<strong>网格过滤器</strong>中获取几何图形，并将其在<strong>Transform Component</strong>所定义的位置上渲染出来。<sup><a href="#fn_8" id="reffn_8">8</a></sup></p>
 </li>
 </ul>
 </li>
@@ -125,7 +125,7 @@
 </li>
 </ul>
 <h2 id="整理相关学习资料，编写简单代码验证以下技术的实现："><a href="#整理相关学习资料，编写简单代码验证以下技术的实现：" class="headerlink" title="整理相关学习资料，编写简单代码验证以下技术的实现："></a>整理相关学习资料，编写简单代码验证以下技术的实现：</h2><ul>
-<li><p>查找对象<a href="https://docs.unity3d.com/ScriptReference/GameObject.Find.html" target="_blank" rel="noopener">^9</a>：</p>
+<li><p>查找对象<sup><a href="#fn_9" id="reffn_9">9</a></sup>：</p>
 <ul>
 <li><p>通过名字查找：</p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> GameObject <span class="title">Find</span>(<span class="params"><span class="keyword">string</span> name</span>)</span></span><br></pre></td></tr></table></figure>
@@ -150,15 +150,15 @@
 </li>
 </ul>
 <h2 id="资源预设（Prefabs）与-对象克隆-clone"><a href="#资源预设（Prefabs）与-对象克隆-clone" class="headerlink" title="资源预设（Prefabs）与 对象克隆 (clone)"></a>资源预设（Prefabs）与 对象克隆 (clone)</h2><ul>
-<li>预设（Prefabs）有什么好处？<a href="https://docs.unity3d.com/Manual/Prefabs.html" target="_blank" rel="noopener">^10</a><ul>
+<li>预设（Prefabs）有什么好处？<sup><a href="#fn_10" id="reffn_10">10</a></sup><ul>
 <li>当需要创建一个在场景中要被多次使用的对象时，比如：NPC，游戏道具或者一小部分游戏场景。简单复制出来的多个对象，在需要修改的时候，需要一个一个单独编辑，会造成很大的不方便。<strong>预设</strong>就是这样一个可以存放实例（组件和性质齐全的游戏对象）的对象，其中的实例有着相同的属性，需要编辑的时候只需要编辑一个对象就可以对所有对象生效了。</li>
 </ul>
 </li>
-<li>预设与对象克隆 (clone or copy or Instantiate of Unity Object) 关系？<a href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html" target="_blank" rel="noopener">^11</a><ul>
+<li>预设与对象克隆 (clone or copy or Instantiate of Unity Object) 关系？<sup><a href="#fn_11" id="reffn_11">11</a></sup><ul>
 <li>对象克隆就是对一个游戏对象的简单复制，复制过后依然可以选择性更改其属性。克隆本体改变，克隆对象不会随之改变。</li>
 </ul>
 </li>
-<li><p>制作 table 预制，写一段代码将 table 预制资源实例化成游戏对象<a href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html" target="_blank" rel="noopener">^12</a></p>
+<li><p>制作 table 预制，写一段代码将 table 预制资源实例化成游戏对象<sup><a href="#fn_12" id="reffn_12">12</a></sup></p>
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PrefabBeh</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">  <span class="keyword">public</span> Transform prefab;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">      Instantiate(prefab, <span class="keyword">new</span> Vector3(i * <span class="number">8.0</span>F, <span class="number">0</span>, <span class="number">0</span>), Quaternion.identity);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>  运行结果：<br>  <img src="https://github.com/Yuandi-Sherry/3DGameDesign/raw/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/tablePrefabResult.PNG" width="500" alt="prefabResult1"><br>  <img src="https://github.com/Yuandi-Sherry/3DGameDesign/raw/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/tablePrefabResult2.PNG" width="150" alt="prefabResult2"></p>
 </li>
@@ -175,6 +175,42 @@
 <p>  运行结果：<br>  <img src="https://github.com/Yuandi-Sherry/3DGameDesign/raw/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/broadCast.PNG" width="300" alt="broadCast"></p>
 </li>
 </ul>
+<blockquote id="fn_1">
+<sup>1</sup>. <a href="https://docs.unity3d.com/ScriptReference/GameObject.html" target="_blank" rel="noopener">https://docs.unity3d.com/ScriptReference/GameObject.html</a><a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. <a href="https://docs.unity3d.com/Manual/AssetWorkflow.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/AssetWorkflow.html</a><a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_3">
+<sup>3</sup>. <a href="https://docs.unity3d.com/Manual/class-Transform.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/class-Transform.html</a><a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_4">
+<sup>4</sup>. <a href="https://docs.unity3d.com/Manual/Components.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/Components.html</a><a href="#reffn_4" title="Jump back to footnote [4] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_5">
+<sup>5</sup>. <a href="https://docs.unity3d.com/Manual/DeactivatingGameObjects.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/DeactivatingGameObjects.html</a><a href="#reffn_5" title="Jump back to footnote [5] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_6">
+<sup>6</sup>. <a href="https://docs.unity3d.com/Manual/class-MeshFilter.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/class-MeshFilter.html</a><a href="#reffn_6" title="Jump back to footnote [6] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_7">
+<sup>7</sup>. <a href="https://docs.unity3d.com/ScriptReference/BoxCollider.html" target="_blank" rel="noopener">https://docs.unity3d.com/ScriptReference/BoxCollider.html</a><a href="#reffn_7" title="Jump back to footnote [7] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_8">
+<sup>8</sup>. <a href="https://docs.unity3d.com/Manual/class-MeshRenderer.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/class-MeshRenderer.html</a><a href="#reffn_8" title="Jump back to footnote [8] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_9">
+<sup>9</sup>. <a href="https://docs.unity3d.com/ScriptReference/GameObject.Find.html" target="_blank" rel="noopener">https://docs.unity3d.com/ScriptReference/GameObject.Find.html</a><a href="#reffn_9" title="Jump back to footnote [9] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_10">
+<sup>10</sup>. <a href="https://docs.unity3d.com/Manual/Prefabs.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/Prefabs.html</a><a href="#reffn_10" title="Jump back to footnote [10] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_11">
+<sup>11</sup>. <a href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html" target="_blank" rel="noopener">https://docs.unity3d.com/ScriptReference/Object.Instantiate.html</a><a href="#reffn_11" title="Jump back to footnote [11] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_12">
+<sup>12</sup>. <a href="https://docs.unity3d.com/ScriptReference/Object.Instantiate.html" target="_blank" rel="noopener">https://docs.unity3d.com/ScriptReference/Object.Instantiate.html</a><a href="#reffn_12" title="Jump back to footnote [12] in the text."> &#8617;</a>
+</blockquote>
 <h3 id="其他参考资料"><a href="#其他参考资料" class="headerlink" title="其他参考资料"></a>其他参考资料</h3><ol>
 <li><a href="https://docs.unity3d.com/Manual/UsingTheInspector.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/UsingTheInspector.html</a></li>
 <li><a href="https://docs.unity3d.com/Manual/Prefabs.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/Prefabs.html</a></li>
@@ -225,6 +261,6 @@
 <script>
 var sp = new Pager('data-pager-shell')
 
-</script>
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

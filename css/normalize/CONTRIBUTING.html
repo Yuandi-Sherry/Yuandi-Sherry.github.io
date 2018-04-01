@@ -7,7 +7,7 @@
 <li><p>Please <strong>do not</strong> derail or troll issues. Keep the discussion on topic and<br>respect the opinions of others.</p>
 </li>
 </ul>
-<h2 id="Bug-reports"><a href="#Bug-reports" class="headerlink" title="Bug reports"></a>Bug reports</h2><p>A bug is a <em>demonstrable problem</em> that is caused by the code in the repository.<br>Good bug reports are extremely helpful - thank you!</p>
+<h2 id="Bug-reports"><a href="#Bug-reports" class="headerlink" title="Bug reports"></a>Bug reports</h2><p>A bug is a _demonstrable problem_ that is caused by the code in the repository.<br>Good bug reports are extremely helpful - thank you!</p>
 <p>Guidelines for bug reports:</p>
 <ol>
 <li><p><strong>Use the GitHub issue search</strong> – check if the issue has already been<br>reported.</p>
@@ -37,35 +37,35 @@
 <p>Follow this process if you’d like your work considered for inclusion in the<br>project:</p>
 <ol>
 <li><p><a href="https://help.github.com/articles/fork-a-repo/">Fork</a> the project, clone your<br>fork, and configure the remotes:</p>
-<pre><code class="bash"><span class="comment"># Clone your fork of the repo into the current directory</span>
-git <span class="built_in">clone</span> https://github.com/&lt;your-username&gt;/normalize.css
-<span class="comment"># Navigate to the newly cloned directory</span>
-<span class="built_in">cd</span> normalize.css
-<span class="comment"># Assign the original repo to a remote called "upstream"</span>
+<pre><code class="lang-bash"># Clone your fork of the repo into the current directory
+git clone https://github.com/&lt;your-username&gt;/normalize.css
+# Navigate to the newly cloned directory
+cd normalize.css
+# Assign the original repo to a remote called &quot;upstream&quot;
 git remote add upstream https://github.com/necolas/normalize.css
 </code></pre>
 </li>
 <li><p>If you cloned a while ago, get the latest changes from upstream:</p>
-<pre><code class="bash">git checkout master
+<pre><code class="lang-bash">git checkout master
 git pull upstream master
 </code></pre>
 </li>
 <li><p>Never work directly on <code>master</code>. Create a new topic branch (off the latest<br>version of <code>master</code>) to contain your feature, change, or fix:</p>
-<pre><code class="bash">git checkout -b &lt;topic-branch-name&gt;
+<pre><code class="lang-bash">git checkout -b &lt;topic-branch-name&gt;
 </code></pre>
 </li>
 <li><p>Commit your changes in logical chunks. Please adhere to these <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">git commit<br>message conventions</a><br>or your code is unlikely be merged into the main project. Use Git’s<br><a href="https://help.github.com/articles/interactive-rebase">interactive rebase</a><br>feature to tidy up your commits before making them public.</p>
 <p>Be sure to test the <code>normalize.css</code> file for style conformance.</p>
-<pre><code class="bash">npm <span class="built_in">test</span>
+<pre><code class="lang-bash">npm test
 </code></pre>
 <p>Be sure to add a test to the <code>test.html</code> file if appropriate, and test<br>your change in all supported browsers.</p>
 </li>
 <li><p>Locally rebase the upstream development branch into your topic branch:</p>
-<pre><code class="bash">git pull --rebase upstream master
+<pre><code class="lang-bash">git pull --rebase upstream master
 </code></pre>
 </li>
 <li><p>Push your topic branch up to your fork:</p>
-<pre><code class="bash">git push origin &lt;topic-branch-name&gt;
+<pre><code class="lang-bash">git push origin &lt;topic-branch-name&gt;
 </code></pre>
 </li>
 <li><p><a href="https://help.github.com/articles/using-pull-requests/">Open a Pull Request</a><br>with a clear title and description.</p>
