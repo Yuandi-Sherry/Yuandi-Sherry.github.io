@@ -16,7 +16,7 @@
 <div class="Shell">
     <aside class='SideBar'>
     <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
-        <div class='av-pic' style="background-image: url(https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=12e5083b1330e924dba994632d610563/9922720e0cf3d7ca6e262a45fe1fbe096b63a934.jpg)">
+        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
         </div>
     </section>
     <section class='menu'>
@@ -32,6 +32,10 @@
           
             <a href="/archives/" class="Btn">
               <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
             </a>  
           
         </ul>
@@ -56,9 +60,10 @@
     </header>
 
     <section>
-      <h1 id="代码高亮问题"><a href="#代码高亮问题" class="headerlink" title="代码高亮问题"></a>代码高亮问题</h1><h2 id="修改-config-yml中highlight-enable"><a href="#修改-config-yml中highlight-enable" class="headerlink" title="修改_config.yml中highlight - enable"></a>修改_config.yml中highlight - enable</h2><p>使用hexo在根目录有_config.yml文件，一般在#writing后有hexo自带的代码高亮开关：<br>     <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#writing</span></span><br><span class="line">...</span><br><span class="line"><span class="selector-tag">highlight</span>:</span><br><span class="line">  <span class="selector-tag">enable</span>: <span class="selector-tag">true</span> #这里</span><br><span class="line">  <span class="selector-tag">line_number</span>: <span class="selector-tag">false</span></span><br><span class="line">  <span class="selector-tag">auto_detect</span>: <span class="selector-tag">false</span></span><br><span class="line">  <span class="selector-tag">tab_replace</span>:</span><br></pre></td></tr></table></figure></p>
+      <h1 id="代码高亮问题"><a href="#代码高亮问题" class="headerlink" title="代码高亮问题"></a>代码高亮问题</h1><h2 id="修改-config-yml中highlight-enable"><a href="#修改-config-yml中highlight-enable" class="headerlink" title="修改_config.yml中highlight - enable"></a>修改_config.yml中highlight - enable</h2><p>使用hexo在根目录有_config.yml文件，一般在#writing后有hexo自带的代码高亮开关：<br>     <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#writing</span></span><br><span class="line">...</span><br><span class="line"><span class="selector-tag">highlight</span>:</span><br><span class="line">  <span class="selector-tag">enable</span>: <span class="selector-tag">true</span> #这里</span><br><span class="line">  <span class="selector-tag">line_number</span>: <span class="selector-tag">false</span></span><br><span class="line">  <span class="selector-tag">auto_detect</span>: <span class="selector-tag">false</span></span><br><span class="line">  <span class="selector-tag">tab_replace</span>:</span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
 <p>在初始化时这个默认为<code>true</code>，但当引用hexo theme时，有些主题会给出视觉效果更好的highlight并在readme中提示关闭系统自带。但倘若没有提示，默认情况下是应该开启的。所以在设置/更换主题时若没有出现预想的代码高亮效果可能是<code>enable</code>的状态不对。</p>
 <p>被hexo用户广泛使用的next系列主题enable是需要为<code>true</code>才能正确使用其预先设定的Tomorrow theme代码高亮。</p>
+<a id="more"></a>
 <h2 id="Typora和Github-Page代码语言名称的语法区别"><a href="#Typora和Github-Page代码语言名称的语法区别" class="headerlink" title="Typora和Github Page代码语言名称的语法区别"></a>Typora和Github Page代码语言名称的语法区别</h2><p>之所以会遇到这个问题，还有一个原因就是编写Unity 3D的脚本使用的是C#语言。C#有很多同义词，如C#，Csharp, cs. 在markdown语言中为了更好地表示高亮代码，通常会在代码块引用开头```后+引用语言的名称。在Typora中选择栏里默认为“C#”，但原markdown文本无论是po到CSDN还是github page上都会多少出现一些语法的不兼容性，在CSDN上部分代码完全不出现代码块，在github page上只有<strong>代码块而没有高亮</strong>。</p>
 <p>前者的解决方法主要是调整缩进和换行，其他博客中也有说过：<a href="https://blog.csdn.net/felcon/article/details/45333077" target="_blank" rel="noopener">在Markdown里一个回车，不是分段而是换行，要两个回车，才是分段。</a></p>
 <p>面对后者的问题，一般都是”```“标注的代码块开头后面的语言名称写错了，比如Typora中写为C#，但对github page，发现应该写成Csharp才能有正确的高亮效果。</p>

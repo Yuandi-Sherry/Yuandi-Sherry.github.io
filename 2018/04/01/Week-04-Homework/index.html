@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Week 04 - Homework 游戏对象的运动 | Sherry&#39;s emmm... Unnamed Blog</title>
+  <title>Week04 Homework - 游戏对象的运动 | Sherry&#39;s emmm... Unnamed Blog</title>
   
   
   <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
@@ -16,7 +16,7 @@
 <div class="Shell">
     <aside class='SideBar'>
     <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
-        <div class='av-pic' style="background-image: url(https://gss1.bdstatic.com/-vo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike150%2C5%2C5%2C150%2C50/sign=12e5083b1330e924dba994632d610563/9922720e0cf3d7ca6e262a45fe1fbe096b63a934.jpg)">
+        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
         </div>
     </section>
     <section class='menu'>
@@ -32,6 +32,10 @@
           
             <a href="/archives/" class="Btn">
               <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
             </a>  
           
         </ul>
@@ -52,7 +56,7 @@
             <div>
   <article class='ContentView'>
     <header class='PageTitle'>
-        <h1>Week 04 - Homework 游戏对象的运动</h1>
+        <h1>Week04 Homework - 游戏对象的运动</h1>
     </header>
 
     <section>
@@ -73,6 +77,7 @@
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	count += Time.deltaTime; <span class="comment">//计算从抛出到当前时刻经过的时间</span></span><br><span class="line">	transform.position += <span class="keyword">new</span> Vector3(initialVelocityRight, initialVelocityUp<span class="number">-9.8</span>f*count, <span class="number">0.0</span>f)*Time.deltaTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<a id="more"></a>
 </li>
 <li><p>方法二【计算物体每一时刻的和速度和位置】：和方法一类似，根据斜抛公式计算物体每一时刻的位移向量，根据能量守恒公式计算物体某一时刻的合速度。</p>
 <p>​    运用<code>MoveTowards</code>函数，它表示的是表示以<code>maxDistanceDelta</code>速度从<code>current</code>直线移动到<code>target</code>：</p>
