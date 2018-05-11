@@ -65,6 +65,62 @@
     <header class="title">
       
         <h1>
+          <a href="/2018/05/11/Week09-Animator-View-Pattern-patrols/">Week09-Animator &amp; View Pattern-patrols</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2018-05-11T02:26:28.000Z" itemprop="datePublished">
+    2018-05-11
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/3D-GAME-DESIGN/">3D GAME DESIGN</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p><img src="https://github.com/Yuandi-Sherry/BLOGpics/blob/master/Week09/ezgif-5-f7e4265d62.gif?raw=true" alt="gameView"></p>
+<h1 id="游戏设计要求"><a href="#游戏设计要求" class="headerlink" title="游戏设计要求"></a>游戏设计要求</h1><ul>
+<li>创建一个地图和若干巡逻兵(使用动画)；</li>
+<li>每个巡逻兵走一个3~5个边的凸多边型，位置数据是相对地址。即每次确定下一个目标位置，用自己当前位置为原点计算；</li>
+<li>巡逻兵碰撞到障碍物，则会自动选下一个点为目标；</li>
+<li>巡逻兵在设定范围内感知到玩家，会自动追击玩家；</li>
+<li>失去玩家目标后，继续巡逻；</li>
+<li>计分：玩家每次甩掉一个巡逻兵计一分，与巡逻兵碰撞游戏结束；</li>
+</ul>
+<h1 id="设计要点"><a href="#设计要点" class="headerlink" title="设计要点"></a>设计要点</h1><ul>
+<li>关于游戏对象动作的控制，继承SSAction（动作基类）定义巡逻兵巡逻和追逐两个动作；</li>
+<li>对于玩家直接在FirstController中实现movePlayer方法根据UserGUI传入的键盘输入数据控制玩家的移动即可；</li>
+<li>这次任务的关键是控制游戏对象和游戏对象的接触、游戏对象和场景的接触（包括collision和trigger）；</li>
+<li>动画的控制取store找一些models，自己建立Animator并在代码中设置相应参数即可；</li>
+<li>本游戏中引入了一种在之前作业中没有过的观察者模式，即事件的发布者与订阅者，采用的方法是构建GameEventManager管理所有事件，发布者在特定情况下发布GameEventManager中相应事件，订阅者用OnEnable()对相关事件进行响应。</li>
+</ul>
+        
+          <div class="more-link">
+            <a href="/2018/05/11/Week09-Animator-View-Pattern-patrols/#more">Read On »</a>
+          </div>
+        
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2018/04/17/Week06-GameObject-Factory-Frisbee/">Week06-GameObject Factory Frisbee</a>
         </h1>
       
