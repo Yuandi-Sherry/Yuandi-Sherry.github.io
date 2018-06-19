@@ -60,10 +60,9 @@
     </header>
 
     <section>
-      <h1 id="Tanks"><a href="#Tanks" class="headerlink" title="Tanks"></a>Tanks</h1><p>【这篇博客暂时就发到github包里，近日凉凉重装系统还没有把hexo装回来。我会尽快同步到github的blog上的】</p>
-<p>视频连接：</p>
-<p>整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：</p>
+      <h1 id="Tanks"><a href="#Tanks" class="headerlink" title="Tanks"></a>Tanks</h1><p>整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：</p>
 <p><img src="https://github.com/Yuandi-Sherry/3DGameDesignHomeworkWeek15/blob/master/preview.gif?raw=true" alt="preview"></p>
+<a id="more"></a>
 <p>首先看一下这次的游戏都有哪些对象以及他们所需要的各种操作：</p>
 <h3 id="Tank"><a href="#Tank" class="headerlink" title="Tank"></a>Tank</h3><p>​    无论是Play还是NPC都具有Tank的属性，而其中的公有部分就是它们的血条。因而创建一个基类Blood，之后让Player和NPC都集成它并发展它们各自不同的功能。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Blood : MonoBehaviour &#123;</span><br><span class="line">	private float blood;</span><br><span class="line">	public float getBlood() &#123;</span><br><span class="line">		return blood;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setBlood(float blood0) &#123;</span><br><span class="line">		blood = blood0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
