@@ -61,6 +61,134 @@
     <header class="title">
       
         <h1>
+          <a href="/2019/03/05/软件测试-Homework1/">软件测试 - Homework1</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2019-03-05T11:59:02.000Z" itemprop="datePublished">
+    2019-03-05
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Software-Testing/">Software Testing</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p><strong>问题：</strong>正确理解原型方法对软件生命周期不同阶段的支持，分别给出：辅助或代替分析阶段；辅助设计阶段；代替分析与设计阶段；代替分析、设计和实现阶段；代替全部开发阶段所对应的开发活动执行时间顺序。</p>
+<p>原型方法：</p>
+<p><img src="https://s2.ax1x.com/2019/03/05/kjl9U0.png" width="400"></p>
+<h2 id="辅助或代替分析阶段"><a href="#辅助或代替分析阶段" class="headerlink" title="辅助或代替分析阶段"></a>辅助或代替分析阶段</h2><p>软件生命周期中的需求分析阶段：</p>
+<ul>
+<li>分析用户提出的需求，给出用户需求的详细定义，确定软件系统各项功能、性能需求和设计约束，确定对文档编制的要求。</li>
+<li>提交软件需求说明、软件规格说明、数据要求说明等文档和初步的用户手册。</li>
+</ul>
+<p>将分析步骤替换为原型方法，使得在给阶段中可以进行回归，即从得到初步需求到出具具体的需求说明文档之间可以通过原型方法不断修改、构造、反馈得到明确的需求。</p>
+<p>开发活动执行的时间顺序为：初步需求 -&gt; 原型 -&gt; 需求说明 -&gt; 设计 -&gt; 设计说明 -&gt; 编码 -&gt; 程序系统 -&gt; 编码 -&gt; 软件产品 -&gt; 运行维护。</p>
+<h2 id="辅助设计阶段"><a href="#辅助设计阶段" class="headerlink" title="辅助设计阶段"></a>辅助设计阶段</h2><p>软件生命周期中的设计阶段：</p>
+<ul>
+<li>概要设计：把各项软件需求转换成软件的体系结构。结构中每一个组成部分意义明确，并和某些需求相对应。</li>
+<li>详细设计：对按照概要设计分解的每个模块所要完成的工作进行具体描述，提供源程序代码编写的直接依据。</li>
+<li>提交概要架构设计说明书、详细设计说明书和测试计划初稿等文档。</li>
+</ul>
+<p>得到需求说明之后可以尝试采用不同的系统架构，并在快速构造过程之后获得使用的反馈，再次改进，直到得到了合适的系统架构并出具设计说明。</p>
+<p>开发活动执行的时间顺序为：初步需求 -&gt; 分析 -&gt; 需求说明 -&gt; 原型 -&gt; 设计说明 -&gt; 编码 -&gt; 程序系统 -&gt; 编码 -&gt; 软件产品 -&gt; 运行维护。</p>
+<h2 id="代替分析与设计阶段"><a href="#代替分析与设计阶段" class="headerlink" title="代替分析与设计阶段"></a>代替分析与设计阶段</h2><p>得到初步需求后，将初步的需求和各种不同的系统架构不断快速分析修改、构造、使用得到反馈，之后直接结合确定的明确需求和合适的系统架构出具设计说明。</p>
+<p>开发活动执行的时间顺序为：初步需求 -&gt; 原型-&gt; 设计说明 -&gt; 编码 -&gt; 程序系统 -&gt; 编码 -&gt; 软件产品 -&gt; 运行维护。</p>
+<h2 id="代替分析、设计和实现阶段"><a href="#代替分析、设计和实现阶段" class="headerlink" title="代替分析、设计和实现阶段"></a>代替分析、设计和实现阶段</h2><p>软件生命周期中的实现阶段：</p>
+<ul>
+<li>完成源程序的编码、编译（汇编）和运行调试，得到没有语法错误的程序清单。结构良好、清晰易读，且与设计一致。</li>
+<li>编写进度日报、周报和日报。</li>
+<li>编写测试计划。</li>
+<li>提交用户手册、操作手册等面向用户的文档。</li>
+</ul>
+<p>得到初步需求后，根据初步需求提出不同的系统架构以及架构中各个模块的不同的功能实现算法，进行快速分析和修改后构造一个基础的程序，并根据用户的使用得到评价反馈并据此修改需求、设计架构和编码程序。得到明确的需求、合适的系统架构和性能较好的功能实现算法。</p>
+<p>开发活动执行的时间顺序为：初步需求 -&gt; 原型 -&gt; 程序系统 -&gt; 编码 -&gt; 软件产品 -&gt; 运行维护。</p>
+<h2 id="代替全部开发阶段"><a href="#代替全部开发阶段" class="headerlink" title="代替全部开发阶段"></a>代替全部开发阶段</h2><p>代替全部开发阶段比起代替分析、设计和实现阶段，将编码得到软件产品的步骤也加入到原型模型中，即得到初步需求后经过原型方法的不断迭代的分析修改、构建、反馈获得软件产品本身。</p>
+<p>开发活动执行的时间顺序为：初步需求 -&gt; 原型 -&gt; 软件产品 -&gt; 运行维护。</p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2019/03/05/OpenGL-vs2017-环境配置/">OpenGL + vs2017 环境配置</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2019-03-05T03:03:55.000Z" itemprop="datePublished">
+    2019-03-05
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/Computer-Graphics/">Computer Graphics</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <p>参考链接：<a href="https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/" target="_blank" rel="noopener">https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/</a></p>
+<h2 id="CMake-generate失败"><a href="#CMake-generate失败" class="headerlink" title="CMake generate失败"></a>CMake generate失败</h2><p>文件夹为从GitHub上下载的GLFW根目录而不是<code>src</code>.</p>
+<p>重试之后可以成功。</p>
+<h2 id="VS配置"><a href="#VS配置" class="headerlink" title="VS配置"></a>VS配置</h2><p>目前只能在win32环境下运行demo程序。（x64的动态链接库还是会出现问题）</p>
+<p>主要修改下列位置的包含文件以及包含库（教程中有几个没有改，我按照教程做完的时候是跑不动的）：</p>
+<ol>
+<li>找到<strong>属性管理器</strong>，编辑<strong>Debug|Win32</strong></li>
+</ol>
+<p><img src="https://s2.ax1x.com/2019/03/05/kjlVKJ.png" width="300"></p>
+<ol>
+<li><p>修改<strong>VC++目录 - 包含目录</strong>，将<strong>Includes</strong>文件夹加入；<strong>VC++目录 - 库目录</strong>，将<strong>Libraries</strong>文件夹加入</p>
+<p><img src="https://s2.ax1x.com/2019/03/05/kjlnV1.png" width="450"></p>
+</li>
+<li><p>修改<strong>C/C++ - 常规 - 附加包含目录</strong>，将<strong>Includes</strong>文件夹加入</p>
+<p><img src="https://s2.ax1x.com/2019/03/05/kjlAv4.png" width="450"></p>
+</li>
+<li><p>修改<strong>链接器 - 常规 - 附加库目录</strong>，将<strong>Libraries</strong>文件夹加入</p>
+<p><img src="https://s2.ax1x.com/2019/03/05/kjlebR.png" width="450"></p>
+</li>
+<li><p>修改<strong>连接器 - 输入 - 附加依赖项</strong>，将<code>opengl32.lib</code>和<code>glfw3.lib</code>加入</p>
+<p><img src="https://s2.ax1x.com/2019/03/05/kjluUx.png" width="450"></p>
+</li>
+</ol>
+<p>运行的时候选择刚才<code>Debug x86</code>对应上面修改的<code>Debug|Win32</code></p>
+<p><img src="https://s2.ax1x.com/2019/03/05/kjlZr9.png" width="450"></p>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
           <a href="/2019/03/05/系统分析与设计-Homework1/">系统分析与设计 - Homework1</a>
         </h1>
       
@@ -426,60 +554,13 @@
 
     </li>
   
-    <li>
-      <article class='ListView'>
-    <header class="title">
-      
-        <h1>
-          <a href="/2018/03/27/Week03-Homework/">Week03 Homework - Some Basic Knowledges</a>
-        </h1>
-      
-      <div class='ListMeta'>
-  <time datetime="2018-03-27T12:59:08.000Z" itemprop="datePublished">
-    2018-03-27
-  </time>
-  
-  | 
-  <ul>
-    
-  <li class="meta-text">
-  { <a href="/tags/3D-GAME-DESIGN/">3D GAME DESIGN</a> }
-  </li>
-
-
-  </ul>
-  
-  
-</div>
-
-    </header>
-    <div>
-      
-        <h2 id="解释-游戏对象（GameObjects）-和-资源（Assets）的区别与联系。"><a href="#解释-游戏对象（GameObjects）-和-资源（Assets）的区别与联系。" class="headerlink" title="解释 游戏对象（GameObjects） 和 资源（Assets）的区别与联系。"></a>解释 游戏对象（GameObjects） 和 资源（Assets）的区别与联系。</h2><ul>
-<li><strong>游戏对象</strong>是Unity中最基础的对象，它可以代表游戏角色、 游戏道具和游戏场景。它们本身不会并不会为游戏贡献很多，但是它们却作为<strong>组件</strong>（展现真正游戏效果）的容器发挥着重要作用。<sup><a href="#fn_1" id="reffn_1">1</a></sup></li>
-<li>资源是能够用在游戏中的事物，可以来自Unity外创建的文件，比如3D模型、音频文件、图像，或是任何Unity支持的其他文件类型。同时，Unity内部也可以创建很多资源类型，比如动画控制器、音频混合器和渲染纹理等等。<sup><a href="#fn_2" id="reffn_2">2</a></sup></li>
-<li>区别在于：<ol>
-<li>游戏对象是游戏中的一个逻辑概念，有自身的属性和行为（比如玩家、大BOSS、场景）；而大部分游戏资源是来自外部的文件，仅作为游戏对象的组成部分（比如材料、音乐、图片）。</li>
-<li>游戏对象是游戏过程的一部分；资源是游戏编程过程的一部分。</li>
-</ol>
-</li>
-<li><p>联系在于：</p>
-<ol>
-<li><p>游戏对象可以作为资源的一部分；</p>
-</li>
-<li><p>游戏资源既可以成为游戏对象本身，也可以作为游戏对象的一种属性使游戏对象更为生动。</p>
-        
-          <div class="more-link">
-            <a href="/2018/03/27/Week03-Homework/#more">Read On »</a>
-          </div>
-        
-      
-    </div>
-</article>
-
-    </li>
-  
 </ul>
+
+  <section id="nav-wrapper">
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">next »</a>
+    </nav>
+  </section>
 
 
             <footer>
