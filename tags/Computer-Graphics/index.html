@@ -90,31 +90,11 @@
     <div>
       
         <p>参考链接：<a href="https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/" target="_blank" rel="noopener">https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/</a></p>
-<h2 id="CMake-generate失败"><a href="#CMake-generate失败" class="headerlink" title="CMake generate失败"></a>CMake generate失败</h2><p>文件夹为从GitHub上下载的GLFW根目录而不是<code>src</code>.</p>
-<p>重试之后可以成功。</p>
-<h2 id="VS配置"><a href="#VS配置" class="headerlink" title="VS配置"></a>VS配置</h2><p>目前只能在win32环境下运行demo程序。（x64的动态链接库还是会出现问题）</p>
-<p>主要修改下列位置的包含文件以及包含库（教程中有几个没有改，我按照教程做完的时候是跑不动的）：</p>
-<ol>
-<li>找到<strong>属性管理器</strong>，编辑<strong>Debug|Win32</strong></li>
-</ol>
-<p><img src="https://s2.ax1x.com/2019/03/05/kjlVKJ.png" width="300"></p>
-<ol>
-<li><p>修改<strong>VC++目录 - 包含目录</strong>，将<strong>Includes</strong>文件夹加入；<strong>VC++目录 - 库目录</strong>，将<strong>Libraries</strong>文件夹加入</p>
-<p><img src="https://s2.ax1x.com/2019/03/05/kjlnV1.png" width="450"></p>
-</li>
-<li><p>修改<strong>C/C++ - 常规 - 附加包含目录</strong>，将<strong>Includes</strong>文件夹加入</p>
-<p><img src="https://s2.ax1x.com/2019/03/05/kjlAv4.png" width="450"></p>
-</li>
-<li><p>修改<strong>链接器 - 常规 - 附加库目录</strong>，将<strong>Libraries</strong>文件夹加入</p>
-<p><img src="https://s2.ax1x.com/2019/03/05/kjlebR.png" width="450"></p>
-</li>
-<li><p>修改<strong>连接器 - 输入 - 附加依赖项</strong>，将<code>opengl32.lib</code>和<code>glfw3.lib</code>加入</p>
-<p><img src="https://s2.ax1x.com/2019/03/05/kjluUx.png" width="450"></p>
-</li>
-</ol>
-<p>运行的时候选择刚才<code>Debug x86</code>对应上面修改的<code>Debug|Win32</code></p>
-<p><img src="https://s2.ax1x.com/2019/03/05/kjlZr9.png" width="450"></p>
-
+        
+          <div class="more-link">
+            <a href="/2019/03/05/OpenGL-vs2017-环境配置/#more">Read On »</a>
+          </div>
+        
       
     </div>
 </article>
