@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Data Mining - Homework 1 | Sherry&#39;s emmm... Unnamed Blog</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
+        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Sherry&#39;s emmm... Unnamed Blog</div>
+        
+            <div>Recording while Learning</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/Yuandi-Sherry">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>Data Mining - Homework 1</h1>
+    </header>
+
+    <section>
+      <h2 id="求pi值"><a href="#求pi值" class="headerlink" title="求pi值"></a>求pi值</h2><p>在1*1的区域内，随机坐标点，计算与圆心的距离判断其是否在圆内，并据此根据公式</p>
+<script type="math/tex; mode=display">
+S_扇 = \frac{S_内}{N}</script><p>计算扇形面积.</p>
+<p>并根据公式推出pi的计算方法：</p>
+<script type="math/tex; mode=display">
+\pi = S_扇 * 4</script><h3 id="随机采样"><a href="#随机采样" class="headerlink" title="随机采样"></a>随机采样</h3><center class="third" width="200">
+    <img src="https://s2.ax1x.com/2019/03/06/kjxYdI.png" width="150">    <img src="https://s2.ax1x.com/2019/03/06/kjxaJf.png" width="150">    <img src="https://s2.ax1x.com/2019/03/06/kjx3sH.png" width="150">    <img src="https://s2.ax1x.com/2019/03/06/kjx8Ld.png" width="150">
+</center>
+
+<p><center class="third" width="200">
+    <img src="https://s2.ax1x.com/2019/03/06/kjxJeA.png" width="150">    <img src="https://s2.ax1x.com/2019/03/06/kjxtot.png" width="150">    <img src="https://s2.ax1x.com/2019/03/06/kjxdW8.png" width="150">    <img src="https://s2.ax1x.com/2019/03/06/kjxUFP.png" width="150">
+</center><br><a id="more"></a></p>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>N</th>
+<th>mean</th>
+<th>variance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>20</td>
+<td>3.196</td>
+<td>0.133584</td>
+</tr>
+<tr>
+<td>50</td>
+<td>3.1432</td>
+<td>0.066086</td>
+</tr>
+<tr>
+<td>100</td>
+<td>3.1428</td>
+<td>0.038376</td>
+</tr>
+<tr>
+<td>200</td>
+<td>3.137</td>
+<td>0.011779</td>
+</tr>
+<tr>
+<td>300</td>
+<td>3.130133</td>
+<td>0.008907</td>
+</tr>
+<tr>
+<td>500</td>
+<td>3.13648</td>
+<td>0.005124</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>3.1406</td>
+<td>0.002293</td>
+</tr>
+<tr>
+<td>5000</td>
+<td>3.146328</td>
+<td>0.000691</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>可以看出</p>
+<p><img src="https://s2.ax1x.com/2019/03/06/kjxOfK.png" width="400"></p>
+<ul>
+<li>求出的pi在真实值两侧波动。</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/03/06/kjx7wR.png" width="400"></p>
+<ul>
+<li>方差随着采样点的增加而降低。</li>
+</ul>
+<h2 id="求解简单积分"><a href="#求解简单积分" class="headerlink" title="求解简单积分"></a>求解简单积分</h2><script type="math/tex; mode=display">
+\int^1_0x^3</script><h2 id="均匀分布采样"><a href="#均匀分布采样" class="headerlink" title="均匀分布采样"></a>均匀分布采样</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = random.random()</span><br><span class="line">y = pow(x, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>根据N的值重复上述步骤，每次结果加上<code>(1-0)*y/N</code>，计算积分结果的期望，并对此过程重复100次。计算100次内所求的积分结果的均值和方差，结果如下。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>N</th>
+<th>mean</th>
+<th>variance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5</td>
+<td>0.256824</td>
+<td>0.013612</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0.255383</td>
+<td>0.009499</td>
+</tr>
+<tr>
+<td>20</td>
+<td>0.25415</td>
+<td>0.003882</td>
+</tr>
+<tr>
+<td>30</td>
+<td>0.252468</td>
+<td>0.003206</td>
+</tr>
+<tr>
+<td>40</td>
+<td>0.249425</td>
+<td>0.002229</td>
+</tr>
+<tr>
+<td>50</td>
+<td>0.253835</td>
+<td>0.001218</td>
+</tr>
+<tr>
+<td>60</td>
+<td>0.250496</td>
+<td>0.001627</td>
+</tr>
+<tr>
+<td>70</td>
+<td>0.250794</td>
+<td>0.001097</td>
+</tr>
+<tr>
+<td>80</td>
+<td>0.250277</td>
+<td>0.001191</td>
+</tr>
+<tr>
+<td>100</td>
+<td>0.253963</td>
+<td>0.000806</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://s2.ax1x.com/2019/03/06/kjxqFx.png" width="400"></p>
+<ul>
+<li>采样取得的结果大部分比真实值0.25大，猜测是均匀分布的随机采样导致的。</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/03/06/kjxHT1.png" width="400"></p>
+<ul>
+<li>方差大体上随着N的增加而降低。</li>
+</ul>
+<h2 id="求解复杂积分（二重积分）"><a href="#求解复杂积分（二重积分）" class="headerlink" title="求解复杂积分（二重积分）"></a>求解复杂积分（二重积分）</h2><script type="math/tex; mode=display">
+\int^4_{x=2}\int^1_{y=-1}f(x,y) = \frac{y^2*e^{-y^2} +x^4*e^{-x^2}}{x*e^{-x^2}}</script><p>由于积分过程中涉及到对</p>
+<script type="math/tex; mode=display">
+\int e^{-x^2}dx</script><p>的求解，因而无法通过公式求解。</p>
+<h3 id="均匀分布采样-1"><a href="#均匀分布采样-1" class="headerlink" title="均匀分布采样"></a>均匀分布采样</h3><p>假设x, y满足均匀分布，则在范围内每个值的概率均等。直接使用Python <code>random</code>包的<code>random()</code>实现随机。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = random.random() * <span class="number">2</span> + <span class="number">2</span> <span class="comment"># x in [2, 4]</span></span><br><span class="line">y = random.random() * <span class="number">2</span> - <span class="number">1</span> <span class="comment"># y in [-1, 1]</span></span><br></pre></td></tr></table></figure>
+<p>重复蒙特卡洛100次后得到的结果如下（输出文件为test3.csv）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>N</th>
+<th>mean</th>
+<th>variance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>114360.7</td>
+<td>13878564835</td>
+</tr>
+<tr>
+<td>20</td>
+<td>111494.6</td>
+<td>5569440463</td>
+</tr>
+<tr>
+<td>30</td>
+<td>106297</td>
+<td>4787094413</td>
+</tr>
+<tr>
+<td>40</td>
+<td>113941.8</td>
+<td>3436205685</td>
+</tr>
+<tr>
+<td>50</td>
+<td>108208</td>
+<td>2410939505</td>
+</tr>
+<tr>
+<td>60</td>
+<td>118424</td>
+<td>2306120360</td>
+</tr>
+<tr>
+<td>70</td>
+<td>111722.6</td>
+<td>1486991942</td>
+</tr>
+<tr>
+<td>80</td>
+<td>110579.2</td>
+<td>1632578538</td>
+</tr>
+<tr>
+<td>100</td>
+<td>116911.1</td>
+<td>1635650179</td>
+</tr>
+<tr>
+<td>200</td>
+<td>112678.5</td>
+<td>592460179.8</td>
+</tr>
+<tr>
+<td>500</td>
+<td>112312.4</td>
+<td>194789459.6</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://s2.ax1x.com/2019/03/06/kjzCTI.png" width="600"></p>
+<ul>
+<li>重复100次蒙特卡洛方法可以得到积分结果在正确值两侧振动，且随着重复次数增多，更接近真实结果。</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/03/06/kjxLY6.png" width="600"></p>
+<blockquote>
+<p>纵坐标×pow(10, 10)为真实的方差 </p>
+</blockquote>
+<ul>
+<li>方差随着N的增大呈下降趋势。</li>
+</ul>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2019-03-07T07:06:05.000Z" itemprop="datePublished">
+              2019-03-07
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/Data-Mining/">Data Mining</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2018 - Sherry </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
