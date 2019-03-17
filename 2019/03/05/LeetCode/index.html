@@ -60,7 +60,8 @@
     </header>
 
     <section>
-      <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="noopener">https://leetcode.com/problems/climbing-stairs/</a></p>
+      <a id="more"></a>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="noopener">https://leetcode.com/problems/climbing-stairs/</a></p>
 <p>主要思路：上第n级台阶 = 从第n-1级台阶上1步 + 从第n-2级台阶上2步。</p>
 <p>由于初始的上第1、2、3阶台阶的方法均可数，因而可以计算出上任意阶台阶的情况。</p>
 <h2 id="数组和数字"><a href="#数组和数字" class="headerlink" title="数组和数字"></a>数组和数字</h2><p><a href="https://leetcode.com/problems/plus-one/" target="_blank" rel="noopener">https://leetcode.com/problems/plus-one/</a></p>
@@ -114,6 +115,9 @@
 <li>哈希表的访问是first, seconnd</li>
 <li>vector + pair = <code>vector&lt;pair&lt;int, int&gt;&gt;</code>. 元素：pair<int, int=""></int,></li>
 </ul>
+<h2 id="454-4-Sum-II"><a href="#454-4-Sum-II" class="headerlink" title="454. 4 Sum II"></a>454. 4 Sum II</h2><p><a href="https://leetcode.com/problems/4sum-ii/" target="_blank" rel="noopener">https://leetcode.com/problems/4sum-ii/</a></p>
+<p>思路：哈希表 + 分治</p>
+<p>四个数组求A+B并存入<code>unordered_map</code>，遍历C+D的同时在HashMap使用find函数查找。（在哈希表中find比遍历快多了）. 默认O(logn)</p>
 
 
       
