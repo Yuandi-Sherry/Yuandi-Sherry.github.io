@@ -60,10 +60,16 @@
     </header>
 
     <section>
-      <a id="more"></a>
-<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><p><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="noopener">https://leetcode.com/problems/climbing-stairs/</a></p>
+      <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="70-Climbing-Stairs"><a href="#70-Climbing-Stairs" class="headerlink" title="70. Climbing Stairs"></a>70. Climbing Stairs</h3><p><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="noopener">https://leetcode.com/problems/climbing-stairs/</a></p>
 <p>主要思路：上第n级台阶 = 从第n-1级台阶上1步 + 从第n-2级台阶上2步。</p>
 <p>由于初始的上第1、2、3阶台阶的方法均可数，因而可以计算出上任意阶台阶的情况。</p>
+<h3 id="62-Unique-Paths"><a href="#62-Unique-Paths" class="headerlink" title="62. Unique Paths"></a>62. Unique Paths</h3><p><a href="https://leetcode.com/problems/unique-paths/" target="_blank" rel="noopener">https://leetcode.com/problems/unique-paths/</a></p>
+<p>根据组合数的性质：</p>
+<script type="math/tex; mode=display">
+C(n, m) = C(n-1, m-1) + C(n-1, m)</script><p>二维vector初始化：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans(rows, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(cols), initNo));</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong>这里的需要走的横向步数和纵向步数不是m和n，而是m-1和n-1. </p>
+<a id="more"></a>
 <h2 id="数组和数字"><a href="#数组和数字" class="headerlink" title="数组和数字"></a>数组和数字</h2><p><a href="https://leetcode.com/problems/plus-one/" target="_blank" rel="noopener">https://leetcode.com/problems/plus-one/</a></p>
 <p>直接数组转化为int计算再转回，会导致越界。循环时考虑连续进位，数组比原始+1.</p>
 <h2 id="238-Product-of-Array-Except-Self"><a href="#238-Product-of-Array-Except-Self" class="headerlink" title="238. Product of Array Except Self"></a>238. Product of Array Except Self</h2><p><a href="https://leetcode.com/problems/product-of-array-except-self/" target="_blank" rel="noopener">https://leetcode.com/problems/product-of-array-except-self/</a></p>
@@ -118,6 +124,13 @@
 <h2 id="454-4-Sum-II"><a href="#454-4-Sum-II" class="headerlink" title="454. 4 Sum II"></a>454. 4 Sum II</h2><p><a href="https://leetcode.com/problems/4sum-ii/" target="_blank" rel="noopener">https://leetcode.com/problems/4sum-ii/</a></p>
 <p>思路：哈希表 + 分治</p>
 <p>四个数组求A+B并存入<code>unordered_map</code>，遍历C+D的同时在HashMap使用find函数查找。（在哈希表中find比遍历快多了）. 默认O(logn)</p>
+<h2 id="11-Container-With-Most-Water"><a href="#11-Container-With-Most-Water" class="headerlink" title="11. Container With Most Water"></a>11. Container With Most Water</h2><p><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="noopener">https://leetcode.com/problems/container-with-most-water/</a></p>
+<p>思路：剪枝？</p>
+<p>由于短板效应，在确定左侧为短板的时候，右侧不变（这样container的width不减小）才能容量最大。同理，右侧为短板的时候，左侧不变。</p>
+<p>这种思路下不需要循环，只要确定了哪边为短板后，将短板向内（左侧向右，右侧向左）移动1，另一侧保持不变，继续递归。</p>
+<p>每次递归计算新的container，决定是否更新ans。</p>
+<p>参考：<a href="https://leetcode.com/problems/container-with-most-water/discuss/6099/Yet-another-way-to-see-what-happens-in-the-O(n)-algorithm" target="_blank" rel="noopener">https://leetcode.com/problems/container-with-most-water/discuss/6099/Yet-another-way-to-see-what-happens-in-the-O(n)-algorithm</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    recursive(<span class="number">0</span>, height.size()<span class="number">-1</span>, ans, height);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">recursive</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp; leftIndex, <span class="keyword">const</span> <span class="keyword">int</span> &amp; rightIndex, <span class="keyword">int</span> &amp; ans, <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(leftIndex == height.size() - <span class="number">1</span> || rightIndex == <span class="number">0</span> || leftIndex &gt;= rightIndex)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> minEdge = min(height[leftIndex], height[rightIndex]);</span><br><span class="line">    ans = (rightIndex - leftIndex) * minEdge &gt; ans ?  (rightIndex - leftIndex) * minEdge : ans; <span class="comment">// 更新container size</span></span><br><span class="line">    <span class="keyword">if</span>(height[leftIndex] == minEdge) &#123; <span class="comment">// 左侧为短边，右侧不用看</span></span><br><span class="line">        recursive(leftIndex + <span class="number">1</span>, rightIndex, ans, height);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">// 右侧为短边，左侧不用遍历</span></span><br><span class="line">        recursive(leftIndex, rightIndex - <span class="number">1</span>, ans, height);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
