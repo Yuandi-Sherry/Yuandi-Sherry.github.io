@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>系统分析与设计 - Homework3 | Sherry&#39;s emmm... Unnamed Blog</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
+        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Sherry&#39;s emmm... Unnamed Blog</div>
+        
+            <div>Recording while Learning</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/Yuandi-Sherry">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>系统分析与设计 - Homework3</h1>
+    </header>
+
+    <section>
+      <h3 id="简述瀑布模型、增量模型、螺旋模型（含原型方法）的优缺点"><a href="#简述瀑布模型、增量模型、螺旋模型（含原型方法）的优缺点" class="headerlink" title="简述瀑布模型、增量模型、螺旋模型（含原型方法）的优缺点"></a>简述瀑布模型、增量模型、螺旋模型（含原型方法）的优缺点</h3><blockquote>
+<p>从项目特点、风险特征、人力资源利用角度思考</p>
+</blockquote>
+<h4 id="瀑布模型"><a href="#瀑布模型" class="headerlink" title="瀑布模型"></a>瀑布模型</h4><p>项目特点上，瀑布模型视图在变成之前定义所有大部分需求，在编程之前常见出完整的设计，并会在开始前定义计划或时间表。</p>
+<p><strong>优点：</strong>定义了软件开发的基本流程与活动。在需求明确的情况下，短期开发内可以尽可能保障每个阶段无差错。</p>
+<a id="more"></a>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>依赖问题：前面需求模糊，后面工作复杂</li>
+<li>容错问题：在后期发现需求问题，工作量难以接受</li>
+<li>资源调配问题：知识技能需求不同，人员数量要求不同</li>
+</ol>
+<h4 id="增量模型"><a href="#增量模型" class="headerlink" title="增量模型"></a>增量模型</h4><p><strong>优点：</strong>控制前期风险并解决。整个产品被分割为很多组件，开发人员逐个开发交付，这样可以使软件开发更好地适应变化，因此这个过程中客户可以不断看到开发的软件，降低开发风险并。若有风险也会被控制在前期解决。</p>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>由于各个构件逐渐并入已有的软件体系结构中的，所以加入构件必须<strong>不破坏已构造好的系统部分</strong>。</li>
+<li>开发过程中需求变化不可避免。因此在需求变化过程中，增量模型很容易退化为<strong>边做边改</strong>模型，使得软件过程控制失去整体性。</li>
+</ol>
+<h4 id="螺旋模型"><a href="#螺旋模型" class="headerlink" title="螺旋模型"></a>螺旋模型</h4><p><strong>优点：</strong>螺旋模型将瀑布模型和快速原型模型结合，强调风险分析，因而可以从一定程度上保障软件质量。</p>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>在与客户的交流过程中，风险分析很难让客户接收信服并愿意，因此修改出价更加不易。</li>
+<li>如果执行风险分析大大影响项目的利润，风险分析没有意义，因而螺旋模型<strong>只适合于大规模软件项目</strong>。</li>
+<li>要求软件开发人员在风险分析这一步骤有专业性，否则对风险的错误估计有可能导致更大的损失。</li>
+</ol>
+<hr>
+<h3 id="简述统一过程三大特点，与面向对象的方法有什么关系？"><a href="#简述统一过程三大特点，与面向对象的方法有什么关系？" class="headerlink" title="简述统一过程三大特点，与面向对象的方法有什么关系？"></a>简述统一过程三大特点，与面向对象的方法有什么关系？</h3><h4 id="三大特点"><a href="#三大特点" class="headerlink" title="三大特点"></a>三大特点</h4><ol>
+<li>软件开发是一个迭代过程</li>
+<li>软件开发是由Use Case驱动的</li>
+<li>软件开发是以架构设计为中心的</li>
+</ol>
+<h4 id="与面向对象的方法的关系"><a href="#与面向对象的方法的关系" class="headerlink" title="与面向对象的方法的关系"></a>与面向对象的方法的关系</h4><p>在统一过程模型的核心工作流中，<strong>Business Modeling</strong>阶段在创建用例的模型的时候实际上是面对的具体对象，这部分的程序设计应该根据功能采用面向对象的方法。</p>
+<p>此外，在<strong>Design</strong>阶段，需要将系统组织为具有良好接口的设计包和设计组系统，并体现类的对象之间的作用关系。</p>
+<p><strong>Implementation</strong>阶段层次化子系统，定义代码组织结构。以组件的形式实践类和对象。在<strong>Test and Integration</strong>阶段需要测试类本身的功能和类间作用关系。</p>
+<hr>
+<h3 id="简述统一过程四个阶段的划分准则是什么？每个阶段关键的里程碑是什么？"><a href="#简述统一过程四个阶段的划分准则是什么？每个阶段关键的里程碑是什么？" class="headerlink" title="简述统一过程四个阶段的划分准则是什么？每个阶段关键的里程碑是什么？"></a>简述统一过程四个阶段的划分准则是什么？每个阶段关键的里程碑是什么？</h3><h4 id="划分准则"><a href="#划分准则" class="headerlink" title="划分准则"></a>划分准则</h4><p>每个阶段本质上是两个里程碑之间的时间跨度。</p>
+<h4 id="每个阶段的关键里程碑"><a href="#每个阶段的关键里程碑" class="headerlink" title="每个阶段的关键里程碑"></a>每个阶段的关键里程碑</h4><h5 id="初始阶段"><a href="#初始阶段" class="headerlink" title="初始阶段"></a>初始阶段</h5><p><strong>生命周期目标里程碑</strong>：评价项目基本的生存能力。</p>
+<h5 id="细化阶段"><a href="#细化阶段" class="headerlink" title="细化阶段"></a>细化阶段</h5><p><strong>生命周期结构里程碑：</strong>为系统的结构简历管理基准并使得项目小组能够在构建阶段中进行衡量，需要检验详细的系统目标和范围、结构的选择以及主要风险的解决方案。</p>
+<h5 id="构造阶段"><a href="#构造阶段" class="headerlink" title="构造阶段"></a>构造阶段</h5><p><strong>初始功能里程碑：</strong>决定产品是否可以在测试环境中进行部署，要确定软件、环境、用户是否可以开始系统的运作。</p>
+<h5 id="交付阶段"><a href="#交付阶段" class="headerlink" title="交付阶段"></a>交付阶段</h5><p><strong>产品发布里程碑：</strong>确定目标是否实现，是否应该开始另一个开发周期。</p>
+<hr>
+<h3 id="软件企业为什么能按固定节奏生产、固定周期发布软件产品？它给企业项目管理带来哪些好处？"><a href="#软件企业为什么能按固定节奏生产、固定周期发布软件产品？它给企业项目管理带来哪些好处？" class="headerlink" title="软件企业为什么能按固定节奏生产、固定周期发布软件产品？它给企业项目管理带来哪些好处？"></a>软件企业为什么能按固定节奏生产、固定周期发布软件产品？它给企业项目管理带来哪些好处？</h3><p>软件企业之所以能够按固定节奏生产、固定周期发布产品，一方面在于企业规范化管理的基本思想。另一方面在于他们了解软件本质特征，从而选择了合适的开发模型。软件企业非常好地认识项目的工期、范围、质量和预算，遵循先做到再做好的原则，并且对于2/8法则再项目中的应用有着深入了解。</p>
+<p>它可以使得企业项目管理具有明确的阶段划分，由于每个阶段都会有显著的里程碑，使得每个迭代阶段都有明确的目标。这反逼项目管理确定合理的产品范围，不投入大量时间在冗余的工作中。</p>
+<p>每个迭代都是瀑布的工作流程，在迭代内部需求明确的情况下，差错较少。每个迭代在增量且制品可运行，能够即使交付并得到反馈。固定迭代周期有利于量化团队和个人的生产率。</p>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2019-04-10T03:39:29.000Z" itemprop="datePublished">
+              2019-04-10
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/Software-System-Analysis-and-Design/">Software System Analysis and Design</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2018 - Sherry </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

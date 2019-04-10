@@ -69,6 +69,7 @@
 <li>画线：<code>drawLine</code></li>
 <li>画三角形：<code>drawTriangle</code></li>
 </ol>
+<a id="more"></a>
 <h4 id="画点"><a href="#画点" class="headerlink" title="画点"></a>画点</h4><p>因而三角形边框的绘制是这三个函数从下向上调用实现的。画点的过程和上次作业类似，但是上次没有传递参数进去，这里将位置坐标和颜色RGB作为两个参数传递到画点的函数即可，函数原型如下：</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">drawPoint</span><span class="params">(<span class="keyword">const</span> <span class="keyword">float</span> location[<span class="number">3</span>], <span class="keyword">const</span> <span class="keyword">float</span> color[<span class="number">3</span>], <span class="keyword">const</span> <span class="keyword">int</span> &amp; VAO)</span></span>;</span><br></pre></td></tr></table></figure>
 <h4 id="画线"><a href="#画线" class="headerlink" title="画线"></a>画线</h4><p>Bresenham的算法的实现主要在这个函数中：</p>
