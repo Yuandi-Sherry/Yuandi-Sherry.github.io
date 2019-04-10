@@ -1,330 +1,66 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html lang="zh-cmn-Hans">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Week15-Tanks | Sherry&#39;s emmm... Unnamed Blog</title>
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="3D GAME DESIGN," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="Tanks整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：">
-<meta name="keywords" content="3D GAME DESIGN">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Week15-Tanks">
-<meta property="og:url" content="http://yoursite.com/2018/06/19/Week15-Tanks/index.html">
-<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
-<meta property="og:description" content="Tanks整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/Yuandi-Sherry/3DGameDesignHomeworkWeek15/blob/master/preview.gif?raw=true">
-<meta property="og:image" content="https://s1.ax1x.com/2018/06/19/Cz8hzd.png">
-<meta property="og:image" content="https://s1.ax1x.com/2018/06/19/Cz85QA.png">
-<meta property="og:updated_time" content="2018-06-19T13:34:01.513Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Week15-Tanks">
-<meta name="twitter:description" content="Tanks整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：">
-<meta name="twitter:image" content="https://github.com/Yuandi-Sherry/3DGameDesignHomeworkWeek15/blob/master/preview.gif?raw=true">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2018/06/19/Week15-Tanks/"/>
-
-
-
-
-
-  <title>Week15-Tanks | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">Recording while Learning</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
+        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Sherry&#39;s emmm... Unnamed Blog</div>
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
+            <div>Recording while Learning</div>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+                <a href="https://github.com/Yuandi-Sherry">
+                    <img src="/assets/github.svg" />
+                </a>
             
-            归档
-          </a>
-        </li>
-      
+        
+    </section>
+</aside>
 
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>Week15-Tanks</h1>
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/19/Week15-Tanks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">Week15-Tanks</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-19T21:30:29+08:00">
-                2018-06-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h1 id="Tanks"><a href="#Tanks" class="headerlink" title="Tanks"></a>Tanks</h1><p>整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：</p>
+    <section>
+      <h1 id="Tanks"><a href="#Tanks" class="headerlink" title="Tanks"></a>Tanks</h1><p>整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：</p>
 <p><img src="https://github.com/Yuandi-Sherry/3DGameDesignHomeworkWeek15/blob/master/preview.gif?raw=true" alt="preview"></p>
 <a id="more"></a>
 <p>首先看一下这次的游戏都有哪些对象以及他们所需要的各种操作：</p>
@@ -383,347 +119,65 @@
 <p> 或</p>
 <p>​    打勾 Navigation 的 OffMeshLink</p>
 
+
       
-    </div>
+
+    </section>
     
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/3D-GAME-DESIGN/" rel="tag"># 3D GAME DESIGN</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/05/11/Week09-Animator-View-Pattern-patrols/" rel="next" title="Week09-Animator & View Pattern-patrols">
-                <i class="fa fa-chevron-left"></i> Week09-Animator & View Pattern-patrols
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/05/系统分析与设计-Homework1/" rel="prev" title="系统分析与设计 - Homework1">
-                系统分析与设计 - Homework1 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2018-06-19T13:30:29.000Z" itemprop="datePublished">
+              2018-06-19
+            </time>
           </div>
           
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/3D-GAME-DESIGN/">3D GAME DESIGN</a> }
+  </li>
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Sherry" />
-          <p class="site-author-name" itemprop="name">Sherry</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
             </div>
           
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
+    
+    
+</article>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
+  
+</div>
 
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tanks"><span class="nav-number">1.</span> <span class="nav-text">Tanks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tank"><span class="nav-number">1.0.1.</span> <span class="nav-text">Tank</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Player"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">Player</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NPC"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">NPC</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#NavMeshAgent"><span class="nav-number">1.0.1.2.1.</span> <span class="nav-text">NavMeshAgent</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Coroutines"><span class="nav-number">1.0.1.2.2.</span> <span class="nav-text">Coroutines</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bullet"><span class="nav-number">1.0.2.</span> <span class="nav-text">Bullet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IUserGUI"><span class="nav-number">1.0.3.</span> <span class="nav-text">IUserGUI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户键盘输入操纵游戏"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">用户键盘输入操纵游戏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息输出告知结果"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">信息输出告知结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Director"><span class="nav-number">1.0.4.</span> <span class="nav-text">Director</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Factory"><span class="nav-number">1.0.5.</span> <span class="nav-text">Factory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制主摄像机"><span class="nav-number">1.0.6.</span> <span class="nav-text">控制主摄像机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制血条"><span class="nav-number">1.0.7.</span> <span class="nav-text">控制血条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FirstController"><span class="nav-number">1.0.8.</span> <span class="nav-text">FirstController</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题的处理方法"><span class="nav-number">1.1.</span> <span class="nav-text">常见问题的处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#碰撞问题"><span class="nav-number">1.1.1.</span> <span class="nav-text">碰撞问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#坦克之间不会互相穿越"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">坦克之间不会互相穿越</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#碰撞不产生莫名的旋转"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">碰撞不产生莫名的旋转</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GetKey和GetKeyDown的区别"><span class="nav-number">1.1.2.</span> <span class="nav-text">GetKey和GetKeyDown的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载脚本的顺序"><span class="nav-number">1.1.3.</span> <span class="nav-text">挂载脚本的顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NavMesh相关学习笔记"><span class="nav-number">1.2.</span> <span class="nav-text">NavMesh相关学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#启动面板"><span class="nav-number">1.2.0.0.1.</span> <span class="nav-text">启动面板</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#寻路地形"><span class="nav-number">1.2.0.0.2.</span> <span class="nav-text">寻路地形</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各种具体功能的实现"><span class="nav-number">1.2.1.</span> <span class="nav-text">各种具体功能的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#障碍物绕行"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">障碍物绕行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#爬楼梯-跳跃（OffMeshLink）"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">爬楼梯/跳跃（OffMeshLink）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#爬楼梯"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">爬楼梯</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#跳跃"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">跳跃</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+            <footer>
+    <div>© 2018 - Sherry </div>
+    <div>
+    Powered by Hexo
     </div>
-  </aside>
+</footer>
 
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2018 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Sherry</span>
+        </div>
+    </div>
 </div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
 
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
 </script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

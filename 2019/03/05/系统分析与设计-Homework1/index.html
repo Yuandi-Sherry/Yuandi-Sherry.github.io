@@ -1,326 +1,66 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html lang="zh-cmn-Hans">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>系统分析与设计 - Homework1 | Sherry&#39;s emmm... Unnamed Blog</title>
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Software System Analysis and Design," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="简答题1. 软件工程的定义软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。 2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法根本原因造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系">
-<meta name="keywords" content="Software System Analysis and Design">
-<meta property="og:type" content="article">
-<meta property="og:title" content="系统分析与设计 - Homework1">
-<meta property="og:url" content="http://yoursite.com/2019/03/05/系统分析与设计-Homework1/index.html">
-<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
-<meta property="og:description" content="简答题1. 软件工程的定义软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。 2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法根本原因造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-04T16:37:58.128Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统分析与设计 - Homework1">
-<meta name="twitter:description" content="简答题1. 软件工程的定义软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。 2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法根本原因造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2019/03/05/系统分析与设计-Homework1/"/>
-
-
-
-
-
-  <title>系统分析与设计 - Homework1 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">Recording while Learning</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
+        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Sherry&#39;s emmm... Unnamed Blog</div>
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
+            <div>Recording while Learning</div>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+                <a href="https://github.com/Yuandi-Sherry">
+                    <img src="/assets/github.svg" />
+                </a>
             
-            归档
-          </a>
-        </li>
-      
+        
+    </section>
+</aside>
 
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>系统分析与设计 - Homework1</h1>
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/系统分析与设计-Homework1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">系统分析与设计 - Homework1</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T00:22:44+08:00">
-                2019-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><h3 id="1-软件工程的定义"><a href="#1-软件工程的定义" class="headerlink" title="1. 软件工程的定义"></a>1. 软件工程的定义</h3><p>软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。</p>
+    <section>
+      <h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><h3 id="1-软件工程的定义"><a href="#1-软件工程的定义" class="headerlink" title="1. 软件工程的定义"></a>1. 软件工程的定义</h3><p>软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。</p>
 <h3 id="2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法"><a href="#2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法" class="headerlink" title="2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法"></a>2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法</h3><h5 id="根本原因"><a href="#根本原因" class="headerlink" title="根本原因"></a>根本原因</h5><p>造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系统复杂性和软件开发方法之间的矛盾。</p>
 <a id="more"></a>
 <h5 id="表现"><a href="#表现" class="headerlink" title="表现"></a>表现</h5><p>其表现为下列几点：</p>
@@ -448,347 +188,65 @@
 <p>当然由于开发的软件也愈加复杂，根据随着代码行数增多人月呈指数增长的规律，组织和任务分配必将承担着很大的责任和经历。这诞生了软件开发过程中的管理、规范。</p>
 <p>与此同时，除了员工之间的相互作用，这是组织和管理需要解决的问题，不考虑相互作用时的员工本身也是企业成熟度的影响因素。这大概是人才管理、数字报表管理诞生的原因。</p>
 
+
       
-    </div>
+
+    </section>
     
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Software-System-Analysis-and-Design/" rel="tag"># Software System Analysis and Design</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/06/19/Week15-Tanks/" rel="next" title="Week15-Tanks">
-                <i class="fa fa-chevron-left"></i> Week15-Tanks
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/05/OpenGL-vs2017-环境配置/" rel="prev" title="OpenGL + vs2017 环境配置">
-                OpenGL + vs2017 环境配置 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2019-03-04T16:22:44.000Z" itemprop="datePublished">
+              2019-03-05
+            </time>
           </div>
           
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/Software-System-Analysis-and-Design/">Software System Analysis and Design</a> }
+  </li>
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Sherry" />
-          <p class="site-author-name" itemprop="name">Sherry</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
             </div>
           
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
+    
+    
+</article>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
+  
+</div>
 
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简答题"><span class="nav-number">1.</span> <span class="nav-text">简答题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-软件工程的定义"><span class="nav-number">1.1.</span> <span class="nav-text">1. 软件工程的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法"><span class="nav-number">1.2.</span> <span class="nav-text">2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#根本原因"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">根本原因</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表现"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">表现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#克服软件危机的方法"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">克服软件危机的方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-软件生命周期"><span class="nav-number">1.3.</span> <span class="nav-text">3. 软件生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-SWEBoK-的-15-个知识域（An-Overview-of-the-SWEBOK-Guide-请中文翻译其名称与简短说明）"><span class="nav-number">1.4.</span> <span class="nav-text">4. SWEBoK 的 15 个知识域（An Overview of the SWEBOK Guide 请中文翻译其名称与简短说明）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#软件需求"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">软件需求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件设计"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">软件设计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件构造"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">软件构造</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件测试"><span class="nav-number">1.4.0.4.</span> <span class="nav-text">软件测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件维护"><span class="nav-number">1.4.0.5.</span> <span class="nav-text">软件维护</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件配置管理"><span class="nav-number">1.4.0.6.</span> <span class="nav-text">软件配置管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程管理"><span class="nav-number">1.4.0.7.</span> <span class="nav-text">软件工程管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程过程"><span class="nav-number">1.4.0.8.</span> <span class="nav-text">软件工程过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程模型和方法"><span class="nav-number">1.4.0.9.</span> <span class="nav-text">软件工程模型和方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件质量"><span class="nav-number">1.4.0.10.</span> <span class="nav-text">软件质量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程专业实践"><span class="nav-number">1.4.0.11.</span> <span class="nav-text">软件工程专业实践</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程经济学"><span class="nav-number">1.4.0.12.</span> <span class="nav-text">软件工程经济学</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#计算基础"><span class="nav-number">1.4.0.13.</span> <span class="nav-text">计算基础</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数学基础"><span class="nav-number">1.4.0.14.</span> <span class="nav-text">数学基础</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#工程基础"><span class="nav-number">1.4.0.15.</span> <span class="nav-text">工程基础</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-简单解释-CMMI-的五个级别。"><span class="nav-number">1.5.</span> <span class="nav-text">5. 简单解释 CMMI 的五个级别。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-用自己语言简述-SWEBok-或-CMMI-（约200字）"><span class="nav-number">1.6.</span> <span class="nav-text">6. 用自己语言简述 SWEBok 或 CMMI （约200字）</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+            <footer>
+    <div>© 2018 - Sherry </div>
+    <div>
+    Powered by Hexo
     </div>
-  </aside>
+</footer>
 
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2018 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Sherry</span>
+        </div>
+    </div>
 </div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
 
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
 </script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>

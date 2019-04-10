@@ -1,326 +1,66 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html lang="zh-cmn-Hans">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>MVC: Priests and Evils | Sherry&#39;s emmm... Unnamed Blog</title>
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="3D GAME DESIGN," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢这篇博客给了我很大的启发~如果想看比较专业的讲解可以点它 :)">
-<meta name="keywords" content="3D GAME DESIGN">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MVC: Priests and Evils">
-<meta property="og:url" content="http://yoursite.com/2018/04/03/MVC-Priests-and-Evils/index.html">
-<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
-<meta property="og:description" content="What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢这篇博客给了我很大的启发~如果想看比较专业的讲解可以点它 :)">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-03T07:33:55.074Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MVC: Priests and Evils">
-<meta name="twitter:description" content="What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢这篇博客给了我很大的启发~如果想看比较专业的讲解可以点它 :)">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2018/04/03/MVC-Priests-and-Evils/"/>
-
-
-
-
-
-  <title>MVC: Priests and Evils | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">Recording while Learning</p>
-      
-  </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
+        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Sherry&#39;s emmm... Unnamed Blog</div>
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
+            <div>Recording while Learning</div>
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+                <a href="https://github.com/Yuandi-Sherry">
+                    <img src="/assets/github.svg" />
+                </a>
             
-            归档
-          </a>
-        </li>
-      
+        
+    </section>
+</aside>
 
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>MVC: Priests and Evils</h1>
     </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/03/MVC-Priests-and-Evils/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">MVC: Priests and Evils</h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-03T15:29:13+08:00">
-                2018-04-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢<a href="">这篇博客</a>给了我很大的启发~如果想看比较专业的讲解可以点它 :)</p>
+    <section>
+      <p>What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢<a href="">这篇博客</a>给了我很大的启发~如果想看比较专业的讲解可以点它 :)</p>
 <a id="more"></a>
 <p>既然不太知道MVC的整体架构，就先从游戏本身入手：</p>
 <h2 id="Model有哪些？"><a href="#Model有哪些？" class="headerlink" title="Model有哪些？"></a>Model有哪些？</h2><p>首先你要思考游戏中有什么：魔鬼、牧师和船。但只有这些吗？这些的确是显而易见的玩家可控的游戏对象，但对于一个游戏设计者，游戏中的每一个对象都是你要负责的，比如：河岸和河水。虽然它们不会移动，从玩家的视角无法直接操控它们，但如果它们与玩家可控的对象有接触（或者概括为信息交换）就需要纳入考虑范围。</p>
@@ -418,347 +158,65 @@
 <figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Moveable</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">	Vector3 dest;<span class="comment">//目的地绝对坐标</span></span><br><span class="line">	Vector3 middle;<span class="comment">//中间位置绝对坐标</span></span><br><span class="line">	<span class="keyword">int</span> state = <span class="number">0</span>;<span class="comment">//0-&gt;stop, 1-&gt;start-middle, 2-&gt;middle-dest</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> moveSpeed = <span class="number">5</span>;</span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDestination</span>(<span class="params"> Vector3 dest0</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(dest0.y - transform.position.y &lt; <span class="number">0.0000000001</span> &amp;&amp; dest0.y - transform.position.y &gt; <span class="number">-0.0000000001</span>) &#123;<span class="comment">//船移动</span></span><br><span class="line">			dest = dest0;</span><br><span class="line">			state = <span class="number">3</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(dest0.y &gt; transform.position.y) &#123;<span class="comment">//上岸下船 ↑ →</span></span><br><span class="line">			middle.y = dest0.y;</span><br><span class="line">			middle.x = transform.position.x;</span><br><span class="line">			dest = dest0;</span><br><span class="line">			state = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;<span class="comment">//下岸上船</span></span><br><span class="line">			middle.x = dest0.x;</span><br><span class="line">			middle.y = transform.position.y;</span><br><span class="line">			dest = dest0;</span><br><span class="line">			state = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>另外从软件工程多人合作实现一个项目的角度看，将运动的实现单独分出一个人负责实现，而另一个人只需要调用相应的函数，告知目的地，游戏对象即可按照<code>Moveable</code>中定义的轨迹运行而不需了解运动函数内部的实现原理。在更复杂的工程项目中，将各个控制板块分离会更易于分工合作，提高开发效率。</p>
 
+
       
-    </div>
+
+    </section>
     
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/3D-GAME-DESIGN/" rel="tag"># 3D GAME DESIGN</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/04/01/Week04-Homework/" rel="next" title="Week04 Homework - 游戏对象的运动">
-                <i class="fa fa-chevron-left"></i> Week04 Homework - 游戏对象的运动
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/10/Week05-游戏对象使用总结/" rel="prev" title="Week05 Homework - 游戏对象使用总结">
-                Week05 Homework - 游戏对象使用总结 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2018-04-03T07:29:13.000Z" itemprop="datePublished">
+              2018-04-03
+            </time>
           </div>
           
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/3D-GAME-DESIGN/">3D GAME DESIGN</a> }
+  </li>
 
 
-          
-  <div class="comments" id="comments">
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Sherry" />
-          <p class="site-author-name" itemprop="name">Sherry</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">18</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
             </div>
           
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
       </section>
+    
+    
+</article>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
+  
+</div>
 
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Model有哪些？"><span class="nav-number">1.</span> <span class="nav-text">Model有哪些？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先用面向对象的方法思考游戏对象"><span class="nav-number">1.1.</span> <span class="nav-text">先用面向对象的方法思考游戏对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller控制的是什么？"><span class="nav-number">2.</span> <span class="nav-text">Controller控制的是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明GameObjectController中方法时需要考虑的两个重要问题"><span class="nav-number">2.1.</span> <span class="nav-text">声明GameObjectController中方法时需要考虑的两个重要问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FirstController需要做什么？"><span class="nav-number">2.2.</span> <span class="nav-text">FirstController需要做什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View需要实现哪些功能？"><span class="nav-number">3.</span> <span class="nav-text">View需要实现哪些功能？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UserGUI"><span class="nav-number">3.0.1.</span> <span class="nav-text">UserGUI</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ClickGUI"><span class="nav-number">3.1.</span> <span class="nav-text">ClickGUI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这三者如何关联起来"><span class="nav-number">4.</span> <span class="nav-text">这三者如何关联起来</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对运动的单独控制"><span class="nav-number">4.1.</span> <span class="nav-text">对运动的单独控制</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+            <footer>
+    <div>© 2018 - Sherry </div>
+    <div>
+    Powered by Hexo
     </div>
-  </aside>
+</footer>
 
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2018 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Sherry</span>
+        </div>
+    </div>
 </div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
 
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-  </div>
-
-  
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
 </script>
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </body>
 </html>
