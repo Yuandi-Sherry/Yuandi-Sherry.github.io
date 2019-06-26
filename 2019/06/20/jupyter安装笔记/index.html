@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jupyter安装笔记 | Sherry&#39;s emmm... Unnamed Blog</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
+        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Sherry&#39;s emmm... Unnamed Blog</div>
+        
+            <div>Recording while Learning</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/Yuandi-Sherry">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>jupyter安装笔记</h1>
+    </header>
+
+    <section>
+      <p><strong>环境：</strong>win10子系统，</p>
+<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python3 -m pip install --upgrade pip</span><br><span class="line">python3 -m pip install jupyter</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考：<a href="https://jupyter.org/install.html" target="_blank" rel="noopener">https://jupyter.org/install.html</a></p>
+</blockquote>
+<h2 id="报错解决"><a href="#报错解决" class="headerlink" title="报错解决"></a>报错解决</h2><h3 id="allow-root"><a href="#allow-root" class="headerlink" title="allow_root"></a>allow_root</h3><p>运行notebook：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+<p>输出信息如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[I 19:33:39.307 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret</span><br><span class="line">[C 19:33:43.147 NotebookApp] Running as root is not recommended. Use --allow-root to bypass.</span><br></pre></td></tr></table></figure>
+<p>需要修改配置文件（我这里用的是vim编辑器）：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /root/.jupyter/jupyter_notebook_config.py</span><br></pre></td></tr></table></figure>
+<p>找到下面的内容：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">#c.NotebookApp.allow_root = False</span><br></pre></td></tr></table></figure>
+<p>并修改为：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">c.NotebookApp.allow_root =True</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>参考：<a href="https://www.cnblogs.com/Annian/p/9103892.html" target="_blank" rel="noopener">https://www.cnblogs.com/Annian/p/9103892.html</a></p>
+</blockquote>
+<h3 id="set-password"><a href="#set-password" class="headerlink" title="set password"></a>set password</h3><p>运行<code>jupyter notebook</code>后打开网页（localhost:8888），显示输入密码，但是我本身没有设置密码。于是使用命令行修改密码：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">jupyter notebook password</span><br></pre></td></tr></table></figure>
+<p>就可以看到当前目录下的文件了。</p>
+<blockquote>
+<p>参考：<a href="https://jupyter-notebook.readthedocs.io/en/stable/public_server.html" target="_blank" rel="noopener">https://jupyter-notebook.readthedocs.io/en/stable/public_server.html</a></p>
+</blockquote>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2019-06-20T11:56:32.000Z" itemprop="datePublished">
+              2019-06-20
+            </time>
+          </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2018 - Sherry </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

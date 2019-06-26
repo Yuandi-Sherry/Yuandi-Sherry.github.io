@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pytorch实战笔记 | Sherry&#39;s emmm... Unnamed Blog</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
+        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Sherry&#39;s emmm... Unnamed Blog</div>
+        
+            <div>Recording while Learning</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/Yuandi-Sherry">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <div>
+  <article class='ContentView'>
+    <header class='PageTitle'>
+        <h1>Pytorch实战笔记</h1>
+    </header>
+
+    <section>
+      <blockquote>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/29024978" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/29024978</a></p>
+</blockquote>
+<h2 id="文件组织架构"><a href="#文件组织架构" class="headerlink" title="文件组织架构"></a>文件组织架构</h2><ul>
+<li>checkpoints/: 保存训练好模型</li>
+<li>data/: 数据相关</li>
+<li>models/: 模型定义</li>
+<li>utils/: 工具函数</li>
+<li>config.py: 可配置变量</li>
+<li>main.py: 程序主入口，通过不同命令指定不同参数和操作</li>
+</ul>
+<h2 id="init-py"><a href="#init-py" class="headerlink" title="__init__.py"></a><code>__init__.py</code></h2><ul>
+<li>每个文件夹包含 =&gt; 其他程序从目录导入函数/模块<code>from FOLDERNAME.PACKAGENAME import MODULENAME</code></li>
+<li>在其中加入：<code>from .PACKAGENAME import MODULENAME</code> -&gt; 从外界访问：<code>from FOLDERNAME import MODULENAME</code></li>
+</ul>
+<h2 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h2><ul>
+<li>划出验证集，将图像随机排列，前70%作为训练集，后30%作为验证集</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>训练集</th>
+<th>验证集/测试集</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>图像增强</td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>返回Label</td>
+<td>分类</td>
+<td>图片id</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="模型定义"><a href="#模型定义" class="headerlink" title="模型定义"></a>模型定义</h2><h3 id="对于nn-Module进行简易封装"><a href="#对于nn-Module进行简易封装" class="headerlink" title="对于nn.Module进行简易封装"></a>对于nn.Module进行简易封装</h3><ul>
+<li>封装<code>nn.Module</code>为<code>BasicModule</code>类，主要提供<code>save</code>和<code>load</code>两个方法</li>
+</ul>
+<h4 id="load"><a href="#load" class="headerlink" title="load"></a>load</h4><ul>
+<li><p>将模型路径作为参数</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.load_state_dict(t.load(path))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="save"><a href="#save" class="headerlink" title="save"></a>save</h4><ul>
+<li><p>使用模型 + 时间作为命名，传入参数，并放入<code>checkpoints/</code>文件夹</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> name <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">    prefix = <span class="string">'checkpoints/'</span> + self.model_name + <span class="string">'_'</span></span><br><span class="line">    name = time.strftime(prefix + <span class="string">'%m%d_%H:%M:%S.pth'</span>)</span><br><span class="line">t.save(self.state_dict(), name)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p>实际使用：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">module.save()</span><br><span class="line">module.load(opt.load_path)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>一般模型继承BasicModule并加以实现</li>
+</ul>
+<h3 id="数据集导入"><a href="#数据集导入" class="headerlink" title="数据集导入"></a>数据集导入</h3><ul>
+<li><p><code>在models/__init__.py</code>实现：</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> .DATASETNAME <span class="keyword">import</span> DATASETNAME</span><br><span class="line"><span class="meta">... </span><span class="comment">#多个模型的添加以此类推</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>使得主函数中可以写为</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> models</span><br><span class="line">model = getattr(models, <span class="string">'DATASETNAME'</span>)()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>直接修改字符串可以选择具体模型</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h2><h3 id="Visualizer的封装"><a href="#Visualizer的封装" class="headerlink" title="Visualizer的封装"></a>Visualizer的封装</h3><ul>
+<li>构造函数<code>visdom.Visdom(...)</code>，传入env和其他参数</li>
+</ul>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><ul>
+<li><code>index</code> - 字典，记录plot的名称和是第几个绘制的图片<ul>
+<li>key - name, value - 下标</li>
+<li>用于确认是需要在已有串口上进行绘制还是新窗口</li>
+</ul>
+</li>
+<li><code>log_text</code> - 输出的日志</li>
+</ul>
+<h4 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h4><ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = self.index.get(name, <span class="number">0</span>)</span><br><span class="line"><span class="comment"># 在窗口上绘制多个点</span></span><br><span class="line">self.vis.line(Y=np.array([y]), X=np.array([x]),</span><br><span class="line">              win=unicode(name),</span><br><span class="line">              opts=dict(title=name),</span><br><span class="line">              update=<span class="keyword">None</span> <span class="keyword">if</span> x == <span class="number">0</span> <span class="keyword">else</span> <span class="string">'append'</span>,</span><br><span class="line">              **kwargs</span><br><span class="line">             )</span><br><span class="line">self.index[name] = x + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="输出图像"><a href="#输出图像" class="headerlink" title="输出图像"></a>输出图像</h4><ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.vis.images(img_.cpu().numpy(),</span><br><span class="line">                win=unicode(name),</span><br><span class="line">                opts=dict(title=name),</span><br><span class="line">                **kwargs</span><br><span class="line">               )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="输出文本"><a href="#输出文本" class="headerlink" title="输出文本"></a>输出文本</h4><ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">self.log_text += (<span class="string">'[&#123;time&#125;] &#123;info&#125; &lt;br&gt;'</span>.format(</span><br><span class="line">    time=time.strftime(<span class="string">'%m%d_%H%M%S'</span>),\</span><br><span class="line">    info=info)) </span><br><span class="line">self.vis.text(self.log_text, win)</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><ul>
+<li><p>将所有可配置项放入<code>config.py</code>，包括模型定义、数据处理和训练的变量默认值 =&gt; 方便调试修改代码</p>
+</li>
+<li><p>主要用到的变量如下：</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DefaultConfig</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="comment"># visdom参数</span></span><br><span class="line">    env = <span class="string">'default'</span> <span class="comment"># visdom 环境</span></span><br><span class="line">    model = <span class="string">'AlexNet'</span> <span class="comment"># 使用的模型，名字必须与models/__init__.py中的名字一致</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 数据集参数</span></span><br><span class="line">    train_data_root = <span class="string">'./data/train/'</span> <span class="comment"># 训练集存放路径</span></span><br><span class="line">    test_data_root = <span class="string">'./data/test1'</span> <span class="comment"># 测试集存放路径</span></span><br><span class="line">    load_model_path = <span class="string">'checkpoints/model.pth'</span> <span class="comment"># 加载预训练的模型的路径，为None代表不加载</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 模型参数</span></span><br><span class="line">    batch_size = <span class="number">128</span> <span class="comment"># batch size</span></span><br><span class="line">    use_gpu = <span class="keyword">True</span> <span class="comment"># use GPU or not</span></span><br><span class="line">    num_workers = <span class="number">4</span> <span class="comment"># how many workers for loading data</span></span><br><span class="line">    print_freq = <span class="number">20</span> <span class="comment"># print info every N batch</span></span><br><span class="line"></span><br><span class="line">    debug_file = <span class="string">'/tmp/debug'</span> <span class="comment"># if os.path.exists(debug_file): enter ipdb</span></span><br><span class="line">    result_file = <span class="string">'result.csv'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练参数</span></span><br><span class="line">    max_epoch = <span class="number">10</span></span><br><span class="line">    lr = <span class="number">0.1</span> <span class="comment"># initial learning rate</span></span><br><span class="line">    lr_decay = <span class="number">0.95</span> <span class="comment"># when val_loss increase, lr = lr*lr_decay</span></span><br><span class="line">    weight_decay = <span class="number">1e-4</span> <span class="comment"># 损失函数</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>在程序中使用<code>config.py</code>中的参数</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> config <span class="keyword">import</span> DefaultConfig</span><br><span class="line"></span><br><span class="line">opt = DefaultConfig()</span><br><span class="line">lr = opt.lr</span><br><span class="line">model = getattr(models, opt.model)</span><br><span class="line">dataset = DogCat(opt.train_data_root)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过命令行传入需要参数并覆盖默认配置</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, kwargs)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    根据字典kwargs 更新 config参数</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># 更新配置参数</span></span><br><span class="line">    <span class="keyword">for</span> k, v <span class="keyword">in</span> kwargs.iteritems():</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> hasattr(self, k):</span><br><span class="line">            <span class="comment"># 警告还是报错，取决于你个人的喜好</span></span><br><span class="line">            warnings.warn(<span class="string">"Warning: opt has not attribut %s"</span> %k)</span><br><span class="line">            setattr(self, k, v)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 打印配置信息	</span></span><br><span class="line">            print(<span class="string">'user config:'</span>)</span><br><span class="line">            <span class="keyword">for</span> k, v <span class="keyword">in</span> self.__class__.__dict__.iteritems():</span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">not</span> k.startswith(<span class="string">'__'</span>):</span><br><span class="line">                    print(k, getattr(self, k))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>使用方法：</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">opt = DefaultConfig()</span><br><span class="line">new_config = &#123;<span class="string">'lr'</span>:<span class="number">0.1</span>,<span class="string">'use_gpu'</span>:<span class="keyword">False</span>&#125;</span><br><span class="line">opt.parse(new_config)</span><br><span class="line">opt.lr == <span class="number">0.1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="main-py"><a href="#main-py" class="headerlink" title="main.py"></a>main.py</h2><h3 id="fire"><a href="#fire" class="headerlink" title="fire"></a>fire</h3><ul>
+<li><p>假设main.py如下：</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> fire</span><br><span class="line"><span class="comment"># def FUNC(para1, ...)</span></span><br><span class="line"><span class="comment"># ... 各种定义函数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    fire.Fire()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在命令行可以直接调用文件内的函数</p>
+<ul>
+<li><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python main.py FUNC --para1=VALUE1 --para2=VALUE2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="主程序函数分析"><a href="#主程序函数分析" class="headerlink" title="主程序函数分析"></a>主程序函数分析</h3><ul>
+<li><p>四个函数：</p>
+<ul>
+<li><code>train</code> - 训练</li>
+<li><code>val</code> - 辅助训练</li>
+<li><code>test</code> - 测试</li>
+<li><code>help</code> - 打印帮助信息</li>
+</ul>
+</li>
+<li><p><code>__main__</code>部分如下：</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__==<span class="string">'__main__'</span>:</span><br><span class="line">   <span class="keyword">import</span> fire</span><br><span class="line">   fire.Fire()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>因此可以通过：<code>*python main.py &lt;function&gt; --args=xx</code>执行训练测试等等</p>
+</li>
+</ul>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>步骤：</p>
+<ol>
+<li>定义网络</li>
+<li>定义数据</li>
+<li>定义criterion(loss func)和optimizer</li>
+<li>计算重要指标</li>
+<li>开始训练<ol>
+<li>训练网络</li>
+<li>可视化指标</li>
+<li>计算验证集上的指标</li>
+</ol>
+</li>
+</ol>
+<h3 id="训练函数"><a href="#训练函数" class="headerlink" title="训练函数"></a>训练函数</h3><h4 id="根据命令行更新参数配置"><a href="#根据命令行更新参数配置" class="headerlink" title="根据命令行更新参数配置"></a>根据命令行更新参数配置</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">opt.parse(kwargs)</span><br><span class="line">vis = Visualizer(opt.env)</span><br></pre></td></tr></table></figure>
+<h4 id="处理模型"><a href="#处理模型" class="headerlink" title="处理模型"></a>处理模型</h4><ol>
+<li>从Models导入模型包</li>
+<li>(optional)从本地加载模型文件</li>
+<li>(optional)使用GPU</li>
+</ol>
+<h4 id="处理数据"><a href="#处理数据" class="headerlink" title="处理数据"></a>处理数据</h4><ol>
+<li>加载训练集和测试集</li>
+<li>设置两个dataloader</li>
+</ol>
+<h4 id="目标函数和优化器"><a href="#目标函数和优化器" class="headerlink" title="目标函数和优化器"></a>目标函数和优化器</h4><h4 id="统计指标"><a href="#统计指标" class="headerlink" title="统计指标"></a>统计指标</h4><ol>
+<li><p>平滑处理之后的损失</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loss_meter = meter.AverageValueMeter()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>混淆矩阵</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">confusion_matrix = meter.ConfusionMeter(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>previous_loss用于存储上次的损失</p>
+</li>
+</ol>
+<h4 id="训练-1"><a href="#训练-1" class="headerlink" title="训练"></a>训练</h4><ol>
+<li><p>每个epoch清空上次的平滑损失和混淆矩阵</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loss_meter.reset()</span><br><span class="line">confusion_matrix.reset()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>遍历训练集</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> ii,(data,label) <span class="keyword">in</span> enumerate(train_dataloader):</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>加载Batch的input和label</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">input = Variable(data)</span><br><span class="line">target = Variable(label)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>优化器清零</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">optimizer.zero_grad()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>过模型，计算结果</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">score = model(input)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算损失函数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loss = criterion(score,target)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>反向传播</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loss.backward()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">optimizer.step()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可视化结果保存</p>
+<ol>
+<li><p>将loss[0]加入loss_meter</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loss_meter.add(loss.data[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>混淆矩阵加入(score.data, target.data)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">confusion_matrix.add(score.data, target.data)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>训练到一定程度进行绘图</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> ii%opt.print_freq==opt.print_freq<span class="number">-1</span>:</span><br><span class="line">	vis.plot(<span class="string">'loss'</span>, loss_meter.value()[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每个epoch保存模型</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">model.save()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算验证集的表现</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">val_cm,val_accuracy = val(model,val_dataloader)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>并绘图</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vis.plot(<span class="string">'val_accuracy'</span>,val_accuracy)</span><br><span class="line">vis.log(<span class="string">"epoch:&#123;epoch&#125;,lr:&#123;lr&#125;,loss:&#123;loss&#125;,train_cm:&#123;train_cm&#125;,val_cm:&#123;val_cm&#125;"</span></span><br><span class="line">        .format(</span><br><span class="line">            epoch = epoch,</span><br><span class="line">            loss = loss_meter.value()[<span class="number">0</span>],</span><br><span class="line">            val_cm = str(val_cm.value()),</span><br><span class="line">            train_cm=str(confusion_matrix.value()),</span><br><span class="line">            lr=lr))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>调整学习率</p>
+<p>如果损失不下降，降低学习率</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> loss_meter.value()[<span class="number">0</span>] &gt; previous_loss:          </span><br><span class="line">    lr = lr * opt.lr_decay</span><br><span class="line">    <span class="keyword">for</span> param_group <span class="keyword">in</span> optimizer.param_groups:</span><br><span class="line">        param_group[<span class="string">'lr'</span>] = lr</span><br><span class="line"><span class="comment"># 这里记录上一步的损失</span></span><br><span class="line">previous_loss = loss_meter.value()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="meter工具"><a href="#meter工具" class="headerlink" title="meter工具"></a>meter工具</h4><ul>
+<li>快速统计训练工程中的指标</li>
+<li><code>AverageValueMeter</code>计算所有数的平均值和标准差<ul>
+<li>统计epoch损失的平均值</li>
+</ul>
+</li>
+<li><code>confusionmeter</code> - 统计分类情况</li>
+</ul>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><blockquote>
+<p>注意将模型置于验证模式，验证完后调整回训练模式</p>
+</blockquote>
+<ol>
+<li><p>将模型设置为验证模式</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">model.eval()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>初始化混淆矩阵</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">confusion_matrix = meter.ConfusionMeter(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>进行遍历数据集并存储相关指标</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> ii, data <span class="keyword">in</span> enumerate(dataloader):</span><br><span class="line">    input, label = data</span><br><span class="line">    val_input = Variable(input, volatile=<span class="keyword">True</span>)</span><br><span class="line">    val_label = Variable(label.long(), volatile=<span class="keyword">True</span>)</span><br><span class="line">    <span class="keyword">if</span> opt.use_gpu:</span><br><span class="line">        val_input = val_input.cuda()</span><br><span class="line">        val_label = val_label.cuda()</span><br><span class="line">    score = model(val_input)</span><br><span class="line">    confusion_matrix.add(score.data.squeeze(), label.long())</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>恢复模型为训练模式</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model.train()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算整个验证集上的表现</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cm_value = confusion_matrix.value()</span><br><span class="line">accuracy = <span class="number">100.</span> * (cm_value[<span class="number">0</span>][<span class="number">0</span>] + cm_value[<span class="number">1</span>][<span class="number">1</span>]) /\</span><br><span class="line">                (cm_value.sum())</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
+<li>这里计算每个样本属于狗的概率，将结果保存为csv</li>
+</ul>
+<ol>
+<li><p>处理输入参数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">opt.parse(kwargs)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>加载模型</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = getattr(models, opt.model)().eval()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>构建数据集和数据集加载器</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_data = DogCat(opt.test_data_root,test=<span class="keyword">True</span>)</span><br><span class="line">test_dataloader = DataLoader(train_data,\</span><br><span class="line">                              batch_size=opt.batch_size,\</span><br><span class="line">                              shuffle=<span class="keyword">False</span>,\</span><br><span class="line">                              num_workers=opt.num_workers)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑测试集计算结果并保存</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">results = [] <span class="comment"># 结果数组</span></span><br><span class="line"><span class="keyword">for</span> ii,(data,path) <span class="keyword">in</span> enumerate(test_dataloader):</span><br><span class="line">       input = t.autograd.Variable(data,volatile = <span class="keyword">True</span>)</span><br><span class="line">       <span class="keyword">if</span> opt.use_gpu: input = input.cuda()</span><br><span class="line">       score = model(input)</span><br><span class="line">    <span class="comment"># 计算概率</span></span><br><span class="line">       probability = t.nn.functional.softmax(score)[:,<span class="number">1</span>].data.tolist()      </span><br><span class="line">       batch_results = [(path_,probability_) <span class="keyword">for</span> path_,probability_ <span class="keyword">in</span> zip(path,probability) ]</span><br><span class="line">       results += batch_results</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写文件</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">write_csv(results,opt.result_file)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> 训练模型</span><br><span class="line">python main.py train </span><br><span class="line">        --train-data-root=data/train/ </span><br><span class="line">        --load-model-path='checkpoints/resnet34_16:53:00.pth' </span><br><span class="line">        --lr=0.005 </span><br><span class="line">        --batch-size=32 </span><br><span class="line">        --model='ResNet34'  </span><br><span class="line">        --max-epoch = 20</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 测试模型</span><br><span class="line">python main.py test</span><br><span class="line">       --test-data-root=data/test1 </span><br><span class="line">       --load-model-path='checkpoints/resnet34_00:23:05.pth' </span><br><span class="line">       --batch-size=128 </span><br><span class="line">       --model='ResNet34' </span><br><span class="line">       --num-workers=12</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 打印帮助信息</span><br><span class="line">python main.py help</span><br></pre></td></tr></table></figure>
+
+
+      
+
+    </section>
+    
+      <section class='ArticleMeta'>
+          <div>
+            发布于&nbsp;
+            <time datetime="2019-06-24T08:02:04.000Z" itemprop="datePublished">
+              2019-06-24
+            </time>
+          </div>
+          
+            <div>
+              tags: 
+  <li class="meta-text">
+  { <a href="/tags/pytorch/">pytorch</a> }
+  </li>
+
+
+            </div>
+          
+      </section>
+    
+    
+</article>
+
+  
+</div>
+
+            <footer>
+    <div>© 2018 - Sherry </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sherry&#39;s emmm... Unnamed Blog</title>
+  
+  
+  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
+  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
+    <aside class='SideBar'>
+    <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
+        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
+        </div>
+    </section>
+    <section class='menu'>
+        <div>Sherry&#39;s emmm... Unnamed Blog</div>
+        
+            <div>Recording while Learning</div>
+        
+        <ul>
+          
+            <a href="/" class="Btn">
+              <li>Home</li>
+            </a>  
+          
+            <a href="/archives/" class="Btn">
+              <li>Archive</li>
+            </a>  
+          
+            <a href="/tags/" class="Btn">
+              <li>Tags</li>
+            </a>  
+          
+        </ul>
+    </section>
+    <section class="media">
+        
+            
+                <a href="https://github.com/Yuandi-Sherry">
+                    <img src="/assets/github.svg" />
+                </a>
+            
+        
+    </section>
+</aside>
+
+    <div class="container">
+        <div data-pager-shell>
+            <ul class="Index">
+  
+    <header class='PageTitle'>
+        <h1>{ pytorch数据处理 }</h1>
+    </header>
+  
+  
+    <li>
+      <article class='ListView'>
+    <header class="title">
+      
+        <h1>
+          <a href="/2019/06/23/Pytorch常用工具总结/">Pytorch常用工具总结</a>
+        </h1>
+      
+      <div class='ListMeta'>
+  <time datetime="2019-06-23T08:52:23.000Z" itemprop="datePublished">
+    2019-06-23
+  </time>
+  
+  | 
+  <ul>
+    
+  <li class="meta-text">
+  { <a href="/tags/pytorch数据处理/">pytorch数据处理</a> }
+  </li>
+
+
+  </ul>
+  
+  
+</div>
+
+    </header>
+    <div>
+      
+        <h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h3><ul>
+<li>自定义数据集<ol>
+<li>继承<code>Dataset</code>，实现python方法：<ul>
+<li><code>__getitem__</code>: 返回一条数据/一个样本</li>
+<li><code>__len__</code>: 返回样本数量</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<p>以猫狗识别为例：</p>
+<ul>
+<li><p>文件结构</p>
+<blockquote>
+<p>所有文件放在一个文件夹，根据前缀判断</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">data/dogcat/</span><br><span class="line">|-- cat.12484.jpg</span><br><span class="line">|-- cat.12485.jpg</span><br><span class="line">|-- cat.12486.jpg</span><br><span class="line">|-- cat.12487.jpg</span><br><span class="line">|-- dog.12496.jpg</span><br><span class="line">|-- dog.12497.jpg</span><br><span class="line">|-- dog.12498.jpg</span><br><span class="line">`-- dog.12499.jpg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在构造函数中获取图片路径</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, root)</span>:</span></span><br><span class="line">    <span class="comment"># 图片文件夹路径</span></span><br><span class="line">    imgs = os.listdir(root)</span><br><span class="line">    <span class="comment"># 遍历文件夹下所有文件 + 文件姐路径=&gt; 构成绝对路径</span></span><br><span class="line">    self.imgs = [os.path.join(root, img) <span class="keyword">for</span> img <span class="keyword">in</span> imgs]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>定义<code>__getitem__</code>，这一步中<strong>真正读取图片</strong>，并根据文件名生成label</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span><span class="params">(self, index)</span>:</span></span><br><span class="line">    img_path = self.imgs[index]</span><br><span class="line">    <span class="comment"># 根据文件名生成Label</span></span><br><span class="line">    label = <span class="number">1</span> <span class="keyword">if</span> <span class="string">'dog'</span> <span class="keyword">in</span> img_path.split(<span class="string">'/'</span>)[<span class="number">-1</span>] <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">    <span class="comment"># 加载图片</span></span><br><span class="line">    pil_img = Image.open(img_path)</span><br><span class="line">    <span class="comment"># 图片转为numpy</span></span><br><span class="line">    array = np.asarray(pil_img)</span><br><span class="line">    <span class="comment"># numpy转为tensor</span></span><br><span class="line">    data = t.from_numpy(array)</span><br><span class="line">    <span class="keyword">return</span> data, bale</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>还需要定义<code>__len__</code>，返回imgs数组的长度</p>
+</li>
+<li><p>调用数据加载类</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dataset = DogCat(FILEPATH)</span><br><span class="line"><span class="comment"># 访问某个元素</span></span><br><span class="line">dataset[INDEX]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="transforms"><a href="#transforms" class="headerlink" title="transforms"></a>transforms</h3><ul>
+<li><p>常见操作</p>
+<ul>
+<li>| 操作                                             | 说明                                             |<br>| ———————————————————————— | ———————————————————————— |<br>| <code>Scale</code>                                          | 调整图片尺寸，长宽比                             |<br>| <code>CenterCrop</code>, <code>`RandomCrop</code>, <code>RandomResizedCrop</code> | 裁剪                                             |<br>| <code>pad</code>                                            | 填充                                             |<br>| <code>ToTensor</code>                                       | 将PIL Image对象转成Tensor，将[0, 255]归一化[0,1] |</li>
+</ul>
+</li>
+<li><p>对Tensor的操作</p>
+<ul>
+<li>Normalize: 标准化</li>
+<li><code>ToPILImage</code>: Tensor转PIL Image</li>
+<li><code>Compose</code>: 拼接</li>
+</ul>
+</li>
+<li><p>实现</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">transform = T.Compose([</span><br><span class="line">	T.Resize(<span class="number">224</span>), <span class="comment"># 缩放，保持长宽比，短边224</span></span><br><span class="line">	T.CenterCrop(<span class="number">224</span>), <span class="comment"># 中间切224*224</span></span><br><span class="line">	T.ToTensor(), <span class="comment"># 归一化到[0, 1]</span></span><br><span class="line">	T.Normalize(mean = [<span class="number">.5</span>, <span class="number">.5</span>, <span class="number">.5</span>], std = [<span class="number">.5</span>, <span class="number">.5</span>, <span class="number">.5</span>]) <span class="comment"># 表转化到[-1, 1]</span></span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在数据集的类中定义transform，并在<code>__getitem__</code>方法中返回transforms处理过的data（图像数据）. </p>
+</li>
+</ul>
+</li>
+<li><p>自定义转换</p>
+<ul>
+<li>e.g. <code>trans=T.Lambda(lambda img: img.rotate(random()*360))</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ImageFolder"><a href="#ImageFolder" class="headerlink" title="ImageFolder"></a><code>ImageFolder</code></h3><ul>
+<li><p>假设文件按文件夹保存，每个文件夹存储同类别，文件夹名为类名。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">ImageFolder(root, transform=<span class="keyword">None</span>, target_transform=<span class="keyword">None</span>, loader=default_loader)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>root</code>: 路径</li>
+<li><code>transform</code>: 对图片的转换操作</li>
+<li><code>target_transform</code>: 对label转换</li>
+<li><code>loader</code>: 读取格式</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li><code>class_to_idx</code> - 类名和类下标的对应关系</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>图片保存：Channel x Height x Width</p>
+</blockquote>
+<h3 id="DataLoader"><a href="#DataLoader" class="headerlink" title="DataLoader"></a>DataLoader</h3><ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">DataLoader(dataset, batch_size=<span class="number">1</span>, shuffle=<span class="keyword">False</span>, sampler=<span class="keyword">None</span>, num_workers=<span class="number">0</span>, collate_fn=default_collate, pin_memory=<span class="keyword">False</span>, drop_last=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>dataset</code> - Dataset对象</li>
+<li><code>shuffle</code> - 打乱</li>
+<li><code>sampler</code></li>
+<li><code>num_workers</code> - 多进程加载的进程数</li>
+<li><code>collate_fn</code> - 多个样本数据拼成一个batch的方法，一般使用默认</li>
+<li><code>pin_memory</code> - 是否将数据保存在<code>pin_memory</code>区，转到GPU快</li>
+<li><code>drop_last</code> -师傅 将最后不足<code>batch_size</code>个数据丢弃</li>
+</ul>
+</li>
+</ul>
+<h4 id="可迭代"><a href="#可迭代" class="headerlink" title="可迭代"></a>可迭代</h4><ul>
+<li><p>可以使用for循环</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> batch_datas, batch_labels <span class="keyword">in</span> dataloader:</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>可以使用迭代器</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">dataiter = iter(dataloader)</span><br><span class="line">batch_datas, batch_labels = next(dataiter)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="剔除出错样本"><a href="#剔除出错样本" class="headerlink" title="剔除出错样本"></a>剔除出错样本</h3><h4 id="返回None，并在拼合为batch的时候筛选掉"><a href="#返回None，并在拼合为batch的时候筛选掉" class="headerlink" title="返回None，并在拼合为batch的时候筛选掉"></a>返回None，并在拼合为batch的时候筛选掉</h4><ul>
+<li><p>使用<code>try</code>, <code>except</code></p>
+<ul>
+<li><p>异常情况：<code>return None, None</code></p>
+<blockquote>
+<p>这里需要配合实现<code>Dataloader</code>的<code>collate_fn</code>，将None过滤</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.data.dataloader <span class="keyword">import</span> default_collate <span class="comment"># 导入默认的拼接方式</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">my_collate_fn</span><span class="params">(batch)</span>:</span></span><br><span class="line">    <span class="comment"># 过滤为None的数据</span></span><br><span class="line">    batch = list(filter(<span class="keyword">lambda</span> x:x[<span class="number">0</span>] <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>, batch))</span><br><span class="line">    <span class="keyword">if</span> len(batch) == <span class="number">0</span>: <span class="keyword">return</span> t.Tensor()</span><br><span class="line">    <span class="keyword">return</span> default_collate(batch) <span class="comment"># 用默认方式拼接过滤后的batch数据</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="随机选取图片代替"><a href="#随机选取图片代替" class="headerlink" title="随机选取图片代替"></a>随机选取图片代替</h4><ul>
+<li>优点：保证每个batch的数目仍是batch_size</li>
+</ul>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>高负载的操作放在<code>__getitem__</code>，如加载图片 =&gt; 为实现并行加速</li>
+<li><code>dataset</code>包含只读，避免修改 =&gt; 使用多进程加载，修改可能产生冲突</li>
+</ul>
+<h4 id="sampler"><a href="#sampler" class="headerlink" title="sampler"></a><code>sampler</code></h4><ul>
+<li>对数据采样，loader里面shuffle为True，调用随机采样器<code>RandomSampler</code>，打乱数据；默认使用<code>SequentialSampler</code>，顺序采样</li>
+</ul>
+<h5 id="WeightedRandomSampler"><a href="#WeightedRandomSampler" class="headerlink" title="WeightedRandomSampler"></a><code>WeightedRandomSampler</code></h5><ul>
+<li>根据每个样本的权重选取数据，比例不均衡问题中进行重采样</li>
+<li>构建时提供每个样本的权重<code>weights</code>和选取样本总数<code>num_samples</code>，可选<code>replacement</code><ul>
+<li>权重越大被选中概率越大</li>
+<li><code>replacement</code>决定是否可以重复选取某一样本</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在指定了sampler的情况下，shuffle不再生效；一个epoch返回的图片总数取决于sampler.num_samples</p>
+</blockquote>
+<h2 id="计算机视觉工具包-torchvision"><a href="#计算机视觉工具包-torchvision" class="headerlink" title="计算机视觉工具包 torchvision"></a>计算机视觉工具包 torchvision</h2><ul>
+<li>models：提供网络结构以及预训练好的模型</li>
+<li>datasets：提供常用的数据集加载</li>
+<li>transforms：提供常用的数据预处理</li>
+</ul>
+<h3 id="Visdom"><a href="#Visdom" class="headerlink" title="Visdom"></a>Visdom</h3><ul>
+<li><code>env</code>: 不同环境的可视化结果相互隔离，默认<code>main</code></li>
+<li><code>pane</code>: 窗格</li>
+</ul>
+<h4 id="安装和使用"><a href="#安装和使用" class="headerlink" title="安装和使用"></a>安装和使用</h4><ul>
+<li><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">$</span> pip install visdom</span><br><span class="line"><span class="meta">$</span> python -m visdom.server # 启动visdom服务</span><br><span class="line"><span class="meta">$</span> nohup python -m visdom.server &amp; # 将服务放至后台运行</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p><strong>注意:</strong></p>
+<p>手动指定保存<code>env</code>，在web上或者程序里save，否则visdom服务重启后，信息会丢失。</p>
+</blockquote>
+<h4 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h4><ul>
+<li><p>新建连接客户端</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">vis = visdom.Visdom(env=<span class="string">u'test1'</span>,use_incoming_socket=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以指定host, port..</p>
+</li>
+</ul>
+</li>
+<li><p>画图函数: line, image, text, histogram, scatter, bar, pie…</p>
+</li>
+</ul>
+<blockquote>
+<p>支持tensor和narray的数据结构</p>
+</blockquote>
+<h5 id="常见参数"><a href="#常见参数" class="headerlink" title="常见参数"></a>常见参数</h5><ul>
+<li><p><code>win</code>: 指定Pane的名字，两次操作指定的win相同，则覆盖</p>
+<blockquote>
+<p>需要更新数值且不覆盖，指定参数<code>update=&#39;append&#39;</code></p>
+<p>也可以使用<code>vis.updateTrace</code>更新图：</p>
+<ol>
+<li><p>增加新trace</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&gt;    x = t.arange(<span class="number">0</span>, <span class="number">9</span>, <span class="number">0.1</span>)</span><br><span class="line">&gt;    y = (x ** <span class="number">2</span>) / <span class="number">9</span></span><br><span class="line">&gt;    vis.line(X=x, Y=y, win=<span class="string">'polynomial'</span>, name=<span class="string">'this is a new Trace'</span>,update=<span class="string">'new'</span>)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<p>&gt;</p>
+<blockquote>
+<p>   在原trace上追加</p>
+   <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&gt;    <span class="keyword">for</span> ii <span class="keyword">in</span> range(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">&gt;        <span class="comment"># y = x</span></span><br><span class="line">&gt;        x = t.Tensor([ii])</span><br><span class="line">&gt;        y = x</span><br><span class="line">&gt;        vis.line(X=x, Y=y, win=<span class="string">'polynomial'</span>, update=<span class="string">'append'</span> <span class="keyword">if</span> ii&gt;<span class="number">0</span> <span class="keyword">else</span> <span class="keyword">None</span>)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p><code>opts</code>: 选项，接收字典，用于pane的显示格式</p>
+</li>
+</ul>
+<h5 id="text"><a href="#text" class="headerlink" title="text"></a>text</h5><ul>
+<li>支持html</li>
+</ul>
+<h2 id="使用GPU加速-cuda"><a href="#使用GPU加速-cuda" class="headerlink" title="使用GPU加速 cuda"></a>使用GPU加速 cuda</h2><h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><p>损失函数定义后也应该调用<code>criterion.cuda</code>转移到GPU</p>
+</li>
+<li><p>推荐方法设置环境变量<code>CUDA_VISIBLE_DEVICES</code>，</p>
+<ul>
+<li><p>在运行py的命令行实现</p>
+</li>
+<li><p>在程序中：</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.environ[<span class="string">"CUDA_VISIBLE_DEVICES"</span>] = <span class="string">"2"</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>在Jupyter notebook中：</p>
+<ul>
+<li><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">%</span>env CUDA_VISIBLE_DEVICES=1,2</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><ul>
+<li>可持久化的对象：<ul>
+<li>Tensor</li>
+<li>Variable</li>
+<li>nn.Module</li>
+<li>Optimizer</li>
+</ul>
+</li>
+<li>都保存成Tensor，使用<code>t.save(OBJ, FILENAME)</code>和<code>t.load(FILENAME)</code>可完成<ul>
+<li><code>load</code>的时候可以指定加载的存储位置，设置<code>map_location</code>参数</li>
+</ul>
+</li>
+<li>建议module和optimizer保存为<code>state_dict</code></li>
+</ul>
+<h5 id="module"><a href="#module" class="headerlink" title="module"></a>module</h5><ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 保存</span></span><br><span class="line">t.save(model.state_dict(), FILENAME)</span><br><span class="line"><span class="comment"># 加载</span></span><br><span class="line">model.load_state_dict(t.load(FILENAME))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>optimizer同样</p>
+</li>
+</ul>
+<h4 id="一起保存加载"><a href="#一起保存加载" class="headerlink" title="一起保存加载"></a>一起保存加载</h4><ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">all_data = dict(</span><br><span class="line">    optimizer = optimizer.state_dict(),</span><br><span class="line">    model = model.state_dict(),</span><br><span class="line">    info = <span class="string">u'模型和优化器的所有参数'</span></span><br><span class="line">)</span><br><span class="line">t.save(all_data, <span class="string">'all.pth'</span>)</span><br><span class="line"></span><br><span class="line">all_data = t.load(<span class="string">'all.pth'</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+</article>
+
+    </li>
+  
+</ul>
+
+
+
+            <footer>
+    <div>© 2018 - Sherry </div>
+    <div>
+    Powered by Hexo
+    </div>
+</footer>
+
+        </div>
+    </div>
+</div>
+<script src="/js/pager/dist/singlepager.js"></script>
+<script>
+var sp = new Pager('data-pager-shell')
+
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
