@@ -1,66 +1,326 @@
 <!DOCTYPE html>
-<html lang="zh-cmn-Hans">
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Pytorch实战笔记 | Sherry&#39;s emmm... Unnamed Blog</title>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   
-  <!--link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css"-->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.10.0/styles/github-gist.min.css">
-  <link rel="stylesheet" href="/css/style.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="pytorch," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="参考：https://zhuanlan.zhihu.com/p/29024978  文件组织架构 checkpoints/: 保存训练好模型 data/: 数据相关 models/: 模型定义 utils/: 工具函数 config.py: 可配置变量 main.py: 程序主入口，通过不同命令指定不同参数和操作  __init__.py 每个文件夹包含 =&amp;gt; 其他程序从目录导入函数/模块">
+<meta name="keywords" content="pytorch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch实战笔记">
+<meta property="og:url" content="http://yoursite.com/2019/06/24/Pytorch实战/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="参考：https://zhuanlan.zhihu.com/p/29024978  文件组织架构 checkpoints/: 保存训练好模型 data/: 数据相关 models/: 模型定义 utils/: 工具函数 config.py: 可配置变量 main.py: 程序主入口，通过不同命令指定不同参数和操作  __init__.py 每个文件夹包含 =&amp;gt; 其他程序从目录导入函数/模块">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-24T17:12:58.728Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Pytorch实战笔记">
+<meta name="twitter:description" content="参考：https://zhuanlan.zhihu.com/p/29024978  文件组织架构 checkpoints/: 保存训练好模型 data/: 数据相关 models/: 模型定义 utils/: 工具函数 config.py: 可配置变量 main.py: 程序主入口，通过不同命令指定不同参数和操作  __init__.py 每个文件夹包含 =&amp;gt; 其他程序从目录导入函数/模块">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/24/Pytorch实战/"/>
+
+
+
+
+
+  <title>Pytorch实战笔记 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </head>
 
-<body>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="Shell">
-    <aside class='SideBar'>
-    <section class='avatar' style="background-image: url(https://hcyue.me/assets/header.png)">
-        <div class='av-pic' style="background-image: url(https://avatars1.githubusercontent.com/u/31603947?s=400&amp;u=6098dc25e90fd4bd1b141cb27899479730ef16cd&amp;v=4)">
-        </div>
-    </section>
-    <section class='menu'>
-        <div>Sherry&#39;s emmm... Unnamed Blog</div>
-        
-            <div>Recording while Learning</div>
-        
-        <ul>
-          
-            <a href="/" class="Btn">
-              <li>Home</li>
-            </a>  
-          
-            <a href="/archives/" class="Btn">
-              <li>Archive</li>
-            </a>  
-          
-            <a href="/tags/" class="Btn">
-              <li>Tags</li>
-            </a>  
-          
-        </ul>
-    </section>
-    <section class="media">
-        
-            
-                <a href="https://github.com/Yuandi-Sherry">
-                    <img src="/assets/github.svg" />
-                </a>
-            
-        
-    </section>
-</aside>
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-    <div class="container">
-        <div data-pager-shell>
-            <div>
-  <article class='ContentView'>
-    <header class='PageTitle'>
-        <h1>Pytorch实战笔记</h1>
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
     </header>
 
-    <section>
-      <blockquote>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/Pytorch实战/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Pytorch实战笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-24T16:02:04+08:00">
+                2019-06-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
 <p>参考：<a href="https://zhuanlan.zhihu.com/p/29024978" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/29024978</a></p>
 </blockquote>
 <h2 id="文件组织架构"><a href="#文件组织架构" class="headerlink" title="文件组织架构"></a>文件组织架构</h2><ul>
@@ -358,65 +618,343 @@
 </ol>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span> 训练模型</span><br><span class="line">python main.py train </span><br><span class="line">        --train-data-root=data/train/ </span><br><span class="line">        --load-model-path='checkpoints/resnet34_16:53:00.pth' </span><br><span class="line">        --lr=0.005 </span><br><span class="line">        --batch-size=32 </span><br><span class="line">        --model='ResNet34'  </span><br><span class="line">        --max-epoch = 20</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 测试模型</span><br><span class="line">python main.py test</span><br><span class="line">       --test-data-root=data/test1 </span><br><span class="line">       --load-model-path='checkpoints/resnet34_00:23:05.pth' </span><br><span class="line">       --batch-size=128 </span><br><span class="line">       --model='ResNet34' </span><br><span class="line">       --num-workers=12</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 打印帮助信息</span><br><span class="line">python main.py help</span><br></pre></td></tr></table></figure>
 
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/23/Pytorch常用工具总结/" rel="next" title="Pytorch常用工具总结">
+                <i class="fa fa-chevron-left"></i> Pytorch常用工具总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
 
       
 
-    </section>
-    
-      <section class='ArticleMeta'>
-          <div>
-            发布于&nbsp;
-            <time datetime="2019-06-24T08:02:04.000Z" itemprop="datePublished">
-              2019-06-24
-            </time>
-          </div>
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
           
-            <div>
-              tags: 
-  <li class="meta-text">
-  { <a href="/tags/pytorch/">pytorch</a> }
-  </li>
+        </div>
+        <nav class="site-state motion-element">
 
-
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
             </div>
           
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
       </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件组织架构"><span class="nav-number">1.</span> <span class="nav-text">文件组织架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#init-py"><span class="nav-number">2.</span> <span class="nav-text">__init__.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据加载"><span class="nav-number">3.</span> <span class="nav-text">数据加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模型定义"><span class="nav-number">4.</span> <span class="nav-text">模型定义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对于nn-Module进行简易封装"><span class="nav-number">4.1.</span> <span class="nav-text">对于nn.Module进行简易封装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#load"><span class="nav-number">4.1.1.</span> <span class="nav-text">load</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#save"><span class="nav-number">4.1.2.</span> <span class="nav-text">save</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据集导入"><span class="nav-number">4.2.</span> <span class="nav-text">数据集导入</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具函数"><span class="nav-number">5.</span> <span class="nav-text">工具函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Visualizer的封装"><span class="nav-number">5.1.</span> <span class="nav-text">Visualizer的封装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#属性"><span class="nav-number">5.1.0.1.</span> <span class="nav-text">属性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#绘图"><span class="nav-number">5.1.1.</span> <span class="nav-text">绘图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出图像"><span class="nav-number">5.1.2.</span> <span class="nav-text">输出图像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出文本"><span class="nav-number">5.1.3.</span> <span class="nav-text">输出文本</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-number">6.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#main-py"><span class="nav-number">7.</span> <span class="nav-text">main.py</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fire"><span class="nav-number">7.1.</span> <span class="nav-text">fire</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主程序函数分析"><span class="nav-number">7.2.</span> <span class="nav-text">主程序函数分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#训练"><span class="nav-number">8.</span> <span class="nav-text">训练</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练函数"><span class="nav-number">8.1.</span> <span class="nav-text">训练函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#根据命令行更新参数配置"><span class="nav-number">8.1.1.</span> <span class="nav-text">根据命令行更新参数配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理模型"><span class="nav-number">8.1.2.</span> <span class="nav-text">处理模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理数据"><span class="nav-number">8.1.3.</span> <span class="nav-text">处理数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目标函数和优化器"><span class="nav-number">8.1.4.</span> <span class="nav-text">目标函数和优化器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#统计指标"><span class="nav-number">8.1.5.</span> <span class="nav-text">统计指标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#训练-1"><span class="nav-number">8.1.6.</span> <span class="nav-text">训练</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#meter工具"><span class="nav-number">8.1.7.</span> <span class="nav-text">meter工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证"><span class="nav-number">8.2.</span> <span class="nav-text">验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试"><span class="nav-number">8.3.</span> <span class="nav-text">测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">9.</span> <span class="nav-text">使用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
     
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
-</article>
+
+  </div>
 
   
-</div>
 
-            <footer>
-    <div>© 2018 - Sherry </div>
-    <div>
-    Powered by Hexo
-    </div>
-</footer>
-
-        </div>
-    </div>
-</div>
-<script src="/js/pager/dist/singlepager.js"></script>
-<script>
-var sp = new Pager('data-pager-shell')
-
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
 </script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
 </body>
 </html>
