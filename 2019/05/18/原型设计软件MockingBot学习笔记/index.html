@@ -134,8 +134,8 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeX11S.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeX8XQ.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXJmj.png">
-<meta property="og:image" content="c:/Users/Sherry/OneDrive%20-%20中山大学/Blog/source/_posts/ezgif-1-b2a36ea66d9a.gif">
-<meta property="og:updated_time" content="2019-06-26T11:23:32.998Z">
+<meta property="og:image" content="https://github.com/Yuandi-Sherry/Yuandi-Sherry.github.io/blob/master/images/ezgif-1-b2a36ea66d9a.gif?raw=true">
+<meta property="og:updated_time" content="2019-06-26T11:40:18.553Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="原型设计软件MockingBot学习笔记">
 <meta name="twitter:description" content="安装首先去官网下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。 最初有几天的试用期，之后就需要续费了。下面正式开始吧~ 创建项目最开始新建项目就是基础的选择设备，建立一个完全空白的项目。 由于我们组要做微信小程序，因此选择手机。  实际上也可以选择右侧的从模板中创建项目，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。 基础操作">
@@ -363,12 +363,15 @@
 <h2 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h2><h3 id="添加页面"><a href="#添加页面" class="headerlink" title="添加页面"></a>添加页面</h3><p>左上角<code>添加新页面</code>就可以根据创建项目。</p>
 <h3 id="添加组件"><a href="#添加组件" class="headerlink" title="添加组件"></a>添加组件</h3><p>添加组件有三个方法：</p>
 <ol>
-<li>最左侧边栏：根据图标一目了然为文字、矩形、原型、直线、图片、链接</li>
-</ol>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeOLSU.png" width="50"></p>
-<ol>
-<li><p>右侧</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeOjOJ.png" width="50"></p>
+<li><p>最左侧边栏（左图）：根据图标一目了然为文字、矩形、原型、直线、图片、链接</p>
+<center>
+<figure class="half">
+    <img src="https://s2.ax1x.com/2019/06/26/ZeOLSU.png" width="50">
+    <img src="https://s2.ax1x.com/2019/06/26/ZeOjOJ.png" width="50">
+</figure>
+</center>
+</li>
+<li><p>右侧边栏（右图）</p>
 <p>第一个是状态（主要用于动态组件，后面会说）。横线下面第一个提供了很多内置组件（如右图），还有IOS风格的弹窗、按钮、键盘等。（因此我觉得有了很多方便的内置组件，其实也就不需要最开始的模板了）。</p>
 <p>第二个为我的组件，在设计过程中有很多需要复用的部分，比如我们的项目中选择学科和年级的地方既需要在个人资料那里显示，也需要问卷发布者在限制接收者的时候用作限制。我一般会把需要复用的内容打包成我的组件，以便在后面的页面中使用。</p>
 <p><img src="https://s2.ax1x.com/2019/06/26/ZeOxm9.png" width="200"></p>
@@ -390,9 +393,14 @@
 </li>
 </ul>
 <h3 id="辅助线"><a href="#辅助线" class="headerlink" title="辅助线"></a>辅助线</h3><p>很多时候，为了保证软件的美观，我们需要各种左对齐、居中对齐等等，尽管页面可以显示网格的参考线（如下图），但很费眼睛。</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeOXy4.png" width="200"></p>
+<center>
+    <figure>
+        <img src="https://s2.ax1x.com/2019/06/26/ZeOXy4.png" width="200">
+        <img src="https://s2.ax1x.com/2019/06/26/ZeXST1.png" width="200">
+    </figure>
+</center>
+
 <p>整个窗口的上方和左侧有一个像尺子一样的东西，可以在上面绘制辅助线，这样对齐某些文本框和按钮就方便了很多。</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeXST1.png" width="200"></p>
 <h2 id="进阶操作"><a href="#进阶操作" class="headerlink" title="进阶操作"></a>进阶操作</h2><h3 id="动态组件和母版"><a href="#动态组件和母版" class="headerlink" title="动态组件和母版"></a>动态组件和母版</h3><ul>
 <li>如果原型中每个界面都是静态，则和平面设计图没有很大的区别，也不能很好地辅助前端进行编码。因此有时候还需要界面内的变化</li>
 <li>使用过程中个人认为动态组件和母版是差不多的，总结一下微小的区别以免在使用中踩坑：</li>
@@ -417,8 +425,12 @@
 </div>
 <h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><ul>
 <li><p>比如下面的例子中，两个选择学科都来自同一个母版</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeXUkq.png" width="200"></p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeXt7n.png" width="200"></p>
+<center>
+    <figure>
+        <img src="https://s2.ax1x.com/2019/06/26/ZeXUkq.png" width="200">
+        <img src="https://s2.ax1x.com/2019/06/26/ZeXt7n.png" width="200">
+    </figure>
+</center>
 </li>
 <li><p>假设我从第一个页面进入，编辑了母版</p>
 <ul>
@@ -427,8 +439,14 @@
 </li>
 <li><p>结果如下</p>
 <ul>
-<li><p><img src="https://s2.ax1x.com/2019/06/26/ZeXdhV.png" width="200"></p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeOHYV.png" width="200"></p>
+<li><center>
+<img src="https://s2.ax1x.com/2019/06/26/ZeXdhV.png" width="200">
+    <img src="https://s2.ax1x.com/2019/06/26/ZeOHYV.png" width="200">
+</center>
+
+<p>两个引用母版的地方都被修改。</p>
+</li>
+<li><p>但其实如果将母版转换为动态组件后再进行修改就不会有问题</p>
 </li>
 </ul>
 </li>
@@ -555,8 +573,7 @@
 </ul>
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul>
 <li><p>首先需要在全局状态下部署需要的组件</p>
-</li>
-<li><blockquote>
+<blockquote>
 <p>一个页面中的不同状态组件是共享的，因此如果在某个状态删除了一个组件，则其他状态也会删除。我会选择将某个状态不需要的组件移除屏幕范围</p>
 </blockquote>
 </li>
@@ -566,34 +583,12 @@
 <p><img src="https://s2.ax1x.com/2019/06/26/ZeX8XQ.png" width="200"></p>
 </li>
 <li><p>之后的步骤就是页面间状态的切换了，这里就是</p>
+<p>| 状态     | 点击<code>我接收的</code>       | 点击<code>我发布的</code>       |<br>| ———— | —————————— | —————————— |<br>| 我接收的 | \                    | 跳转到<code>我发布的</code>状态 |<br>| 我发布的 | 跳转到<code>我接受的</code>状态 | \                    |</p>
+<p>在右侧进行设置：</p>
 </li>
 </ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>状态</th>
-<th>点击<code>我接收的</code></th>
-<th>点击<code>我发布的</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>我接收的</td>
-<td>\</td>
-<td>跳转到<code>我发布的</code>状态</td>
-</tr>
-<tr>
-<td>我发布的</td>
-<td>跳转到<code>我接受的</code>状态</td>
-<td>\</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>在右侧进行设置：</p>
 <p><img src="https://s2.ax1x.com/2019/06/26/ZeXJmj.png" width="400"></p>
-<h4 id="预览效果"><a href="#预览效果" class="headerlink" title="预览效果"></a>预览效果</h4><p><img src="C:\Users\Sherry\OneDrive - 中山大学\Blog\source\_posts\ezgif-1-b2a36ea66d9a.gif" alt="ezgif-1-b2a36ea66d9a"></p>
+<h4 id="预览效果"><a href="#预览效果" class="headerlink" title="预览效果"></a>预览效果</h4><p><img src="https://github.com/Yuandi-Sherry/Yuandi-Sherry.github.io/blob/master/images/ezgif-1-b2a36ea66d9a.gif?raw=true" width="300"></p>
 
       
     </div>
