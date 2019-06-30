@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="pytorch," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="参考：https://github.com/chenyuntc/pytorch-book  基本介绍Tensor t.Tensor 传入维度 - 分配空间不初始化 传入具体数据 - 舒适化   t.rand 传入维度 - 指定维度的随机初始化数据，复合[0,1]分布   Add x+y t.add(x,y) t.add(x,y,out=result) - 指定输出目标 x.add(y)- x不变">
+<meta name="keywords" content="pytorch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyTorch快速入门">
+<meta property="og:url" content="http://yoursite.com/2019/06/21/PyTorch快速入门/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="参考：https://github.com/chenyuntc/pytorch-book  基本介绍Tensor t.Tensor 传入维度 - 分配空间不初始化 传入具体数据 - 舒适化   t.rand 传入维度 - 指定维度的随机初始化数据，复合[0,1]分布   Add x+y t.add(x,y) t.add(x,y,out=result) - 指定输出目标 x.add(y)- x不变">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:/Users/Sherry/AppData/Roaming/Typora/typora-user-images/1561187765542.png">
+<meta property="og:updated_time" content="2019-06-27T06:09:37.431Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PyTorch快速入门">
+<meta name="twitter:description" content="参考：https://github.com/chenyuntc/pytorch-book  基本介绍Tensor t.Tensor 传入维度 - 分配空间不初始化 传入具体数据 - 舒适化   t.rand 传入维度 - 指定维度的随机初始化数据，复合[0,1]分布   Add x+y t.add(x,y) t.add(x,y,out=result) - 指定输出目标 x.add(y)- x不变">
+<meta name="twitter:image" content="c:/Users/Sherry/AppData/Roaming/Typora/typora-user-images/1561187765542.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/21/PyTorch快速入门/"/>
+
+
+
+
+
+  <title>PyTorch快速入门 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/PyTorch快速入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PyTorch快速入门</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T11:15:29+08:00">
+                2019-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>参考：<a href="https://github.com/chenyuntc/pytorch-book" target="_blank" rel="noopener">https://github.com/chenyuntc/pytorch-book</a></p>
+</blockquote>
+<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h3><ul>
+<li><code>t.Tensor</code><ul>
+<li>传入维度 - 分配空间不初始化</li>
+<li>传入具体数据 - 舒适化</li>
+</ul>
+</li>
+<li><code>t.rand</code><ul>
+<li>传入维度 - 指定维度的随机初始化数据，复合[0,1]分布</li>
+</ul>
+</li>
+<li>Add<ul>
+<li><code>x+y</code></li>
+<li><code>t.add(x,y)</code></li>
+<li><code>t.add(x,y,out=result)</code> - 指定输出目标</li>
+<li><code>x.add(y)</code>- <strong>x不变</strong></li>
+<li><code>x.add_(y)</code> - <strong>x改变</strong> = <code>x+=y</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>函数名后面带下划线<code>_</code>会修改Tensor本身</strong></p>
+</blockquote>
+<ul>
+<li>与Numpy转换：<ul>
+<li>Tensor -&gt; numpy: <code>a.numpy()</code></li>
+<li>Numpy -&gt; tensor: <code>t.from_numpy(a)</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>一个对象的tensor和numpy共享内存，一个改变，另一个随之而变</p>
+</blockquote>
+<ul>
+<li><p>获得元素值：</p>
+<ul>
+<li>下标访问tensor - <code>tensor[index...]</code>获得<strong>0-dim tensor</strong></li>
+<li>获得值 - <code>scalar.item()</code></li>
+</ul>
+</li>
+<li><p>scalar和tensor的区别：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tensor = t.tensor([<span class="number">2</span>])</span><br><span class="line">scalar = tensor[<span class="number">0</span>]</span><br><span class="line">scalar0 = t.tensor(<span class="number">2</span>)</span><br><span class="line"><span class="comment"># tensor 1-dim</span></span><br><span class="line">tensor.size() <span class="comment"># torch.Size([1])</span></span><br><span class="line"><span class="comment"># scalar 0-dim</span></span><br><span class="line">scalar.size() <span class="comment"># torch.Size([])</span></span><br><span class="line"><span class="comment"># scalar0 0-dim</span></span><br><span class="line">scalar0.size() <span class="comment"># torch.Size([])</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据拷贝和共享内存</p>
+<ul>
+<li><code>t.tensor()</code> - 会进行数据拷贝</li>
+<li><code>t.from_numpy()</code> / <code>tensor.detach()</code>新建的tensor与原tensor共享内存</li>
+</ul>
+</li>
+<li><p>GPU加速</p>
+<ul>
+<li><code>t.cuda</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Autograd-自动微分"><a href="#Autograd-自动微分" class="headerlink" title="Autograd: 自动微分"></a>Autograd: 自动微分</h3><ul>
+<li><p>使用autograd功能</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = t.ones(<span class="number">2</span>, <span class="number">2</span>, requires_grad=<span class="keyword">True</span>)</span><br><span class="line">result = doSomething(x)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>反向传播</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result.backward()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>反向传播会累加之前的梯度，反向传播前把梯度清零</p>
+</blockquote>
+</li>
+<li><p>梯度清零</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.grad.data.zero_()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>定义网络</p>
+<ul>
+<li><p>继承<code>nn.Module</code>，实现<code>forward</code>，把网络中具有<strong>可学习参数</strong>的层放在<code>__init__</code>中。不具有可学习参数使用<code>forward</code>的<code>nn.functional</code>代替</p>
+</li>
+<li><p><code>__init__</code>函数先执行父类构造函数<code>super(CLASSNAME, self).__init__()</code></p>
+</li>
+</ul>
+<h5 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h5><ul>
+<li><code>nn.Conv2d(inputC, outputC, k)</code><ul>
+<li>输入图片通道数</li>
+<li>输出通道数</li>
+<li>卷积核</li>
+</ul>
+</li>
+</ul>
+<h5 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h5><ul>
+<li><p><code>nn.Linear(input, output)</code></p>
+<ul>
+<li>输入样本数</li>
+<li>输出样本数</li>
+</ul>
+<blockquote>
+<p>y = Wx + b</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="forward"><a href="#forward" class="headerlink" title="forward"></a>forward</h5><ul>
+<li><code>F.relu(input)</code> - 激活<ul>
+<li>上一层的结果</li>
+</ul>
+</li>
+<li><p><code>F.max_pool2d(input, kernel size)</code></p>
+<ul>
+<li>kernel size</li>
+</ul>
+</li>
+<li><p><code>x.view(ONEDIMENSION,-1</code></p>
+<ul>
+<li>-1 自适应维度</li>
+</ul>
+</li>
+</ul>
+<h4 id="训练网络"><a href="#训练网络" class="headerlink" title="训练网络"></a>训练网络</h4><ul>
+<li>定义了forward函数，backward就会自动被实现</li>
+<li><code>net.parameters()</code>返回网络的<strong>可学习参数</strong></li>
+<li><code>·net.named_parameters()</code>返回可学习的参数及名称</li>
+</ul>
+<blockquote>
+<p>torch.nn不支持一次只输入一个样本：</p>
+<ol>
+<li>用 <code>input.unsqueeze(0)</code>将batch_size设为１</li>
+<li>Conv2d输入时将nSample设为1</li>
+</ol>
+</blockquote>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><ul>
+<li><code>nn.MSELoss(output, target)</code>计算均方误差</li>
+<li><code>nn.CrossEntropyLoss(output target)</code>计算交叉熵损失</li>
+</ul>
+<h4 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h4><ul>
+<li><p>反向传播计算参数的梯度，使用优化方法<strong>更新网络的权重和参数</strong></p>
+</li>
+<li><p>e.g. SGD：</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">weight = weight - learning_rate * gradient</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> net.parameters():</span><br><span class="line">    f.data.sub_(f.grad.data * learning_rate)<span class="comment"># inplace 减法</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="构造优化器"><a href="#构造优化器" class="headerlink" title="构造优化器"></a>构造优化器</h5><blockquote>
+<p>optim &lt;= torch.optim</p>
+</blockquote>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">optimizer = optim.SGD(net.parameters(), lr = 0.01)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>要调整的参数为网络中的可学习参数</li>
+<li>lr为学习率</li>
+</ul>
+</li>
+<li><p><strong>训练步骤</strong>：</p>
+<ol>
+<li><p>清零优化器梯度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">optimizer.zero_grad()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>过网络</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">output = net(input)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算损失</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loss = criterion(output, target)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>反向传播</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loss.backward()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新参数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">optimizer.step()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="Tensor-和-Autograd"><a href="#Tensor-和-Autograd" class="headerlink" title="Tensor 和 Autograd"></a>Tensor 和 Autograd</h2><h3 id="Tensor-1"><a href="#Tensor-1" class="headerlink" title="Tensor"></a>Tensor</h3><h4 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h4><h5 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h5><ul>
+<li><p>| 函数                              | 功能                      |<br>| ————————————————- | ————————————- |<br>| arange(s,e,step)                  | 从s到e，步长为step        |<br>| linspace(s,e,steps)               | 从s到e，均匀切分成steps份 |<br>| rand/randn(*sizes)                | 均匀/标准分布             |<br>| normal(mean,std)/uniform(from,to) | 正态分布/均匀分布         |<br>| randperm(m)                       | 随机排列                  |</p>
+</li>
+<li><p>创建的时候可以指定数据类型(e.g. <code>dtype = t.int</code>)和存放device(e.g. <code>device = t.device(&#39;cpu&#39;)</code></p>
+</li>
+<li><p>tensor转化为list - <code>tensor.tolist()</code></p>
+<blockquote>
+<p>tensor的数据类型为<code>tensor([[1,2],[3,4]])</code>; list数据类型为<code>[[1,2],[3,4]]</code></p>
+</blockquote>
+</li>
+<li><p>获得tensor的维度 - <code>tensor.size()</code>或<code>tensor.shape</code>返回torch.Size对象 - <code>torch.Size([第一维, 第二维, ..])</code></p>
+</li>
+<li><p>获得tensor元素的总数 - <code>tensor.numel()</code></p>
+</li>
+<li><p>传参为数据和维度的区别：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t.Tensor(<span class="number">2</span>,<span class="number">3</span>) <span class="comment"># tensor([[x, x, x],[x, x, x]])</span></span><br><span class="line">t.Tensor((<span class="number">2</span>,<span class="number">3</span>)) <span class="comment"># tensor([2,3])</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>使用维度作为参数构造tensor的时候不会马上分配空间，使用到tensor才分配；其他的构造函数都是马上分配</p>
+</blockquote>
+<ul>
+<li>使用<code>eye</code>构造对角矩阵，不要求行列数一致</li>
+</ul>
+<h5 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h5><ul>
+<li>调整tensor形状，调整前后<strong>元素总数一致</strong>。view返回的新tensor与原tensor共享内存。</li>
+<li><code>view</code>的参数为修改后的每个维度，如果有一个为<code>-1</code>则该维度根据元素总数不变的原则自动计算</li>
+<li><code>unsqueeze(index)</code> - 第index维的维度+1<ul>
+<li>即之前维度为[x, y, z, …]<ul>
+<li>index = 0 -&gt; 维度变为 [1, x, y, z, …]</li>
+<li>index = 1 -&gt; 维度变为 [x, 1, y, z, …]</li>
+<li>index = 2 -&gt; 维度变为 [x, y, 1, z, …]</li>
+</ul>
+</li>
+<li>参数为负数的时候表示倒数</li>
+</ul>
+</li>
+<li><p><code>squeeze(index)</code> - 压缩第index维的1，如果不输入index，则把所有维度为1的压缩</p>
+</li>
+<li><p><code>resize</code>可以修改tensor的大小，如果新大小超过了原大小，自动分配新空间，大小小于原大小，之前数据仍然保留</p>
+</li>
+</ul>
+<h5 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h5><ul>
+<li><p>索引出来的结果与原tensor共享内存</p>
+</li>
+<li><p><code>None</code> - 新增轴</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a[:,None,:,None,None].shape</span><br><span class="line">torch.Size([3, 1, 4, 1, 1])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>筛选tensor元素 - <code>tensor[CONDITION]</code></p>
+<blockquote>
+<p>返回结果与原tensor不共享内存空间</p>
+</blockquote>
+</li>
+<li><p>常用选择函数</p>
+<p>|                            函数 |                                                  功能 |<br>| ———————————————: | ——————————————————————————: |<br>| index_select(input, dim, index) |           在指定维度dim上选取，比如选取某些行、某些列 |<br>|      masked_select(input, mask) |              例子如上，a[a&gt;0]，使用ByteTensor进行选取 |<br>|                 non_zero(input) |                                         非0元素的下标 |<br>|       gather(input, dim, index) | 根据index，在dim维度上选取数据，输出的size与index一样 |</p>
+</li>
+</ul>
+<blockquote>
+<p>对tensor的任何索引操作仍是一个<strong>tensor</strong>，想要获取标准的python对象数值，需要调用<code>tensor.item()</code>, 这个方法<strong>只对包含一个元素的tensor适用</strong></p>
+</blockquote>
+<ul>
+<li>索引访问：<ul>
+<li>维度为3：[[a,b], [c,d], [e,f]] =&gt; [[a,c,e], [b,d,f]]</li>
+<li>[[a,b,c], [d], [e]] =&gt; [[a,d,e], [b,d,e], [c,d,e]]</li>
+</ul>
+</li>
+</ul>
+<h5 id="逐元素操作"><a href="#逐元素操作" class="headerlink" title="逐元素操作"></a>逐元素操作</h5><ul>
+<li><p><code>clamp</code> - 控制元素范围，用于比较大小</p>
+<p><img src="C:\Users\Sherry\AppData\Roaming\Typora\typora-user-images\1561187765542.png" alt="1561187765542"></p>
+</li>
+</ul>
+<h5 id="归并操作"><a href="#归并操作" class="headerlink" title="归并操作"></a>归并操作</h5><ul>
+<li>使得输出形状小于输入形状，e.g. 均值、和…</li>
+<li>指定对第几维度的元素操作，<code>keepdim = True</code>保存被操作的维度为1，否则不保留这一维度</li>
+</ul>
+<h5 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>trace</td>
+<td>对角线元素之和(矩阵的迹)</td>
+</tr>
+<tr>
+<td>diag</td>
+<td>对角线元素</td>
+</tr>
+<tr>
+<td>triu/tril</td>
+<td>矩阵的上三角/下三角，可指定偏移量</td>
+</tr>
+<tr>
+<td>mm/bmm</td>
+<td>矩阵乘法，batch的矩阵乘法</td>
+</tr>
+<tr>
+<td>addmm/addbmm/addmv/addr/badbmm..</td>
+<td>矩阵运算</td>
+</tr>
+<tr>
+<td>t</td>
+<td>转置</td>
+</tr>
+<tr>
+<td>dot/cross</td>
+<td>内积/外积</td>
+</tr>
+<tr>
+<td>inverse</td>
+<td>求逆矩阵</td>
+</tr>
+<tr>
+<td>svd</td>
+<td>奇异值分解</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Tensor和Numpy"><a href="#Tensor和Numpy" class="headerlink" title="Tensor和Numpy"></a>Tensor和Numpy</h4><blockquote>
+<p>当numpy的数据类型和Tensor的类型不一样时，数据会被复制，不共享内存</p>
+</blockquote>
+<ul>
+<li>调用<code>t.tensor</code>进行构建的时候都会进行数据拷贝</li>
+</ul>
+<h5 id="广播法则"><a href="#广播法则" class="headerlink" title="广播法则"></a>广播法则</h5><h6 id="N"><a href="#N" class="headerlink" title="N"></a>N</h6><ul>
+<li>所有输入数组像其中shape最长的看齐，shape不足通过前面加1</li>
+<li>两个数组要么在某一个维度长度一致，要么其中一个为1，否则不能计算</li>
+<li>输入某个长度为1，计算时沿此维度扩充成和另一个输入一样的维度</li>
+</ul>
+<h6 id="Pytorch中的使用"><a href="#Pytorch中的使用" class="headerlink" title="Pytorch中的使用"></a>Pytorch中的使用</h6><ul>
+<li><p><code>unsqueeze</code>或者<code>view</code>或者<code>tensor[NONE]</code>，实现补齐1</p>
+</li>
+<li><p><code>expand</code>或者<code>expand_as</code>重复数组，不会占用空间</p>
+<blockquote>
+<p>repeat和expand相似，repeat占用额外空间，expand不占用</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="内部结构"><a href="#内部结构" class="headerlink" title="内部结构"></a>内部结构</h4><ul>
+<li>Tensor分为头信息区tensor和存储区storage<ul>
+<li>tensor保存size, stride, type</li>
+<li>共享内存的情况下，即共享storage</li>
+</ul>
+</li>
+<li>下标访问只是对于原storage地址增加了偏移量进行映射的</li>
+</ul>
+<blockquote>
+<p>大部分操作不修改tensor，只修改tensor的头</p>
+<p>contiguous方法将离散的tensor变成连续数据</p>
+<p>高级索引一般不共享storage，普通索引共享storage</p>
+</blockquote>
+<h4 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h4><h5 id="GP"><a href="#GP" class="headerlink" title="GP"></a>GP</h5><ul>
+<li>推荐使用<code>tensor.to(device)</code>使得程序同时兼容CPU和GPU，避免频繁在内存和显存中传输数据</li>
+</ul>
+<h5 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h5><ul>
+<li><code>t.save</code>, </li>
+</ul>
+<h5 id="向量化"><a href="#向量化" class="headerlink" title="向量化"></a>向量化</h5><ul>
+<li>python的for循环十分低效</li>
+<li><code>t.set_num_threads</code>可以设置PyTorch进行CPU多线程并行计算时候所占用的线程数，这个可以用来限制PyTorch所占用的CPU数目</li>
+</ul>
+<h3 id="AutoGrad"><a href="#AutoGrad" class="headerlink" title="AutoGrad"></a>AutoGrad</h3><ul>
+<li>自动求导引擎</li>
+</ul>
+<h4 id="计算图"><a href="#计算图" class="headerlink" title="计算图"></a>计算图</h4><ul>
+<li><p>有向无环图</p>
+</li>
+<li><p>有向无环图的叶子节点由用户自己创建，不依赖其他变量，根节点为计算图的最终目标</p>
+</li>
+<li><p>链式的中间导数在前向传播过程中保存为buffer，在计算完梯度后会自动清空</p>
+<blockquote>
+<p>需要多次反向传播则指定<code>retain_graph</code>保存buffer</p>
+</blockquote>
+</li>
+<li><p>变量的<code>requires_grad</code>属性默认为False，如果某一个节点requires_grad被设置为True，那么所有依赖它的节点<code>requires_grad</code>都是True。</p>
+</li>
+<li><p>修改tensor数值，不希望被autograd记录，则修改tensor.data或者tensor.detach()</p>
+</li>
+<li><p>反向传播非叶子结点的导数会在计算完后被清空，查看梯度可以使用autograd.grad函数或者hood</p>
+<ul>
+<li>hook需要register和remove</li>
+</ul>
+</li>
+</ul>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><code>autograd</code>根究用户对variable的操作构建计算图。对变量的操作抽象为Function</li>
+<li>某个变量不是Function的输出，且由用户创建则为叶子节点（用户输入），其<code>grad_fn</code>为None. 叶子节点中需要求导的Variable，具有<code>AccumulateGrad</code>标识，因为梯度累加</li>
+<li>Variable默认不求导，如果一个节点的<code>require_grad</code>设置为True，所有依赖它的节点<code>require_grad</code>为True</li>
+<li>Variable的<code>volatile</code>默认为True，volatile为True的节点不会求导，volatile优先级比<code>require_grad</code>高</li>
+<li><p>多次反向传播梯度累加，若需要保存反向传播中间变量的值，需要设置<code>retain_graph = True</code></p>
+</li>
+<li><p>非叶子节点梯度计算完之后被清空，使用<code>autogtad.grad</code>或<code>hook</code>获取</p>
+</li>
+</ul>
+<h4 id="扩展autograd"><a href="#扩展autograd" class="headerlink" title="扩展autograd"></a>扩展autograd</h4><ul>
+<li><p>自己定义函数继承<code>Function</code>，并且实现<code>forward</code>, <code>backward</code>静态方法（def之前写<code>@staticmethod</code>）</p>
+</li>
+<li><p>主函数中调用时：</p>
+<ul>
+<li><p>前向传播：</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">z = MultiplyAdd.apply(w, x, b)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>反向传播:</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">z.backward()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="神经网络工具箱nn"><a href="#神经网络工具箱nn" class="headerlink" title="神经网络工具箱nn"></a>神经网络工具箱nn</h2><ul>
+<li>Module - 神经网络中的某层/包含很多层的神经网络</li>
+</ul>
+<h5 id="全连接层-1"><a href="#全连接层-1" class="headerlink" title="全连接层"></a>全连接层</h5><ul>
+<li><p>继承<code>nn.Module</code></p>
+</li>
+<li><p>构造函数<code>__init__</code>自己定义可学习参数</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># infeatures和outfeatures为输入输出特征的维度</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, infeatures, outfeatures)</span>:</span></span><br><span class="line">	super...</span><br><span class="line">	<span class="comment"># 自己定义可学习参数如下：</span></span><br><span class="line">	self.para1 = nn.Parameter..</span><br><span class="line">	self.para2 = ...</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>nn.Parameter</code> - tensor，默认<code>requires_grad = True</code></p>
+</blockquote>
+</li>
+<li><p>不需要写反向传播函数</p>
+</li>
+<li><p>调用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">layer = Linear(INFEATURES, OUTFEATURES)</span><br><span class="line">y = layer(x)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>返回可学习参数 - <code>named_parameters()</code></p>
+</li>
+</ul>
+<h5 id="子模块sub-module"><a href="#子模块sub-module" class="headerlink" title="子模块sub module"></a>子模块sub module</h5><ul>
+<li><code>named_parameters()</code>返回可学习参数为：模块名.参数名</li>
+</ul>
+<h3 id="常用神经网络层"><a href="#常用神经网络层" class="headerlink" title="常用神经网络层"></a>常用神经网络层</h3><h4 id="图像相关层"><a href="#图像相关层" class="headerlink" title="图像相关层"></a>图像相关层</h4><h5 id="卷积层-1"><a href="#卷积层-1" class="headerlink" title="卷积层"></a>卷积层</h5><ul>
+<li><code>nn.Conv2d</code></li>
+</ul>
+<h5 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h5><ul>
+<li>没有可学习参数，权重固定</li>
+</ul>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><ul>
+<li><code>Linear</code>全连接</li>
+<li><p><code>BatchNorm</code> - 批量规范化，风格迁移<code>instanceNorm</code></p>
+<ul>
+<li>初始化通道数</li>
+<li>权重初始化为单位阵</li>
+<li>偏差初始化为0</li>
+</ul>
+</li>
+<li><p><code>Dropout</code> - 防止过拟合</p>
+<ul>
+<li>输出每个元素的舍弃概率</li>
+</ul>
+</li>
+</ul>
+<h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><h5 id="Relu"><a href="#Relu" class="headerlink" title="Relu"></a>Relu</h5><ul>
+<li>$ReLU(x) = max(0, x)$<ul>
+<li>其inplace参数为True会将输出覆盖到输入，节省内存，一般不使用Inplace</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>前馈传播网络 feedfoward neural network</strong>： 将每一层的输出直接作为下一层的输入。简化forward -&gt; ModuleList &amp; Sequential</p>
+</blockquote>
+<h6 id="Sequential"><a href="#Sequential" class="headerlink" title="Sequential"></a>Sequential</h6><ul>
+<li>包含几个sub module - 前向传播一层一层传递</li>
+</ul>
+<ol>
+<li>声明，添加module</li>
+</ol>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">net1 = nn.Sequential()</span><br><span class="line">net1.add_module(<span class="string">'conv'</span>, nn.Conv2d(<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">net1.add_module(<span class="string">'batchnorm'</span>, nn.BatchNorm2d(<span class="number">3</span>))</span><br><span class="line">net1.add_module(<span class="string">'activation_layer'</span>, nn.ReLU())</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>将模块作为参数传递</li>
+</ol>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">net2 = nn.Sequential(</span><br><span class="line">        nn.Conv2d(<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>),</span><br><span class="line">        nn.BatchNorm2d(<span class="number">3</span>),</span><br><span class="line">        nn.ReLU()</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>将模块作为有序字典传入</li>
+</ol>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line">net3= nn.Sequential(OrderedDict([</span><br><span class="line">          (<span class="string">'conv1'</span>, nn.Conv2d(<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>)),</span><br><span class="line">          (<span class="string">'bn1'</span>, nn.BatchNorm2d(<span class="number">3</span>)),</span><br><span class="line">          (<span class="string">'relu1'</span>, nn.ReLU())</span><br><span class="line">        ]))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其中方法1和方法3可以按照模块名称访问子模块，而方法2按照下标获取子模块（从0）</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>模块数组<code>nn.ModuleList</code>，其中的元素可以被主（父）module识别，即其参数可以自动加入到主module的参数中</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">modellist = nn.ModuleList([nn.Linear(<span class="number">3</span>,<span class="number">4</span>), nn.ReLU(), nn.Linear(<span class="number">4</span>,<span class="number">2</span>)])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="损失函数-1"><a href="#损失函数-1" class="headerlink" title="损失函数"></a>损失函数</h4><ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nn.LOSS_FUNCTION_NAME()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="优化器-1"><a href="#优化器-1" class="headerlink" title="优化器"></a>优化器</h3><ul>
+<li><p>优化方法来自包<code>torch.optim</code>，所有的优化方法继承基类<code>optim.Optimizer</code></p>
+</li>
+<li><p>优化器可以对于不同的子网络（如在主网络/主Module中定义了多个子模块或者Sequential）</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">optimizer =optim.SGD([</span><br><span class="line">                &#123;<span class="string">'params'</span>: net.features.parameters()&#125;, <span class="comment"># 学习率为1e-5</span></span><br><span class="line">                &#123;<span class="string">'params'</span>: net.classifier.parameters(), <span class="string">'lr'</span>: <span class="number">1e-2</span>&#125;</span><br><span class="line">            ], lr=<span class="number">1e-5</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果某个参数显示执行学习率，则使用最外层的默认学习率</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>指定自网络中的不同层有不同的学习率的例子：</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只为两个全连接层设置较大的学习率，其余层的学习率较小</span></span><br><span class="line">special_layers = nn.ModuleList([net.classifier[<span class="number">0</span>], net.classifier[<span class="number">3</span>]])</span><br><span class="line">special_layers_params = list(map(id, special_layers.parameters()))</span><br><span class="line">base_params = filter(<span class="keyword">lambda</span> p: id(p) <span class="keyword">not</span> <span class="keyword">in</span> special_layers_params,</span><br><span class="line">                     net.parameters())</span><br><span class="line"></span><br><span class="line">optimizer = t.optim.SGD([</span><br><span class="line">            &#123;<span class="string">'params'</span>: base_params&#125;,</span><br><span class="line">            &#123;<span class="string">'params'</span>: special_layers.parameters(), <span class="string">'lr'</span>: <span class="number">0.01</span>&#125;</span><br><span class="line">        ], lr=<span class="number">0.001</span> )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="调整学习率"><a href="#调整学习率" class="headerlink" title="调整学习率"></a>调整学习率</h5><h6 id="新建优化器"><a href="#新建优化器" class="headerlink" title="新建优化器"></a>新建优化器</h6><ul>
+<li>优点：简单</li>
+<li>缺点：如果使用动量的优化器，会丢失动量等状态信息</li>
+</ul>
+<h6 id="修改学习率"><a href="#修改学习率" class="headerlink" title="修改学习率"></a>修改学习率</h6><ul>
+<li><p>手动decay保存动量</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> param_group <span class="keyword">in</span> optimizer.param_groups:</span><br><span class="line">    param_group[<span class="string">'lr'</span>] *= <span class="number">0.1</span> <span class="comment"># 学习率为之前的0.1倍</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="nn-functional"><a href="#nn-functional" class="headerlink" title="nn.functional"></a>nn.functional</h3><ul>
+<li>大部分layer在<code>functional</code>有与之对应的函数</li>
+</ul>
+<h6 id="nn-functional和nn-Module的区别"><a href="#nn-functional和nn-Module的区别" class="headerlink" title="nn.functional和nn.Module的区别"></a>nn.functional和nn.Module的区别</h6><ul>
+<li>module: 自动提取可学习参数</li>
+<li>function: 类似纯函数，不需要可学习参数时可使用. e.g. 激活函数，池化层</li>
+</ul>
+<hr>
+<ul>
+<li>不具备可学习参数的层不放在构造函数<code>__init__</code>中。</li>
+</ul>
+<h3 id="初始化策略"><a href="#初始化策略" class="headerlink" title="初始化策略"></a>初始化策略</h3><ul>
+<li>随机初始化可能导致后期训练中梯度爆炸或梯度消失</li>
+<li><code>nn.init</code>模块</li>
+</ul>
+<h3 id="nn-Module深入分析"><a href="#nn-Module深入分析" class="headerlink" title="nn.Module深入分析"></a>nn.Module深入分析</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_parameters</code></td>
+<td>字典</td>
+<td>用户设置</td>
+<td>子模块的参数不会存放于此</td>
+</tr>
+<tr>
+<td><code>_modules</code></td>
+<td>字典</td>
+<td>子模块</td>
+<td></td>
+</tr>
+<tr>
+<td><code>_buffers</code></td>
+<td>字段</td>
+<td>缓存</td>
+<td></td>
+</tr>
+<tr>
+<td><code>_backward_hooks</code>与<code>_forward_hooks</code></td>
+<td></td>
+<td>钩子，提取中间变量</td>
+<td></td>
+</tr>
+<tr>
+<td><code>training</code></td>
+<td></td>
+<td>区分训练阶段于测试阶段，据此确定前向传播策略</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="parameters-modules-buffers"><a href="#parameters-modules-buffers" class="headerlink" title="_parameters, _modules, _buffers"></a><code>_parameters</code>, <code>_modules</code>, <code>_buffers</code></h5><ul>
+<li><p>使用<code>named_paramaters()</code>的时候将parameters和modules的parameter全部返回</p>
+</li>
+<li><p>module层层嵌套，常用方法：</p>
+<ul>
+<li><code>named_children</code>- 查看<strong>直接</strong>子module</li>
+<li><code>named_modules</code> - 查看所有子module</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="training"><a href="#training" class="headerlink" title="training"></a><code>training</code></h5><ul>
+<li>一些layer在训练和测试阶段差距较大，为了使得每个<code>training</code>都要被设置好 =&gt; 定义了模型的的train和eval模式<ul>
+<li><code>model.train()</code> - 将当前Module及其子module所有<code>training</code>属性设置为True</li>
+<li><code>model.eval()</code> - 将training属性都设为False</li>
+</ul>
+</li>
+</ul>
+<h5 id="backward-hooks与-forward-hooks"><a href="#backward-hooks与-forward-hooks" class="headerlink" title="_backward_hooks与_forward_hooks"></a><code>_backward_hooks</code>与<code>_forward_hooks</code></h5><ul>
+<li>在module前向传播或反向传播时注册，传播执行结束执行钩子，使用完及时删除</li>
+<li>钩子用于获取某些中间结果</li>
+</ul>
+<h6 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h6><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = VGG()</span><br><span class="line">features = t.Tensor()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hook</span><span class="params">(module, input, output)</span>:</span></span><br><span class="line">    <span class="string">'''把这层的输出拷贝到features中'''</span></span><br><span class="line">    features.copy_(output.data)</span><br><span class="line"></span><br><span class="line">handle = model.layer8.register_forward_hook(hook)</span><br><span class="line">_ = model(input)</span><br><span class="line"><span class="comment"># 用完hook后删除</span></span><br><span class="line">handle.remove()</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Python的原始实现：</p>
+<ul>
+<li>result = obj.name会调用buildin函数<code>getattr(obj, &#39;name&#39;)</code>，如果该属性找不到，会调用<code>obj.__getattr__(&#39;name&#39;)</code></li>
+<li>obj.name = value会调用buildin函数<code>setattr(obj, &#39;name&#39;, value)</code>，如果obj对象实现了<code>__setattr__</code>方法，<code>setattr</code>会直接调用<code>obj.__setattr__(&#39;name&#39;, value&#39;)</code></li>
+</ul>
+<p>在<code>nn.Module</code>中的实现：</p>
+<ul>
+<li>在<code>nn.Module</code>中实现了<code>__setattr__</code>函数，执行<code>module.name = value</code>时，在<code>__setattr__</code>中判断value是否为<code>Parameter</code>或<code>nn.Module</code>对象。如果是则加入<code>_parameters</code>和<code>_modules</code>字典。如果是其他的对象，则保存在<code>__dict__</code></li>
+</ul>
+<blockquote>
+<p><code>_modules</code>和<code>_parameters</code>的item未保存在<code>__dict__</code>中，默认<code>getattr</code>无法获取，<code>nn.Module</code>实现<code>__getattr__</code>：如果<code>getattr</code>无法处理，则调用自定义的<code>__getattr__</code>从<code>_modules</code>, <code>_parameters</code>和<code>_buffers</code>三个字典中获取</p>
+</blockquote>
+<h5 id="保存模型"><a href="#保存模型" class="headerlink" title="保存模型"></a>保存模型</h5><ul>
+<li><p>使用Module的<code>state_dict()</code>函数，返回当前Module所有状态数据。下次使用，<code>module.load_state_dict()</code></p>
+</li>
+<li><p>优化器的实现：</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 保存模型</span></span><br><span class="line">t.save(net.state_dict(), <span class="string">'net.pth'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载已保存的模型</span></span><br><span class="line">net2 = Net()</span><br><span class="line">net2.load_state_dict(t.load(<span class="string">'net.pth'</span>))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>将Module放在GPU上运行</p>
+<ul>
+<li><code>model = model.cuda()</code> 将所有参数转存到GPU</li>
+<li><code>input.cuda()</code> 将输入放入GPU</li>
+</ul>
+</li>
+</ul>
+<h5 id="在多个GPU计算"><a href="#在多个GPU计算" class="headerlink" title="在多个GPU计算"></a>在多个GPU计算</h5><ul>
+<li><code>nn.parallel.data_parallel(module, inputs, device_ids=None, output_device=None, dim=0, module_kwargs=None)</code><br>- </li>
+<li><code>class torch.nn.DataParallel(module, device_ids=None, output_device=None, dim=0)</code><ul>
+<li>将一个输入batch分成多分，送到对应GPU计算，各个GPU得到的梯度累加</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>通过<code>device_ids</code>参数指定在哪些GPU上优化，<code>output_devices</code>指定输出到哪个GPU</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/20/python学习笔记/" rel="next" title="python学习笔记">
+                <i class="fa fa-chevron-left"></i> python学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/23/Pytorch常用工具总结/" rel="prev" title="Pytorch常用工具总结">
+                Pytorch常用工具总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本介绍"><span class="nav-number">1.</span> <span class="nav-text">基本介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tensor"><span class="nav-number">1.1.</span> <span class="nav-text">Tensor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Autograd-自动微分"><span class="nav-number">1.2.</span> <span class="nav-text">Autograd: 自动微分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#神经网络"><span class="nav-number">1.3.</span> <span class="nav-text">神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#卷积层"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">卷积层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#全连接层"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">全连接层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#forward"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">forward</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#训练网络"><span class="nav-number">1.3.1.</span> <span class="nav-text">训练网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数"><span class="nav-number">1.3.2.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优化器"><span class="nav-number">1.3.3.</span> <span class="nav-text">优化器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#构造优化器"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">构造优化器</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tensor-和-Autograd"><span class="nav-number">2.</span> <span class="nav-text">Tensor 和 Autograd</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tensor-1"><span class="nav-number">2.1.</span> <span class="nav-text">Tensor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础操作"><span class="nav-number">2.1.1.</span> <span class="nav-text">基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#创建"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">创建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#常用操作"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">常用操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#索引操作"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">索引操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#逐元素操作"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">逐元素操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#归并操作"><span class="nav-number">2.1.1.5.</span> <span class="nav-text">归并操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#线性代数"><span class="nav-number">2.1.1.6.</span> <span class="nav-text">线性代数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tensor和Numpy"><span class="nav-number">2.1.2.</span> <span class="nav-text">Tensor和Numpy</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#广播法则"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">广播法则</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#N"><span class="nav-number">2.1.2.1.1.</span> <span class="nav-text">N</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Pytorch中的使用"><span class="nav-number">2.1.2.1.2.</span> <span class="nav-text">Pytorch中的使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内部结构"><span class="nav-number">2.1.3.</span> <span class="nav-text">内部结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他问题"><span class="nav-number">2.1.4.</span> <span class="nav-text">其他问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#GP"><span class="nav-number">2.1.4.1.</span> <span class="nav-text">GP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#持久化"><span class="nav-number">2.1.4.2.</span> <span class="nav-text">持久化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#向量化"><span class="nav-number">2.1.4.3.</span> <span class="nav-text">向量化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AutoGrad"><span class="nav-number">2.2.</span> <span class="nav-text">AutoGrad</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#计算图"><span class="nav-number">2.2.1.</span> <span class="nav-text">计算图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#总结"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展autograd"><span class="nav-number">2.2.2.</span> <span class="nav-text">扩展autograd</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#神经网络工具箱nn"><span class="nav-number">3.</span> <span class="nav-text">神经网络工具箱nn</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#全连接层-1"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">全连接层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#子模块sub-module"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">子模块sub module</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用神经网络层"><span class="nav-number">3.1.</span> <span class="nav-text">常用神经网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像相关层"><span class="nav-number">3.1.1.</span> <span class="nav-text">图像相关层</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#卷积层-1"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">卷积层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#池化层"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">池化层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#其他"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">其他</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#激活函数"><span class="nav-number">3.1.2.</span> <span class="nav-text">激活函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Relu"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">Relu</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Sequential"><span class="nav-number">3.1.2.1.1.</span> <span class="nav-text">Sequential</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#损失函数-1"><span class="nav-number">3.1.3.</span> <span class="nav-text">损失函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化器-1"><span class="nav-number">3.2.</span> <span class="nav-text">优化器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#调整学习率"><span class="nav-number">3.2.0.1.</span> <span class="nav-text">调整学习率</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#新建优化器"><span class="nav-number">3.2.0.1.1.</span> <span class="nav-text">新建优化器</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#修改学习率"><span class="nav-number">3.2.0.1.2.</span> <span class="nav-text">修改学习率</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-functional"><span class="nav-number">3.3.</span> <span class="nav-text">nn.functional</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#nn-functional和nn-Module的区别"><span class="nav-number">3.3.0.0.1.</span> <span class="nav-text">nn.functional和nn.Module的区别</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化策略"><span class="nav-number">3.4.</span> <span class="nav-text">初始化策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nn-Module深入分析"><span class="nav-number">3.5.</span> <span class="nav-text">nn.Module深入分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#属性"><span class="nav-number">3.5.1.</span> <span class="nav-text">属性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#parameters-modules-buffers"><span class="nav-number">3.5.1.1.</span> <span class="nav-text">_parameters, _modules, _buffers</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#training"><span class="nav-number">3.5.1.2.</span> <span class="nav-text">training</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#backward-hooks与-forward-hooks"><span class="nav-number">3.5.1.3.</span> <span class="nav-text">_backward_hooks与_forward_hooks</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#使用方法"><span class="nav-number">3.5.1.3.1.</span> <span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#保存模型"><span class="nav-number">3.5.1.4.</span> <span class="nav-text">保存模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在多个GPU计算"><span class="nav-number">3.5.1.5.</span> <span class="nav-text">在多个GPU计算</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

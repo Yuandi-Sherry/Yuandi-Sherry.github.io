@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Data Mining," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Abstract 前人的缺陷：缺乏对图像语义的代表，难以将图像内容和风格区分开来 本文使用CNN的图像表示提取图像信息 A Neural Algorithm of Artistic Style架构图象的内容和风格分离并重新组合    Introduction 探究高性能神经网络学习的特征表示是如何独立处理和操作自然图像的内容和风格的 A Neural Algorithm of Artistic S">
+<meta name="keywords" content="Data Mining">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gatys - Image Style Transfer 论文阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2019/06/28/Gatys-Image-Style-Transfer-论文阅读笔记/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="Abstract 前人的缺陷：缺乏对图像语义的代表，难以将图像内容和风格区分开来 本文使用CNN的图像表示提取图像信息 A Neural Algorithm of Artistic Style架构图象的内容和风格分离并重新组合    Introduction 探究高性能神经网络学习的特征表示是如何独立处理和操作自然图像的内容和风格的 A Neural Algorithm of Artistic S">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:/Users/Sherry/AppData/Roaming/Typora/typora-user-images/1561799638893.png">
+<meta property="og:updated_time" content="2019-06-29T10:39:00.002Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gatys - Image Style Transfer 论文阅读笔记">
+<meta name="twitter:description" content="Abstract 前人的缺陷：缺乏对图像语义的代表，难以将图像内容和风格区分开来 本文使用CNN的图像表示提取图像信息 A Neural Algorithm of Artistic Style架构图象的内容和风格分离并重新组合    Introduction 探究高性能神经网络学习的特征表示是如何独立处理和操作自然图像的内容和风格的 A Neural Algorithm of Artistic S">
+<meta name="twitter:image" content="c:/Users/Sherry/AppData/Roaming/Typora/typora-user-images/1561799638893.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/28/Gatys-Image-Style-Transfer-论文阅读笔记/"/>
+
+
+
+
+
+  <title>Gatys - Image Style Transfer 论文阅读笔记 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/Gatys-Image-Style-Transfer-论文阅读笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Gatys - Image Style Transfer 论文阅读笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-28T15:45:04+08:00">
+                2019-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><ul>
+<li><strong>前人的缺陷：</strong>缺乏对图像语义的代表，难以将图像<em>内容</em>和<em>风格</em>区分开来<ul>
+<li>本文使用CNN的图像表示提取图像信息</li>
+<li><code>A Neural Algorithm of Artistic Style</code>架构图象的内容和风格分离并重新组合</li>
+</ul>
+</li>
+</ul>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
+<li>探究<strong>高性能神经网络学习</strong>的特征表示是如何独立处理和操作自然图像的内容和风格的</li>
+<li><em>A Neural Algorithm of Artistic Style</em> - 通过CNN得到的特征表示限制的纹理迁移算法</li>
+</ul>
+<h1 id="2-Deep-image-representations"><a href="#2-Deep-image-representations" class="headerlink" title="2. Deep image representations"></a>2. Deep image representations</h1><ul>
+<li>使用<em>VGG</em>生成结果<ul>
+<li>标准化网络-将每一个卷积层的激活函数的平均值设为1</li>
+<li>不用全连接层</li>
+</ul>
+</li>
+<li>发现使用<em>平均池化</em>比<em>最大池化</em>效果更好一点</li>
+</ul>
+<h2 id="2-1-Content-representation"><a href="#2-1-Content-representation" class="headerlink" title="2.1 Content representation"></a>2.1 Content representation</h2><ul>
+<li><p>输入图像在CNN的每一层编码</p>
+</li>
+<li><p>有$N_l个$不同模板的层有$N_l$个feature map</p>
+<ul>
+<li>每个feature map的size为feature map的长乘宽</li>
+</ul>
+</li>
+<li><p>层$l$的结果可以被存储到矩阵中$F^l\in R^{N_l\times M_l}$</p>
+<p>​    其中$F^l_{ij}$是第i个模板在位置j在$l$层的activation</p>
+</li>
+<li><p>将编码在每个不同层的图像信息可视化</p>
+<ul>
+<li>可以在白噪声图像使用梯度下降在白噪声图像来找到一个与原图特征相应匹配的图像</li>
+</ul>
+</li>
+<li><p>$\vec p$和$\vec x$是原图和生成图像，$P^l$和$F^l分别是他们的.在l层相应的特征表示</p>
+</li>
+<li><p>两个特征表示的损失函数</p>
+<ul>
+<li><script type="math/tex; mode=display">
+L_{content}(\vec p, \vec x, l) = \frac{1}{2}\sum_{i,j}(F^l_{ij}-P^l_{ij})^2</script></li>
+</ul>
+</li>
+<li><p>损失函数相对于$l$层激活的导数为：</p>
+<ul>
+<li><script type="math/tex; mode=display">
+\frac{\partial L_{content}}{\partial F^l_{ij}} = \begin{cases}
+(F^l - P^l)_{ij} & F^l_{ij} >0\\
+0 &F_{ij}^l<0
+\end{cases}</script></li>
+<li><p>据此对于图像$\vec x$的梯度可以通过标准误差反向传播计算出来 =&gt; 因此我们可以改变最初随机图像$\vec x$直到生成对于CNN的某一层产生和原图$\vec p$一样的响应</p>
+</li>
+</ul>
+</li>
+<li><p>CNN是在图像识别上训练的，图像的表示使得目标信息在处理层上面愈加明显=&gt; 在网络的处理层，输入图像转变为representations对真正的图像内容越来越敏感，但是对于图像的外观相对保持不变了</p>
+</li>
+<li><p>网络的月高层获得目标的更高层内容以及在输入图像中的排列，但是不限制重构过程中的像素值</p>
+</li>
+<li><p>因此参考网络高层的特征响应作为内容表示</p>
+</li>
+</ul>
+<h2 id="2-2-Style-Representation"><a href="#2-2-Style-Representation" class="headerlink" title="2.2 Style Representation"></a>2.2 Style Representation</h2><ul>
+<li><p>特征空间可以在网络的任何一层上建立特征空间，包括不同模板相应之间的关系 &lt;= 由Gram矩阵给出，$G^l_{ij}$为向量化的feature maps i和j在l层的内积：</p>
+<script type="math/tex; mode=display">
+G^l_{ij} = \sum_k F^l_{ik}F^l_{jk}</script></li>
+<li><p>通过涵盖不同层的特征关联，可以获得输入图片的稳定多维表示，获得其纹理信息，但不是global arrangement</p>
+</li>
+<li><p>通过在网络的不同层生成的风格特征空间可视化风格特征空间获得的信息</p>
+</li>
+<li><p><strong>使用梯度下降从一个白噪声图像，最小化和原图的Gram矩阵的mean-squared</strong></p>
+</li>
+</ul>
+<h3 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h3><p>$\vec a$和$\vec x$是原图和生成图像，$A^l$和$G^l$是相应的层l风格表示：</p>
+<ul>
+<li><p>l层loss: $E_l = \frac{1}{4N^2_lM^2_l}\sum_{i,j}(G^l_{ij} - A^l_{ij})^2$</p>
+</li>
+<li><p>总风格损失：$L_{style}(\vec a, \vec x) = \sum^L_{l=0}w_lE_l$</p>
+<ul>
+<li>$w_l$是每层对于总损失贡献的权重因子</li>
+</ul>
+</li>
+<li><p>$E_l$对于$l$层的activation的导数为：</p>
+<ul>
+<li><script type="math/tex; mode=display">
+\frac{\partial E_l}{\partial F^l_{ij}} = \begin{cases}\frac{1}{N^2_lM^2_l}((F^l)^T(G^l-A^l))_{ji} & if F^l_{ij} > 0 \\
+0 & if F^l_{ij} < 0
+\end{cases}</script></li>
+<li><p>$E_l$对于$\vec x$的梯度可以通过标准差反向传播直接计算</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-Style-transfer"><a href="#2-3-Style-transfer" class="headerlink" title="2.3 Style transfer"></a>2.3 Style transfer</h3><p><img src="C:\Users\Sherry\AppData\Roaming\Typora\typora-user-images\1561799638893.png" alt="1561799638893"></p>
+<ul>
+<li><strong>风格图像</strong>：过左侧网络，得到风格特征$A^L$</li>
+<li><p><strong>内容图像</strong>：过右侧网络，得到内容图像$F^l$</p>
+</li>
+<li><p><strong>目标图像</strong>：白噪声$\vec x$过网络</p>
+<ul>
+<li><strong>风格损失</strong>：计算和风格网络每一层的误差，并求和</li>
+<li><strong>内容损失</strong>：计算和特定层的损失</li>
+<li>两种损失线性组合得到总损失</li>
+</ul>
+</li>
+<li><p>最小化的损失函数：</p>
+<ul>
+<li><script type="math/tex; mode=display">
+L_{total}(\vec p, \vec a, \vec x) = \alpha L_{conent}(\vec p, \vec x) + \beta L_{style}(\vec a, \vec x)</script></li>
+</ul>
+</li>
+<li><p>损失函数对于输入像素$\vec x$的梯度可以被用作一些数值优化策略ve输入？？</p>
+</li>
+<li>在计算风格图像的特征之前，缩放风格图像为和内容图像相同的大小</li>
+</ul>
+<h1 id="3-Results"><a href="#3-Results" class="headerlink" title="3 Results"></a>3 Results</h1><ul>
+<li><strong>CNN中对于图像的内容和风格表示是完全可分的</strong><ul>
+<li>=&gt; 可以独立处理二者之一产生新的图像</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-1-Trade-off-between-content-and-style-matching"><a href="#3-1-Trade-off-between-content-and-style-matching" class="headerlink" title="3.1 Trade-off between content and style matching"></a>3.1 Trade-off between content and style matching</h2><ul>
+<li>合成图像无法很好地同时满足风格和内容的相似性，但是可以通过调节$L_{total}$的参数控制生成图片的侧重</li>
+</ul>
+<h2 id="3-2-Effect-of-different-layers-of-the-Convolutional-Neural-Network"><a href="#3-2-Effect-of-different-layers-of-the-Convolutional-Neural-Network" class="headerlink" title="3.2 Effect of different layers of the Convolutional Neural Network"></a>3.2 Effect of different layers of the Convolutional Neural Network</h2><h3 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h3><ul>
+<li>另一个合成图像中的重要因子为对于进行内容和风格表示匹配的layers的选择</li>
+<li>风格表示是多维的，包含网络的很多层</li>
+<li>层级的数目和位置决定了那种维度的风格匹配，导致了不同的视觉体验</li>
+<li>发现在较高层匹配风格表示保留了较多局部图片结构 =&gt; 平滑连续的视觉体验</li>
+<li>=&gt; 较好的图片通常在网络高层匹配风格表示</li>
+</ul>
+<h3 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h3><ul>
+<li>网络中高层层级提取内容，会使得风格化更好。像素级信息不是很多，一些内容高尚的细节会被弱化以更好地风格化</li>
+</ul>
+<h2 id="3-3-Initialization-of-gradient-descent"><a href="#3-3-Initialization-of-gradient-descent" class="headerlink" title="3.3 Initialization of gradient descent"></a>3.3 Initialization of gradient descent</h2><ul>
+<li>生成图像的输入无论设置为风格图像还是内容图像，对于输出的效果影响不大；反而初始化为白噪声可以使得产生的图片效果更加多样</li>
+</ul>
+<h2 id="3-4-Photorealistic-style-transfer"><a href="#3-4-Photorealistic-style-transfer" class="headerlink" title="3.4 Photorealistic style transfer"></a>3.4 Photorealistic style transfer</h2><ul>
+<li>可以应用到任何图像之间的风格迁移</li>
+</ul>
+<p>！！！可以为不同种风格迁移调参</p>
+<ul>
+<li>如果是两幅照片，主要迁移了色彩和光影</li>
+</ul>
+<h1 id="4-Discussion"><a href="#4-Discussion" class="headerlink" title="4 Discussion"></a>4 Discussion</h1><h3 id="limiting-factor"><a href="#limiting-factor" class="headerlink" title="limiting factor"></a>limiting factor</h3><ul>
+<li>合成图像的分辨率，CNN的优化随着像素个数线性增长 =&gt; 处理速度与图像分辨率十分相关</li>
+</ul>
+<h3 id="low-level-noise"><a href="#low-level-noise" class="headerlink" title="low-level noise"></a>low-level noise</h3><ul>
+<li>主要在风格图像和内容图像都为照片的时候会表现得比较明显</li>
+<li>可以选择去噪的后处理</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Data-Mining/" rel="tag"># Data Mining</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/27/微信小程序开发学习笔记/" rel="next" title="微信小程序开发学习笔记">
+                <i class="fa fa-chevron-left"></i> 微信小程序开发学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Deep-image-representations"><span class="nav-number">3.</span> <span class="nav-text">2. Deep image representations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Content-representation"><span class="nav-number">3.1.</span> <span class="nav-text">2.1 Content representation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Style-Representation"><span class="nav-number">3.2.</span> <span class="nav-text">2.2 Style Representation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算"><span class="nav-number">3.2.1.</span> <span class="nav-text">计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Style-transfer"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.3 Style transfer</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Results"><span class="nav-number">4.</span> <span class="nav-text">3 Results</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-Trade-off-between-content-and-style-matching"><span class="nav-number">4.1.</span> <span class="nav-text">3.1 Trade-off between content and style matching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-Effect-of-different-layers-of-the-Convolutional-Neural-Network"><span class="nav-number">4.2.</span> <span class="nav-text">3.2 Effect of different layers of the Convolutional Neural Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Style"><span class="nav-number">4.2.1.</span> <span class="nav-text">Style</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Content"><span class="nav-number">4.2.2.</span> <span class="nav-text">Content</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-Initialization-of-gradient-descent"><span class="nav-number">4.3.</span> <span class="nav-text">3.3 Initialization of gradient descent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-Photorealistic-style-transfer"><span class="nav-number">4.4.</span> <span class="nav-text">3.4 Photorealistic style transfer</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Discussion"><span class="nav-number">5.</span> <span class="nav-text">4 Discussion</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#limiting-factor"><span class="nav-number">5.0.1.</span> <span class="nav-text">limiting factor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#low-level-noise"><span class="nav-number">5.0.2.</span> <span class="nav-text">low-level noise</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -250,6 +250,560 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/Gatys-Image-Style-Transfer-论文阅读笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/28/Gatys-Image-Style-Transfer-论文阅读笔记/" itemprop="url">Gatys - Image Style Transfer 论文阅读笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-28T15:45:04+08:00">
+                2019-06-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><ul>
+<li><strong>前人的缺陷：</strong>缺乏对图像语义的代表，难以将图像<em>内容</em>和<em>风格</em>区分开来<ul>
+<li>本文使用CNN的图像表示提取图像信息</li>
+<li><code>A Neural Algorithm of Artistic Style</code>架构图象的内容和风格分离并重新组合</li>
+</ul>
+</li>
+</ul>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
+<li>探究<strong>高性能神经网络学习</strong>的特征表示是如何独立处理和操作自然图像的内容和风格的</li>
+<li><em>A Neural Algorithm of Artistic Style</em> - 通过CNN得到的特征表示限制的纹理迁移算法</li>
+</ul>
+<h1 id="2-Deep-image-representations"><a href="#2-Deep-image-representations" class="headerlink" title="2. Deep image representations"></a>2. Deep image representations</h1><ul>
+<li>使用<em>VGG</em>生成结果<ul>
+<li>标准化网络-将每一个卷积层的激活函数的平均值设为1</li>
+<li>不用全连接层</li>
+</ul>
+</li>
+<li>发现使用<em>平均池化</em>比<em>最大池化</em>效果更好一点</li>
+</ul>
+<h2 id="2-1-Content-representation"><a href="#2-1-Content-representation" class="headerlink" title="2.1 Content representation"></a>2.1 Content representation</h2><ul>
+<li><p>输入图像在CNN的每一层编码</p>
+</li>
+<li><p>有$N_l个$不同模板的层有$N_l$个feature map</p>
+<ul>
+<li>每个feature map的size为feature map的长乘宽</li>
+</ul>
+</li>
+<li><p>层$l$的结果可以被存储到矩阵中$F^l\in R^{N_l\times M_l}$</p>
+<p>​    其中$F^l_{ij}$是第i个模板在位置j在$l$层的activation</p>
+</li>
+<li><p>将编码在每个不同层的图像信息可视化</p>
+<ul>
+<li>可以在白噪声图像使用梯度下降在白噪声图像来找到一个与原图特征相应匹配的图像</li>
+</ul>
+</li>
+<li><p>$\vec p$和$\vec x$是原图和生成图像，$P^l$和$F^l分别是他们的.在l层相应的特征表示</p>
+</li>
+<li><p>两个特征表示的损失函数</p>
+<ul>
+<li><script type="math/tex; mode=display">
+L_{content}(\vec p, \vec x, l) = \frac{1}{2}\sum_{i,j}(F^l_{ij}-P^l_{ij})^2</script></li>
+</ul>
+</li>
+<li><p>损失函数相对于$l$层激活的导数为：</p>
+<ul>
+<li><script type="math/tex; mode=display">
+\frac{\partial L_{content}}{\partial F^l_{ij}} = \begin{cases}
+(F^l - P^l)_{ij} & F^l_{ij} >0\\
+0 &F_{ij}^l<0
+\end{cases}</script></li>
+<li><p>据此对于图像$\vec x$的梯度可以通过标准误差反向传播计算出来 =&gt; 因此我们可以改变最初随机图像$\vec x$直到生成对于CNN的某一层产生和原图$\vec p$一样的响应</p>
+</li>
+</ul>
+</li>
+<li><p>CNN是在图像识别上训练的，图像的表示使得目标信息在处理层上面愈加明显=&gt; 在网络的处理层，输入图像转变为representations对真正的图像内容越来越敏感，但是对于图像的外观相对保持不变了</p>
+</li>
+<li><p>网络的月高层获得目标的更高层内容以及在输入图像中的排列，但是不限制重构过程中的像素值</p>
+</li>
+<li><p>因此参考网络高层的特征响应作为内容表示</p>
+</li>
+</ul>
+<h2 id="2-2-Style-Representation"><a href="#2-2-Style-Representation" class="headerlink" title="2.2 Style Representation"></a>2.2 Style Representation</h2><ul>
+<li><p>特征空间可以在网络的任何一层上建立特征空间，包括不同模板相应之间的关系 &lt;= 由Gram矩阵给出，$G^l_{ij}$为向量化的feature maps i和j在l层的内积：</p>
+<script type="math/tex; mode=display">
+G^l_{ij} = \sum_k F^l_{ik}F^l_{jk}</script></li>
+<li><p>通过涵盖不同层的特征关联，可以获得输入图片的稳定多维表示，获得其纹理信息，但不是global arrangement</p>
+</li>
+<li><p>通过在网络的不同层生成的风格特征空间可视化风格特征空间获得的信息</p>
+</li>
+<li><p><strong>使用梯度下降从一个白噪声图像，最小化和原图的Gram矩阵的mean-squared</strong></p>
+</li>
+</ul>
+<h3 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h3><p>$\vec a$和$\vec x$是原图和生成图像，$A^l$和$G^l$是相应的层l风格表示：</p>
+<ul>
+<li><p>l层loss: $E_l = \frac{1}{4N^2_lM^2_l}\sum_{i,j}(G^l_{ij} - A^l_{ij})^2$</p>
+</li>
+<li><p>总风格损失：$L_{style}(\vec a, \vec x) = \sum^L_{l=0}w_lE_l$</p>
+<ul>
+<li>$w_l$是每层对于总损失贡献的权重因子</li>
+</ul>
+</li>
+<li><p>$E_l$对于$l$层的activation的导数为：</p>
+<ul>
+<li><script type="math/tex; mode=display">
+\frac{\partial E_l}{\partial F^l_{ij}} = \begin{cases}\frac{1}{N^2_lM^2_l}((F^l)^T(G^l-A^l))_{ji} & if F^l_{ij} > 0 \\
+0 & if F^l_{ij} < 0
+\end{cases}</script></li>
+<li><p>$E_l$对于$\vec x$的梯度可以通过标准差反向传播直接计算</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-Style-transfer"><a href="#2-3-Style-transfer" class="headerlink" title="2.3 Style transfer"></a>2.3 Style transfer</h3><p><img src="C:\Users\Sherry\AppData\Roaming\Typora\typora-user-images\1561799638893.png" alt="1561799638893"></p>
+<ul>
+<li><strong>风格图像</strong>：过左侧网络，得到风格特征$A^L$</li>
+<li><p><strong>内容图像</strong>：过右侧网络，得到内容图像$F^l$</p>
+</li>
+<li><p><strong>目标图像</strong>：白噪声$\vec x$过网络</p>
+<ul>
+<li><strong>风格损失</strong>：计算和风格网络每一层的误差，并求和</li>
+<li><strong>内容损失</strong>：计算和特定层的损失</li>
+<li>两种损失线性组合得到总损失</li>
+</ul>
+</li>
+<li><p>最小化的损失函数：</p>
+<ul>
+<li><script type="math/tex; mode=display">
+L_{total}(\vec p, \vec a, \vec x) = \alpha L_{conent}(\vec p, \vec x) + \beta L_{style}(\vec a, \vec x)</script></li>
+</ul>
+</li>
+<li><p>损失函数对于输入像素$\vec x$的梯度可以被用作一些数值优化策略ve输入？？</p>
+</li>
+<li>在计算风格图像的特征之前，缩放风格图像为和内容图像相同的大小</li>
+</ul>
+<h1 id="3-Results"><a href="#3-Results" class="headerlink" title="3 Results"></a>3 Results</h1><ul>
+<li><strong>CNN中对于图像的内容和风格表示是完全可分的</strong><ul>
+<li>=&gt; 可以独立处理二者之一产生新的图像</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-1-Trade-off-between-content-and-style-matching"><a href="#3-1-Trade-off-between-content-and-style-matching" class="headerlink" title="3.1 Trade-off between content and style matching"></a>3.1 Trade-off between content and style matching</h2><ul>
+<li>合成图像无法很好地同时满足风格和内容的相似性，但是可以通过调节$L_{total}$的参数控制生成图片的侧重</li>
+</ul>
+<h2 id="3-2-Effect-of-different-layers-of-the-Convolutional-Neural-Network"><a href="#3-2-Effect-of-different-layers-of-the-Convolutional-Neural-Network" class="headerlink" title="3.2 Effect of different layers of the Convolutional Neural Network"></a>3.2 Effect of different layers of the Convolutional Neural Network</h2><h3 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h3><ul>
+<li>另一个合成图像中的重要因子为对于进行内容和风格表示匹配的layers的选择</li>
+<li>风格表示是多维的，包含网络的很多层</li>
+<li>层级的数目和位置决定了那种维度的风格匹配，导致了不同的视觉体验</li>
+<li>发现在较高层匹配风格表示保留了较多局部图片结构 =&gt; 平滑连续的视觉体验</li>
+<li>=&gt; 较好的图片通常在网络高层匹配风格表示</li>
+</ul>
+<h3 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h3><ul>
+<li>网络中高层层级提取内容，会使得风格化更好。像素级信息不是很多，一些内容高尚的细节会被弱化以更好地风格化</li>
+</ul>
+<h2 id="3-3-Initialization-of-gradient-descent"><a href="#3-3-Initialization-of-gradient-descent" class="headerlink" title="3.3 Initialization of gradient descent"></a>3.3 Initialization of gradient descent</h2><ul>
+<li>生成图像的输入无论设置为风格图像还是内容图像，对于输出的效果影响不大；反而初始化为白噪声可以使得产生的图片效果更加多样</li>
+</ul>
+<h2 id="3-4-Photorealistic-style-transfer"><a href="#3-4-Photorealistic-style-transfer" class="headerlink" title="3.4 Photorealistic style transfer"></a>3.4 Photorealistic style transfer</h2><ul>
+<li>可以应用到任何图像之间的风格迁移</li>
+</ul>
+<p>！！！可以为不同种风格迁移调参</p>
+<ul>
+<li>如果是两幅照片，主要迁移了色彩和光影</li>
+</ul>
+<h1 id="4-Discussion"><a href="#4-Discussion" class="headerlink" title="4 Discussion"></a>4 Discussion</h1><h3 id="limiting-factor"><a href="#limiting-factor" class="headerlink" title="limiting factor"></a>limiting factor</h3><ul>
+<li>合成图像的分辨率，CNN的优化随着像素个数线性增长 =&gt; 处理速度与图像分辨率十分相关</li>
+</ul>
+<h3 id="low-level-noise"><a href="#low-level-noise" class="headerlink" title="low-level noise"></a>low-level noise</h3><ul>
+<li>主要在风格图像和内容图像都为照片的时候会表现得比较明显</li>
+<li>可以选择去噪的后处理</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/27/微信小程序开发学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/27/微信小程序开发学习笔记/" itemprop="url">微信小程序开发学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-27T14:02:30+08:00">
+                2019-06-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>这个笔记是阅读MINIPROGRAM文档的笔记记录，由于有Vue的基础，只记录了小程序和Vue中不同的地方，一些较为基础的部分就没有做记录</p>
+</blockquote>
+<ul>
+<li><p>JSON文件在小程序代码中扮演静态配置的作用，在小程序运行之前就决定了小程序一些表现，需要注意的是小程序是无法在运行过程中去动态更新JSON 配置文件从而发生对应的变化的。</p>
+</li>
+<li><p>JSON的Key必须包裹在一个<strong>双引号</strong>中，在实践中，编写 JSON的时候，忘了给 Key 值加双引号或者是把双引号写成单引号是常见错误。</p>
+</li>
+<li><p>属性值若需要动态改变，则需要</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">tag</span> <span class="attr">attri</span>=<span class="string">"&#123;&#123; data name &#125;&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">tag</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-2-3-逻辑语法"><a href="#2-2-3-逻辑语法" class="headerlink" title="2.2.3 逻辑语法"></a>2.2.3 逻辑语法</h3><ul>
+<li>可以在 <code>双大括号</code> 中进行三元运算、算术运算、字符串拼接、直接数字、字符串、数组</li>
+</ul>
+<h3 id="2-2-4-条件逻辑"><a href="#2-2-4-条件逻辑" class="headerlink" title="2.2.4 条件逻辑"></a>2.2.4 条件逻辑</h3><ul>
+<li><code>wx:if=&quot;&quot;</code></li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;length &gt; 5&#125;&#125;"</span>&gt;</span> 1 <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:elif</span>=<span class="string">"&#123;&#123;length &gt; 2&#125;&#125;"</span>&gt;</span> 2 <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:else</span>&gt;</span> 3 <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果要一次性判断多个组件标签，可以使用一个      标签将多个组件包装起来，并在上边使用 <code>wx:if</code> 控制属性。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:if</span>=<span class="string">"&#123;&#123;true&#125;&#125;"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">view</span>&gt;</span> view1 <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">view</span>&gt;</span> view2 <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-2-5-列表渲染"><a href="#2-2-5-列表渲染" class="headerlink" title="2.2.5 列表渲染"></a>2.2.5 列表渲染</h3><ul>
+<li><p>使用 <code>wx:for</code> 控制属性绑定一个数组</p>
+</li>
+<li><p>默认数组的当前项的下标变量名默认为 <code>index</code>，数组当前项的变量名默认为 item</p>
+</li>
+<li><p>使用 <code>wx:for-item</code> 指定数组当前元素的变量名，使用 <code>wx:for-index</code> 指定数组当前下标的变量名</p>
+</li>
+<li><p>如果列表中项目的位置会动态改变或者有新的项目添加到列表中，并且希望列表中的项目保持自己的特征和状态，需要 <code>wx:key</code> 指定唯一标识符：</p>
+</li>
+<li><ul>
+<li>字符串：item的某个性质，不能动态改变</li>
+<li>关键字<code>*this</code>，item本身是唯一字符串或者数字</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-2-6-模板"><a href="#2-2-6-模板" class="headerlink" title="2.2.6 模板"></a>2.2.6 模板</h3><ul>
+<li><code>&lt;template name=&quot;&quot;&gt;</code>定义模板</li>
+<li><code>&lt;template is=&quot;&quot;&gt;</code>使用模板</li>
+</ul>
+<h3 id="2-2-7-引用"><a href="#2-2-7-引用" class="headerlink" title="2.2.7 引用"></a>2.2.7 引用</h3><h4 id="Import"><a href="#Import" class="headerlink" title="Import"></a><em>Import</em></h4><ul>
+<li>在当前文件中使用目标文件定义的template</li>
+<li>不具有传递性</li>
+</ul>
+<h4 id="include"><a href="#include" class="headerlink" title="include"></a><em>include</em></h4><ul>
+<li>将目标文件中除了<code>&lt;template /&gt; &lt;wxs /&gt;</code>的整个代码引入 - 相当于拷贝到include位置</li>
+</ul>
+<h3 id="2-2-8-共同属性"><a href="#2-2-8-共同属性" class="headerlink" title="2.2.8 共同属性"></a>2.2.8 共同属性</h3><ul>
+<li>这一页最下面：<a href="https://developers.weixin.qq.com/ebook?action=get_post_info&amp;docid=000ee2c29d4f805b0086a37a254c0a" target="_blank" rel="noopener">https://developers.weixin.qq.com/ebook?action=get_post_info&amp;docid=000ee2c29d4f805b0086a37a254c0a</a></li>
+</ul>
+<h2 id="2-3-WXSS样式"><a href="#2-3-WXSS样式" class="headerlink" title="2.3 WXSS样式"></a>2.3 WXSS样式</h2><ul>
+<li>公共样式：app.wxss</li>
+</ul>
+<h3 id="2-3-2-尺寸单位"><a href="#2-3-2-尺寸单位" class="headerlink" title="2.3.2 尺寸单位"></a>2.3.2 尺寸单位</h3><ul>
+<li>Rpx</li>
+</ul>
+<h3 id="2-3-3-WXSS引用"><a href="#2-3-3-WXSS引用" class="headerlink" title="2.3.3 WXSS引用"></a>2.3.3 WXSS引用</h3><ul>
+<li>在文件中引用另一个样式文件 @import ‘目标文件路径</li>
+</ul>
+<h3 id="2-3-4-内联样式"><a href="#2-3-4-内联样式" class="headerlink" title="2.3.4 内联样式"></a>2.3.4 内联样式</h3><ul>
+<li><p>动态内联样式更新</p>
+</li>
+<li><p>Js:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   eleColor: <span class="string">'red'</span>,</span><br><span class="line">   eleFontsize: <span class="string">'48rpx'</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Wxml:</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;view style=<span class="string">"color: &#123;&#123;eleColor&#125;&#125;; font-size: &#123;&#123;eleFontsize&#125;&#125;"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="2-3-5-选择器"><a href="#2-3-5-选择器" class="headerlink" title="2.3.5 选择器"></a>2.3.5 选择器</h3><ul>
+<li><p>WXSS优先级：</p>
+</li>
+<li><ul>
+<li>Important, style, id, class, element</li>
+<li>优先级相同，后设置的优先级高于先设置</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-4-JS脚本"><a href="#2-4-JS脚本" class="headerlink" title="2.4 JS脚本"></a>2.4 JS脚本</h2><h3 id="2-4-3-模块化"><a href="#2-4-3-模块化" class="headerlink" title="2.4.3 模块化"></a>2.4.3 模块化</h3><ul>
+<li>被引用文件：<code>module.exports  =</code></li>
+<li>引用文件<code>var x = require(&#39;被引用文件路径&#39;)</code></li>
+<li>直接调用x即可</li>
+</ul>
+<h3 id="2-4-4-脚本的执行顺序"><a href="#2-4-4-脚本的执行顺序" class="headerlink" title="2.4.4 脚本的执行顺序"></a>2.4.4 脚本的执行顺序</h3><ul>
+<li>入口文件app.js，按照require模块顺序定义文件的运行顺序</li>
+<li>当app.js执行结束，小程序按照app.json定义的pages顺序，逐一执行</li>
+</ul>
+<h3 id="2-4-5-作用域"><a href="#2-4-5-作用域" class="headerlink" title="2.4.5 作用域"></a>2.4.5 作用域</h3><ul>
+<li><p>文件中声明的变量和函数只在该文件中有效，<strong>不同</strong>文件中可以声明<strong>相同</strong>名字的函数和变量</p>
+</li>
+<li><p><strong>全局变量：</strong>使用全局函数<code>getApp()</code>获取全局实例，设置相关属性值</p>
+</li>
+<li><ul>
+<li><p>先获取全局作用域：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> global = getApp()</span><br><span class="line">global.globalValue = <span class="string">'globalValue'</span></span><br><span class="line"><span class="built_in">console</span>.log(global.globalValue)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>注意要先声明，再使用</p>
+</li>
+<li><p>也可以在app.js中直接定义全局变量</p>
+</li>
+</ul>
+<h1 id="第三章-理解小程序宿主环境"><a href="#第三章-理解小程序宿主环境" class="headerlink" title="第三章 理解小程序宿主环境"></a>第三章 理解小程序宿主环境</h1><h2 id="3-1-渲染层和逻辑层"><a href="#3-1-渲染层和逻辑层" class="headerlink" title="3.1 渲染层和逻辑层"></a>3.1 渲染层和逻辑层</h2><ul>
+<li>渲染层：wxml + wxss</li>
+<li>逻辑层：js</li>
+</ul>
+<p>渲染层和数据相关</p>
+<p>逻辑层负责产生、处理数据</p>
+<p>逻辑层通过page实现setData方法传递数据到渲染层</p>
+<h3 id="3-1-2-通信模型"><a href="#3-1-2-通信模型" class="headerlink" title="3.1.2 通信模型"></a>3.1.2 通信模型</h3><ul>
+<li>渲染层 - webview</li>
+<li>逻辑层 - jscore</li>
+</ul>
+<p><img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png" alt="JsCore  Webvi ew  Native  HTTPS Request "></p>
+<h3 id="3-1-4-双线程下的界面渲染"><a href="#3-1-4-双线程下的界面渲染" class="headerlink" title="3.1.4 双线程下的界面渲染"></a>3.1.4 双线程下的界面渲染</h3><ul>
+<li>渲染层，宿主环境把WXML转化成对应的JS对象</li>
+<li>逻辑层数据变更时，通过宿主环境提供setData方法把数据从逻辑层传递到渲染层，经过对比前后差异，把差异应用到原来的dom树</li>
+</ul>
+<h2 id="3-2-程序与页面"><a href="#3-2-程序与页面" class="headerlink" title="3.2 程序与页面"></a>3.2 程序与页面</h2><h3 id="3-2-1-程序"><a href="#3-2-1-程序" class="headerlink" title="3.2.1 程序"></a>3.2.1 程序</h3><h4 id="1-程序构造器App"><a href="#1-程序构造器App" class="headerlink" title="1. 程序构造器App()"></a><em>1.</em> <em>程序构造器App()</em></h4><ul>
+<li><code>App()</code>构造器注册程序<code>App</code>，写在app.js，App为单例</li>
+<li><code>onLaunch / onShow / onHide</code> 三个回调是App实例的生命周期函数</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>参数属性</th>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>onLaunch</td>
+<td>Function</td>
+<td>当小程序初始化完成时，会触发 onLaunch（全局只触发一次）</td>
+</tr>
+<tr>
+<td>onShow</td>
+<td>Function</td>
+<td>当小程序启动，或从后台进入前台显示，会触发 onShow</td>
+</tr>
+<tr>
+<td>onHide</td>
+<td>Function</td>
+<td>当小程序从前台进入后台，会触发 onHide</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p> <em>程序的生命周期和打开场景</em></p>
+<ul>
+<li>针对不同的打开方式，微信客户端会把打开方式带给onLaunch和onShow的调用参数options</li>
+<li>参数列表<a href="https://developers.weixin.qq.com/ebook?action=get_post_info&amp;docid=0004eec99acc808b00861a5bd5280a" target="_blank" rel="noopener">https://developers.weixin.qq.com/ebook?action=get_post_info&amp;docid=0004eec99acc808b00861a5bd5280a</a></li>
+</ul>
+<ol>
+<li><em>小程序全局数据</em></li>
+</ol>
+<ul>
+<li>小程序切换页面，逻辑层的js脚本运行上下文在同一线程</li>
+<li>不同页面通过App实例的属性来共享数据</li>
+<li>页面使用的<code>setTimeout</code>或者<code>setInterval</code>跳转到其他页面时，定时器没有清楚，需要自己清理</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/Pytorch实战/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -977,6 +1531,768 @@
 <h4 id="一起保存加载"><a href="#一起保存加载" class="headerlink" title="一起保存加载"></a>一起保存加载</h4><ul>
 <li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">all_data = dict(</span><br><span class="line">    optimizer = optimizer.state_dict(),</span><br><span class="line">    model = model.state_dict(),</span><br><span class="line">    info = <span class="string">u'模型和优化器的所有参数'</span></span><br><span class="line">)</span><br><span class="line">t.save(all_data, <span class="string">'all.pth'</span>)</span><br><span class="line"></span><br><span class="line">all_data = t.load(<span class="string">'all.pth'</span>)</span><br></pre></td></tr></table></figure></li>
 </ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/21/PyTorch快速入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/06/21/PyTorch快速入门/" itemprop="url">PyTorch快速入门</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-21T11:15:29+08:00">
+                2019-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>参考：<a href="https://github.com/chenyuntc/pytorch-book" target="_blank" rel="noopener">https://github.com/chenyuntc/pytorch-book</a></p>
+</blockquote>
+<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h3><ul>
+<li><code>t.Tensor</code><ul>
+<li>传入维度 - 分配空间不初始化</li>
+<li>传入具体数据 - 舒适化</li>
+</ul>
+</li>
+<li><code>t.rand</code><ul>
+<li>传入维度 - 指定维度的随机初始化数据，复合[0,1]分布</li>
+</ul>
+</li>
+<li>Add<ul>
+<li><code>x+y</code></li>
+<li><code>t.add(x,y)</code></li>
+<li><code>t.add(x,y,out=result)</code> - 指定输出目标</li>
+<li><code>x.add(y)</code>- <strong>x不变</strong></li>
+<li><code>x.add_(y)</code> - <strong>x改变</strong> = <code>x+=y</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>函数名后面带下划线<code>_</code>会修改Tensor本身</strong></p>
+</blockquote>
+<ul>
+<li>与Numpy转换：<ul>
+<li>Tensor -&gt; numpy: <code>a.numpy()</code></li>
+<li>Numpy -&gt; tensor: <code>t.from_numpy(a)</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>一个对象的tensor和numpy共享内存，一个改变，另一个随之而变</p>
+</blockquote>
+<ul>
+<li><p>获得元素值：</p>
+<ul>
+<li>下标访问tensor - <code>tensor[index...]</code>获得<strong>0-dim tensor</strong></li>
+<li>获得值 - <code>scalar.item()</code></li>
+</ul>
+</li>
+<li><p>scalar和tensor的区别：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">tensor = t.tensor([<span class="number">2</span>])</span><br><span class="line">scalar = tensor[<span class="number">0</span>]</span><br><span class="line">scalar0 = t.tensor(<span class="number">2</span>)</span><br><span class="line"><span class="comment"># tensor 1-dim</span></span><br><span class="line">tensor.size() <span class="comment"># torch.Size([1])</span></span><br><span class="line"><span class="comment"># scalar 0-dim</span></span><br><span class="line">scalar.size() <span class="comment"># torch.Size([])</span></span><br><span class="line"><span class="comment"># scalar0 0-dim</span></span><br><span class="line">scalar0.size() <span class="comment"># torch.Size([])</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据拷贝和共享内存</p>
+<ul>
+<li><code>t.tensor()</code> - 会进行数据拷贝</li>
+<li><code>t.from_numpy()</code> / <code>tensor.detach()</code>新建的tensor与原tensor共享内存</li>
+</ul>
+</li>
+<li><p>GPU加速</p>
+<ul>
+<li><code>t.cuda</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Autograd-自动微分"><a href="#Autograd-自动微分" class="headerlink" title="Autograd: 自动微分"></a>Autograd: 自动微分</h3><ul>
+<li><p>使用autograd功能</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x = t.ones(<span class="number">2</span>, <span class="number">2</span>, requires_grad=<span class="keyword">True</span>)</span><br><span class="line">result = doSomething(x)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>反向传播</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">result.backward()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>反向传播会累加之前的梯度，反向传播前把梯度清零</p>
+</blockquote>
+</li>
+<li><p>梯度清零</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">x.grad.data.zero_()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>定义网络</p>
+<ul>
+<li><p>继承<code>nn.Module</code>，实现<code>forward</code>，把网络中具有<strong>可学习参数</strong>的层放在<code>__init__</code>中。不具有可学习参数使用<code>forward</code>的<code>nn.functional</code>代替</p>
+</li>
+<li><p><code>__init__</code>函数先执行父类构造函数<code>super(CLASSNAME, self).__init__()</code></p>
+</li>
+</ul>
+<h5 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h5><ul>
+<li><code>nn.Conv2d(inputC, outputC, k)</code><ul>
+<li>输入图片通道数</li>
+<li>输出通道数</li>
+<li>卷积核</li>
+</ul>
+</li>
+</ul>
+<h5 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h5><ul>
+<li><p><code>nn.Linear(input, output)</code></p>
+<ul>
+<li>输入样本数</li>
+<li>输出样本数</li>
+</ul>
+<blockquote>
+<p>y = Wx + b</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="forward"><a href="#forward" class="headerlink" title="forward"></a>forward</h5><ul>
+<li><code>F.relu(input)</code> - 激活<ul>
+<li>上一层的结果</li>
+</ul>
+</li>
+<li><p><code>F.max_pool2d(input, kernel size)</code></p>
+<ul>
+<li>kernel size</li>
+</ul>
+</li>
+<li><p><code>x.view(ONEDIMENSION,-1</code></p>
+<ul>
+<li>-1 自适应维度</li>
+</ul>
+</li>
+</ul>
+<h4 id="训练网络"><a href="#训练网络" class="headerlink" title="训练网络"></a>训练网络</h4><ul>
+<li>定义了forward函数，backward就会自动被实现</li>
+<li><code>net.parameters()</code>返回网络的<strong>可学习参数</strong></li>
+<li><code>·net.named_parameters()</code>返回可学习的参数及名称</li>
+</ul>
+<blockquote>
+<p>torch.nn不支持一次只输入一个样本：</p>
+<ol>
+<li>用 <code>input.unsqueeze(0)</code>将batch_size设为１</li>
+<li>Conv2d输入时将nSample设为1</li>
+</ol>
+</blockquote>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><ul>
+<li><code>nn.MSELoss(output, target)</code>计算均方误差</li>
+<li><code>nn.CrossEntropyLoss(output target)</code>计算交叉熵损失</li>
+</ul>
+<h4 id="优化器"><a href="#优化器" class="headerlink" title="优化器"></a>优化器</h4><ul>
+<li><p>反向传播计算参数的梯度，使用优化方法<strong>更新网络的权重和参数</strong></p>
+</li>
+<li><p>e.g. SGD：</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">weight = weight - learning_rate * gradient</span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">learning_rate = <span class="number">0.01</span></span><br><span class="line"><span class="keyword">for</span> f <span class="keyword">in</span> net.parameters():</span><br><span class="line">    f.data.sub_(f.grad.data * learning_rate)<span class="comment"># inplace 减法</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="构造优化器"><a href="#构造优化器" class="headerlink" title="构造优化器"></a>构造优化器</h5><blockquote>
+<p>optim &lt;= torch.optim</p>
+</blockquote>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">optimizer = optim.SGD(net.parameters(), lr = 0.01)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>要调整的参数为网络中的可学习参数</li>
+<li>lr为学习率</li>
+</ul>
+</li>
+<li><p><strong>训练步骤</strong>：</p>
+<ol>
+<li><p>清零优化器梯度</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">optimizer.zero_grad()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>过网络</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">output = net(input)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>计算损失</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loss = criterion(output, target)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>反向传播</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loss.backward()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新参数</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">optimizer.step()</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="Tensor-和-Autograd"><a href="#Tensor-和-Autograd" class="headerlink" title="Tensor 和 Autograd"></a>Tensor 和 Autograd</h2><h3 id="Tensor-1"><a href="#Tensor-1" class="headerlink" title="Tensor"></a>Tensor</h3><h4 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h4><h5 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h5><ul>
+<li><p>| 函数                              | 功能                      |<br>| ————————————————- | ————————————- |<br>| arange(s,e,step)                  | 从s到e，步长为step        |<br>| linspace(s,e,steps)               | 从s到e，均匀切分成steps份 |<br>| rand/randn(*sizes)                | 均匀/标准分布             |<br>| normal(mean,std)/uniform(from,to) | 正态分布/均匀分布         |<br>| randperm(m)                       | 随机排列                  |</p>
+</li>
+<li><p>创建的时候可以指定数据类型(e.g. <code>dtype = t.int</code>)和存放device(e.g. <code>device = t.device(&#39;cpu&#39;)</code></p>
+</li>
+<li><p>tensor转化为list - <code>tensor.tolist()</code></p>
+<blockquote>
+<p>tensor的数据类型为<code>tensor([[1,2],[3,4]])</code>; list数据类型为<code>[[1,2],[3,4]]</code></p>
+</blockquote>
+</li>
+<li><p>获得tensor的维度 - <code>tensor.size()</code>或<code>tensor.shape</code>返回torch.Size对象 - <code>torch.Size([第一维, 第二维, ..])</code></p>
+</li>
+<li><p>获得tensor元素的总数 - <code>tensor.numel()</code></p>
+</li>
+<li><p>传参为数据和维度的区别：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">t.Tensor(<span class="number">2</span>,<span class="number">3</span>) <span class="comment"># tensor([[x, x, x],[x, x, x]])</span></span><br><span class="line">t.Tensor((<span class="number">2</span>,<span class="number">3</span>)) <span class="comment"># tensor([2,3])</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>使用维度作为参数构造tensor的时候不会马上分配空间，使用到tensor才分配；其他的构造函数都是马上分配</p>
+</blockquote>
+<ul>
+<li>使用<code>eye</code>构造对角矩阵，不要求行列数一致</li>
+</ul>
+<h5 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h5><ul>
+<li>调整tensor形状，调整前后<strong>元素总数一致</strong>。view返回的新tensor与原tensor共享内存。</li>
+<li><code>view</code>的参数为修改后的每个维度，如果有一个为<code>-1</code>则该维度根据元素总数不变的原则自动计算</li>
+<li><code>unsqueeze(index)</code> - 第index维的维度+1<ul>
+<li>即之前维度为[x, y, z, …]<ul>
+<li>index = 0 -&gt; 维度变为 [1, x, y, z, …]</li>
+<li>index = 1 -&gt; 维度变为 [x, 1, y, z, …]</li>
+<li>index = 2 -&gt; 维度变为 [x, y, 1, z, …]</li>
+</ul>
+</li>
+<li>参数为负数的时候表示倒数</li>
+</ul>
+</li>
+<li><p><code>squeeze(index)</code> - 压缩第index维的1，如果不输入index，则把所有维度为1的压缩</p>
+</li>
+<li><p><code>resize</code>可以修改tensor的大小，如果新大小超过了原大小，自动分配新空间，大小小于原大小，之前数据仍然保留</p>
+</li>
+</ul>
+<h5 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h5><ul>
+<li><p>索引出来的结果与原tensor共享内存</p>
+</li>
+<li><p><code>None</code> - 新增轴</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a[:,None,:,None,None].shape</span><br><span class="line">torch.Size([3, 1, 4, 1, 1])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>筛选tensor元素 - <code>tensor[CONDITION]</code></p>
+<blockquote>
+<p>返回结果与原tensor不共享内存空间</p>
+</blockquote>
+</li>
+<li><p>常用选择函数</p>
+<p>|                            函数 |                                                  功能 |<br>| ———————————————: | ——————————————————————————: |<br>| index_select(input, dim, index) |           在指定维度dim上选取，比如选取某些行、某些列 |<br>|      masked_select(input, mask) |              例子如上，a[a&gt;0]，使用ByteTensor进行选取 |<br>|                 non_zero(input) |                                         非0元素的下标 |<br>|       gather(input, dim, index) | 根据index，在dim维度上选取数据，输出的size与index一样 |</p>
+</li>
+</ul>
+<blockquote>
+<p>对tensor的任何索引操作仍是一个<strong>tensor</strong>，想要获取标准的python对象数值，需要调用<code>tensor.item()</code>, 这个方法<strong>只对包含一个元素的tensor适用</strong></p>
+</blockquote>
+<ul>
+<li>索引访问：<ul>
+<li>维度为3：[[a,b], [c,d], [e,f]] =&gt; [[a,c,e], [b,d,f]]</li>
+<li>[[a,b,c], [d], [e]] =&gt; [[a,d,e], [b,d,e], [c,d,e]]</li>
+</ul>
+</li>
+</ul>
+<h5 id="逐元素操作"><a href="#逐元素操作" class="headerlink" title="逐元素操作"></a>逐元素操作</h5><ul>
+<li><p><code>clamp</code> - 控制元素范围，用于比较大小</p>
+<p><img src="C:\Users\Sherry\AppData\Roaming\Typora\typora-user-images\1561187765542.png" alt="1561187765542"></p>
+</li>
+</ul>
+<h5 id="归并操作"><a href="#归并操作" class="headerlink" title="归并操作"></a>归并操作</h5><ul>
+<li>使得输出形状小于输入形状，e.g. 均值、和…</li>
+<li>指定对第几维度的元素操作，<code>keepdim = True</code>保存被操作的维度为1，否则不保留这一维度</li>
+</ul>
+<h5 id="线性代数"><a href="#线性代数" class="headerlink" title="线性代数"></a>线性代数</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>trace</td>
+<td>对角线元素之和(矩阵的迹)</td>
+</tr>
+<tr>
+<td>diag</td>
+<td>对角线元素</td>
+</tr>
+<tr>
+<td>triu/tril</td>
+<td>矩阵的上三角/下三角，可指定偏移量</td>
+</tr>
+<tr>
+<td>mm/bmm</td>
+<td>矩阵乘法，batch的矩阵乘法</td>
+</tr>
+<tr>
+<td>addmm/addbmm/addmv/addr/badbmm..</td>
+<td>矩阵运算</td>
+</tr>
+<tr>
+<td>t</td>
+<td>转置</td>
+</tr>
+<tr>
+<td>dot/cross</td>
+<td>内积/外积</td>
+</tr>
+<tr>
+<td>inverse</td>
+<td>求逆矩阵</td>
+</tr>
+<tr>
+<td>svd</td>
+<td>奇异值分解</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Tensor和Numpy"><a href="#Tensor和Numpy" class="headerlink" title="Tensor和Numpy"></a>Tensor和Numpy</h4><blockquote>
+<p>当numpy的数据类型和Tensor的类型不一样时，数据会被复制，不共享内存</p>
+</blockquote>
+<ul>
+<li>调用<code>t.tensor</code>进行构建的时候都会进行数据拷贝</li>
+</ul>
+<h5 id="广播法则"><a href="#广播法则" class="headerlink" title="广播法则"></a>广播法则</h5><h6 id="N"><a href="#N" class="headerlink" title="N"></a>N</h6><ul>
+<li>所有输入数组像其中shape最长的看齐，shape不足通过前面加1</li>
+<li>两个数组要么在某一个维度长度一致，要么其中一个为1，否则不能计算</li>
+<li>输入某个长度为1，计算时沿此维度扩充成和另一个输入一样的维度</li>
+</ul>
+<h6 id="Pytorch中的使用"><a href="#Pytorch中的使用" class="headerlink" title="Pytorch中的使用"></a>Pytorch中的使用</h6><ul>
+<li><p><code>unsqueeze</code>或者<code>view</code>或者<code>tensor[NONE]</code>，实现补齐1</p>
+</li>
+<li><p><code>expand</code>或者<code>expand_as</code>重复数组，不会占用空间</p>
+<blockquote>
+<p>repeat和expand相似，repeat占用额外空间，expand不占用</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="内部结构"><a href="#内部结构" class="headerlink" title="内部结构"></a>内部结构</h4><ul>
+<li>Tensor分为头信息区tensor和存储区storage<ul>
+<li>tensor保存size, stride, type</li>
+<li>共享内存的情况下，即共享storage</li>
+</ul>
+</li>
+<li>下标访问只是对于原storage地址增加了偏移量进行映射的</li>
+</ul>
+<blockquote>
+<p>大部分操作不修改tensor，只修改tensor的头</p>
+<p>contiguous方法将离散的tensor变成连续数据</p>
+<p>高级索引一般不共享storage，普通索引共享storage</p>
+</blockquote>
+<h4 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h4><h5 id="GP"><a href="#GP" class="headerlink" title="GP"></a>GP</h5><ul>
+<li>推荐使用<code>tensor.to(device)</code>使得程序同时兼容CPU和GPU，避免频繁在内存和显存中传输数据</li>
+</ul>
+<h5 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h5><ul>
+<li><code>t.save</code>, </li>
+</ul>
+<h5 id="向量化"><a href="#向量化" class="headerlink" title="向量化"></a>向量化</h5><ul>
+<li>python的for循环十分低效</li>
+<li><code>t.set_num_threads</code>可以设置PyTorch进行CPU多线程并行计算时候所占用的线程数，这个可以用来限制PyTorch所占用的CPU数目</li>
+</ul>
+<h3 id="AutoGrad"><a href="#AutoGrad" class="headerlink" title="AutoGrad"></a>AutoGrad</h3><ul>
+<li>自动求导引擎</li>
+</ul>
+<h4 id="计算图"><a href="#计算图" class="headerlink" title="计算图"></a>计算图</h4><ul>
+<li><p>有向无环图</p>
+</li>
+<li><p>有向无环图的叶子节点由用户自己创建，不依赖其他变量，根节点为计算图的最终目标</p>
+</li>
+<li><p>链式的中间导数在前向传播过程中保存为buffer，在计算完梯度后会自动清空</p>
+<blockquote>
+<p>需要多次反向传播则指定<code>retain_graph</code>保存buffer</p>
+</blockquote>
+</li>
+<li><p>变量的<code>requires_grad</code>属性默认为False，如果某一个节点requires_grad被设置为True，那么所有依赖它的节点<code>requires_grad</code>都是True。</p>
+</li>
+<li><p>修改tensor数值，不希望被autograd记录，则修改tensor.data或者tensor.detach()</p>
+</li>
+<li><p>反向传播非叶子结点的导数会在计算完后被清空，查看梯度可以使用autograd.grad函数或者hood</p>
+<ul>
+<li>hook需要register和remove</li>
+</ul>
+</li>
+</ul>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><code>autograd</code>根究用户对variable的操作构建计算图。对变量的操作抽象为Function</li>
+<li>某个变量不是Function的输出，且由用户创建则为叶子节点（用户输入），其<code>grad_fn</code>为None. 叶子节点中需要求导的Variable，具有<code>AccumulateGrad</code>标识，因为梯度累加</li>
+<li>Variable默认不求导，如果一个节点的<code>require_grad</code>设置为True，所有依赖它的节点<code>require_grad</code>为True</li>
+<li>Variable的<code>volatile</code>默认为True，volatile为True的节点不会求导，volatile优先级比<code>require_grad</code>高</li>
+<li><p>多次反向传播梯度累加，若需要保存反向传播中间变量的值，需要设置<code>retain_graph = True</code></p>
+</li>
+<li><p>非叶子节点梯度计算完之后被清空，使用<code>autogtad.grad</code>或<code>hook</code>获取</p>
+</li>
+</ul>
+<h4 id="扩展autograd"><a href="#扩展autograd" class="headerlink" title="扩展autograd"></a>扩展autograd</h4><ul>
+<li><p>自己定义函数继承<code>Function</code>，并且实现<code>forward</code>, <code>backward</code>静态方法（def之前写<code>@staticmethod</code>）</p>
+</li>
+<li><p>主函数中调用时：</p>
+<ul>
+<li><p>前向传播：</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">z = MultiplyAdd.apply(w, x, b)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>反向传播:</p>
+<ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">z.backward()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="神经网络工具箱nn"><a href="#神经网络工具箱nn" class="headerlink" title="神经网络工具箱nn"></a>神经网络工具箱nn</h2><ul>
+<li>Module - 神经网络中的某层/包含很多层的神经网络</li>
+</ul>
+<h5 id="全连接层-1"><a href="#全连接层-1" class="headerlink" title="全连接层"></a>全连接层</h5><ul>
+<li><p>继承<code>nn.Module</code></p>
+</li>
+<li><p>构造函数<code>__init__</code>自己定义可学习参数</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># infeatures和outfeatures为输入输出特征的维度</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, infeatures, outfeatures)</span>:</span></span><br><span class="line">	super...</span><br><span class="line">	<span class="comment"># 自己定义可学习参数如下：</span></span><br><span class="line">	self.para1 = nn.Parameter..</span><br><span class="line">	self.para2 = ...</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>nn.Parameter</code> - tensor，默认<code>requires_grad = True</code></p>
+</blockquote>
+</li>
+<li><p>不需要写反向传播函数</p>
+</li>
+<li><p>调用：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">layer = Linear(INFEATURES, OUTFEATURES)</span><br><span class="line">y = layer(x)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>返回可学习参数 - <code>named_parameters()</code></p>
+</li>
+</ul>
+<h5 id="子模块sub-module"><a href="#子模块sub-module" class="headerlink" title="子模块sub module"></a>子模块sub module</h5><ul>
+<li><code>named_parameters()</code>返回可学习参数为：模块名.参数名</li>
+</ul>
+<h3 id="常用神经网络层"><a href="#常用神经网络层" class="headerlink" title="常用神经网络层"></a>常用神经网络层</h3><h4 id="图像相关层"><a href="#图像相关层" class="headerlink" title="图像相关层"></a>图像相关层</h4><h5 id="卷积层-1"><a href="#卷积层-1" class="headerlink" title="卷积层"></a>卷积层</h5><ul>
+<li><code>nn.Conv2d</code></li>
+</ul>
+<h5 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h5><ul>
+<li>没有可学习参数，权重固定</li>
+</ul>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><ul>
+<li><code>Linear</code>全连接</li>
+<li><p><code>BatchNorm</code> - 批量规范化，风格迁移<code>instanceNorm</code></p>
+<ul>
+<li>初始化通道数</li>
+<li>权重初始化为单位阵</li>
+<li>偏差初始化为0</li>
+</ul>
+</li>
+<li><p><code>Dropout</code> - 防止过拟合</p>
+<ul>
+<li>输出每个元素的舍弃概率</li>
+</ul>
+</li>
+</ul>
+<h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><h5 id="Relu"><a href="#Relu" class="headerlink" title="Relu"></a>Relu</h5><ul>
+<li>$ReLU(x) = max(0, x)$<ul>
+<li>其inplace参数为True会将输出覆盖到输入，节省内存，一般不使用Inplace</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>前馈传播网络 feedfoward neural network</strong>： 将每一层的输出直接作为下一层的输入。简化forward -&gt; ModuleList &amp; Sequential</p>
+</blockquote>
+<h6 id="Sequential"><a href="#Sequential" class="headerlink" title="Sequential"></a>Sequential</h6><ul>
+<li>包含几个sub module - 前向传播一层一层传递</li>
+</ul>
+<ol>
+<li>声明，添加module</li>
+</ol>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">net1 = nn.Sequential()</span><br><span class="line">net1.add_module(<span class="string">'conv'</span>, nn.Conv2d(<span class="number">3</span>,<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">net1.add_module(<span class="string">'batchnorm'</span>, nn.BatchNorm2d(<span class="number">3</span>))</span><br><span class="line">net1.add_module(<span class="string">'activation_layer'</span>, nn.ReLU())</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>将模块作为参数传递</li>
+</ol>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">net2 = nn.Sequential(</span><br><span class="line">        nn.Conv2d(<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>),</span><br><span class="line">        nn.BatchNorm2d(<span class="number">3</span>),</span><br><span class="line">        nn.ReLU()</span><br><span class="line">        )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>将模块作为有序字典传入</li>
+</ol>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line">net3= nn.Sequential(OrderedDict([</span><br><span class="line">          (<span class="string">'conv1'</span>, nn.Conv2d(<span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>)),</span><br><span class="line">          (<span class="string">'bn1'</span>, nn.BatchNorm2d(<span class="number">3</span>)),</span><br><span class="line">          (<span class="string">'relu1'</span>, nn.ReLU())</span><br><span class="line">        ]))</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>其中方法1和方法3可以按照模块名称访问子模块，而方法2按照下标获取子模块（从0）</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>模块数组<code>nn.ModuleList</code>，其中的元素可以被主（父）module识别，即其参数可以自动加入到主module的参数中</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">modellist = nn.ModuleList([nn.Linear(<span class="number">3</span>,<span class="number">4</span>), nn.ReLU(), nn.Linear(<span class="number">4</span>,<span class="number">2</span>)])</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="损失函数-1"><a href="#损失函数-1" class="headerlink" title="损失函数"></a>损失函数</h4><ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">nn.LOSS_FUNCTION_NAME()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="优化器-1"><a href="#优化器-1" class="headerlink" title="优化器"></a>优化器</h3><ul>
+<li><p>优化方法来自包<code>torch.optim</code>，所有的优化方法继承基类<code>optim.Optimizer</code></p>
+</li>
+<li><p>优化器可以对于不同的子网络（如在主网络/主Module中定义了多个子模块或者Sequential）</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">optimizer =optim.SGD([</span><br><span class="line">                &#123;<span class="string">'params'</span>: net.features.parameters()&#125;, <span class="comment"># 学习率为1e-5</span></span><br><span class="line">                &#123;<span class="string">'params'</span>: net.classifier.parameters(), <span class="string">'lr'</span>: <span class="number">1e-2</span>&#125;</span><br><span class="line">            ], lr=<span class="number">1e-5</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果某个参数显示执行学习率，则使用最外层的默认学习率</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>指定自网络中的不同层有不同的学习率的例子：</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 只为两个全连接层设置较大的学习率，其余层的学习率较小</span></span><br><span class="line">special_layers = nn.ModuleList([net.classifier[<span class="number">0</span>], net.classifier[<span class="number">3</span>]])</span><br><span class="line">special_layers_params = list(map(id, special_layers.parameters()))</span><br><span class="line">base_params = filter(<span class="keyword">lambda</span> p: id(p) <span class="keyword">not</span> <span class="keyword">in</span> special_layers_params,</span><br><span class="line">                     net.parameters())</span><br><span class="line"></span><br><span class="line">optimizer = t.optim.SGD([</span><br><span class="line">            &#123;<span class="string">'params'</span>: base_params&#125;,</span><br><span class="line">            &#123;<span class="string">'params'</span>: special_layers.parameters(), <span class="string">'lr'</span>: <span class="number">0.01</span>&#125;</span><br><span class="line">        ], lr=<span class="number">0.001</span> )</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="调整学习率"><a href="#调整学习率" class="headerlink" title="调整学习率"></a>调整学习率</h5><h6 id="新建优化器"><a href="#新建优化器" class="headerlink" title="新建优化器"></a>新建优化器</h6><ul>
+<li>优点：简单</li>
+<li>缺点：如果使用动量的优化器，会丢失动量等状态信息</li>
+</ul>
+<h6 id="修改学习率"><a href="#修改学习率" class="headerlink" title="修改学习率"></a>修改学习率</h6><ul>
+<li><p>手动decay保存动量</p>
+</li>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> param_group <span class="keyword">in</span> optimizer.param_groups:</span><br><span class="line">    param_group[<span class="string">'lr'</span>] *= <span class="number">0.1</span> <span class="comment"># 学习率为之前的0.1倍</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="nn-functional"><a href="#nn-functional" class="headerlink" title="nn.functional"></a>nn.functional</h3><ul>
+<li>大部分layer在<code>functional</code>有与之对应的函数</li>
+</ul>
+<h6 id="nn-functional和nn-Module的区别"><a href="#nn-functional和nn-Module的区别" class="headerlink" title="nn.functional和nn.Module的区别"></a>nn.functional和nn.Module的区别</h6><ul>
+<li>module: 自动提取可学习参数</li>
+<li>function: 类似纯函数，不需要可学习参数时可使用. e.g. 激活函数，池化层</li>
+</ul>
+<hr>
+<ul>
+<li>不具备可学习参数的层不放在构造函数<code>__init__</code>中。</li>
+</ul>
+<h3 id="初始化策略"><a href="#初始化策略" class="headerlink" title="初始化策略"></a>初始化策略</h3><ul>
+<li>随机初始化可能导致后期训练中梯度爆炸或梯度消失</li>
+<li><code>nn.init</code>模块</li>
+</ul>
+<h3 id="nn-Module深入分析"><a href="#nn-Module深入分析" class="headerlink" title="nn.Module深入分析"></a>nn.Module深入分析</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_parameters</code></td>
+<td>字典</td>
+<td>用户设置</td>
+<td>子模块的参数不会存放于此</td>
+</tr>
+<tr>
+<td><code>_modules</code></td>
+<td>字典</td>
+<td>子模块</td>
+<td></td>
+</tr>
+<tr>
+<td><code>_buffers</code></td>
+<td>字段</td>
+<td>缓存</td>
+<td></td>
+</tr>
+<tr>
+<td><code>_backward_hooks</code>与<code>_forward_hooks</code></td>
+<td></td>
+<td>钩子，提取中间变量</td>
+<td></td>
+</tr>
+<tr>
+<td><code>training</code></td>
+<td></td>
+<td>区分训练阶段于测试阶段，据此确定前向传播策略</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="parameters-modules-buffers"><a href="#parameters-modules-buffers" class="headerlink" title="_parameters, _modules, _buffers"></a><code>_parameters</code>, <code>_modules</code>, <code>_buffers</code></h5><ul>
+<li><p>使用<code>named_paramaters()</code>的时候将parameters和modules的parameter全部返回</p>
+</li>
+<li><p>module层层嵌套，常用方法：</p>
+<ul>
+<li><code>named_children</code>- 查看<strong>直接</strong>子module</li>
+<li><code>named_modules</code> - 查看所有子module</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="training"><a href="#training" class="headerlink" title="training"></a><code>training</code></h5><ul>
+<li>一些layer在训练和测试阶段差距较大，为了使得每个<code>training</code>都要被设置好 =&gt; 定义了模型的的train和eval模式<ul>
+<li><code>model.train()</code> - 将当前Module及其子module所有<code>training</code>属性设置为True</li>
+<li><code>model.eval()</code> - 将training属性都设为False</li>
+</ul>
+</li>
+</ul>
+<h5 id="backward-hooks与-forward-hooks"><a href="#backward-hooks与-forward-hooks" class="headerlink" title="_backward_hooks与_forward_hooks"></a><code>_backward_hooks</code>与<code>_forward_hooks</code></h5><ul>
+<li>在module前向传播或反向传播时注册，传播执行结束执行钩子，使用完及时删除</li>
+<li>钩子用于获取某些中间结果</li>
+</ul>
+<h6 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h6><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model = VGG()</span><br><span class="line">features = t.Tensor()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hook</span><span class="params">(module, input, output)</span>:</span></span><br><span class="line">    <span class="string">'''把这层的输出拷贝到features中'''</span></span><br><span class="line">    features.copy_(output.data)</span><br><span class="line"></span><br><span class="line">handle = model.layer8.register_forward_hook(hook)</span><br><span class="line">_ = model(input)</span><br><span class="line"><span class="comment"># 用完hook后删除</span></span><br><span class="line">handle.remove()</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Python的原始实现：</p>
+<ul>
+<li>result = obj.name会调用buildin函数<code>getattr(obj, &#39;name&#39;)</code>，如果该属性找不到，会调用<code>obj.__getattr__(&#39;name&#39;)</code></li>
+<li>obj.name = value会调用buildin函数<code>setattr(obj, &#39;name&#39;, value)</code>，如果obj对象实现了<code>__setattr__</code>方法，<code>setattr</code>会直接调用<code>obj.__setattr__(&#39;name&#39;, value&#39;)</code></li>
+</ul>
+<p>在<code>nn.Module</code>中的实现：</p>
+<ul>
+<li>在<code>nn.Module</code>中实现了<code>__setattr__</code>函数，执行<code>module.name = value</code>时，在<code>__setattr__</code>中判断value是否为<code>Parameter</code>或<code>nn.Module</code>对象。如果是则加入<code>_parameters</code>和<code>_modules</code>字典。如果是其他的对象，则保存在<code>__dict__</code></li>
+</ul>
+<blockquote>
+<p><code>_modules</code>和<code>_parameters</code>的item未保存在<code>__dict__</code>中，默认<code>getattr</code>无法获取，<code>nn.Module</code>实现<code>__getattr__</code>：如果<code>getattr</code>无法处理，则调用自定义的<code>__getattr__</code>从<code>_modules</code>, <code>_parameters</code>和<code>_buffers</code>三个字典中获取</p>
+</blockquote>
+<h5 id="保存模型"><a href="#保存模型" class="headerlink" title="保存模型"></a>保存模型</h5><ul>
+<li><p>使用Module的<code>state_dict()</code>函数，返回当前Module所有状态数据。下次使用，<code>module.load_state_dict()</code></p>
+</li>
+<li><p>优化器的实现：</p>
+<ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 保存模型</span></span><br><span class="line">t.save(net.state_dict(), <span class="string">'net.pth'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加载已保存的模型</span></span><br><span class="line">net2 = Net()</span><br><span class="line">net2.load_state_dict(t.load(<span class="string">'net.pth'</span>))</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>将Module放在GPU上运行</p>
+<ul>
+<li><code>model = model.cuda()</code> 将所有参数转存到GPU</li>
+<li><code>input.cuda()</code> 将输入放入GPU</li>
+</ul>
+</li>
+</ul>
+<h5 id="在多个GPU计算"><a href="#在多个GPU计算" class="headerlink" title="在多个GPU计算"></a>在多个GPU计算</h5><ul>
+<li><code>nn.parallel.data_parallel(module, inputs, device_ids=None, output_device=None, dim=0, module_kwargs=None)</code><br>- </li>
+<li><code>class torch.nn.DataParallel(module, device_ids=None, output_device=None, dim=0)</code><ul>
+<li>将一个输入batch分成多分，送到对应GPU计算，各个GPU得到的梯度累加</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>通过<code>device_ids</code>参数指定在哪些GPU上优化，<code>output_devices</code>指定输出到哪个GPU</p>
+</blockquote>
 
           
         
@@ -2057,391 +3373,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/系统分析与设计-Homework7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/04/系统分析与设计-Homework7/" itemprop="url">系统分析与设计 - Homework7</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-04T16:18:23+08:00">
-                2019-05-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="使用-UMLet-建模："><a href="#使用-UMLet-建模：" class="headerlink" title="使用 UMLet 建模："></a>使用 UMLet 建模：</h2><h3 id="根据订旅馆建模文档，Asg-RH-pdf："><a href="#根据订旅馆建模文档，Asg-RH-pdf：" class="headerlink" title="根据订旅馆建模文档，Asg-RH.pdf："></a>根据订旅馆建模文档，Asg-RH.pdf：</h3><h4 id="绘制用例图模型（到子用例）"><a href="#绘制用例图模型（到子用例）" class="headerlink" title="绘制用例图模型（到子用例）"></a>绘制用例图模型（到子用例）</h4><p><img src="https://s2.ax1x.com/2019/05/04/EdV0Tf.jpg" alt="EdV0Tf.jpg"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/04/系统分析与设计-Homework7/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/系统分析与设计-Homework6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/10/系统分析与设计-Homework6/" itemprop="url">系统分析与设计 - Homework6</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T21:07:14+08:00">
-                2019-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><h3 id="用例的概念"><a href="#用例的概念" class="headerlink" title="用例的概念"></a>用例的概念</h3><ul>
-<li>用例是描述参与者使用系统去达到某种目的的相关的成功失败情景</li>
-<li>是文本而非图<ul>
-<li>用例建模主要是写文本的行为，而非画图</li>
-</ul>
-</li>
-<li>用例与面向对象毫不相关</li>
-<li>用例是经典OOA/D的关键需求输入</li>
-<li>功能性或者行为性的需求表现系统要做的事情。</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/10/系统分析与设计-Homework6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/系统分析与设计-Homework3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/10/系统分析与设计-Homework3/" itemprop="url">系统分析与设计 - Homework3</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-10T11:39:29+08:00">
-                2019-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="简述瀑布模型、增量模型、螺旋模型（含原型方法）的优缺点"><a href="#简述瀑布模型、增量模型、螺旋模型（含原型方法）的优缺点" class="headerlink" title="简述瀑布模型、增量模型、螺旋模型（含原型方法）的优缺点"></a>简述瀑布模型、增量模型、螺旋模型（含原型方法）的优缺点</h3><blockquote>
-<p>从项目特点、风险特征、人力资源利用角度思考</p>
-</blockquote>
-<h4 id="瀑布模型"><a href="#瀑布模型" class="headerlink" title="瀑布模型"></a>瀑布模型</h4><p>项目特点上，瀑布模型视图在变成之前定义所有大部分需求，在编程之前常见出完整的设计，并会在开始前定义计划或时间表。</p>
-<p><strong>优点：</strong>定义了软件开发的基本流程与活动。在需求明确的情况下，短期开发内可以尽可能保障每个阶段无差错。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/10/系统分析与设计-Homework3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2492,7 +3423,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-count">29</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2505,7 +3436,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
