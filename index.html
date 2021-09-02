@@ -71,10 +71,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-系统分析与设计-画图题注意事项" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/09/01/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2021-09-02T03:35:07.653Z" itemprop="datePublished">2021-09-01</time>
+    <a href="/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="article-date">
+  <time class="dt-published" datetime="2019-07-02T22:49:14.000Z" itemprop="datePublished">2019-07-02</time>
 </a>
     
   </div>
@@ -85,7 +85,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/09/01/hello-world/">Hello World</a>
+      <a class="p-name article-title" href="/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">系统分析与设计 - 画图题注意事项</a>
     </h1>
   
 
@@ -93,24 +93,2209 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+        <h2 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h2><ol>
+<li> 用例名称使用<strong>动词</strong>开头</li>
+<li>有<strong>系统边界</strong>，<strong>系统名称</strong></li>
+<li>一定要有<code>include</code>或者<code>extend</code>，搞不清全都<code>include</code>，<strong>虚线箭头</strong></li>
+<li>所有用例和Actor关联，<strong>关联线实线没有箭头</strong></li>
+<li>支持性参与者最右边，GPS, 传感器, 外部设计, 短信, 邮件, 银行卡</li>
+<li>画有用的用例，Login不要</li>
+<li><strong>判断是否要写</strong>：这个功能是否有一个单独的界面</li>
+<li>不能太多层</li>
+<li>外部设备&lt;&lt;&gt;&gt;<ol>
+<li> <code>&lt;&lt;system&gt;&gt;</code> - 系统</li>
+<li> <code>&lt;&lt;service&gt;&gt;</code> - 服务</li>
+<li> <code>&lt;&lt;device&gt;&gt;</code> - 设备</li>
+</ol>
+</li>
+</ol>
+<h2 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h2><ol>
+<li><strong>起点</strong>只能一个，<strong>终点</strong>可以多个</li>
+<li>有箭头的线，有循环一定有<strong>汇聚</strong>节点</li>
+<li>判定/有条件一定写<strong>guard</strong></li>
+<li>注意分支循环的<strong>菱形</strong>【这里错过】</li>
+<li>活动图的基本动作对应<strong>用例的子用例</strong></li>
+</ol>
+<h2 id="领域建模"><a href="#领域建模" class="headerlink" title="领域建模"></a>领域建模</h2><h3 id="概念和属性"><a href="#概念和属性" class="headerlink" title="概念和属性"></a>概念和属性</h3><ol>
+<li><p>通过<strong>名词</strong>找概念类和属性</p>
+<blockquote>
+<p>不要和UI, database的名词，业务流程没有关系的名词不要，任何计算出的结果，不参与业务运算，模糊术语</p>
+</blockquote>
+<p>每个类写一两个代表属性就好</p>
+</li>
+<li><p>区分概念类和属性：<strong>属性</strong>为现实世界的数字文本，否则不是属性而是概念类；当<strong>需要记录信息</strong>时引入属性</p>
+</li>
+<li><p>一定有计算属性【没有则扣分】</p>
+</li>
+</ol>
+<h3 id="描述类"><a href="#描述类" class="headerlink" title="描述类"></a>描述类</h3><ol>
+<li><strong>描述类</strong>，命名xxxDescription【没有则扣分】：<ol>
+<li>需要商品/服务的描述，独立于实例</li>
+<li>删除所有实例，导致信息丢失</li>
+<li>减少冗余重复</li>
+</ol>
+</li>
+</ol>
+<h3 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h3><ol>
+<li><strong>角色</strong></li>
+<li><strong>多重性</strong>，可以出现多重关联，黑色三角【没有则扣分】</li>
+<li>没有箭头！！</li>
+</ol>
+<h3 id="书写"><a href="#书写" class="headerlink" title="书写"></a>书写</h3><ol>
+<li><p>类元首字母大写</p>
+</li>
+<li><p>关联名称首字母大写（e.g. Uses, Has）</p>
+<ol>
+<li>关联不是动作</li>
+<li>数据之间的约束</li>
+</ol>
+</li>
+</ol>
+<h3 id="不要出现"><a href="#不要出现" class="headerlink" title="不要出现"></a>不要出现</h3><ol>
+<li>database</li>
+<li>方法</li>
+<li>小票</li>
+<li>selection</li>
+</ol>
+<h2 id="状态图"><a href="#状态图" class="headerlink" title="状态图"></a>状态图</h2><ol>
+<li>看清题目要什么东西的状态图<ol>
+<li>系统和用例：过程</li>
+<li>对象：生命周期</li>
+</ol>
+</li>
+<li>寻找主要状态，<strong>名词/名词+动词</strong></li>
+<li>确定转换边：<code>触发事件[监护条件]/动作</code><ol>
+<li>事件被动动词：e.g. onKeyPressed</li>
+<li>监护条件：”如果…”, “在…条件下”</li>
+<li><strong>动作别写了，写错扣分</strong>。是系统的动作</li>
+</ol>
+</li>
+<li>一定有<strong>起点</strong></li>
+<li>横着画！！！！！！</li>
+</ol>
+<h2 id="系统顺序图与操作契约"><a href="#系统顺序图与操作契约" class="headerlink" title="系统顺序图与操作契约"></a>系统顺序图与操作契约</h2><ol>
+<li><strong>系统</strong>：<ol>
+<li>System</li>
+<li>前面<strong>冒号</strong></li>
+<li>直角矩形框</li>
+<li>Actor右边</li>
+<li>下划线</li>
+</ol>
+</li>
+<li><strong>参与者</strong>：<ol>
+<li>Actor</li>
+<li>前面冒号</li>
+<li>最左边</li>
+<li>下划线</li>
+</ol>
+</li>
+<li><strong>外部实体</strong>：<ol>
+<li>最右边</li>
+</ol>
+</li>
+<li><strong>消息不应该超过5个</strong><ol>
+<li>命名为动作</li>
+<li>实心三角实线！！！！</li>
+<li>返回虚线箭头</li>
+<li><strong>控制焦点</strong></li>
+</ol>
+</li>
+<li>后置条件【pml: 至少写一个，表示会，不要都写】【不要忘记】：<ol>
+<li>使用注释写在后面</li>
+<li>类型<ol>
+<li>创建/删除xxx对象</li>
+<li>修改xxx属性</li>
+<li>生成xxx关联（<strong>一般创建对象伴随着生成关联</strong>）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>看是否需要图框</li>
+<li>pml: <strong>有可能</strong>有循环</li>
+<li>场景名：<u><em>xxxx Scenario</em></u></li>
+</ol>
+<h2 id="逻辑建模（包图）"><a href="#逻辑建模（包图）" class="headerlink" title="逻辑建模（包图）"></a>逻辑建模（包图）</h2><ol>
+<li>三个包M, V, C<ol>
+<li>M都来自领域建模</li>
+<li>理论你是变量都在C，动作命名规则：xxxAction或xxxController, <strong>一个用例一个控制器</strong></li>
+<li>界面都是V</li>
+</ol>
+</li>
+<li>外部资源写在foundation</li>
+<li>依赖关系，都是向下指，UI, controller, domain, foundation，使用<strong>带箭头的虚线</strong></li>
+</ol>
+<h2 id="部署建模"><a href="#部署建模" class="headerlink" title="部署建模"></a>部署建模</h2><ol>
+<li>操作系统表示为<code>OS=XXX</code></li>
+<li>数据库与其他东西的协议为<code>JDBC</code></li>
+</ol>
+<p><img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg" alt="img"></p>
+<ol start="3">
+<li>节点之间<strong>没有箭头</strong>，<strong>实线</strong></li>
+<li>节点是软件还是物理设备需要标记</li>
+<li>写清连接介质</li>
+</ol>
+<h2 id="对象动态建模（顺序图）"><a href="#对象动态建模（顺序图）" class="headerlink" title="对象动态建模（顺序图）"></a>对象动态建模（顺序图）</h2><ol>
+<li>创建实例的create使用<strong>虚线实心箭头</strong></li>
+<li>遵循BCE</li>
+<li><strong>冒号</strong></li>
+<li>下划线表示的静态对象</li>
+<li>最左边的方法是copy SSD的，不能多不能少</li>
+<li>控制器来源于包图，控制器左侧为UI，方法和顺序图和交互图保持一致</li>
+</ol>
+<h2 id="对象静态建模（类图）"><a href="#对象静态建模（类图）" class="headerlink" title="对象静态建模（类图）"></a>对象静态建模（类图）</h2><p>和顺序图对应</p>
+<ul>
+<li>各种关系的连线<ul>
+<li>依赖：虚线箭头</li>
+<li>泛化：实线空心箭头（指向父类）</li>
+<li>实线：虚线空心箭头（指向接口）</li>
+</ul>
+</li>
+<li>关联先表示属性：实线箭头 + 多重性（放在目标一段）+ 角色名（目标一端）+ 不需要关联名称<ul>
+<li><strong>对数据对象使用属性文本表示法</strong>，其他对象使用<strong>关联线</strong></li>
+</ul>
+</li>
+<li>控制器一定无状态</li>
+<li>不要冒号</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>抄顺序图的类，抄<strong>领域模型的属性和关联</strong>，补充类的方法（<strong>和顺序图一致</strong>）</li>
+<li>领域建模的has, contains, own改为导航箭头（没有关联名）</li>
+<li>多重性保持</li>
+<li>不写get,set</li>
+<li>Domain写所有entity</li>
+<li>Boundary的方法都不考虑</li>
+</ol>
+<hr>
+<p>Summary</p>
+<ul>
+<li>顺序图和系统顺序图中，一个页面内修改的内容，直接传参，不需要一个个set方法</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/09/01/hello-world/" data-id="ckt2dl1ns0000cxuthvm6etdl" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" data-id="ckt2e2y1v0027pnuta5crauqu" data-title="系统分析与设计 - 画图题注意事项" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Analysis-and-Design/" rel="tag">Software Analysis and Design</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection论文阅读笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-07-02T05:30:47.000Z" itemprop="datePublished">2019-07-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Attentive Feedback Network for Boundary-Aware Salient Object Detection论文阅读笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-id="ckt2e2y1c0001pnut4eq28frt" data-title="Attentive Feedback Network for Boundary-Aware Salient Object Detection论文阅读笔记" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-neural-style源代码阅读" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/" class="article-date">
+  <time class="dt-published" datetime="2019-07-01T15:50:55.000Z" itemprop="datePublished">2019-07-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/">neural style源代码阅读</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Gram矩阵在风格迁移中的应用"><a href="#Gram矩阵在风格迁移中的应用" class="headerlink" title="Gram矩阵在风格迁移中的应用"></a>Gram矩阵在风格迁移中的应用</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dcrmg/article/details/81231044">https://blog.csdn.net/dcrmg/article/details/81231044</a></p>
+</blockquote>
+<h3 id="Gram矩阵本身定义"><a href="#Gram矩阵本身定义" class="headerlink" title="Gram矩阵本身定义"></a>Gram矩阵本身定义</h3><ul>
+<li><p>n维欧式空间中任意k个向量之间两两的内积所组成的矩阵</p>
+</li>
+<li><p>通过网络提取图像局部细节纹理特征向量，组合起来计算Gram矩阵，得到图像特征之间的隐藏联系</p>
+</li>
+<li><p>数值意义：</p>
+<ul>
+<li><p>Gram计算的是两两特征之间的相关性，哪两个特征是同时出现的，哪两个是此消彼长的等等</p>
+</li>
+<li><p>Gram的对角线元素，还体现了每个特征在图像中出现的量</p>
+</li>
+<li><p><strong>Gram矩阵可以度量各个维度自己的特性以及各个维度之间的关系</strong>，所以可以反映整个图像的大体风格。只需要比较Gram矩阵就可以比较两个图像的风格差异了。</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="可以修改的参数"><a href="#可以修改的参数" class="headerlink" title="可以修改的参数"></a>可以修改的参数</h2><p>Loss的计算方法：当前为MSE，探究各种方法的区别</p>
+<p>更新参数的方法~</p>
+<p>调整内容和风格的weight之比</p>
+<hr>
+<h2 id="Gatys论文中算法的知乎实现"><a href="#Gatys论文中算法的知乎实现" class="headerlink" title="Gatys论文中算法的知乎实现"></a>Gatys论文中算法的知乎实现</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/30349930">https://zhuanlan.zhihu.com/p/30349930</a></p>
+</blockquote>
+<ul>
+<li><p>CNN卷积过后提取了图像的特征图，每个数字是原图像的特征大小，Gram矩阵内积运算后，特征图中越大的数字数字会变得更大，相当于对图像的特性进行缩放，使得特征突出</p>
+</li>
+<li><p>迁移vgg16模型并剔除全连接部分，加入计算内容和风格loss的部分</p>
+</li>
+<li><p><strong>优化</strong>：使用LBFGS -&gt; 对于多个loss的优化可以取得较好效果</p>
+</li>
+<li></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/" data-id="ckt2e2y1n0014pnuteryo2gav" data-title="neural style源代码阅读" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-系统分析与设计-建模部分" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/" class="article-date">
+  <time class="dt-published" datetime="2019-06-30T02:16:18.000Z" itemprop="datePublished">2019-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/">系统分析与设计 - 建模部分</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="用例建模"><a href="#用例建模" class="headerlink" title="用例建模"></a>用例建模</h1><h2 id="用例图（考点1）"><a href="#用例图（考点1）" class="headerlink" title="用例图（考点1）"></a>用例图（考点1）</h2><blockquote>
+<p>课件地址：<a target="_blank" rel="noopener" href="https://sysu-swsad.github.io/swad-guide/06-usecase-modeling">https://sysu-swsad.github.io/swad-guide/06-usecase-modeling</a></p>
+</blockquote>
+<h3 id="需求识别"><a href="#需求识别" class="headerlink" title="需求识别"></a>需求识别</h3><h4 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h4><ul>
+<li>使用<code>system框</code>并命名，避免命名空泛</li>
+</ul>
+<h4 id="参与者"><a href="#参与者" class="headerlink" title="参与者"></a>参与者</h4><ul>
+<li>系统左边</li>
+</ul>
+<h4 id="依赖的逮捕系统"><a href="#依赖的逮捕系统" class="headerlink" title="依赖的逮捕系统"></a>依赖的逮捕系统</h4><ul>
+<li><code>Neighboursystem框</code>表示，构造型识别<ul>
+<li><code>&lt;&lt;system&gt;&gt;</code> - 系统</li>
+<li><code>&lt;&lt;service&gt;&gt;</code> - 服务</li>
+<li><code>&lt;&lt;device&gt;&gt;</code> - 设备</li>
+</ul>
+</li>
+</ul>
+<h3 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h3><h4 id="用户级用例"><a href="#用户级用例" class="headerlink" title="用户级用例"></a>用户级用例</h4><ul>
+<li>参与者驱动</li>
+<li>manage 用例</li>
+</ul>
+<h4 id="子用例"><a href="#子用例" class="headerlink" title="子用例"></a>子用例</h4><ul>
+<li>业务复用</li>
+<li>复杂业务分解</li>
+</ul>
+<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><ul>
+<li><code>&lt;&lt;include&gt;&gt;</code> - 子用例必须</li>
+<li><code>&lt;&lt;extend&gt;&gt;</code> - 子用例可选</li>
+<li><strong><code>&lt;&lt;include&gt;&gt;</code>箭头指向子用例，<code>&lt;&lt;extend&gt;&gt;</code>箭头指向父用例</strong></li>
+</ul>
+<h3 id="用例和Actor"><a href="#用例和Actor" class="headerlink" title="用例和Actor"></a>用例和Actor</h3><ul>
+<li>无方向线</li>
+</ul>
+<h2 id="活动图（考点2）"><a href="#活动图（考点2）" class="headerlink" title="活动图（考点2）"></a>活动图（考点2）</h2><blockquote>
+<p>课件地址：<a target="_blank" rel="noopener" href="https://sysu-swsad.github.io/swad-guide/07-usecase-modeling">https://sysu-swsad.github.io/swad-guide/07-usecase-modeling</a></p>
+</blockquote>
+<p>以下来自：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/visualstudio/modeling/uml-activity-diagrams-guidelines?view=vs-2015">UML活动图参考</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/visualstudio/modeling/uml-activity-diagrams-reference?view=vs-2015">UML活动图指南</a></p>
+</blockquote>
+<h4 id="简单的控制流"><a href="#简单的控制流" class="headerlink" title="简单的控制流"></a>简单的控制流</h4><h5 id="分支和循环"><a href="#分支和循环" class="headerlink" title="分支和循环"></a>分支和循环</h5><img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png" width="300"/>
+
+<ol>
+<li><p>操作：圆角矩形，文本 - 指定的操作</p>
+</li>
+<li><p>控制流：箭头</p>
+</li>
+<li><p>初始节点：第一个操作</p>
+</li>
+<li><p>最终结点：活动结束</p>
+</li>
+<li><p>决策节点：条件分支 - 单输入多输出，输入令牌只会在一个输出上显示</p>
+</li>
+<li><p>防护：指定令牌是否可以沿连接线流动</p>
+</li>
+<li><p>合并节点：多输入单输出</p>
+</li>
+<li><p>注释</p>
+</li>
+<li><p>调用行为的操作：在另一个活动图中进行了更详细定义的操作【大概不考】</p>
+</li>
+</ol>
+<h5 id="并发流"><a href="#并发流" class="headerlink" title="并发流"></a>并发流</h5><img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" width="250"/>
+
+<ol start="11">
+<li><p>分叉节点：单个流划分为并发流，每个传入令牌在<strong>每个传出连线上</strong>生成一个令牌</p>
+</li>
+<li><p>结点加入：并发流合并为单个流，每个输入流有等待令牌，输出生成一个令牌</p>
+</li>
+<li><p>发送信号：将消息/信号发送给另一个活动/同一活动并发线程</p>
+</li>
+</ol>
+<img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image003.png" width="150" />
+
+<ol start="14">
+<li>接受事件：等待消息/信号后才执行</li>
+</ol>
+<img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png" width="150" />
+
+<h5 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h5><p>一个操作到另一个操作</p>
+<ol start="15">
+<li>对象节点：传递的数据</li>
+</ol>
+<img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image005.png" width="150" />
+
+<ol start="16">
+<li>输入插针：操作执行可以接受的数据</li>
+</ol>
+<img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png" width="150" />
+
+<ol start="17">
+<li>输出插针：操作执行时生成的数据</li>
+</ol>
+<img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image007.png" width="150" />
+
+<p>参数节点：通过节点活动接受/生成数据</p>
+<h4 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h4><ul>
+<li>操作 + 连接器</li>
+<li>每个操作都在控制流的下一个操作开始之前结束</li>
+<li>操作重叠的情况下使用并发流</li>
+</ul>
+<h4 id="决策和循环"><a href="#决策和循环" class="headerlink" title="决策和循环"></a>决策和循环</h4><ul>
+<li><p>决策节点 - 多个传出路径</p>
+</li>
+<li><p>防护条件 - 知道何时采用每条路径</p>
+</li>
+<li><p>合并节点 - 在分叉的两个或多个<strong>替代流</strong>组合在一起</p>
+</li>
+<li><ul>
+<li>不是汇集操作组合，一个操作中组合并发流</li>
+</ul>
+</li>
+</ul>
+<h4 id="结束活动"><a href="#结束活动" class="headerlink" title="结束活动"></a>结束活动</h4><p>所有并发操作和子活动终止</p>
+<p>使用多个活动最终节点减少其他连接线混乱程度</p>
+<h3 id="多泳道图"><a href="#多泳道图" class="headerlink" title="多泳道图"></a>多泳道图</h3><ul>
+<li>描述2个以上组织、角色或系统之间的交互业务流程</li>
+</ul>
+<h1 id="领域建模（考点3）"><a href="#领域建模（考点3）" class="headerlink" title="领域建模（考点3）"></a>领域建模（考点3）</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://sysu-swsad.github.io/swad-guide/08-domain-modeling">https://sysu-swsad.github.io/swad-guide/08-domain-modeling</a></p>
+</blockquote>
+<ul>
+<li>描述问题域中事物及其之间的关系与量化的越是</li>
+<li>按照<strong>用例</strong>构建领域模型<ul>
+<li>识别实体（entity）和中介实体（Model）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>以下内容来自课本</p>
+<h2 id="如何创建领域建模（9-4）"><a href="#如何创建领域建模（9-4）" class="headerlink" title="如何创建领域建模（9.4）"></a>如何创建领域建模（9.4）</h2><ol>
+<li>寻找概念类（9.5）</li>
+<li>绘制为UML类图的类</li>
+<li>添加关联和属性</li>
+</ol>
+<h2 id="如何寻找概念类（9-5）"><a href="#如何寻找概念类（9-5）" class="headerlink" title="如何寻找概念类（9.5）"></a>如何寻找概念类（9.5）</h2><ol>
+<li>重用/修改现有模型</li>
+<li>使用分类列表</li>
+<li>确定<strong>名词短语</strong></li>
+</ol>
+<h3 id="使用分类列表"><a href="#使用分类列表" class="headerlink" title="使用分类列表"></a>使用分类列表</h3><ul>
+<li>P104：业务交易、交易项目、与交易或交易项目相关的产品或服务、交易记录的地方、与交易相关的人或组织的角色+用例的参与者、交易/服务地点、重要事件（需要记录的时间地点）、物理对象、事物的描述、类别、事物的容器、容器中的事物、其他协作系统、金融工作合约法律材料记录、金融手段、执行工作所需的进度表、手册、文档</li>
+</ul>
+<h3 id="使用名词短语"><a href="#使用名词短语" class="headerlink" title="使用名词短语"></a>使用名词短语</h3><ul>
+<li><p>名词/名词短语来自<strong>用例</strong>/其他文档/专家想法</p>
+</li>
+<li><p>名词短语为<strong>候选的</strong>概念类或<strong>概念类的属性</strong></p>
+</li>
+<li><p>事件中直接将概念类绘制为UML类图</p>
+</li>
+</ul>
+<h2 id="报表对象的处理（9-9）"><a href="#报表对象的处理（9-9）" class="headerlink" title="报表对象的处理（9.9）"></a>报表对象的处理（9.9）</h2><ul>
+<li>一般不现实其他信息的报表</li>
+<li>作为凭证/必要属性时需要，e.g.退货需要小票</li>
+</ul>
+<h2 id="使用领域术语（9-10）"><a href="#使用领域术语（9-10）" class="headerlink" title="使用领域术语（9.10）"></a>使用领域术语（9.10）</h2><ul>
+<li>不要凭空增加事物</li>
+</ul>
+<h2 id="属性与类的常见错误（9-12）"><a href="#属性与类的常见错误（9-12）" class="headerlink" title="属性与类的常见错误（9.12）"></a>属性与类的常见错误（9.12）</h2><ul>
+<li><strong>如果概念类XX不是现实中的数字或文本，XX八成为概念类</strong></li>
+</ul>
+<h2 id="描述类（9-13）"><a href="#描述类（9-13）" class="headerlink" title="描述类（9.13）"></a>描述类（9.13）</h2><p>e.g. 价格独立于汉堡，航线独立于航班</p>
+<ul>
+<li>需要有关商品或服务的描述，<strong>独立</strong>于任何商品或服务的现有实例</li>
+<li>删除所描述事物的实例后，导致<strong>信息丢失</strong>，而这些信息是需要维护的，但错误地与所删除事物关联起来</li>
+<li>减少<strong>冗余</strong>或重复信息</li>
+</ul>
+<h2 id="关联（9-14）"><a href="#关联（9-14）" class="headerlink" title="关联（9.14）"></a>关联（9.14）</h2><ul>
+<li>对象之间需要持续一段时间的关系需要关联表示</li>
+</ul>
+<h3 id="避免加入大量关联"><a href="#避免加入大量关联" class="headerlink" title="避免加入大量关联"></a>避免加入大量关联</h3><h3 id="关联表示法"><a href="#关联表示法" class="headerlink" title="关联表示法"></a>关联表示法</h3><ul>
+<li>类之间连线，<strong>首字母大写</strong>的关联名称</li>
+<li>末端<strong>多重性</strong>表达式 -&gt; 类的实例之间的数量关系</li>
+<li>”阅读导向箭头“（实心三角）阅读关联名称的方向</li>
+</ul>
+<h4 id="关联的命名"><a href="#关联的命名" class="headerlink" title="关联的命名"></a>关联的命名</h4><ul>
+<li>类名 - 动词短语 - 类名（动词短语构成可读的和有意义的顺序）</li>
+</ul>
+<h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><ul>
+<li>定义：关联的<strong>每一端</strong></li>
+<li>可选项：<ul>
+<li>多重性表达式</li>
+<li>名称</li>
+<li>导航</li>
+</ul>
+</li>
+</ul>
+<h4 id="多重性"><a href="#多重性" class="headerlink" title="多重性"></a>多重性</h4><ul>
+<li>类A有多少个实例可以和类B的<strong>一个</strong>实例关联</li>
+<li>对于一个关联在不同时间段/条件/场景下有不同多重性时，根据关注点自行选择</li>
+</ul>
+<h4 id="两个类之间多个关联"><a href="#两个类之间多个关联" class="headerlink" title="两个类之间多个关联"></a>两个类之间多个关联</h4><ul>
+<li>e.g. Flight - <em>Flies from</em> - Airport, Flight - <em>Flies to</em> - Airport, </li>
+</ul>
+<h4 id="如何在常见关联列表中找到关联"><a href="#如何在常见关联列表中找到关联" class="headerlink" title="如何在常见关联列表中找到关联"></a>如何在常见关联列表中找到关联</h4><ul>
+<li>A是B的相关交易(paid-by)、一个项目(contains)、产品(records-sale-of)或服务、相关的角色、物理或逻辑部分、被物理或逻辑地包含在B中、B地描述、在B中被感知(is-on)/记日志/记录/生成报表/捕获、B的成员(member of)、B的组织化子单元、使用/管理/拥有B(contains)、与B相邻</li>
+</ul>
+<h2 id="属性（9-16）"><a href="#属性（9-16）" class="headerlink" title="属性（9.16）"></a>属性（9.16）</h2><ul>
+<li>对象的逻辑数值</li>
+</ul>
+<h3 id="准则：何时展示属性"><a href="#准则：何时展示属性" class="headerlink" title="准则：何时展示属性"></a>准则：何时展示属性</h3><ul>
+<li>当需求（用例）建议或暗示需要记住信息时，引入属性</li>
+</ul>
+<h4 id="属性表示法"><a href="#属性表示法" class="headerlink" title="属性表示法"></a>属性表示法</h4><ul>
+<li><p>类框图的第二格表示，类型和其他信息可选</p>
+</li>
+<li><pre><code class="c">visibility name: type multiplicity = default &#123;property-string&#125;
+</code></pre>
+</li>
+<li><p><strong>visibility</strong>属性可见性一般为私有，一般不显示标出可见性符号</p>
+</li>
+<li><p><strong>multiplicity</strong>可能出现的值或者这填充到集合属性中的对象数量，e.g. [0..1]表示可选值</p>
+</li>
+<li><p>**{property-string}**最常用的值</p>
+</li>
+</ul>
+<h4 id="导出属性"><a href="#导出属性" class="headerlink" title="导出属性"></a>导出属性</h4><ul>
+<li>表示方法：在属性名称前加以<code>/</code>符号 - 从多重性值导出的属性</li>
+</ul>
+<h3 id="准则：什么样的属性类型是适当的"><a href="#准则：什么样的属性类型是适当的" class="headerlink" title="准则：什么样的属性类型是适当的"></a>准则：什么样的属性类型是适当的</h3><h4 id="数据类型属性"><a href="#数据类型属性" class="headerlink" title="数据类型属性"></a>数据类型属性</h4><ul>
+<li>大部分属性应该是“简单”数据类型：Boolean, Date, Number, Character, String(Text)和Time; 以及Address, color, geometrics, phone number, social security number, universal product code, SKU, ZIP以及邮政编码。</li>
+<li><strong>把复杂领域概念建模为属性是错误的</strong> - 通过关联描述概念类的关系</li>
+</ul>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
+<li>对数据类型等价性检验不是基于标识，而是根据值判断</li>
+</ul>
+<h3 id="准则：何时加入数据类型"><a href="#准则：何时加入数据类型" class="headerlink" title="准则：何时加入数据类型"></a>准则：何时加入数据类型</h3><ul>
+<li>由不同小节组成：电话、人名</li>
+<li>具有与之相关的操作：社会安全号</li>
+<li>其他属性：e.g. 促销价格可能有开始日期和结束日期</li>
+<li>单位的数量：支付总额具有货币单位</li>
+</ul>
+<p>加入的数据类型可以表示为属性也可以表示为单独的类</p>
+<h3 id="准则：任何属性都不表示外键"><a href="#准则：任何属性都不表示外键" class="headerlink" title="准则：任何属性都不表示外键"></a>准则：任何属性都不表示外键</h3><ul>
+<li>属性<strong>不应该</strong>用于表示概念类的关系，应采用关联</li>
+</ul>
+<h3 id="准则：对数量和单位建模"><a href="#准则：对数量和单位建模" class="headerlink" title="准则：对数量和单位建模"></a>准则：对数量和单位建模</h3><ul>
+<li>数量：Quantity类/类型</li>
+<li>单位：Unit</li>
+</ul>
+<h2 id="状态建模（考点4）"><a href="#状态建模（考点4）" class="headerlink" title="状态建模（考点4）"></a>状态建模（考点4）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://sysu-swsad.github.io/swad-guide/09-domain-modeling">https://sysu-swsad.github.io/swad-guide/09-domain-modeling</a></p>
+</blockquote>
+<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><ol>
+<li>从实例角度识别业务实践，完善、优化业务过程细节，细化业务过程与领域模型</li>
+<li>给出业务过程合理性与完备性验证</li>
+<li>为程序开发提供业务规范细节</li>
+</ol>
+<h3 id="符号体系"><a href="#符号体系" class="headerlink" title="符号体系"></a>符号体系</h3><ul>
+<li>描述一个<strong>事物或对象</strong>受<strong>事件或消息</strong>刺激产生 可见的状态（属性/属性组合） 的数据变化。</li>
+<li>基础<ul>
+<li>起始 - 黑点</li>
+<li>终止 - 圆圈内黑点</li>
+<li>状态 - 圆角矩形</li>
+</ul>
+</li>
+<li>变迁 - <code>event[guard]/动作</code></li>
+</ul>
+<h5 id="扩展符号（应该不考）"><a href="#扩展符号（应该不考）" class="headerlink" title="扩展符号（应该不考）"></a>扩展符号（应该不考）</h5><ul>
+<li>复合状态</li>
+<li>信号</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>研究对象</p>
+<p>识别状态集合</p>
+<p>识别事件和变迁条件</p>
+<p>合理性、完整性检查与逻辑分析</p>
+<hr>
+<p>扣分点：</p>
+<ol>
+<li>必须有起始，通常有终止和取消</li>
+<li>状态命名：<strong>名词短语</strong>、<strong>动词过去时</strong>或<strong>正在进行时</strong> - 延续性词汇</li>
+<li>需求分析不涉及动作</li>
+</ol>
+<hr>
+<h1 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h1><h2 id="逻辑模型-amp-包图（考点5）"><a href="#逻辑模型-amp-包图（考点5）" class="headerlink" title="逻辑模型 &amp; 包图（考点5）"></a>逻辑模型 &amp; 包图（考点5）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://sysu-swsad.github.io/swad-guide/11-architecture-design-methods">https://sysu-swsad.github.io/swad-guide/11-architecture-design-methods</a></p>
+</blockquote>
+<ul>
+<li>三层模型（表示层、业务层、持久化层）<ul>
+<li>表示层：按用户角色划分分区</li>
+<li>业务层：按业务功能服务划分分区</li>
+<li>持久化层：按核心交易实体管理</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以下内容来自课本chapter13</p>
+</blockquote>
+<ul>
+<li>逻辑架构是软件类的宏观组织结构，将软件类组织为包、子系统和层</li>
+<li><strong>层</strong> - 对类、包、子系统的粗粒度分组</li>
+<li>宽松分层架构 - 可以调用其下任何一层的服务</li>
+</ul>
+<h3 id="包图（13-5）"><a href="#包图（13-5）" class="headerlink" title="包图（13.5）"></a>包图（13.5）</h3><ul>
+<li>描述系统的逻辑结构 - 层、子系统、包</li>
+</ul>
+<h4 id="UML包"><a href="#UML包" class="headerlink" title="UML包"></a>UML包</h4><ul>
+<li>UML能够组织任何事物：类、其他包、用例<ul>
+<li>包内部显示了成员，则在标签上标识包名；否则可以在包体内标识包名</li>
+</ul>
+</li>
+</ul>
+<h4 id="依赖线"><a href="#依赖线" class="headerlink" title="依赖线"></a>依赖线</h4><ul>
+<li>带有箭头的虚线，箭头指向<strong>被依赖</strong>的包</li>
+</ul>
+<h3 id="准则：使用层进行设计（13-6）"><a href="#准则：使用层进行设计（13-6）" class="headerlink" title="准则：使用层进行设计（13.6）"></a>准则：使用层进行设计（13.6）</h3><ul>
+<li>较低层是低级别和一般性服务，较高层与应用相关</li>
+</ul>
+<h4 id="概念区分"><a href="#概念区分" class="headerlink" title="概念区分"></a>概念区分</h4><ul>
+<li><strong>层</strong>：对系统在垂直方向的划分</li>
+<li><strong>分区</strong>：对系统在水平方向的划分</li>
+</ul>
+<h3 id="准则：不要将外部资源表示为最底层"><a href="#准则：不要将外部资源表示为最底层" class="headerlink" title="准则：不要将外部资源表示为最底层"></a>准则：不要将外部资源表示为最底层</h3><ul>
+<li>这是物理，而非逻辑</li>
+</ul>
+<h3 id="准则：模型-视图分离原则"><a href="#准则：模型-视图分离原则" class="headerlink" title="准则：模型 - 视图分离原则"></a>准则：模型 - 视图分离原则</h3><ul>
+<li><p>不要将非UI对象直接与UI对象连接或耦合</p>
+</li>
+<li><p>不要在UI对象方法中加入应用逻辑</p>
+</li>
+<li><p>从UI层发送到领域层的消息是SSD所描述的消息</p>
+</li>
+</ul>
+<h2 id="部署模型（考点6）"><a href="#部署模型（考点6）" class="headerlink" title="部署模型（考点6）"></a>部署模型（考点6）</h2><h3 id="基本元素"><a href="#基本元素" class="headerlink" title="基本元素"></a>基本元素</h3><ul>
+<li>artifacts：项目编译后生成的程序包</li>
+<li>components: 具有特定接口的功能部件，一个artifacts可以包含多个components，一个component也可以涉及多个artifacts</li>
+<li>device, host, execute environment(EEN): 容器/节点<ul>
+<li><code>&lt;&lt;container catalog&gt;&gt; </code>分类</li>
+<li><code>&#123;key: value, ...&#125;</code>表示属性描述</li>
+</ul>
+</li>
+<li>关联：通讯模式或协议、网络连接</li>
+</ul>
+<hr>
+<blockquote>
+<p>以下内容来自课本chapter38</p>
+</blockquote>
+<ul>
+<li>部署图表示如何将具体软件制品分配到计算节点（具有处理服务的某种事物）上。</li>
+<li>表示软件元素在<strong>物理架构上</strong>的部署</li>
+<li>使用<strong>构造型</strong>标记节点类型</li>
+<li>设备节点或EEN可以包含其他EEN</li>
+<li><strong>具体实例名称带有下划线，没有下划线表示类而非实例</strong>；交互图实例（顺序图）中以生命线框图表示的实例名称没有下划线</li>
+</ul>
+<h2 id="构件图（考点7）"><a href="#构件图（考点7）" class="headerlink" title="构件图（考点7）"></a><del>构件图（考点7）</del></h2><blockquote>
+<p>以下内容来自课本chapter38</p>
+</blockquote>
+<ul>
+<li>构件表示封装了其内容的系统模块</li>
+<li>UML是设计级别的试图，并不存在于工具软件试图</li>
+</ul>
+<h2 id="系统顺序图（课本Chapter10）"><a href="#系统顺序图（课本Chapter10）" class="headerlink" title="系统顺序图（课本Chapter10）"></a>系统顺序图（课本Chapter10）</h2><ul>
+<li>系统相关的输入和输出事件</li>
+<li>展示直接与系统交互的外部参与者、系统以及由参与者发起的系统事件</li>
+<li>时间顺序自上而下，遵循场景顺序</li>
+<li>系统被视为黑盒，强调从参与者到系统的跨越系统边界的事件（做什么，而非如何做）</li>
+<li>通常不在SSD中显示用例文本</li>
+<li>系统事件以动词开始</li>
+</ul>
+<h1 id="详细设计"><a href="#详细设计" class="headerlink" title="详细设计"></a>详细设计</h1><h2 id="对象动态建模（考点8）"><a href="#对象动态建模（考点8）" class="headerlink" title="对象动态建模（考点8）"></a>对象动态建模（考点8）</h2><h3 id="顺序图（课本Chapter-15）"><a href="#顺序图（课本Chapter-15）" class="headerlink" title="顺序图（课本Chapter 15）"></a>顺序图（课本Chapter 15）</h3><ul>
+<li>顺序图中没有发送者的起始消息要使用黑点标记起点</li>
+</ul>
+<h4 id="常用的UML交互图表示法（15-3）"><a href="#常用的UML交互图表示法（15-3）" class="headerlink" title="常用的UML交互图表示法（15.3）"></a>常用的UML交互图表示法（15.3）</h4><h5 id="使用生命线框图表示参与者"><a href="#使用生命线框图表示参与者" class="headerlink" title="使用生命线框图表示参与者"></a>使用生命线框图表示参与者</h5><ul>
+<li>生命线框图表示交互的参与者<ul>
+<li>未命名实例 - <code>:类名</code></li>
+<li>命名实例 - <code>实例名:类名</code></li>
+<li>元类 - <code>&lt;&lt;metaclass&gt;&gt; 类名</code></li>
+<li>数组 - <code>实例名:ArrayList&lt;类名&gt;</code></li>
+<li>数组元素 - <code>实例名[i]:类名</code></li>
+<li>接口/抽象类 - <code>实例名:接口/抽象类名</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="单实例对象"><a href="#单实例对象" class="headerlink" title="单实例对象"></a><del>单实例对象</del></h5><ul>
+<li><del>在生命线框图<strong>右上角标识”1”</strong></del></li>
+</ul>
+<h4 id="顺序图的基本表示法（15-4）"><a href="#顺序图的基本表示法（15-4）" class="headerlink" title="顺序图的基本表示法（15.4）"></a>顺序图的基本表示法（15.4）</h4><h5 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h5><ul>
+<li>带实心箭头的实线 - 同步消息</li>
+<li>最开始的消息在UML中称为<strong>创始消息</strong>，实心圆表示</li>
+</ul>
+<h5 id="表示应答或返回"><a href="#表示应答或返回" class="headerlink" title="表示应答或返回"></a>表示应答或返回</h5><ul>
+<li><code>returnVar = message(parameter)</code></li>
+</ul>
+<h5 id="发送给“自身”的消息"><a href="#发送给“自身”的消息" class="headerlink" title="发送给“自身”的消息"></a>发送给“自身”的消息</h5><ul>
+<li>书上和课上不一样</li>
+<li><img src="C:\Users\Sherry\AppData\Roaming\Typora\typora-user-images\1561899453704.png" alt="1561899453704"></li>
+</ul>
+<h5 id="实例的创建"><a href="#实例的创建" class="headerlink" title="实例的创建"></a>实例的创建</h5><ul>
+<li><strong>虚线</strong>，<code>create</code><ul>
+<li>开放箭头 - 暗示调用构造器</li>
+<li>实心箭头 - 调用操作符<code>new</code>并调用构造器</li>
+</ul>
+</li>
+</ul>
+<h5 id="对象生命线和对象的销毁"><a href="#对象生命线和对象的销毁" class="headerlink" title="对象生命线和对象的销毁"></a><del>对象生命线和对象的销毁</del></h5><ul>
+<li><del>显示销毁对象，大X和短生命线（P168）</del></li>
+</ul>
+<h5 id="UML顺序图中图框"><a href="#UML顺序图中图框" class="headerlink" title="UML顺序图中图框"></a>UML顺序图中图框</h5><ul>
+<li>操作符 &amp; 保护信息</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>alt</td>
+<td>选择，互斥条件逻辑</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>保护信息为真的循环片段；<code>loop(n)</code>指明循环次数</td>
+</tr>
+<tr>
+<td>opt</td>
+<td><strong>保护信息为真</strong>时执行的可选片段</td>
+</tr>
+<tr>
+<td>par</td>
+<td>[] 并行执行的并行片段</td>
+</tr>
+<tr>
+<td>region</td>
+<td>[] 只能执行一个线程的临界片段</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意alt和opt的区别在于opt里面只有一个条件，没有else if, else的关系，条件为真就执行；alt使用虚线隔开if, else if, else…</p>
+</blockquote>
+<h5 id="有条件消息-opt"><a href="#有条件消息-opt" class="headerlink" title="有条件消息[opt]"></a>有条件消息[opt]</h5><ul>
+<li><strong>保护信息置于相关的生命线之上</strong></li>
+</ul>
+<h5 id="互斥条件-alt"><a href="#互斥条件-alt" class="headerlink" title="互斥条件[alt]"></a>互斥条件[alt]</h5><ul>
+<li>不同的分支之间在图框内采用<strong>横虚线</strong>隔开</li>
+</ul>
+<h5 id="对集合的迭代-loop"><a href="#对集合的迭代-loop" class="headerlink" title="对集合的迭代[loop]"></a>对集合的迭代[loop]</h5><ul>
+<li><p>在保护信息设置循环条件，并在表示消息的横线下方设置动作图框（圆角矩形），写i++</p>
+</li>
+<li><p>保护信息和动作框图在同一条生命线上</p>
+</li>
+<li><p><strong>右侧框图为选择器表达式<code>实例名[i]:类名</code></strong></p>
+</li>
+<li><p>也可以同时不写保护信息和动作图框</p>
+</li>
+</ul>
+<h5 id="关联交互图"><a href="#关联交互图" class="headerlink" title="关联交互图"></a><del>关联交互图</del></h5><ul>
+<li>整个顺序图周围放置图框，命名为<code>sd 名称</code></li>
+<li>在主顺序图加入标记为ref的图框（引用），内容写需要引用的周围图框的名称（即sd后面的部分）</li>
+</ul>
+<h5 id="对类调用静态方法的消息"><a href="#对类调用静态方法的消息" class="headerlink" title="对类调用静态方法的消息"></a><del>对类调用静态方法的消息</del></h5><ul>
+<li>使用<strong>元类</strong>的生命线框图表示接受消息的对象是类</li>
+</ul>
+<h5 id="多态消息和案例"><a href="#多态消息和案例" class="headerlink" title="多态消息和案例"></a><del>多态消息和案例</del></h5><ul>
+<li><p>消息的接受者直接写<code>:抽象类名&#123;abstract&#125;</code>，并且停止在该消息，不要再展示更多信息</p>
+</li>
+<li><p>也可以选择为多态的每个具体情况做单独的图</p>
+</li>
+</ul>
+<h4 id="通信图的基本表示方法（15-5）"><a href="#通信图的基本表示方法（15-5）" class="headerlink" title="通信图的基本表示方法（15.5）"></a><del>通信图的基本表示方法（15.5）</del></h4><h5 id="链"><a href="#链" class="headerlink" title="链"></a>链</h5><ul>
+<li>连接两个对象，多个消息沿着一条链流转</li>
+</ul>
+<h5 id="消息-1"><a href="#消息-1" class="headerlink" title="消息"></a>消息</h5><ul>
+<li>使用消息表达式和消息方向的小箭头表示</li>
+<li>增加<strong>顺序编号</strong>表示当前控制线程中消息的次序</li>
+</ul>
+<h5 id="自身传递的消息"><a href="#自身传递的消息" class="headerlink" title="自身传递的消息"></a>自身传递的消息</h5><ul>
+<li>使用到自身的链表示</li>
+</ul>
+<h5 id="实例的创建-1"><a href="#实例的创建-1" class="headerlink" title="实例的创建"></a>实例的创建</h5><ul>
+<li><code>create</code></li>
+</ul>
+<h5 id="消息的顺序编号"><a href="#消息的顺序编号" class="headerlink" title="消息的顺序编号"></a>消息的顺序编号</h5><ul>
+<li>不为第一个消息编号</li>
+<li>使用合法编号方案表示后续消息的顺序和嵌套，嵌套消息使用<strong>附加数字</strong></li>
+</ul>
+<h5 id="有条件消息"><a href="#有条件消息" class="headerlink" title="有条件消息"></a>有条件消息</h5><ul>
+<li>顺序编号后使用带有方括号的条件子句表示有条件消息<code>[]</code></li>
+</ul>
+<h5 id="互斥的有条件路径"><a href="#互斥的有条件路径" class="headerlink" title="互斥的有条件路径"></a>互斥的有条件路径</h5><ul>
+<li>使用<strong>条件字母</strong>修改顺序编号，后续的嵌套消息仍然沿用并附加其外部消息的顺序编号</li>
+</ul>
+<h5 id="迭代或循环"><a href="#迭代或循环" class="headerlink" title="迭代或循环"></a>迭代或循环</h5><ul>
+<li>在消息编号后使用<code>[i=1...n]</code>表示迭代，如果迭代子句不重要，使用<code>*</code>简化</li>
+</ul>
+<h5 id="集合的迭代"><a href="#集合的迭代" class="headerlink" title="集合的迭代"></a>集合的迭代</h5><ul>
+<li>和迭代循环类似，消息的接受者变为<code>实例名[i]:类名</code></li>
+</ul>
+<h5 id="调用静态方法的消息-amp-多态消息"><a href="#调用静态方法的消息-amp-多态消息" class="headerlink" title="调用静态方法的消息 &amp; 多态消息"></a>调用静态方法的消息 &amp; 多态消息</h5><ul>
+<li>和顺序图类似，修改框图内容以及具体化多态的每个情况</li>
+</ul>
+<h2 id="对象静态建模（考点9）"><a href="#对象静态建模（考点9）" class="headerlink" title="对象静态建模（考点9）"></a>对象静态建模（考点9）</h2><ul>
+<li><strong>符号</strong><ul>
+<li>虚线空箭头：接口实现</li>
+<li>实线空箭头：继承</li>
+<li>虚线箭头：依赖</li>
+<li>实线箭头：关联（多重性）<ul>
+<li>多重性和角色名放在<strong>箭头一端</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/" data-id="ckt2e2y1u0026pnut0kxfap6i" data-title="系统分析与设计 - 建模部分" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Gatys-Image-Style-Transfer-论文阅读笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-06-28T22:45:04.000Z" itemprop="datePublished">2019-06-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Gatys - Image Style Transfer 论文阅读笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h1><ul>
+<li><strong>前人的缺陷：</strong>缺乏对图像语义的代表，难以将图像<em>内容</em>和<em>风格</em>区分开来<ul>
+<li>本文使用CNN的图像表示提取图像信息</li>
+<li><code>A Neural Algorithm of Artistic Style</code>架构图象的内容和风格分离并重新组合</li>
+</ul>
+</li>
+</ul>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><ul>
+<li>探究<strong>高性能神经网络学习</strong>的特征表示是如何独立处理和操作自然图像的内容和风格的</li>
+<li><em>A Neural Algorithm of Artistic Style</em> - 通过CNN得到的特征表示限制的纹理迁移算法</li>
+</ul>
+<h1 id="2-Deep-image-representations"><a href="#2-Deep-image-representations" class="headerlink" title="2. Deep image representations"></a>2. Deep image representations</h1><ul>
+<li>使用<em>VGG</em>生成结果<ul>
+<li>标准化网络-将每一个卷积层的激活函数的平均值设为1</li>
+<li>不用全连接层</li>
+</ul>
+</li>
+<li>发现使用<em>平均池化</em>比<em>最大池化</em>效果更好一点</li>
+</ul>
+<h2 id="2-1-Content-representation"><a href="#2-1-Content-representation" class="headerlink" title="2.1 Content representation"></a>2.1 Content representation</h2><ul>
+<li><p>输入图像在CNN的每一层编码</p>
+</li>
+<li><p>有$N_l个$不同模板的层有$N_l$个feature map</p>
+<ul>
+<li>每个feature map的size为feature map的长乘宽</li>
+</ul>
+</li>
+<li><p>层$l$的结果可以被存储到矩阵中$F^l\in R^{N_l\times M_l}$</p>
+<p>​    其中$F^l_{ij}$是第i个模板在位置j在$l$层的activation</p>
+</li>
+<li><p>将编码在每个不同层的图像信息可视化</p>
+<ul>
+<li>可以在白噪声图像使用梯度下降在白噪声图像来找到一个与原图特征相应匹配的图像</li>
+</ul>
+</li>
+<li><p>$\vec p$和$\vec x$是原图和生成图像，$P^l$和$F^l分别是他们的.在l层相应的特征表示</p>
+</li>
+<li><p>两个特征表示的损失函数</p>
+<ul>
+<li>$$<br>L_{content}(\vec p, \vec x, l) = \frac{1}{2}\sum_{i,j}(F^l_{ij}-P^l_{ij})^2<br>$$</li>
+</ul>
+</li>
+<li><p>损失函数相对于$l$层激活的导数为：</p>
+<ul>
+<li><p>$$<br>\frac{\partial L_{content}}{\partial F^l_{ij}} = \begin{cases}<br>(F^l - P^l)<em>{ij} &amp; F^l</em>{ij} &gt;0\<br>0 &amp;F_{ij}^l&lt;0<br>\end{cases}<br>$$</p>
+</li>
+<li><p>据此对于图像$\vec x$的梯度可以通过标准误差反向传播计算出来 =&gt; 因此我们可以改变最初随机图像$\vec x$直到生成对于CNN的某一层产生和原图$\vec p$一样的响应</p>
+</li>
+</ul>
+</li>
+<li><p>CNN是在图像识别上训练的，图像的表示使得目标信息在处理层上面愈加明显=&gt; 在网络的处理层，输入图像转变为representations对真正的图像内容越来越敏感，但是对于图像的外观相对保持不变了</p>
+</li>
+<li><p>网络的月高层获得目标的更高层内容以及在输入图像中的排列，但是不限制重构过程中的像素值</p>
+</li>
+<li><p>因此参考网络高层的特征响应作为内容表示</p>
+</li>
+</ul>
+<h2 id="2-2-Style-Representation"><a href="#2-2-Style-Representation" class="headerlink" title="2.2 Style Representation"></a>2.2 Style Representation</h2><ul>
+<li><p>特征空间可以在网络的任何一层上建立特征空间，包括不同模板相应之间的关系 &lt;= 由Gram矩阵给出，$G^l_{ij}$为向量化的feature maps i和j在l层的内积：<br>$$<br>G^l_{ij} = \sum_k F^l_{ik}F^l_{jk}<br>$$</p>
+</li>
+<li><p>通过涵盖不同层的特征关联，可以获得输入图片的稳定多维表示，获得其纹理信息，但不是global arrangement</p>
+</li>
+<li><p>通过在网络的不同层生成的风格特征空间可视化风格特征空间获得的信息</p>
+</li>
+<li><p><strong>使用梯度下降从一个白噪声图像，最小化和原图的Gram矩阵的mean-squared</strong></p>
+</li>
+</ul>
+<h3 id="计算"><a href="#计算" class="headerlink" title="计算"></a>计算</h3><p>$\vec a$和$\vec x$是原图和生成图像，$A^l$和$G^l$是相应的层l风格表示：</p>
+<ul>
+<li><p>l层loss: $E_l = \frac{1}{4N^2_lM^2_l}\sum_{i,j}(G^l_{ij} - A^l_{ij})^2$</p>
+</li>
+<li><p>总风格损失：$L_{style}(\vec a, \vec x) = \sum^L_{l=0}w_lE_l$</p>
+<ul>
+<li>$w_l$是每层对于总损失贡献的权重因子</li>
+</ul>
+</li>
+<li><p>$E_l$对于$l$层的activation的导数为：</p>
+<ul>
+<li><p>$$<br>\frac{\partial E_l}{\partial F^l_{ij}} = \begin{cases}\frac{1}{N^2_lM^2_l}((F^l)^T(G^l-A^l))<em>{ji} &amp; if F^l</em>{ij} &gt; 0 \<br>0 &amp; if F^l_{ij} &lt; 0<br>\end{cases}<br>$$</p>
+</li>
+<li><p>$E_l$对于$\vec x$的梯度可以通过标准差反向传播直接计算</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-3-Style-transfer"><a href="#2-3-Style-transfer" class="headerlink" title="2.3 Style transfer"></a>2.3 Style transfer</h3><p><img src="C:\Users\Sherry\AppData\Roaming\Typora\typora-user-images\1561799638893.png" alt="1561799638893"></p>
+<ul>
+<li><p><strong>风格图像</strong>：过左侧网络，得到风格特征$A^L$</p>
+</li>
+<li><p><strong>内容图像</strong>：过右侧网络，得到内容图像$F^l$</p>
+</li>
+<li><p><strong>目标图像</strong>：白噪声$\vec x$过网络</p>
+<ul>
+<li><strong>风格损失</strong>：计算和风格网络每一层的误差，并求和</li>
+<li><strong>内容损失</strong>：计算和特定层的损失</li>
+<li>两种损失线性组合得到总损失</li>
+</ul>
+</li>
+<li><p>最小化的损失函数：</p>
+<ul>
+<li>$$<br>L_{total}(\vec p, \vec a, \vec x) = \alpha L_{conent}(\vec p, \vec x) + \beta L_{style}(\vec a, \vec x)<br>$$</li>
+</ul>
+</li>
+<li><p>损失函数对于输入像素$\vec x$的梯度可以被用作一些数值优化策略的输入？？</p>
+</li>
+<li><p>在计算风格图像的特征之前，缩放风格图像为和内容图像相同的大小</p>
+</li>
+</ul>
+<h1 id="3-Results"><a href="#3-Results" class="headerlink" title="3 Results"></a>3 Results</h1><ul>
+<li><strong>CNN中对于图像的内容和风格表示是完全可分的</strong><ul>
+<li>=&gt; 可以独立处理二者之一产生新的图像</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-1-Trade-off-between-content-and-style-matching"><a href="#3-1-Trade-off-between-content-and-style-matching" class="headerlink" title="3.1 Trade-off between content and style matching"></a>3.1 Trade-off between content and style matching</h2><ul>
+<li>合成图像无法很好地同时满足风格和内容的相似性，但是可以通过调节$L_{total}$的参数控制生成图片的侧重</li>
+</ul>
+<h2 id="3-2-Effect-of-different-layers-of-the-Convolutional-Neural-Network"><a href="#3-2-Effect-of-different-layers-of-the-Convolutional-Neural-Network" class="headerlink" title="3.2 Effect of different layers of the Convolutional Neural Network"></a>3.2 Effect of different layers of the Convolutional Neural Network</h2><h3 id="Style"><a href="#Style" class="headerlink" title="Style"></a>Style</h3><ul>
+<li>另一个合成图像中的重要因子为对于进行内容和风格表示匹配的layers的选择</li>
+<li>风格表示是多维的，包含网络的很多层</li>
+<li>层级的数目和位置决定了那种维度的风格匹配，导致了不同的视觉体验</li>
+<li>发现在较高层匹配风格表示保留了较多局部图片结构 =&gt; 平滑连续的视觉体验</li>
+<li>=&gt; 较好的图片通常在网络高层匹配风格表示</li>
+</ul>
+<h3 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h3><ul>
+<li>网络中高层层级提取内容，会使得风格化更好。像素级信息不是很多，一些内容高尚的细节会被弱化以更好地风格化</li>
+</ul>
+<h2 id="3-3-Initialization-of-gradient-descent"><a href="#3-3-Initialization-of-gradient-descent" class="headerlink" title="3.3 Initialization of gradient descent"></a>3.3 Initialization of gradient descent</h2><ul>
+<li>生成图像的输入无论设置为风格图像还是内容图像，对于输出的效果影响不大；反而初始化为白噪声可以使得产生的图片效果更加多样</li>
+</ul>
+<h2 id="3-4-Photorealistic-style-transfer"><a href="#3-4-Photorealistic-style-transfer" class="headerlink" title="3.4 Photorealistic style transfer"></a>3.4 Photorealistic style transfer</h2><ul>
+<li>可以应用到任何图像之间的风格迁移</li>
+</ul>
+<p>！！！可以为不同种风格迁移调参</p>
+<ul>
+<li>如果是两幅照片，主要迁移了色彩和光影</li>
+</ul>
+<h1 id="4-Discussion"><a href="#4-Discussion" class="headerlink" title="4 Discussion"></a>4 Discussion</h1><h3 id="limiting-factor"><a href="#limiting-factor" class="headerlink" title="limiting factor"></a>limiting factor</h3><ul>
+<li>合成图像的分辨率，CNN的优化随着像素个数线性增长 =&gt; 处理速度与图像分辨率十分相关</li>
+</ul>
+<h3 id="low-level-noise"><a href="#low-level-noise" class="headerlink" title="low-level noise"></a>low-level noise</h3><ul>
+<li>主要在风格图像和内容图像都为照片的时候会表现得比较明显</li>
+<li>可以选择去噪的后处理</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-id="ckt2e2y1g0006pnutdgmget62" data-title="Gatys - Image Style Transfer 论文阅读笔记" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Data-Mining/" rel="tag">Data Mining</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Pytorch实战" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/24/Pytorch%E5%AE%9E%E6%88%98/" class="article-date">
+  <time class="dt-published" datetime="2019-06-24T23:02:04.000Z" itemprop="datePublished">2019-06-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/24/Pytorch%E5%AE%9E%E6%88%98/">Pytorch实战笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29024978">https://zhuanlan.zhihu.com/p/29024978</a></p>
+</blockquote>
+<h2 id="文件组织架构"><a href="#文件组织架构" class="headerlink" title="文件组织架构"></a>文件组织架构</h2><ul>
+<li>checkpoints/: 保存训练好模型</li>
+<li>data/: 数据相关</li>
+<li>models/: 模型定义</li>
+<li>utils/: 工具函数</li>
+<li>config.py: 可配置变量</li>
+<li>main.py: 程序主入口，通过不同命令指定不同参数和操作</li>
+</ul>
+<h2 id="init-py"><a href="#init-py" class="headerlink" title="__init__.py"></a><code>__init__.py</code></h2><ul>
+<li>每个文件夹包含 =&gt; 其他程序从目录导入函数/模块<code>from FOLDERNAME.PACKAGENAME import MODULENAME</code></li>
+<li>在其中加入：<code>from .PACKAGENAME import MODULENAME</code> -&gt; 从外界访问：<code>from FOLDERNAME import MODULENAME</code></li>
+</ul>
+<h2 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h2><ul>
+<li>划出验证集，将图像随机排列，前70%作为训练集，后30%作为验证集</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>训练集</th>
+<th>验证集/测试集</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>图像增强</td>
+<td>√</td>
+<td></td>
+</tr>
+<tr>
+<td>返回Label</td>
+<td>分类</td>
+<td>图片id</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="模型定义"><a href="#模型定义" class="headerlink" title="模型定义"></a>模型定义</h2><h3 id="对于nn-Module进行简易封装"><a href="#对于nn-Module进行简易封装" class="headerlink" title="对于nn.Module进行简易封装"></a>对于nn.Module进行简易封装</h3><ul>
+<li>封装<code>nn.Module</code>为<code>BasicModule</code>类，主要提供<code>save</code>和<code>load</code>两个方法</li>
+</ul>
+<h4 id="load"><a href="#load" class="headerlink" title="load"></a>load</h4><ul>
+<li><p>将模型路径作为参数</p>
+</li>
+<li><p>```python<br>self.load_state_dict(t.load(path))</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### save</span><br><span class="line"></span><br><span class="line">- 使用模型 + 时间作为命名，传入参数，并放入`checkpoints/`文件夹</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  if name is None:</span><br><span class="line">      prefix = &#x27;checkpoints/&#x27; + self.model_name + &#x27;_&#x27;</span><br><span class="line">      name = time.strftime(prefix + &#x27;%m%d_%H:%M:%S.pth&#x27;)</span><br><span class="line">  t.save(self.state_dict(), name)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<p>实际使用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">module.save()</span><br><span class="line">module.load(opt.load_path)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>一般模型继承BasicModule并加以实现</li>
+</ul>
+<h3 id="数据集导入"><a href="#数据集导入" class="headerlink" title="数据集导入"></a>数据集导入</h3><ul>
+<li><p><code>在models/__init__.py</code>实现：</p>
+<ul>
+<li><p>```python<br>from .DATASETNAME import DATASETNAME<br>… #多个模型的添加以此类推</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 使得主函数中可以写为</span><br><span class="line"></span><br><span class="line">  - ```python</span><br><span class="line">    import models</span><br><span class="line">    model = getattr(models, &#x27;DATASETNAME&#x27;)()</span><br></pre></td></tr></table></figure></li>
+<li><p>直接修改字符串可以选择具体模型</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="工具函数"><a href="#工具函数" class="headerlink" title="工具函数"></a>工具函数</h2><h3 id="Visualizer的封装"><a href="#Visualizer的封装" class="headerlink" title="Visualizer的封装"></a>Visualizer的封装</h3><ul>
+<li>构造函数<code>visdom.Visdom(...)</code>，传入env和其他参数</li>
+</ul>
+<h5 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h5><ul>
+<li><code>index</code> - 字典，记录plot的名称和是第几个绘制的图片<ul>
+<li>key - name, value - 下标</li>
+<li>用于确认是需要在已有串口上进行绘制还是新窗口</li>
+</ul>
+</li>
+<li><code>log_text</code> - 输出的日志</li>
+</ul>
+<h4 id="绘图"><a href="#绘图" class="headerlink" title="绘图"></a>绘图</h4><ul>
+<li>```python<br>x = self.index.get(name, 0)<h1 id="在窗口上绘制多个点"><a href="#在窗口上绘制多个点" class="headerlink" title="在窗口上绘制多个点"></a>在窗口上绘制多个点</h1>self.vis.line(Y=np.array([y]), X=np.array([x]),<pre><code>          win=unicode(name),
+          opts=dict(title=name),
+          update=None if x == 0 else &#39;append&#39;,
+          **kwargs
+         )
+</code></pre>
+self.index[name] = x + 1<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 输出图像</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  self.vis.images(img_.cpu().numpy(),</span><br><span class="line">                  win=unicode(name),</span><br><span class="line">                  opts=dict(title=name),</span><br><span class="line">                  **kwargs</span><br><span class="line">                 )</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="输出文本"><a href="#输出文本" class="headerlink" title="输出文本"></a>输出文本</h4><ul>
+<li><p>```python<br>self.log_text += (‘[{time}] {info} <br>‘.format(</p>
+<pre><code>time=time.strftime(&#39;%m%d_%H%M%S&#39;),\
+info=info)) 
+</code></pre>
+<p>self.vis.text(self.log_text, win) </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- </span><br><span class="line"></span><br><span class="line">## 配置文件</span><br><span class="line"></span><br><span class="line">- 将所有可配置项放入`config.py`，包括模型定义、数据处理和训练的变量默认值 =&gt; 方便调试修改代码</span><br><span class="line"></span><br><span class="line">- 主要用到的变量如下：</span><br><span class="line"></span><br><span class="line">  - ```python</span><br><span class="line">    class DefaultConfig(object):</span><br><span class="line">    # visdom参数</span><br><span class="line">        env = &#x27;default&#x27; # visdom 环境</span><br><span class="line">        model = &#x27;AlexNet&#x27; # 使用的模型，名字必须与models/__init__.py中的名字一致</span><br><span class="line">    </span><br><span class="line">    # 数据集参数</span><br><span class="line">        train_data_root = &#x27;./data/train/&#x27; # 训练集存放路径</span><br><span class="line">        test_data_root = &#x27;./data/test1&#x27; # 测试集存放路径</span><br><span class="line">        load_model_path = &#x27;checkpoints/model.pth&#x27; # 加载预训练的模型的路径，为None代表不加载</span><br><span class="line">    </span><br><span class="line">    # 模型参数</span><br><span class="line">        batch_size = 128 # batch size</span><br><span class="line">        use_gpu = True # use GPU or not</span><br><span class="line">        num_workers = 4 # how many workers for loading data</span><br><span class="line">        print_freq = 20 # print info every N batch</span><br><span class="line">    </span><br><span class="line">        debug_file = &#x27;/tmp/debug&#x27; # if os.path.exists(debug_file): enter ipdb</span><br><span class="line">        result_file = &#x27;result.csv&#x27;</span><br><span class="line">    </span><br><span class="line">    # 训练参数</span><br><span class="line">        max_epoch = 10</span><br><span class="line">        lr = 0.1 # initial learning rate</span><br><span class="line">        lr_decay = 0.95 # when val_loss increase, lr = lr*lr_decay</span><br><span class="line">        weight_decay = 1e-4 # 损失函数</span><br></pre></td></tr></table></figure></li>
+<li><p>在程序中使用<code>config.py</code>中的参数</p>
+</li>
+<li><p>```python<br>import models<br>from config import DefaultConfig</p>
+<p>opt = DefaultConfig()<br>lr = opt.lr<br>model = getattr(models, opt.model)<br>dataset = DogCat(opt.train_data_root)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 通过命令行传入需要参数并覆盖默认配置</span><br><span class="line"></span><br><span class="line">  ```python</span><br><span class="line">  def parse(self, kwargs):</span><br><span class="line">      &#x27;&#x27;&#x27;</span><br><span class="line">      根据字典kwargs 更新 config参数</span><br><span class="line">      &#x27;&#x27;&#x27;</span><br><span class="line">      # 更新配置参数</span><br><span class="line">      for k, v in kwargs.iteritems():</span><br><span class="line">          if not hasattr(self, k):</span><br><span class="line">              # 警告还是报错，取决于你个人的喜好</span><br><span class="line">              warnings.warn(&quot;Warning: opt has not attribut %s&quot; %k)</span><br><span class="line">              setattr(self, k, v)</span><br><span class="line">  </span><br><span class="line">              # 打印配置信息	</span><br><span class="line">              print(&#x27;user config:&#x27;)</span><br><span class="line">              for k, v in self.__class__.__dict__.iteritems():</span><br><span class="line">                  if not k.startswith(&#x27;__&#x27;):</span><br><span class="line">                      print(k, getattr(self, k))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>使用方法：</p>
+</li>
+<li><p>```python<br>opt = DefaultConfig()<br>new_config = {‘lr’:0.1,’use_gpu’:False}<br>opt.parse(new_config)<br>opt.lr == 0.1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## main.py</span><br><span class="line"></span><br><span class="line">### fire</span><br><span class="line"></span><br><span class="line">- 假设main.py如下：</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  import fire</span><br><span class="line">  # def FUNC(para1, ...)</span><br><span class="line">  # ... 各种定义函数</span><br><span class="line">  </span><br><span class="line">  if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">      fire.Fire()</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>在命令行可以直接调用文件内的函数</p>
+<ul>
+<li>```shell<br>python main.py FUNC –para1=VALUE1 –para2=VALUE2<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 主程序函数分析</span><br><span class="line"></span><br><span class="line">- 四个函数：</span><br><span class="line"></span><br><span class="line">  - `train` - 训练</span><br><span class="line">  - `val` - 辅助训练</span><br><span class="line">  - `test` - 测试</span><br><span class="line">  - `help` - 打印帮助信息</span><br><span class="line"></span><br><span class="line">- `__main__`部分如下：</span><br><span class="line"></span><br><span class="line">  - ```python</span><br><span class="line">    if __name__==&#x27;__main__&#x27;:</span><br><span class="line">       import fire</span><br><span class="line">       fire.Fire()</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>因此可以通过：<code>*python main.py &lt;function&gt; --args=xx</code>执行训练测试等等</p>
+</li>
+</ul>
+<h2 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h2><p>步骤：</p>
+<ol>
+<li>定义网络</li>
+<li>定义数据</li>
+<li>定义criterion(loss func)和optimizer</li>
+<li>计算重要指标</li>
+<li>开始训练<ol>
+<li>训练网络</li>
+<li>可视化指标</li>
+<li>计算验证集上的指标</li>
+</ol>
+</li>
+</ol>
+<h3 id="训练函数"><a href="#训练函数" class="headerlink" title="训练函数"></a>训练函数</h3><h4 id="根据命令行更新参数配置"><a href="#根据命令行更新参数配置" class="headerlink" title="根据命令行更新参数配置"></a>根据命令行更新参数配置</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">opt.parse(kwargs)</span><br><span class="line">vis = Visualizer(opt.env)</span><br></pre></td></tr></table></figure>
+
+<h4 id="处理模型"><a href="#处理模型" class="headerlink" title="处理模型"></a>处理模型</h4><ol>
+<li>从Models导入模型包</li>
+<li>(optional)从本地加载模型文件</li>
+<li>(optional)使用GPU</li>
+</ol>
+<h4 id="处理数据"><a href="#处理数据" class="headerlink" title="处理数据"></a>处理数据</h4><ol>
+<li>加载训练集和测试集</li>
+<li>设置两个dataloader</li>
+</ol>
+<h4 id="目标函数和优化器"><a href="#目标函数和优化器" class="headerlink" title="目标函数和优化器"></a>目标函数和优化器</h4><h4 id="统计指标"><a href="#统计指标" class="headerlink" title="统计指标"></a>统计指标</h4><ol>
+<li><p>平滑处理之后的损失</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss_meter = meter.AverageValueMeter()</span><br></pre></td></tr></table></figure></li>
+<li><p>混淆矩阵</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">confusion_matrix = meter.ConfusionMeter(<span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>previous_loss用于存储上次的损失</p>
+</li>
+</ol>
+<h4 id="训练-1"><a href="#训练-1" class="headerlink" title="训练"></a>训练</h4><ol>
+<li><p>每个epoch清空上次的平滑损失和混淆矩阵</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">loss_meter.reset()</span><br><span class="line">confusion_matrix.reset()</span><br></pre></td></tr></table></figure></li>
+<li><p>遍历训练集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ii,(data,label) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_dataloader):</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>加载Batch的input和label</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">input</span> = Variable(data)</span><br><span class="line">target = Variable(label)</span><br></pre></td></tr></table></figure></li>
+<li><p>优化器清零</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer.zero_grad()</span><br></pre></td></tr></table></figure></li>
+<li><p>过模型，计算结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">score = model(<span class="built_in">input</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>计算损失函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss = criterion(score,target)</span><br></pre></td></tr></table></figure></li>
+<li><p>反向传播</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss.backward()</span><br></pre></td></tr></table></figure></li>
+<li><p>更新</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer.step()</span><br></pre></td></tr></table></figure></li>
+<li><p>可视化结果保存</p>
+<ol>
+<li><p>将loss[0]加入loss_meter</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss_meter.add(loss.data[<span class="number">0</span>])</span><br></pre></td></tr></table></figure></li>
+<li><p>混淆矩阵加入(score.data, target.data)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">confusion_matrix.add(score.data, target.data)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>训练到一定程度进行绘图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ii%opt.print_freq==opt.print_freq-<span class="number">1</span>:</span><br><span class="line">	vis.plot(<span class="string">&#x27;loss&#x27;</span>, loss_meter.value()[<span class="number">0</span>])</span><br></pre></td></tr></table></figure></li>
+<li><p>每个epoch保存模型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.save()</span><br></pre></td></tr></table></figure></li>
+<li><p>计算验证集的表现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val_cm,val_accuracy = val(model,val_dataloader)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>并绘图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vis.plot(<span class="string">&#x27;val_accuracy&#x27;</span>,val_accuracy)</span><br><span class="line">vis.log(<span class="string">&quot;epoch:&#123;epoch&#125;,lr:&#123;lr&#125;,loss:&#123;loss&#125;,train_cm:&#123;train_cm&#125;,val_cm:&#123;val_cm&#125;&quot;</span></span><br><span class="line">        .<span class="built_in">format</span>(</span><br><span class="line">            epoch = epoch,</span><br><span class="line">            loss = loss_meter.value()[<span class="number">0</span>],</span><br><span class="line">            val_cm = <span class="built_in">str</span>(val_cm.value()),</span><br><span class="line">            train_cm=<span class="built_in">str</span>(confusion_matrix.value()),</span><br><span class="line">            lr=lr))</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>调整学习率</p>
+<p>如果损失不下降，降低学习率</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> loss_meter.value()[<span class="number">0</span>] &gt; previous_loss:          </span><br><span class="line">    lr = lr * opt.lr_decay</span><br><span class="line">    <span class="keyword">for</span> param_group <span class="keyword">in</span> optimizer.param_groups:</span><br><span class="line">        param_group[<span class="string">&#x27;lr&#x27;</span>] = lr</span><br><span class="line"><span class="comment"># 这里记录上一步的损失</span></span><br><span class="line">previous_loss = loss_meter.value()[<span class="number">0</span>]</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="meter工具"><a href="#meter工具" class="headerlink" title="meter工具"></a>meter工具</h4><ul>
+<li>快速统计训练工程中的指标</li>
+<li><code>AverageValueMeter</code>计算所有数的平均值和标准差<ul>
+<li>统计epoch损失的平均值</li>
+</ul>
+</li>
+<li><code>confusionmeter</code> - 统计分类情况</li>
+</ul>
+<h3 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h3><blockquote>
+<p>注意将模型置于验证模式，验证完后调整回训练模式</p>
+</blockquote>
+<ol>
+<li><p>将模型设置为验证模式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.eval()</span><br></pre></td></tr></table></figure></li>
+<li><p>初始化混淆矩阵</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">confusion_matrix = meter.ConfusionMeter(<span class="number">2</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>进行遍历数据集并存储相关指标</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ii, data <span class="keyword">in</span> <span class="built_in">enumerate</span>(dataloader):</span><br><span class="line">    <span class="built_in">input</span>, label = data</span><br><span class="line">    val_input = Variable(<span class="built_in">input</span>, volatile=<span class="literal">True</span>)</span><br><span class="line">    val_label = Variable(label.long(), volatile=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">if</span> opt.use_gpu:</span><br><span class="line">        val_input = val_input.cuda()</span><br><span class="line">        val_label = val_label.cuda()</span><br><span class="line">    score = model(val_input)</span><br><span class="line">    confusion_matrix.add(score.data.squeeze(), label.long())</span><br></pre></td></tr></table></figure></li>
+<li><p>恢复模型为训练模式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.train()</span><br></pre></td></tr></table></figure></li>
+<li><p>计算整个验证集上的表现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cm_value = confusion_matrix.value()</span><br><span class="line">accuracy = <span class="number">100.</span> * (cm_value[<span class="number">0</span>][<span class="number">0</span>] + cm_value[<span class="number">1</span>][<span class="number">1</span>]) /\</span><br><span class="line">                (cm_value.<span class="built_in">sum</span>())</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><ul>
+<li>这里计算每个样本属于狗的概率，将结果保存为csv</li>
+</ul>
+<ol>
+<li><p>处理输入参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">opt.parse(kwargs)</span><br></pre></td></tr></table></figure></li>
+<li><p>加载模型</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = <span class="built_in">getattr</span>(models, opt.model)().<span class="built_in">eval</span>()</span><br></pre></td></tr></table></figure></li>
+<li><p>构建数据集和数据集加载器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">train_data = DogCat(opt.test_data_root,test=<span class="literal">True</span>)</span><br><span class="line">test_dataloader = DataLoader(train_data,\</span><br><span class="line">                              batch_size=opt.batch_size,\</span><br><span class="line">                              shuffle=<span class="literal">False</span>,\</span><br><span class="line">                              num_workers=opt.num_workers)</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑测试集计算结果并保存</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">results = [] <span class="comment"># 结果数组</span></span><br><span class="line"><span class="keyword">for</span> ii,(data,path) <span class="keyword">in</span> <span class="built_in">enumerate</span>(test_dataloader):</span><br><span class="line">       <span class="built_in">input</span> = t.autograd.Variable(data,volatile = <span class="literal">True</span>)</span><br><span class="line">       <span class="keyword">if</span> opt.use_gpu: <span class="built_in">input</span> = <span class="built_in">input</span>.cuda()</span><br><span class="line">       score = model(<span class="built_in">input</span>)</span><br><span class="line">    <span class="comment"># 计算概率</span></span><br><span class="line">       probability = t.nn.functional.softmax(score)[:,<span class="number">1</span>].data.tolist()      </span><br><span class="line">       batch_results = [(path_,probability_) <span class="keyword">for</span> path_,probability_ <span class="keyword">in</span> <span class="built_in">zip</span>(path,probability) ]</span><br><span class="line">       results += batch_results</span><br></pre></td></tr></table></figure></li>
+<li><p>写文件</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">write_csv(results,opt.result_file)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 训练模型</span></span><br><span class="line">python main.py train </span><br><span class="line">        --train-data-root=data/train/ </span><br><span class="line">        --load-model-path=&#x27;checkpoints/resnet34_16:53:00.pth&#x27; </span><br><span class="line">        --lr=0.005 </span><br><span class="line">        --batch-size=32 </span><br><span class="line">        --model=&#x27;ResNet34&#x27;  </span><br><span class="line">        --max-epoch = 20</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试模型</span></span><br><span class="line">python main.py test</span><br><span class="line">       --test-data-root=data/test1 </span><br><span class="line">       --load-model-path=&#x27;checkpoints/resnet34_00:23:05.pth&#x27; </span><br><span class="line">       --batch-size=128 </span><br><span class="line">       --model=&#x27;ResNet34&#x27; </span><br><span class="line">       --num-workers=12</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 打印帮助信息</span></span><br><span class="line">python main.py help</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/24/Pytorch%E5%AE%9E%E6%88%98/" data-id="ckt2e2y1j000gpnut1x13euha" data-title="Pytorch实战笔记" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Pytorch常用工具总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/23/Pytorch%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2019-06-23T23:52:23.000Z" itemprop="datePublished">2019-06-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/23/Pytorch%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/">Pytorch常用工具总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="数据加载"><a href="#数据加载" class="headerlink" title="数据加载"></a>数据加载</h3><ul>
+<li>自定义数据集<ol>
+<li>继承<code>Dataset</code>，实现python方法：<ul>
+<li><code>__getitem__</code>: 返回一条数据/一个样本</li>
+<li><code>__len__</code>: 返回样本数量</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<p>以猫狗识别为例：</p>
+<ul>
+<li><p>文件结构</p>
+<blockquote>
+<p>所有文件放在一个文件夹，根据前缀判断</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">data/dogcat/</span><br><span class="line">|-- cat.12484.jpg</span><br><span class="line">|-- cat.12485.jpg</span><br><span class="line">|-- cat.12486.jpg</span><br><span class="line">|-- cat.12487.jpg</span><br><span class="line">|-- dog.12496.jpg</span><br><span class="line">|-- dog.12497.jpg</span><br><span class="line">|-- dog.12498.jpg</span><br><span class="line">`-- dog.12499.jpg</span><br></pre></td></tr></table></figure></li>
+<li><p>在构造函数中获取图片路径</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, root</span>):</span></span><br><span class="line">    <span class="comment"># 图片文件夹路径</span></span><br><span class="line">    imgs = os.listdir(root)</span><br><span class="line">    <span class="comment"># 遍历文件夹下所有文件 + 文件姐路径=&gt; 构成绝对路径</span></span><br><span class="line">    self.imgs = [os.path.join(root, img) <span class="keyword">for</span> img <span class="keyword">in</span> imgs]</span><br></pre></td></tr></table></figure></li>
+<li><p>定义<code>__getitem__</code>，这一步中<strong>真正读取图片</strong>，并根据文件名生成label</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, index</span>):</span></span><br><span class="line">    img_path = self.imgs[index]</span><br><span class="line">    <span class="comment"># 根据文件名生成Label</span></span><br><span class="line">    label = <span class="number">1</span> <span class="keyword">if</span> <span class="string">&#x27;dog&#x27;</span> <span class="keyword">in</span> img_path.split(<span class="string">&#x27;/&#x27;</span>)[-<span class="number">1</span>] <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line">    <span class="comment"># 加载图片</span></span><br><span class="line">    pil_img = Image.<span class="built_in">open</span>(img_path)</span><br><span class="line">    <span class="comment"># 图片转为numpy</span></span><br><span class="line">    array = np.asarray(pil_img)</span><br><span class="line">    <span class="comment"># numpy转为tensor</span></span><br><span class="line">    data = t.from_numpy(array)</span><br><span class="line">    <span class="keyword">return</span> data, bale</span><br></pre></td></tr></table></figure></li>
+<li><p>还需要定义<code>__len__</code>，返回imgs数组的长度</p>
+</li>
+<li><p>调用数据加载类</p>
+<ul>
+<li><p>```python<br>dataset = DogCat(FILEPATH)</p>
+<h1 id="访问某个元素"><a href="#访问某个元素" class="headerlink" title="访问某个元素"></a>访问某个元素</h1><p>dataset[INDEX]</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### transforms</span><br><span class="line"></span><br><span class="line">- 常见操作</span><br><span class="line"></span><br><span class="line">  - | 操作                                             | 说明                                             |</span><br><span class="line">    | ------------------------------------------------ | ------------------------------------------------ |</span><br><span class="line">    | `Scale`                                          | 调整图片尺寸，长宽比                             |</span><br><span class="line">    | `CenterCrop`, ``RandomCrop`, `RandomResizedCrop` | 裁剪                                             |</span><br><span class="line">    | `pad`                                            | 填充                                             |</span><br><span class="line">    | `ToTensor`                                       | 将PIL Image对象转成Tensor，将[0, 255]归一化[0,1] |</span><br><span class="line"></span><br><span class="line">- 对Tensor的操作</span><br><span class="line"></span><br><span class="line">  - Normalize: 标准化</span><br><span class="line">  - `ToPILImage`: Tensor转PIL Image</span><br><span class="line">  - `Compose`: 拼接</span><br><span class="line"></span><br><span class="line">- 实现</span><br><span class="line"></span><br><span class="line">  - ```python</span><br><span class="line">    transform = T.Compose([</span><br><span class="line">    	T.Resize(224), # 缩放，保持长宽比，短边224</span><br><span class="line">    	T.CenterCrop(224), # 中间切224*224</span><br><span class="line">    	T.ToTensor(), # 归一化到[0, 1]</span><br><span class="line">    	T.Normalize(mean = [.5, .5, .5], std = [.5, .5, .5]) # 表转化到[-1, 1]</span><br><span class="line">    ])</span><br></pre></td></tr></table></figure></li>
+<li><p>在数据集的类中定义transform，并在<code>__getitem__</code>方法中返回transforms处理过的data（图像数据）. </p>
+</li>
+</ul>
+</li>
+<li><p>自定义转换</p>
+<ul>
+<li>e.g. <code>trans=T.Lambda(lambda img: img.rotate(random()*360))</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="ImageFolder"><a href="#ImageFolder" class="headerlink" title="ImageFolder"></a><code>ImageFolder</code></h3><ul>
+<li><p>假设文件按文件夹保存，每个文件夹存储同类别，文件夹名为类名。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ImageFolder(root, transform=<span class="literal">None</span>, target_transform=<span class="literal">None</span>, loader=default_loader)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>root</code>: 路径</li>
+<li><code>transform</code>: 对图片的转换操作</li>
+<li><code>target_transform</code>: 对label转换</li>
+<li><code>loader</code>: 读取格式</li>
+</ul>
+</li>
+<li><p>属性</p>
+<ul>
+<li><code>class_to_idx</code> - 类名和类下标的对应关系</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>图片保存：Channel x Height x Width</p>
+</blockquote>
+<h3 id="DataLoader"><a href="#DataLoader" class="headerlink" title="DataLoader"></a>DataLoader</h3><ul>
+<li><p>```python<br>DataLoader(dataset, batch_size=1, shuffle=False, sampler=None, num_workers=0, collate_fn=default_collate, pin_memory=False, drop_last=False)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - `dataset` - Dataset对象</span><br><span class="line">  - `shuffle` - 打乱</span><br><span class="line">  - `sampler`</span><br><span class="line">  - `num_workers` - 多进程加载的进程数</span><br><span class="line">  - `collate_fn` - 多个样本数据拼成一个batch的方法，一般使用默认</span><br><span class="line">  - `pin_memory` - 是否将数据保存在`pin_memory`区，转到GPU快</span><br><span class="line">  - `drop_last` -师傅 将最后不足`batch_size`个数据丢弃</span><br><span class="line"></span><br><span class="line">#### 可迭代</span><br><span class="line"></span><br><span class="line">- 可以使用for循环</span><br><span class="line"></span><br><span class="line">  - ```python</span><br><span class="line">    for batch_datas, batch_labels in dataloader:</span><br></pre></td></tr></table></figure></li>
+<li><p>可以使用迭代器</p>
+<ul>
+<li>```python<br>dataiter = iter(dataloader)<br>batch_datas, batch_labels = next(dataiter)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 剔除出错样本</span><br><span class="line"></span><br><span class="line">#### 返回None，并在拼合为batch的时候筛选掉</span><br><span class="line"></span><br><span class="line">- 使用`try`, `except`</span><br><span class="line"></span><br><span class="line">  - 异常情况：`return None, None`</span><br><span class="line"></span><br><span class="line">    &gt; 这里需要配合实现`Dataloader`的`collate_fn`，将None过滤</span><br><span class="line"></span><br><span class="line">    ```python</span><br><span class="line">    from torch.utils.data.dataloader import default_collate # 导入默认的拼接方式</span><br><span class="line">    def my_collate_fn(batch):</span><br><span class="line">        # 过滤为None的数据</span><br><span class="line">        batch = list(filter(lambda x:x[0] is not None, batch))</span><br><span class="line">        if len(batch) == 0: return t.Tensor()</span><br><span class="line">        return default_collate(batch) # 用默认方式拼接过滤后的batch数据</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h4 id="随机选取图片代替"><a href="#随机选取图片代替" class="headerlink" title="随机选取图片代替"></a>随机选取图片代替</h4><ul>
+<li>优点：保证每个batch的数目仍是batch_size</li>
+</ul>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>高负载的操作放在<code>__getitem__</code>，如加载图片 =&gt; 为实现并行加速</li>
+<li><code>dataset</code>包含只读，避免修改 =&gt; 使用多进程加载，修改可能产生冲突</li>
+</ul>
+<h4 id="sampler"><a href="#sampler" class="headerlink" title="sampler"></a><code>sampler</code></h4><ul>
+<li>对数据采样，loader里面shuffle为True，调用随机采样器<code>RandomSampler</code>，打乱数据；默认使用<code>SequentialSampler</code>，顺序采样</li>
+</ul>
+<h5 id="WeightedRandomSampler"><a href="#WeightedRandomSampler" class="headerlink" title="WeightedRandomSampler"></a><code>WeightedRandomSampler</code></h5><ul>
+<li>根据每个样本的权重选取数据，比例不均衡问题中进行重采样</li>
+<li>构建时提供每个样本的权重<code>weights</code>和选取样本总数<code>num_samples</code>，可选<code>replacement</code><ul>
+<li>权重越大被选中概率越大</li>
+<li><code>replacement</code>决定是否可以重复选取某一样本</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>在指定了sampler的情况下，shuffle不再生效；一个epoch返回的图片总数取决于sampler.num_samples</p>
+</blockquote>
+<h2 id="计算机视觉工具包-torchvision"><a href="#计算机视觉工具包-torchvision" class="headerlink" title="计算机视觉工具包 torchvision"></a>计算机视觉工具包 torchvision</h2><ul>
+<li>models：提供网络结构以及预训练好的模型</li>
+<li>datasets：提供常用的数据集加载</li>
+<li>transforms：提供常用的数据预处理</li>
+</ul>
+<h3 id="Visdom"><a href="#Visdom" class="headerlink" title="Visdom"></a>Visdom</h3><ul>
+<li><code>env</code>: 不同环境的可视化结果相互隔离，默认<code>main</code></li>
+<li><code>pane</code>: 窗格</li>
+</ul>
+<h4 id="安装和使用"><a href="#安装和使用" class="headerlink" title="安装和使用"></a>安装和使用</h4><ul>
+<li><p>```shell<br>$ pip install visdom<br>$ python -m visdom.server # 启动visdom服务<br>$ nohup python -m visdom.server &amp; # 将服务放至后台运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; **注意:**</span><br><span class="line">&gt;</span><br><span class="line">&gt; 手动指定保存`env`，在web上或者程序里save，否则visdom服务重启后，信息会丢失。</span><br><span class="line"></span><br><span class="line">#### 常用操作</span><br><span class="line"></span><br><span class="line">- 新建连接客户端</span><br><span class="line"></span><br><span class="line">  - ```python</span><br><span class="line">    vis = visdom.Visdom(env=u&#x27;test1&#x27;,use_incoming_socket=False)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>可以指定host, port..</li>
+</ul>
+</li>
+<li><p>画图函数: line, image, text, histogram, scatter, bar, pie…</p>
+</li>
+</ul>
+<blockquote>
+<p>支持tensor和narray的数据结构</p>
+</blockquote>
+<h5 id="常见参数"><a href="#常见参数" class="headerlink" title="常见参数"></a>常见参数</h5><ul>
+<li><p><code>win</code>: 指定Pane的名字，两次操作指定的win相同，则覆盖</p>
+<blockquote>
+<p>需要更新数值且不覆盖，指定参数<code>update=&#39;append&#39;</code></p>
+<p>也可以使用<code>vis.updateTrace</code>更新图：</p>
+<ol>
+<li><p>增加新trace</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = t.arange(<span class="number">0</span>, <span class="number">9</span>, <span class="number">0.1</span>)</span><br><span class="line">y = (x ** <span class="number">2</span>) / <span class="number">9</span></span><br><span class="line">vis.line(X=x, Y=y, win=<span class="string">&#x27;polynomial&#x27;</span>, name=<span class="string">&#x27;this is a new Trace&#x27;</span>,update=<span class="string">&#x27;new&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在原trace上追加</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">10</span>):</span><br><span class="line">    <span class="comment"># y = x</span></span><br><span class="line">    x = t.Tensor([ii])</span><br><span class="line">    y = x</span><br><span class="line">    vis.line(X=x, Y=y, win=<span class="string">&#x27;polynomial&#x27;</span>, update=<span class="string">&#x27;append&#x27;</span> <span class="keyword">if</span> ii&gt;<span class="number">0</span> <span class="keyword">else</span> <span class="literal">None</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+</blockquote>
+</li>
+<li><p><code>opts</code>: 选项，接收字典，用于pane的显示格式</p>
+</li>
+</ul>
+<h5 id="text"><a href="#text" class="headerlink" title="text"></a>text</h5><ul>
+<li>支持html</li>
+</ul>
+<h2 id="使用GPU加速-cuda"><a href="#使用GPU加速-cuda" class="headerlink" title="使用GPU加速 cuda"></a>使用GPU加速 cuda</h2><h3 id="注意事项-1"><a href="#注意事项-1" class="headerlink" title="注意事项"></a>注意事项</h3><ul>
+<li><p>损失函数定义后也应该调用<code>criterion.cuda</code>转移到GPU</p>
+</li>
+<li><p>推荐方法设置环境变量<code>CUDA_VISIBLE_DEVICES</code>，</p>
+<ul>
+<li><p>在运行py的命令行实现</p>
+</li>
+<li><p>在程序中：</p>
+<ul>
+<li>```python<br>import os<br>os.environ[“CUDA_VISIBLE_DEVICES”] = “2”<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 在Jupyter notebook中：</span><br><span class="line"></span><br><span class="line">  - ```shell</span><br><span class="line">    %env CUDA_VISIBLE_DEVICES=1,2</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><ul>
+<li>可持久化的对象：<ul>
+<li>Tensor</li>
+<li>Variable</li>
+<li>nn.Module</li>
+<li>Optimizer</li>
+</ul>
+</li>
+<li>都保存成Tensor，使用<code>t.save(OBJ, FILENAME)</code>和<code>t.load(FILENAME)</code>可完成<ul>
+<li><code>load</code>的时候可以指定加载的存储位置，设置<code>map_location</code>参数</li>
+</ul>
+</li>
+<li>建议module和optimizer保存为<code>state_dict</code></li>
+</ul>
+<h5 id="module"><a href="#module" class="headerlink" title="module"></a>module</h5><ul>
+<li>```python<h1 id="保存"><a href="#保存" class="headerlink" title="保存"></a>保存</h1>t.save(model.state_dict(), FILENAME)<h1 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h1>model.load_state_dict(t.load(FILENAME))<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- optimizer同样</span><br><span class="line"></span><br><span class="line">#### 一起保存加载</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  all_data = dict(</span><br><span class="line">      optimizer = optimizer.state_dict(),</span><br><span class="line">      model = model.state_dict(),</span><br><span class="line">      info = u&#x27;模型和优化器的所有参数&#x27;</span><br><span class="line">  )</span><br><span class="line">  t.save(all_data, &#x27;all.pth&#x27;)</span><br><span class="line">  </span><br><span class="line">  all_data = t.load(&#x27;all.pth&#x27;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/23/Pytorch%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E6%80%BB%E7%BB%93/" data-id="ckt2e2y1k000jpnut3503gw8r" data-title="Pytorch常用工具总结" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-PyTorch快速入门" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/21/PyTorch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" class="article-date">
+  <time class="dt-published" datetime="2019-06-21T18:15:29.000Z" itemprop="datePublished">2019-06-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/21/PyTorch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">PyTorch快速入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://github.com/chenyuntc/pytorch-book">https://github.com/chenyuntc/pytorch-book</a></p>
+</blockquote>
+<h2 id="基本介绍"><a href="#基本介绍" class="headerlink" title="基本介绍"></a>基本介绍</h2><h3 id="Tensor"><a href="#Tensor" class="headerlink" title="Tensor"></a>Tensor</h3><ul>
+<li><code>t.Tensor</code><ul>
+<li>传入维度 - 分配空间不初始化</li>
+<li>传入具体数据 - 舒适化</li>
+</ul>
+</li>
+<li><code>t.rand</code><ul>
+<li>传入维度 - 指定维度的随机初始化数据，复合[0,1]分布</li>
+</ul>
+</li>
+<li>Add<ul>
+<li><code>x+y</code></li>
+<li><code>t.add(x,y)</code></li>
+<li><code>t.add(x,y,out=result)</code> - 指定输出目标</li>
+<li><code>x.add(y)</code>- <strong>x不变</strong></li>
+<li><code>x.add_(y)</code> - <strong>x改变</strong> = <code>x+=y</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>函数名后面带下划线<code>_</code>会修改Tensor本身</strong></p>
+</blockquote>
+<ul>
+<li>与Numpy转换：<ul>
+<li>Tensor -&gt; numpy: <code>a.numpy()</code></li>
+<li>Numpy -&gt; tensor: <code>t.from_numpy(a)</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>一个对象的tensor和numpy共享内存，一个改变，另一个随之而变</p>
+</blockquote>
+<ul>
+<li><p>获得元素值：</p>
+<ul>
+<li>下标访问tensor - <code>tensor[index...]</code>获得<strong>0-dim tensor</strong></li>
+<li>获得值 - <code>scalar.item()</code></li>
+</ul>
+</li>
+<li><p>scalar和tensor的区别：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tensor = t.tensor([<span class="number">2</span>])</span><br><span class="line">scalar = tensor[<span class="number">0</span>]</span><br><span class="line">scalar0 = t.tensor(<span class="number">2</span>)</span><br><span class="line"><span class="comment"># tensor 1-dim</span></span><br><span class="line">tensor.size() <span class="comment"># torch.Size([1])</span></span><br><span class="line"><span class="comment"># scalar 0-dim</span></span><br><span class="line">scalar.size() <span class="comment"># torch.Size([])</span></span><br><span class="line"><span class="comment"># scalar0 0-dim</span></span><br><span class="line">scalar0.size() <span class="comment"># torch.Size([])</span></span><br></pre></td></tr></table></figure></li>
+<li><p>数据拷贝和共享内存</p>
+<ul>
+<li><code>t.tensor()</code> - 会进行数据拷贝</li>
+<li><code>t.from_numpy()</code> / <code>tensor.detach()</code>新建的tensor与原tensor共享内存</li>
+</ul>
+</li>
+<li><p>GPU加速</p>
+<ul>
+<li><code>t.cuda</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="Autograd-自动微分"><a href="#Autograd-自动微分" class="headerlink" title="Autograd: 自动微分"></a>Autograd: 自动微分</h3><ul>
+<li><p>使用autograd功能</p>
+<ul>
+<li><p>```python<br>x = t.ones(2, 2, requires_grad=True)<br>result = doSomething(x)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 反向传播</span><br><span class="line"></span><br><span class="line">  - ```python</span><br><span class="line">    result.backward()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>反向传播会累加之前的梯度，反向传播前把梯度清零</p>
+</blockquote>
+</li>
+<li><p>梯度清零</p>
+<ul>
+<li>```python<br>x.grad.data.zero_()<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 神经网络</span><br><span class="line"></span><br><span class="line">定义网络</span><br><span class="line"></span><br><span class="line">- 继承`nn.Module`，实现`forward`，把网络中具有**可学习参数**的层放在`__init__`中。不具有可学习参数使用`forward`的`nn.functional`代替</span><br><span class="line"></span><br><span class="line">- `__init__`函数先执行父类构造函数`super(CLASSNAME, self).__init__()`</span><br><span class="line"></span><br><span class="line">##### 卷积层</span><br><span class="line"></span><br><span class="line">- `nn.Conv2d(inputC, outputC, k)`</span><br><span class="line">  - 输入图片通道数</span><br><span class="line">  - 输出通道数</span><br><span class="line">  - 卷积核</span><br><span class="line"></span><br><span class="line">##### 全连接层</span><br><span class="line"></span><br><span class="line">- `nn.Linear(input, output)`</span><br><span class="line"></span><br><span class="line">  - 输入样本数</span><br><span class="line">  - 输出样本数</span><br><span class="line"></span><br><span class="line">  &gt; y = Wx + b</span><br><span class="line"></span><br><span class="line">##### forward</span><br><span class="line"></span><br><span class="line">- `F.relu(input)` - 激活</span><br><span class="line">  - 上一层的结果</span><br><span class="line">- `F.max_pool2d(input, kernel size)`</span><br><span class="line">  - kernel size</span><br><span class="line"></span><br><span class="line">- `x.view(ONEDIMENSION,-1`</span><br><span class="line">  - -1 自适应维度</span><br><span class="line"></span><br><span class="line">#### 训练网络</span><br><span class="line"></span><br><span class="line">- 定义了forward函数，backward就会自动被实现</span><br><span class="line">- `net.parameters()`返回网络的**可学习参数**</span><br><span class="line">- `·net.named_parameters()`返回可学习的参数及名称</span><br><span class="line"></span><br><span class="line">&gt; torch.nn不支持一次只输入一个样本：</span><br><span class="line">&gt;</span><br><span class="line">&gt; 1. 用 `input.unsqueeze(0)`将batch_size设为１</span><br><span class="line">&gt; 2. Conv2d输入时将nSample设为1</span><br><span class="line"></span><br><span class="line">#### 损失函数</span><br><span class="line"></span><br><span class="line">- `nn.MSELoss(output, target)`计算均方误差</span><br><span class="line">- `nn.CrossEntropyLoss(output target)`计算交叉熵损失</span><br><span class="line"></span><br><span class="line">#### 优化器</span><br><span class="line"></span><br><span class="line">- 反向传播计算参数的梯度，使用优化方法**更新网络的权重和参数**</span><br><span class="line"></span><br><span class="line">- e.g. SGD：</span><br><span class="line"></span><br><span class="line">  - ```python</span><br><span class="line">    weight = weight - learning_rate * gradient</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>```python<br>learning_rate = 0.01<br>for f in net.parameters():</p>
+<pre><code>f.data.sub_(f.grad.data * learning_rate)# inplace 减法
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##### 构造优化器</span><br><span class="line"></span><br><span class="line">&gt; optim &lt;= torch.optim</span><br><span class="line"></span><br><span class="line">- ```</span><br><span class="line">  optimizer = optim.SGD(net.parameters(), lr = 0.01)</span><br></pre></td></tr></table></figure></li>
+<li><p>要调整的参数为网络中的可学习参数</p>
+</li>
+<li><p>lr为学习率</p>
+</li>
+</ul>
+</li>
+<li><p><strong>训练步骤</strong>：</p>
+<ol>
+<li><p>清零优化器梯度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer.zero_grad()</span><br></pre></td></tr></table></figure></li>
+<li><p>过网络</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output = net(<span class="built_in">input</span>)</span><br></pre></td></tr></table></figure></li>
+<li><p>计算损失</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss = criterion(output, target)</span><br></pre></td></tr></table></figure></li>
+<li><p>反向传播</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss.backward()</span><br></pre></td></tr></table></figure></li>
+<li><p>更新参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer.step()</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<h2 id="Tensor-和-Autograd"><a href="#Tensor-和-Autograd" class="headerlink" title="Tensor 和 Autograd"></a>Tensor 和 Autograd</h2><h3 id="Tensor-1"><a href="#Tensor-1" class="headerlink" title="Tensor"></a>Tensor</h3><h4 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h4><h5 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h5><ul>
+<li><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>arange(s,e,step)</td>
+<td>从s到e，步长为step</td>
+</tr>
+<tr>
+<td>linspace(s,e,steps)</td>
+<td>从s到e，均匀切分成steps份</td>
+</tr>
+<tr>
+<td>rand/randn(*sizes)</td>
+<td>均匀/标准分布</td>
+</tr>
+<tr>
+<td>normal(mean,std)/uniform(from,to)</td>
+<td>正态分布/均匀分布</td>
+</tr>
+<tr>
+<td>randperm(m)</td>
+<td>随机排列</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>创建的时候可以指定数据类型(e.g. <code>dtype = t.int</code>)和存放device(e.g. <code>device = t.device(&#39;cpu&#39;)</code></p>
+</li>
+<li><p>tensor转化为list - <code>tensor.tolist()</code></p>
+<blockquote>
+<p>tensor的数据类型为<code>tensor([[1,2],[3,4]])</code>; list数据类型为<code>[[1,2],[3,4]]</code></p>
+</blockquote>
+</li>
+<li><p>获得tensor的维度 - <code>tensor.size()</code>或<code>tensor.shape</code>返回torch.Size对象 - <code>torch.Size([第一维, 第二维, ..])</code></p>
+</li>
+<li><p>获得tensor元素的总数 - <code>tensor.numel()</code></p>
+</li>
+<li><p>传参为数据和维度的区别：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">t.Tensor(<span class="number">2</span>,<span class="number">3</span>) <span class="comment"># tensor([[x, x, x],[x, x, x]])</span></span><br><span class="line">t.Tensor((<span class="number">2</span>,<span class="number">3</span>)) <span class="comment"># tensor([2,3])</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<blockquote>
+<p>使用维度作为参数构造tensor的时候不会马上分配空间，使用到tensor才分配；其他的构造函数都是马上分配</p>
+</blockquote>
+<ul>
+<li>使用<code>eye</code>构造对角矩阵，不要求行列数一致</li>
+</ul>
+<h5 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h5><ul>
+<li><p>调整tensor形状，调整前后<strong>元素总数一致</strong>。view返回的新tensor与原tensor共享内存。</p>
+</li>
+<li><p><code>view</code>的参数为修改后的每个维度，如果有一个为<code>-1</code>则该维度根据元素总数不变的原则自动计算</p>
+</li>
+<li><p><code>unsqueeze(index)</code> - 第index维的维度+1</p>
+<ul>
+<li>即之前维度为[x, y, z, …]<ul>
+<li>index = 0 -&gt; 维度变为 [1, x, y, z, …]</li>
+<li>index = 1 -&gt; 维度变为 [x, 1, y, z, …]</li>
+<li>index = 2 -&gt; 维度变为 [x, y, 1, z, …]</li>
+</ul>
+</li>
+<li>参数为负数的时候表示倒数</li>
+</ul>
+</li>
+<li><p><code>squeeze(index)</code> - 压缩第index维的1，如果不输入index，则把所有维度为1的压缩</p>
+</li>
+<li><p><code>resize</code>可以修改tensor的大小，如果新大小超过了原大小，自动分配新空间，大小小于原大小，之前数据仍然保留</p>
+</li>
+</ul>
+<h5 id="索引操作"><a href="#索引操作" class="headerlink" title="索引操作"></a>索引操作</h5><ul>
+<li><p>索引出来的结果与原tensor共享内存</p>
+</li>
+<li><p><code>None</code> - 新增轴</p>
+<ul>
+<li><p>```pythob<br>a[:,None,:,None,None].shape<br>torch.Size([3, 1, 4, 1, 1])</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 筛选tensor元素 - `tensor[CONDITION]`</span><br><span class="line"></span><br><span class="line">  &gt; 返回结果与原tensor不共享内存空间</span><br><span class="line"></span><br><span class="line">- 常用选择函数</span><br><span class="line"></span><br><span class="line">  |                            函数 |                                                  功能 |</span><br><span class="line">  | ------------------------------: | ----------------------------------------------------: |</span><br><span class="line">  | index_select(input, dim, index) |           在指定维度dim上选取，比如选取某些行、某些列 |</span><br><span class="line">  |      masked_select(input, mask) |              例子如上，a[a&gt;0]，使用ByteTensor进行选取 |</span><br><span class="line">  |                 non_zero(input) |                                         非0元素的下标 |</span><br><span class="line">  |       gather(input, dim, index) | 根据index，在dim维度上选取数据，输出的size与index一样 |</span><br><span class="line"></span><br><span class="line">&gt; 对tensor的任何索引操作仍是一个**tensor**，想要获取标准的python对象数值，需要调用`tensor.item()`, 这个方法**只对包含一个元素的tensor适用**</span><br><span class="line"></span><br><span class="line">- 索引访问：</span><br><span class="line">  - 维度为3：[[a,b], [c,d], [e,f]] =&gt; [[a,c,e], [b,d,f]]</span><br><span class="line">  - [[a,b,c], [d], [e]] =&gt; [[a,d,e], [b,d,e], [c,d,e]]</span><br><span class="line"></span><br><span class="line">##### 逐元素操作</span><br><span class="line"></span><br><span class="line">- `clamp` - 控制元素范围，用于比较大小</span><br><span class="line"></span><br><span class="line">  ![1561187765542](C:\Users\Sherry\AppData\Roaming\Typora\typora-user-images\1561187765542.png)</span><br><span class="line"></span><br><span class="line">##### 归并操作</span><br><span class="line"></span><br><span class="line">- 使得输出形状小于输入形状，e.g. 均值、和...</span><br><span class="line">- 指定对第几维度的元素操作，`keepdim = True`保存被操作的维度为1，否则不保留这一维度</span><br><span class="line"></span><br><span class="line">##### 线性代数</span><br><span class="line"></span><br><span class="line">| 函数                             | 功能                              |</span><br><span class="line">| -------------------------------- | --------------------------------- |</span><br><span class="line">| trace                            | 对角线元素之和(矩阵的迹)          |</span><br><span class="line">| diag                             | 对角线元素                        |</span><br><span class="line">| triu/tril                        | 矩阵的上三角/下三角，可指定偏移量 |</span><br><span class="line">| mm/bmm                           | 矩阵乘法，batch的矩阵乘法         |</span><br><span class="line">| addmm/addbmm/addmv/addr/badbmm.. | 矩阵运算                          |</span><br><span class="line">| t                                | 转置                              |</span><br><span class="line">| dot/cross                        | 内积/外积                         |</span><br><span class="line">| inverse                          | 求逆矩阵                          |</span><br><span class="line">| svd                              | 奇异值分解                        |</span><br><span class="line"></span><br><span class="line">#### Tensor和Numpy</span><br><span class="line"></span><br><span class="line">&gt; 当numpy的数据类型和Tensor的类型不一样时，数据会被复制，不共享内存</span><br><span class="line"></span><br><span class="line">- 调用`t.tensor`进行构建的时候都会进行数据拷贝</span><br><span class="line"></span><br><span class="line">##### 广播法则</span><br><span class="line"></span><br><span class="line">###### N</span><br><span class="line"></span><br><span class="line">- 所有输入数组像其中shape最长的看齐，shape不足通过前面加1</span><br><span class="line">- 两个数组要么在某一个维度长度一致，要么其中一个为1，否则不能计算</span><br><span class="line">- 输入某个长度为1，计算时沿此维度扩充成和另一个输入一样的维度</span><br><span class="line"></span><br><span class="line">###### Pytorch中的使用</span><br><span class="line"></span><br><span class="line">- `unsqueeze`或者`view`或者`tensor[NONE]`，实现补齐1</span><br><span class="line"></span><br><span class="line">- `expand`或者`expand_as`重复数组，不会占用空间</span><br><span class="line"></span><br><span class="line">  &gt; repeat和expand相似，repeat占用额外空间，expand不占用</span><br><span class="line"></span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">#### 内部结构</span><br><span class="line"></span><br><span class="line">- Tensor分为头信息区tensor和存储区storage</span><br><span class="line">  - tensor保存size, stride, type</span><br><span class="line">  - 共享内存的情况下，即共享storage</span><br><span class="line">- 下标访问只是对于原storage地址增加了偏移量进行映射的</span><br><span class="line"></span><br><span class="line">&gt; 大部分操作不修改tensor，只修改tensor的头</span><br><span class="line">&gt;</span><br><span class="line">&gt; contiguous方法将离散的tensor变成连续数据</span><br><span class="line">&gt;</span><br><span class="line">&gt; 高级索引一般不共享storage，普通索引共享storage</span><br><span class="line"></span><br><span class="line">#### 其他问题</span><br><span class="line"></span><br><span class="line">##### GP</span><br><span class="line"></span><br><span class="line">- 推荐使用`tensor.to(device)`使得程序同时兼容CPU和GPU，避免频繁在内存和显存中传输数据</span><br><span class="line"></span><br><span class="line">##### 持久化</span><br><span class="line"></span><br><span class="line">- `t.save`, </span><br><span class="line"></span><br><span class="line">##### 向量化</span><br><span class="line"></span><br><span class="line">- python的for循环十分低效</span><br><span class="line">- `t.set_num_threads`可以设置PyTorch进行CPU多线程并行计算时候所占用的线程数，这个可以用来限制PyTorch所占用的CPU数目</span><br><span class="line"></span><br><span class="line">### AutoGrad</span><br><span class="line"></span><br><span class="line">- 自动求导引擎</span><br><span class="line"></span><br><span class="line">#### 计算图</span><br><span class="line"></span><br><span class="line">- 有向无环图</span><br><span class="line"></span><br><span class="line">- 有向无环图的叶子节点由用户自己创建，不依赖其他变量，根节点为计算图的最终目标</span><br><span class="line"></span><br><span class="line">- 链式的中间导数在前向传播过程中保存为buffer，在计算完梯度后会自动清空</span><br><span class="line"></span><br><span class="line">  &gt; 需要多次反向传播则指定`retain_graph`保存buffer</span><br><span class="line"></span><br><span class="line">- 变量的`requires_grad`属性默认为False，如果某一个节点requires_grad被设置为True，那么所有依赖它的节点`requires_grad`都是True。</span><br><span class="line"></span><br><span class="line">- 修改tensor数值，不希望被autograd记录，则修改tensor.data或者tensor.detach()</span><br><span class="line">- 反向传播非叶子结点的导数会在计算完后被清空，查看梯度可以使用autograd.grad函数或者hood</span><br><span class="line">  </span><br><span class="line">  - hook需要register和remove</span><br><span class="line"></span><br><span class="line">##### 总结</span><br><span class="line"></span><br><span class="line">- `autograd`根究用户对variable的操作构建计算图。对变量的操作抽象为Function</span><br><span class="line">- 某个变量不是Function的输出，且由用户创建则为叶子节点（用户输入），其`grad_fn`为None. 叶子节点中需要求导的Variable，具有`AccumulateGrad`标识，因为梯度累加</span><br><span class="line">- Variable默认不求导，如果一个节点的`require_grad`设置为True，所有依赖它的节点`require_grad`为True</span><br><span class="line">- Variable的`volatile`默认为True，volatile为True的节点不会求导，volatile优先级比`require_grad`高</span><br><span class="line">- 多次反向传播梯度累加，若需要保存反向传播中间变量的值，需要设置`retain_graph = True`</span><br><span class="line"></span><br><span class="line">- 非叶子节点梯度计算完之后被清空，使用`autogtad.grad`或`hook`获取</span><br><span class="line"></span><br><span class="line">#### 扩展autograd</span><br><span class="line"></span><br><span class="line">- 自己定义函数继承`Function`，并且实现`forward`, `backward`静态方法（def之前写`@staticmethod`）</span><br><span class="line"></span><br><span class="line">- 主函数中调用时：</span><br><span class="line"></span><br><span class="line">  - 前向传播：</span><br><span class="line"></span><br><span class="line">    - ```</span><br><span class="line">      z = MultiplyAdd.apply(w, x, b)</span><br></pre></td></tr></table></figure></li>
+<li><p>反向传播:</p>
+<ul>
+<li>```<br>z.backward()<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 神经网络工具箱nn</span><br><span class="line"></span><br><span class="line">- Module - 神经网络中的某层/包含很多层的神经网络</span><br><span class="line"></span><br><span class="line">##### 全连接层</span><br><span class="line"></span><br><span class="line">- 继承`nn.Module`</span><br><span class="line"></span><br><span class="line">- 构造函数`__init__`自己定义可学习参数</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  # infeatures和outfeatures为输入输出特征的维度</span><br><span class="line">  def __init__(self, infeatures, outfeatures):</span><br><span class="line">  	super...</span><br><span class="line">  	# 自己定义可学习参数如下：</span><br><span class="line">  	self.para1 = nn.Parameter..</span><br><span class="line">  	self.para2 = ...</span><br><span class="line">  	...</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><code>nn.Parameter</code> - tensor，默认<code>requires_grad = True</code></p>
+</blockquote>
+</li>
+<li><p>不需要写反向传播函数</p>
+</li>
+<li><p>调用：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">layer = Linear(INFEATURES, OUTFEATURES)</span><br><span class="line">y = layer(x)</span><br></pre></td></tr></table></figure></li>
+<li><p>返回可学习参数 - <code>named_parameters()</code></p>
+</li>
+</ul>
+<h5 id="子模块sub-module"><a href="#子模块sub-module" class="headerlink" title="子模块sub module"></a>子模块sub module</h5><ul>
+<li><code>named_parameters()</code>返回可学习参数为：模块名.参数名</li>
+</ul>
+<h3 id="常用神经网络层"><a href="#常用神经网络层" class="headerlink" title="常用神经网络层"></a>常用神经网络层</h3><h4 id="图像相关层"><a href="#图像相关层" class="headerlink" title="图像相关层"></a>图像相关层</h4><h5 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h5><ul>
+<li><code>nn.Conv2d</code></li>
+</ul>
+<h5 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h5><ul>
+<li>没有可学习参数，权重固定</li>
+</ul>
+<h5 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h5><ul>
+<li><p><code>Linear</code>全连接</p>
+</li>
+<li><p><code>BatchNorm</code> - 批量规范化，风格迁移<code>instanceNorm</code></p>
+<ul>
+<li>初始化通道数</li>
+<li>权重初始化为单位阵</li>
+<li>偏差初始化为0</li>
+</ul>
+</li>
+<li><p><code>Dropout</code> - 防止过拟合</p>
+<ul>
+<li>输出每个元素的舍弃概率</li>
+</ul>
+</li>
+</ul>
+<h4 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h4><h5 id="Relu"><a href="#Relu" class="headerlink" title="Relu"></a>Relu</h5><ul>
+<li>$ReLU(x) = max(0, x)$<ul>
+<li>其inplace参数为True会将输出覆盖到输入，节省内存，一般不使用Inplace</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>前馈传播网络 feedfoward neural network</strong>： 将每一层的输出直接作为下一层的输入。简化forward -&gt; ModuleList &amp; Sequential</p>
+</blockquote>
+<h6 id="Sequential"><a href="#Sequential" class="headerlink" title="Sequential"></a>Sequential</h6><ul>
+<li>包含几个sub module - 前向传播一层一层传递</li>
+</ul>
+<ol>
+<li>声明，添加module</li>
+</ol>
+<ul>
+<li>```python<br>net1 = nn.Sequential()<br>net1.add_module(‘conv’, nn.Conv2d(3,3,3))<br>net1.add_module(‘batchnorm’, nn.BatchNorm2d(3))<br>net1.add_module(‘activation_layer’, nn.ReLU())<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2. 将模块作为参数传递</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  net2 = nn.Sequential(</span><br><span class="line">          nn.Conv2d(3, 3, 3),</span><br><span class="line">          nn.BatchNorm2d(3),</span><br><span class="line">          nn.ReLU()</span><br><span class="line">          )</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="3">
+<li>将模块作为有序字典传入</li>
+</ol>
+<ul>
+<li>```python<br>from collections import OrderedDict<br>net3= nn.Sequential(OrderedDict([<pre><code>      (&#39;conv1&#39;, nn.Conv2d(3, 3, 3)),
+      (&#39;bn1&#39;, nn.BatchNorm2d(3)),
+      (&#39;relu1&#39;, nn.ReLU())
+    ]))
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 其中方法1和方法3可以按照模块名称访问子模块，而方法2按照下标获取子模块（从0）</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">- 模块数组`nn.ModuleList`，其中的元素可以被主（父）module识别，即其参数可以自动加入到主module的参数中</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  modellist = nn.ModuleList([nn.Linear(3,4), nn.ReLU(), nn.Linear(4,2)])</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><ul>
+<li><p>```<br>nn.LOSS_FUNCTION_NAME()</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 优化器</span><br><span class="line"></span><br><span class="line">- 优化方法来自包`torch.optim`，所有的优化方法继承基类`optim.Optimizer`</span><br><span class="line"></span><br><span class="line">- 优化器可以对于不同的子网络（如在主网络/主Module中定义了多个子模块或者Sequential）</span><br><span class="line"></span><br><span class="line">  - ```python</span><br><span class="line">    optimizer =optim.SGD([</span><br><span class="line">                    &#123;&#x27;params&#x27;: net.features.parameters()&#125;, # 学习率为1e-5</span><br><span class="line">                    &#123;&#x27;params&#x27;: net.classifier.parameters(), &#x27;lr&#x27;: 1e-2&#125;</span><br><span class="line">                ], lr=1e-5)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果某个参数显示执行学习率，则使用最外层的默认学习率</p>
+</blockquote>
+</li>
+<li><p>指定自网络中的不同层有不同的学习率的例子：</p>
+<ul>
+<li>```python<h1 id="只为两个全连接层设置较大的学习率，其余层的学习率较小"><a href="#只为两个全连接层设置较大的学习率，其余层的学习率较小" class="headerlink" title="只为两个全连接层设置较大的学习率，其余层的学习率较小"></a>只为两个全连接层设置较大的学习率，其余层的学习率较小</h1>special_layers = nn.ModuleList([net.classifier[0], net.classifier[3]])<br>special_layers_params = list(map(id, special_layers.parameters()))<br>base_params = filter(lambda p: id(p) not in special_layers_params,<pre><code>                 net.parameters())
+</code></pre>
+optimizer = t.optim.SGD([<pre><code>        &#123;&#39;params&#39;: base_params&#125;,
+        &#123;&#39;params&#39;: special_layers.parameters(), &#39;lr&#39;: 0.01&#125;
+    ], lr=0.001 )
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">##### 调整学习率</span><br><span class="line"></span><br><span class="line">###### 新建优化器</span><br><span class="line"></span><br><span class="line">- 优点：简单</span><br><span class="line">- 缺点：如果使用动量的优化器，会丢失动量等状态信息</span><br><span class="line"></span><br><span class="line">###### 修改学习率</span><br><span class="line"></span><br><span class="line">- 手动decay保存动量</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  for param_group in optimizer.param_groups:</span><br><span class="line">      param_group[&#x27;lr&#x27;] *= 0.1 # 学习率为之前的0.1倍</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<h3 id="nn-functional"><a href="#nn-functional" class="headerlink" title="nn.functional"></a>nn.functional</h3><ul>
+<li>大部分layer在<code>functional</code>有与之对应的函数</li>
+</ul>
+<h6 id="nn-functional和nn-Module的区别"><a href="#nn-functional和nn-Module的区别" class="headerlink" title="nn.functional和nn.Module的区别"></a>nn.functional和nn.Module的区别</h6><ul>
+<li>module: 自动提取可学习参数</li>
+<li>function: 类似纯函数，不需要可学习参数时可使用. e.g. 激活函数，池化层</li>
+</ul>
+<hr>
+<ul>
+<li>不具备可学习参数的层不放在构造函数<code>__init__</code>中。</li>
+</ul>
+<h3 id="初始化策略"><a href="#初始化策略" class="headerlink" title="初始化策略"></a>初始化策略</h3><ul>
+<li>随机初始化可能导致后期训练中梯度爆炸或梯度消失</li>
+<li><code>nn.init</code>模块</li>
+</ul>
+<h3 id="nn-Module深入分析"><a href="#nn-Module深入分析" class="headerlink" title="nn.Module深入分析"></a>nn.Module深入分析</h3><h4 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h4><table>
+<thead>
+<tr>
+<th>变量名</th>
+<th>类型</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>_parameters</code></td>
+<td>字典</td>
+<td>用户设置</td>
+<td>子模块的参数不会存放于此</td>
+</tr>
+<tr>
+<td><code>_modules</code></td>
+<td>字典</td>
+<td>子模块</td>
+<td></td>
+</tr>
+<tr>
+<td><code>_buffers</code></td>
+<td>字段</td>
+<td>缓存</td>
+<td></td>
+</tr>
+<tr>
+<td><code>_backward_hooks</code>与<code>_forward_hooks</code></td>
+<td></td>
+<td>钩子，提取中间变量</td>
+<td></td>
+</tr>
+<tr>
+<td><code>training</code></td>
+<td></td>
+<td>区分训练阶段于测试阶段，据此确定前向传播策略</td>
+<td></td>
+</tr>
+</tbody></table>
+<h5 id="parameters-modules-buffers"><a href="#parameters-modules-buffers" class="headerlink" title="_parameters, _modules, _buffers"></a><code>_parameters</code>, <code>_modules</code>, <code>_buffers</code></h5><ul>
+<li><p>使用<code>named_paramaters()</code>的时候将parameters和modules的parameter全部返回</p>
+</li>
+<li><p>module层层嵌套，常用方法：</p>
+<ul>
+<li><code>named_children</code>- 查看<strong>直接</strong>子module</li>
+<li><code>named_modules</code> - 查看所有子module</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h5 id="training"><a href="#training" class="headerlink" title="training"></a><code>training</code></h5><ul>
+<li>一些layer在训练和测试阶段差距较大，为了使得每个<code>training</code>都要被设置好 =&gt; 定义了模型的的train和eval模式<ul>
+<li><code>model.train()</code> - 将当前Module及其子module所有<code>training</code>属性设置为True</li>
+<li><code>model.eval()</code> - 将training属性都设为False</li>
+</ul>
+</li>
+</ul>
+<h5 id="backward-hooks与-forward-hooks"><a href="#backward-hooks与-forward-hooks" class="headerlink" title="_backward_hooks与_forward_hooks"></a><code>_backward_hooks</code>与<code>_forward_hooks</code></h5><ul>
+<li>在module前向传播或反向传播时注册，传播执行结束执行钩子，使用完及时删除</li>
+<li>钩子用于获取某些中间结果</li>
+</ul>
+<h6 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">model = VGG()</span><br><span class="line">features = t.Tensor()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hook</span>(<span class="params">module, <span class="built_in">input</span>, output</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;把这层的输出拷贝到features中&#x27;&#x27;&#x27;</span></span><br><span class="line">    features.copy_(output.data)</span><br><span class="line"></span><br><span class="line">handle = model.layer8.register_forward_hook(hook)</span><br><span class="line">_ = model(<span class="built_in">input</span>)</span><br><span class="line"><span class="comment"># 用完hook后删除</span></span><br><span class="line">handle.remove()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Python的原始实现：</p>
+<ul>
+<li>result = obj.name会调用buildin函数<code>getattr(obj, &#39;name&#39;)</code>，如果该属性找不到，会调用<code>obj.__getattr__(&#39;name&#39;)</code></li>
+<li>obj.name = value会调用buildin函数<code>setattr(obj, &#39;name&#39;, value)</code>，如果obj对象实现了<code>__setattr__</code>方法，<code>setattr</code>会直接调用<code>obj.__setattr__(&#39;name&#39;, value&#39;)</code></li>
+</ul>
+<p>在<code>nn.Module</code>中的实现：</p>
+<ul>
+<li>在<code>nn.Module</code>中实现了<code>__setattr__</code>函数，执行<code>module.name = value</code>时，在<code>__setattr__</code>中判断value是否为<code>Parameter</code>或<code>nn.Module</code>对象。如果是则加入<code>_parameters</code>和<code>_modules</code>字典。如果是其他的对象，则保存在<code>__dict__</code></li>
+</ul>
+<blockquote>
+<p><code>_modules</code>和<code>_parameters</code>的item未保存在<code>__dict__</code>中，默认<code>getattr</code>无法获取，<code>nn.Module</code>实现<code>__getattr__</code>：如果<code>getattr</code>无法处理，则调用自定义的<code>__getattr__</code>从<code>_modules</code>, <code>_parameters</code>和<code>_buffers</code>三个字典中获取</p>
+</blockquote>
+<h5 id="保存模型"><a href="#保存模型" class="headerlink" title="保存模型"></a>保存模型</h5><ul>
+<li><p>使用Module的<code>state_dict()</code>函数，返回当前Module所有状态数据。下次使用，<code>module.load_state_dict()</code></p>
+</li>
+<li><p>优化器的实现：</p>
+<ul>
+<li><pre><code class="python"># 保存模型
+t.save(net.state_dict(), &#39;net.pth&#39;)
+
+# 加载已保存的模型
+net2 = Net()
+net2.load_state_dict(t.load(&#39;net.pth&#39;))
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>将Module放在GPU上运行</p>
+<ul>
+<li><code>model = model.cuda()</code> 将所有参数转存到GPU</li>
+<li><code>input.cuda()</code> 将输入放入GPU</li>
+</ul>
+</li>
+</ul>
+<h5 id="在多个GPU计算"><a href="#在多个GPU计算" class="headerlink" title="在多个GPU计算"></a>在多个GPU计算</h5><ul>
+<li><h2 id="nn-parallel-data-parallel-module-inputs-device-ids-None-output-device-None-dim-0-module-kwargs-None"><a href="#nn-parallel-data-parallel-module-inputs-device-ids-None-output-device-None-dim-0-module-kwargs-None" class="headerlink" title="nn.parallel.data_parallel(module, inputs, device_ids=None, output_device=None, dim=0, module_kwargs=None)"></a><code>nn.parallel.data_parallel(module, inputs, device_ids=None, output_device=None, dim=0, module_kwargs=None)</code></h2></li>
+<li><code>class torch.nn.DataParallel(module, device_ids=None, output_device=None, dim=0)</code><ul>
+<li>将一个输入batch分成多分，送到对应GPU计算，各个GPU得到的梯度累加</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>通过<code>device_ids</code>参数指定在哪些GPU上优化，<code>output_devices</code>指定输出到哪个GPU</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/21/PyTorch%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/" data-id="ckt2e2y1j000epnutd0yh1n00" data-title="PyTorch快速入门" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-python学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/20/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-06-21T03:19:42.000Z" itemprop="datePublished">2019-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/20/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">python学习笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>reference: <a target="_blank" rel="noopener" href="http://cs231n.github.io/python-numpy-tutorial/">http://cs231n.github.io/python-numpy-tutorial/</a></p>
+</blockquote>
+<h2 id="Basic-Grammar"><a href="#Basic-Grammar" class="headerlink" title="Basic Grammar"></a>Basic Grammar</h2><h3 id="Basic-data-types"><a href="#Basic-data-types" class="headerlink" title="Basic data types"></a>Basic data types</h3><ul>
+<li>X  unary increment (<code>x++</code>) or decrement (<code>x--</code>) operators.</li>
+<li><code>and</code> instead of <code>&amp;&amp;</code>, <code>or </code> instead of <code>||</code>, <code>not</code> instead of <code>!</code> and <code>!=</code> for <code>XOR</code></li>
+</ul>
+<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><ul>
+<li><p>length - <code>len(str)</code></p>
+</li>
+<li><p>formatting - <code>&#39;%s %s %d&#39; % (str1, str2, 1)</code></p>
+</li>
+<li><p>capitalize - <code>str.capitalize()</code></p>
+</li>
+<li><p>uppercase -  <code>str.upper()</code></p>
+</li>
+<li><p>Right-justify (右对齐) - <code>str.rjust(totallength)</code></p>
+<blockquote>
+<p>totallength = len(str) + space in left</p>
+</blockquote>
+</li>
+<li><p>Center(居中) - <code>str.center(totallength)</code></p>
+</li>
+<li><p>Replace - <code>str.replace(str1, str2)</code>, all <code>str1</code> in <code>str</code> will be replaced by <code>str2</code></p>
+</li>
+<li><p>Strip leading and trailing whitespace - <code>str.strip()</code></p>
+</li>
+</ul>
+<h3 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h3><h4 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h4><ul>
+<li>Negative index count from the end - <code>list[-1]</code></li>
+<li>can contain elements  of different types</li>
+<li>add new ele - <code>list.append(newEle)</code></li>
+<li>remove and <strong>return</strong> the last ele - <code>list.pop()</code></li>
+</ul>
+<h5 id="Slicing"><a href="#Slicing" class="headerlink" title="Slicing"></a>Slicing</h5><ul>
+<li>get sublist from index <code>x</code> to index <code>y</code> - nums[x:y]<ul>
+<li>no <code>x</code>: from the start</li>
+<li>no <code>y</code>: to the end</li>
+<li><code>x</code> and <code>y</code> can be negative </li>
+</ul>
+</li>
+</ul>
+<h5 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h5><ul>
+<li>get elements in the list - <code>for item in list</code></li>
+<li>get both indices and elements in the list - <code>for index, item in list</code></li>
+</ul>
+<h5 id="List-comprehensions"><a href="#List-comprehensions" class="headerlink" title="List comprehensions"></a>List comprehensions</h5><ul>
+<li><p>transform a list of elements to another: <code>newList = [(do something to item) for item in oldList]</code></p>
+</li>
+<li><p>With conditions: <code>newList = [(do something to item) for item in oldList if (in some  condition)]</code></p>
+</li>
+</ul>
+<h4 id="Dictionaries"><a href="#Dictionaries" class="headerlink" title="Dictionaries"></a>Dictionaries</h4><ul>
+<li>key-value set</li>
+<li>access with a default value - <code>dic.get(key, defaultValue)</code></li>
+<li>delete - <code>del d[key]</code></li>
+</ul>
+<h5 id="Loops-1"><a href="#Loops-1" class="headerlink" title="Loops"></a>Loops</h5><ul>
+<li>get keys in the list - <code>for key in dic</code></li>
+<li>get both keys and value in the list - <code>for key, value in dic.items()</code></li>
+</ul>
+<h5 id="Dictionary-comprehensions"><a href="#Dictionary-comprehensions" class="headerlink" title="Dictionary comprehensions"></a><strong>Dictionary</strong> comprehensions</h5><ul>
+<li>same with list, and change the value part of the dictionary</li>
+<li>use <code>&#123;&#125;</code>, X <code>[]</code></li>
+</ul>
+<h4 id="Sets"><a href="#Sets" class="headerlink" title="Sets"></a>Sets</h4><ul>
+<li><p> an unordered collection of distinct elements</p>
+</li>
+<li><p>judge whether an element is in the set - <code>ele in set</code></p>
+</li>
+<li><p><code>add</code></p>
+</li>
+<li><p><code>remove</code></p>
+</li>
+<li><p><code>len</code></p>
+</li>
+</ul>
+<h5 id="Loops-2"><a href="#Loops-2" class="headerlink" title="Loops"></a>Loops</h5><ul>
+<li>when access both indices and elements, the order is not as assumptions</li>
+</ul>
+<h5 id="Set-comprehensions"><a href="#Set-comprehensions" class="headerlink" title="Set comprehensions"></a>Set comprehensions</h5><ul>
+<li>same, use <code>&#123;&#125;</code></li>
+</ul>
+<h4 id="Tuples"><a href="#Tuples" class="headerlink" title="Tuples"></a>Tuples</h4><ul>
+<li>ordered list of values</li>
+<li>similar to list, <strong>but</strong> tuples can be used as <strong>keys in dictionaries</strong> and as <strong>element of sets</strong> </li>
+</ul>
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><ul>
+<li>```<br>def functionName(para1, para2, …):<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### Classes</span><br><span class="line"></span><br><span class="line">- ```python</span><br><span class="line">  class className():</span><br><span class="line">  	# constructor</span><br><span class="line">  	def __init__(self, para1, para2, ...):</span><br><span class="line">  		# do sth</span><br><span class="line">          </span><br><span class="line">      # methods, definition of functions</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h3 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h3><ul>
+<li><p>all elements are of the same type</p>
+</li>
+<li><p>indexed by a <strong>tuple</strong> of nonnegative integers </p>
+</li>
+<li><p><strong>rank</strong> - number of dimensions of the array</p>
+</li>
+<li><p><strong>shape</strong> - a tuple of integers giving the size of the array along each dimension </p>
+</li>
+<li><p>initialize - </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</span><br><span class="line"><span class="comment"># more ranks</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>all zeros - <code>np.zeros(shape)</code></li>
+<li>all ones - <code>np.ones(shape)</code></li>
+<li>all specific number - <code>np.ones(shape, specificNumber)</code></li>
+<li>idenity matrix - <code>np.eye(dimension)</code><ul>
+<li>the shape of this matrix is <code>dimension * dimension</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Array-indexing"><a href="#Array-indexing" class="headerlink" title="Array indexing"></a>Array indexing</h3><h4 id="Slicing-1"><a href="#Slicing-1" class="headerlink" title="Slicing"></a>Slicing</h4><ul>
+<li><strong>slice indexing</strong> -  specify the range for each dimension - <code>array[range in the first dimension, range in the second dimention, ...]</code></li>
+</ul>
+<h4 id="Accessing-elements"><a href="#Accessing-elements" class="headerlink" title="Accessing elements"></a>Accessing elements</h4><ul>
+<li><strong>integer indexing</strong> - <code>array[index in the  first dimension, index in the second dimension]</code></li>
+</ul>
+<h4 id="mix-of-slicing-by-index-and-range"><a href="#mix-of-slicing-by-index-and-range" class="headerlink" title="mix of slicing by index and range"></a>mix of slicing by index and range</h4><ul>
+<li>if use <strong>only slice indexing</strong>, the returning array will be of the same rank</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the following rank 2 array with shape (3, 4)</span></span><br><span class="line"><span class="comment"># [[ 1  2  3  4]</span></span><br><span class="line"><span class="comment">#  [ 5  6  7  8]</span></span><br><span class="line"><span class="comment">#  [ 9 10 11 12]]</span></span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>], [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Two ways of accessing the data in the middle row of the array.</span></span><br><span class="line"><span class="comment"># Mixing integer indexing with slices yields an array of lower rank,</span></span><br><span class="line"><span class="comment"># while using only slices yields an array of the same rank as the</span></span><br><span class="line"><span class="comment"># original array:</span></span><br><span class="line">row_r1 = a[<span class="number">1</span>, :]    <span class="comment"># Rank 1 view of the second row of a</span></span><br><span class="line">row_r2 = a[<span class="number">1</span>:<span class="number">2</span>, :]  <span class="comment"># Rank 2 view of the second row of a</span></span><br><span class="line"><span class="built_in">print</span>(row_r1, row_r1.shape)  <span class="comment"># Prints &quot;[5 6 7 8] (4,)&quot;</span></span><br><span class="line"><span class="built_in">print</span>(row_r2, row_r2.shape)  <span class="comment"># Prints &quot;[[5 6 7 8]] (1, 4)&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># We can make the same distinction when accessing columns of an array:</span></span><br><span class="line">col_r1 = a[:, <span class="number">1</span>]</span><br><span class="line">col_r2 = a[:, <span class="number">1</span>:<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span>(col_r1, col_r1.shape)  <span class="comment"># Prints &quot;[ 2  6 10] (3,)&quot;</span></span><br><span class="line"><span class="built_in">print</span>(col_r2, col_r2.shape)  <span class="comment"># Prints &quot;[[ 2]</span></span><br><span class="line">                             <span class="comment">#          [ 6]</span></span><br><span class="line">                             <span class="comment">#          [10]] (3, 1)&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>if use <strong>integer indexing</strong>, arbitrary arrays can be construct.</p>
+</li>
+<li><p>a[[0,1,2]] =&gt; index 0, 1 and 2 in first dimension</p>
+</li>
+<li><p>Select one element from each row of a using the indices in b(an array of indices, <code>[0, 2, 0, 1]</code>)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a[np.arange(4), b]</span><br></pre></td></tr></table></figure>
+
+<p>The output is a[0, 0], a[1, 2], a[2, 0], a[2, 1]. </p>
+</li>
+</ul>
+<h5 id="Boolean-array-indexing"><a href="#Boolean-array-indexing" class="headerlink" title="Boolean array indexing"></a>Boolean array indexing</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">bool_idx = (a &gt; <span class="number">2</span>)</span><br><span class="line"><span class="comment"># [[False False]</span></span><br><span class="line"><span class="comment">#  [ True  True]</span></span><br><span class="line"><span class="comment">#  [ True  True]]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Datatypes"><a href="#Datatypes" class="headerlink" title="Datatypes"></a>Datatypes</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.array(ARRAYDATA, dtype=ARRAYTYPE) </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>*</code> and <code>/</code> is <strong>elementwise</strong></p>
+</li>
+<li><p>matrix multiplication or vector multiplication - <code>dot</code></p>
+</li>
+<li><p>As a <strong>function</strong>: <code>np.dot(x, y)</code></p>
+</li>
+<li><p>As an <strong>instance method</strong>: <code>x.dot(y)</code></p>
+</li>
+<li><p>Transpose - <code>v.T</code></p>
+</li>
+<li><p>`</p>
+</li>
+</ul>
+<h2 id="SciPy"><a href="#SciPy" class="headerlink" title="SciPy"></a>SciPy</h2><h3 id="Image-operations"><a href="#Image-operations" class="headerlink" title="Image operations"></a>Image operations</h3><ul>
+<li><p>read from file into a numpy arrays - <code>imread(FILEPATH)</code></p>
+</li>
+<li><p>Computing distances between sets of points - <code>scipy.spatial.distance.pdist</code></p>
+</li>
+</ul>
+<h2 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h2><ul>
+<li><code>plot</code>,  <code>subplot</code> and <code>imshow</code></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/20/python%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckt2e2y1o0016pnut2208757a" data-title="python学习笔记" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-jupyter安装笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/20/jupyter%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-06-21T02:56:32.000Z" itemprop="datePublished">2019-06-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/06/20/jupyter%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/">jupyter安装笔记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>环境：</strong>win10子系统，</p>
+<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python3 -m pip install --upgrade pip</span><br><span class="line">python3 -m pip install jupyter</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://jupyter.org/install.html">https://jupyter.org/install.html</a></p>
+</blockquote>
+<h2 id="报错解决"><a href="#报错解决" class="headerlink" title="报错解决"></a>报错解决</h2><h3 id="allow-root"><a href="#allow-root" class="headerlink" title="allow_root"></a>allow_root</h3><p>运行notebook：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>
+
+<p>输出信息如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[I 19:33:39.307 NotebookApp] Writing notebook server cookie secret to /root/.local/share/jupyter/runtime/notebook_cookie_secret</span><br><span class="line">[C 19:33:43.147 NotebookApp] Running as root is not recommended. Use --allow-root to bypass.</span><br></pre></td></tr></table></figure>
+
+<p>需要修改配置文件（我这里用的是vim编辑器）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /root/.jupyter/jupyter_notebook_config.py</span><br></pre></td></tr></table></figure>
+
+<p>找到下面的内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#c.NotebookApp.allow_root = False</span><br></pre></td></tr></table></figure>
+
+<p>并修改为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c.NotebookApp.allow_root =True</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/Annian/p/9103892.html">https://www.cnblogs.com/Annian/p/9103892.html</a></p>
+</blockquote>
+<h3 id="set-password"><a href="#set-password" class="headerlink" title="set password"></a>set password</h3><p>运行<code>jupyter notebook</code>后打开网页（localhost:8888），显示输入密码，但是我本身没有设置密码。于是使用命令行修改密码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jupyter notebook password</span><br></pre></td></tr></table></figure>
+
+<p>就可以看到当前目录下的文件了。</p>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://jupyter-notebook.readthedocs.io/en/stable/public_server.html">https://jupyter-notebook.readthedocs.io/en/stable/public_server.html</a></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/20/jupyter%E5%AE%89%E8%A3%85%E7%AC%94%E8%AE%B0/" data-id="ckt2e2y1n0011pnut65dm7dej" data-title="jupyter安装笔记" class="article-share-link">Share</a>
       
       
       
@@ -124,6 +2309,11 @@
   
 
 
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
+
 </section>
         
           <aside id="sidebar">
@@ -132,15 +2322,29 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Graphics/" rel="tag">Computer Graphics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Mining/" rel="tag">Data Mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MockingBot/" rel="tag">MockingBot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Analysis-and-Design/" rel="tag">Software Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-System-Analysis-and-Design/" rel="tag">Software System Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Testing/" rel="tag">Software Testing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/3D-GAME-DESIGN/" style="font-size: 20px;">3D GAME DESIGN</a> <a href="/tags/Computer-Graphics/" style="font-size: 14px;">Computer Graphics</a> <a href="/tags/Data-Mining/" style="font-size: 12px;">Data Mining</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MockingBot/" style="font-size: 10px;">MockingBot</a> <a href="/tags/Software-Analysis-and-Design/" style="font-size: 10px;">Software Analysis and Design</a> <a href="/tags/Software-System-Analysis-and-Design/" style="font-size: 18px;">Software System Analysis and Design</a> <a href="/tags/Software-Testing/" style="font-size: 10px;">Software Testing</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/pytorch/" style="font-size: 16px;">pytorch</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/09/">September 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
     </div>
   </div>
 
@@ -153,7 +2357,23 @@
       <ul>
         
           <li>
-            <a href="/2021/09/01/hello-world/">Hello World</a>
+            <a href="/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">系统分析与设计 - 画图题注意事项</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Attentive Feedback Network for Boundary-Aware Salient Object Detection论文阅读笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/">neural style源代码阅读</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/">系统分析与设计 - 建模部分</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Gatys - Image Style Transfer 论文阅读笔记</a>
           </li>
         
       </ul>

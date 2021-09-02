@@ -1,107 +1,18 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="utf-8">
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="MockingBot," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="安装首先去官网下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。 最初有几天的试用期，之后就需要续费了。下面正式开始吧~ 创建项目最开始新建项目就是基础的选择设备，建立一个完全空白的项目。 由于我们组要做微信小程序，因此选择手机。  实际上也可以选择右侧的从模板中创建项目，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。 基础操作">
-<meta name="keywords" content="MockingBot">
+  <title>原型设计软件MockingBot学习笔记 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="安装首先去官网下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。 最初有几天的试用期，之后就需要续费了。下面正式开始吧~ 创建项目最开始新建项目就是基础的选择设备，建立一个完全空白的项目。 由于我们组要做微信小程序，因此选择手机。   实际上也可以选择右侧的从模板中创建项目，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。 基础操">
 <meta property="og:type" content="article">
 <meta property="og:title" content="原型设计软件MockingBot学习笔记">
-<meta property="og:url" content="http://yoursite.com/2019/05/18/原型设计软件MockingBot学习笔记/index.html">
-<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
-<meta property="og:description" content="安装首先去官网下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。 最初有几天的试用期，之后就需要续费了。下面正式开始吧~ 创建项目最开始新建项目就是基础的选择设备，建立一个完全空白的项目。 由于我们组要做微信小程序，因此选择手机。  实际上也可以选择右侧的从模板中创建项目，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。 基础操作">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:url" content="http://example.com/2019/05/18/%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6MockingBot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装首先去官网下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。 最初有几天的试用期，之后就需要续费了。下面正式开始吧~ 创建项目最开始新建项目就是基础的选择设备，建立一个完全空白的项目。 由于我们组要做微信小程序，因此选择手机。   实际上也可以选择右侧的从模板中创建项目，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。 基础操">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeO7F0.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeOLSU.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeOjOJ.png">
@@ -135,230 +46,96 @@
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeX8XQ.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXJmj.png">
 <meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZmFwyq.gif">
-<meta property="og:updated_time" content="2019-06-26T12:09:36.809Z">
+<meta property="article:published_time" content="2019-05-18T18:34:18.000Z">
+<meta property="article:modified_time" content="2019-06-26T12:09:38.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="MockingBot">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原型设计软件MockingBot学习笔记">
-<meta name="twitter:description" content="安装首先去官网下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。 最初有几天的试用期，之后就需要续费了。下面正式开始吧~ 创建项目最开始新建项目就是基础的选择设备，建立一个完全空白的项目。 由于我们组要做微信小程序，因此选择手机。  实际上也可以选择右侧的从模板中创建项目，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。 基础操作">
 <meta name="twitter:image" content="https://s2.ax1x.com/2019/06/26/ZeO7F0.png">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2019/05/18/原型设计软件MockingBot学习笔记/"/>
-
-
-
-
-
-  <title>原型设计软件MockingBot学习笔记 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
   
   
     
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
   
+  
+<link rel="stylesheet" href="/css/style.css">
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  
     
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-      
-        <p class="site-subtitle">Recording while Learning</p>
-      
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+      <div class="outer">
+        <section id="main"><article id="post-原型设计软件MockingBot学习笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/05/18/%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6MockingBot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time class="dt-published" datetime="2019-05-18T18:34:18.000Z" itemprop="datePublished">2019-05-18</time>
+</a>
+    
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+  <div class="article-inner">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/18/原型设计软件MockingBot学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
     
-      <header class="post-header">
-
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">原型设计软件MockingBot学习笔记</h1>
-        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      原型设计软件MockingBot学习笔记
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-18T11:34:18+08:00">
-                2019-05-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="e-content article-entry" itemprop="articleBody">
       
-      
-
-      
-        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先去<a href="https://modao.cc/" target="_blank" rel="noopener">官网</a>下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。</p>
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先去<a target="_blank" rel="noopener" href="https://modao.cc/">官网</a>下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。</p>
 <p>最初有几天的试用期，之后就需要续费了。下面正式开始吧~</p>
 <h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>最开始新建项目就是基础的选择设备，建立一个完全空白的项目。</p>
 <p>由于我们组要做微信小程序，因此选择手机。</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeO7F0.png" width="500"></p>
+<img src="https://s2.ax1x.com/2019/06/26/ZeO7F0.png" width="500"/>
+
 <p>实际上也可以选择右侧的<code>从模板中创建项目</code>，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。</p>
 <h2 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h2><h3 id="添加页面"><a href="#添加页面" class="headerlink" title="添加页面"></a>添加页面</h3><p>左上角<code>添加新页面</code>就可以根据创建项目。</p>
 <h3 id="添加组件"><a href="#添加组件" class="headerlink" title="添加组件"></a>添加组件</h3><p>添加组件有三个方法：</p>
@@ -366,18 +143,17 @@
 <li><p>最左侧边栏（左图）：根据图标一目了然为文字、矩形、原型、直线、图片、链接</p>
 <center>
 <figure class="half">
-    <img src="https://s2.ax1x.com/2019/06/26/ZeOLSU.png" width="50">
-    <img src="https://s2.ax1x.com/2019/06/26/ZeOjOJ.png" width="50">
+    <img src="https://s2.ax1x.com/2019/06/26/ZeOLSU.png" width="50"/>
+    <img src="https://s2.ax1x.com/2019/06/26/ZeOjOJ.png" width="50"/>
 </figure>
-</center>
-</li>
+</center></li>
 <li><p>右侧边栏（右图）</p>
 <p>第一个是状态（主要用于动态组件，后面会说）。横线下面第一个提供了很多内置组件（如右图），还有IOS风格的弹窗、按钮、键盘等。（因此我觉得有了很多方便的内置组件，其实也就不需要最开始的模板了）。</p>
 <p>第二个为我的组件，在设计过程中有很多需要复用的部分，比如我们的项目中选择学科和年级的地方既需要在个人资料那里显示，也需要问卷发布者在限制接收者的时候用作限制。我一般会把需要复用的内容打包成我的组件，以便在后面的页面中使用。</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeOxm9.png" width="200"></p>
+<img src="https://s2.ax1x.com/2019/06/26/ZeOxm9.png" width="200"/>
+
 <p>第三个为图标，有三个图标集合，都是些常用的图标，比起自己一个个去上网寻找还是很方便的。</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeOzwR.png" width="200"></p>
-</li>
+<img src="https://s2.ax1x.com/2019/06/26/ZeOzwR.png" width="200"/></li>
 </ol>
 <p>最后一个为母版，是一个可以有多个状态的组件设计，这里在tab切换时比较好用，下面会介绍。</p>
 <blockquote>
@@ -387,16 +163,16 @@
 <h3 id="添加跳转连接"><a href="#添加跳转连接" class="headerlink" title="添加跳转连接"></a>添加跳转连接</h3><p>原型和UI设计图最大的区别在于有动态的页面跳转。这个在墨刀中的实现只需要一步简单地拖动即可完成。</p>
 <ul>
 <li><p>选择任意想要添加链接的按钮/文本，拖动闪电形状的按钮：</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeXat0.png" width="200"></p>
+<img src="https://s2.ax1x.com/2019/06/26/ZeXat0.png" width="200"/>
+
 <p>拖拽到要跳转到的页面上：</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeX36g.png" width="600"></p>
-</li>
+<img src="https://s2.ax1x.com/2019/06/26/ZeX36g.png" width="600"/></li>
 </ul>
 <h3 id="辅助线"><a href="#辅助线" class="headerlink" title="辅助线"></a>辅助线</h3><p>很多时候，为了保证软件的美观，我们需要各种左对齐、居中对齐等等，尽管页面可以显示网格的参考线（如下图），但很费眼睛。</p>
 <center>
     <figure>
-        <img src="https://s2.ax1x.com/2019/06/26/ZeOXy4.png" width="200">
-        <img src="https://s2.ax1x.com/2019/06/26/ZeXST1.png" width="200">
+        <img src="https://s2.ax1x.com/2019/06/26/ZeOXy4.png" width="200"/>
+        <img src="https://s2.ax1x.com/2019/06/26/ZeXST1.png" width="200"/>
     </figure>
 </center>
 
@@ -405,7 +181,6 @@
 <li>如果原型中每个界面都是静态，则和平面设计图没有很大的区别，也不能很好地辅助前端进行编码。因此有时候还需要界面内的变化</li>
 <li>使用过程中个人认为动态组件和母版是差不多的，总结一下微小的区别以免在使用中踩坑：</li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -414,45 +189,38 @@
 <th>母版</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>修改内容</td>
 <td>其他的已经嵌入原型的相同组件<strong>不会</strong>被更改</td>
 <td>其他的已经嵌入原型的相同组件<strong>会</strong>被更改</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><ul>
 <li><p>比如下面的例子中，两个选择学科都来自同一个母版</p>
 <center>
     <figure>
-        <img src="https://s2.ax1x.com/2019/06/26/ZeXUkq.png" width="200">
-        <img src="https://s2.ax1x.com/2019/06/26/ZeXt7n.png" width="200">
+        <img src="https://s2.ax1x.com/2019/06/26/ZeXUkq.png" width="200"/>
+        <img src="https://s2.ax1x.com/2019/06/26/ZeXt7n.png" width="200"/>
     </figure>
-</center>
-</li>
+</center></li>
 <li><p>假设我从第一个页面进入，编辑了母版</p>
 <ul>
-<li><img src="https://s2.ax1x.com/2019/06/26/ZeXY0s.png" width="200"></li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXY0s.png" width="200"/></li>
 </ul>
 </li>
 <li><p>结果如下</p>
 <ul>
 <li><center>
-<img src="https://s2.ax1x.com/2019/06/26/ZeXdhV.png" width="200">
-    <img src="https://s2.ax1x.com/2019/06/26/ZeOHYV.png" width="200">
+<img src="https://s2.ax1x.com/2019/06/26/ZeXdhV.png" width="200"/>
+    <img src="https://s2.ax1x.com/2019/06/26/ZeOHYV.png" width="200"/>
 </center>
 
-<p>两个引用母版的地方都被修改。</p>
-</li>
-<li><p>但其实如果将母版转换为动态组件后再进行修改就不会有问题</p>
-</li>
+两个引用母版的地方都被修改。</li>
+<li>但其实如果将母版转换为动态组件后再进行修改就不会有问题</li>
 </ul>
 </li>
 </ul>
-<h4 id="动态组件和母版的转换"><a href="#动态组件和母版的转换" class="headerlink" title="动态组件和母版的转换"></a>动态组件和母版的转换</h4><div class="table-container">
-<table>
+<h4 id="动态组件和母版的转换"><a href="#动态组件和母版的转换" class="headerlink" title="动态组件和母版的转换"></a>动态组件和母版的转换</h4><table>
 <thead>
 <tr>
 <th></th>
@@ -460,33 +228,31 @@
 <th>母版 -&gt; 动态组件</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>转换方法</td>
-<td><img src="https://s2.ax1x.com/2019/06/26/ZeOOlF.png" width="200"></td>
-<td><img src="https://s2.ax1x.com/2019/06/26/ZeOooq.png" width="300"></td>
+<td><img src="https://s2.ax1x.com/2019/06/26/ZeOOlF.png" width="200"/></td>
+<td><img src="https://s2.ax1x.com/2019/06/26/ZeOooq.png" width="300"/></td>
 </tr>
 <tr>
 <td>效果</td>
 <td>双击修改动态组件，另一个页面的母版不会发生改变</td>
+<td></td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h3 id="常见应用"><a href="#常见应用" class="headerlink" title="常见应用"></a>常见应用</h3><h4 id="底边栏切换"><a href="#底边栏切换" class="headerlink" title="底边栏切换"></a>底边栏切换</h4><h5 id="外观"><a href="#外观" class="headerlink" title="外观"></a>外观</h5><p>我们的项目中主要分了三个边栏：主页、任务页和个人页。因此底边栏只需要三个图标。</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeXCY6.png" width="300"></p>
+<img src="https://s2.ax1x.com/2019/06/26/ZeXCY6.png" width="300"/>
+
 <h5 id="转化为母版"><a href="#转化为母版" class="headerlink" title="转化为母版"></a>转化为母版</h5><p>下面就需要转换为动态组件然后添加状态了：</p>
 <ul>
 <li>首先选中三个图标和背景，右键选择<code>转换为母版</code>ZeX9Fx</li>
 </ul>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeX9Fx.png" width="300"></p>
+<img src="https://s2.ax1x.com/2019/06/26/ZeX9Fx.png" width="300"/>
+
 <ul>
 <li><p>之后把鼠标放到上面就会出现<code>双击编辑母版</code></p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeXFSO.png" width="300"></p>
-</li>
+<img src="https://s2.ax1x.com/2019/06/26/ZeXFSO.png" width="300"/></li>
 </ul>
 <h5 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h5><p>由于需要动态切换，需要在这个模板中添加不同的状态：</p>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -496,8 +262,7 @@
 <th>个人页按钮</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>主页</td>
 <td>\</td>
 <td>-&gt; 任务页</td>
@@ -515,26 +280,25 @@
 <td>-&gt; 任务页</td>
 <td>\</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <ul>
-<li>右上角的类似靶心的图标可以对母版的状态进行管理，比如这里需要三个状态ZeXPfK</li>
-<li><img src="https://s2.ax1x.com/2019/06/26/ZeXPfK.png" width="200"></li>
+<li><p>右上角的类似靶心的图标可以对母版的状态进行管理，比如这里需要三个状态ZeXPfK</p>
+</li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXPfK.png" width="200"/></li>
 <li><p>全局状态可以同时修改所有状态的组件（添加删除等）以及组件属性；默认状态用于当母版添加到原型中没有选择状态的时候展示的内容</p>
 </li>
 <li><p>下面需要根据每个状态修改状态中的外观：</p>
 <ul>
 <li>个人主页<ul>
-<li><img src="https://s2.ax1x.com/2019/06/26/ZeXklD.png" width="400"></li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXklD.png" width="400"/></li>
 </ul>
 </li>
 <li>主页<ul>
-<li><img src="https://s2.ax1x.com/2019/06/26/ZeXA6e.png" width="400"></li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXA6e.png" width="400"/></li>
 </ul>
 </li>
 <li>任务页<ul>
-<li><img src="https://s2.ax1x.com/2019/06/26/ZeXEOH.png" width="400"></li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXEOH.png" width="400"/></li>
 </ul>
 </li>
 </ul>
@@ -545,26 +309,24 @@
 </ul>
 <h6 id="切换状态"><a href="#切换状态" class="headerlink" title="切换状态"></a>切换状态</h6><ul>
 <li>页面内的切换对应着母版中不同状态间的切换，同一页面的状态共享部分组件</li>
-<li><img src="https://s2.ax1x.com/2019/06/26/ZeXZmd.png" width="500"></li>
-<li><img src="https://s2.ax1x.com/2019/06/26/ZeXe0A.png" width="200"></li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXZmd.png" width="500"/></li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXe0A.png" width="200"/></li>
 </ul>
 <h6 id="切换页面"><a href="#切换页面" class="headerlink" title="切换页面"></a>切换页面</h6><ul>
 <li><p>可以发现当编辑母版的时候，左侧的页面列表不见了，需要返回工作区到母版所在的页面上选择对应的状态进行修改：</p>
 <ul>
-<li><img src="https://s2.ax1x.com/2019/06/26/ZeXukt.png" width="500"></li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXukt.png" width="500"/></li>
 </ul>
 <p>这里需要在母版所在的页面对选择对应的状态，对链接进行修改，添加链接的方法和对于基础组件一样（这里以在主页的底边栏为例）</p>
 <ul>
-<li><p><img src="https://s2.ax1x.com/2019/06/26/ZeXmTI.png" width="500"></p>
-</li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXmTI.png" width="500"/></li>
 <li><p>然后选中其中具体的图标链接到对应界面</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeXMff.png" width="600"></p>
-</li>
+<img src="https://s2.ax1x.com/2019/06/26/ZeXMff.png" width="600"/></li>
 </ul>
 </li>
 <li><p>记得还需要设置这个母版当前的默认状态（右侧边栏）：</p>
 <ul>
-<li><img src="https://s2.ax1x.com/2019/06/26/ZeXlp8.png" width="200"></li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXlp8.png" width="200"/></li>
 </ul>
 </li>
 </ul>
@@ -577,15 +339,12 @@
 <p>一个页面中的不同状态组件是共享的，因此如果在某个状态删除了一个组件，则其他状态也会删除。我会选择将某个状态不需要的组件移除屏幕范围</p>
 </blockquote>
 </li>
-<li><p><img src="https://s2.ax1x.com/2019/06/26/ZeX11S.png" width="200"></p>
-</li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeX11S.png" width="200"/></li>
 <li><p>添加状态，然后对<code>我接收的</code>页面进行布局：</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeX8XQ.png" width="200"></p>
-</li>
+<img src="https://s2.ax1x.com/2019/06/26/ZeX8XQ.png" width="200"/></li>
 <li><p>之后的步骤就是页面间状态的切换了，这里就是</p>
 </li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -594,8 +353,7 @@
 <th>点击<code>我发布的</code></th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>我接收的</td>
 <td>\</td>
 <td>跳转到<code>我发布的</code>状态</td>
@@ -605,354 +363,155 @@
 <td>跳转到<code>我接受的</code>状态</td>
 <td>\</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <p>  在右侧进行设置：</p>
-<p><img src="https://s2.ax1x.com/2019/06/26/ZeXJmj.png" width="400"></p>
-<h4 id="预览效果"><a href="#预览效果" class="headerlink" title="预览效果"></a>预览效果</h4><p><img src="https://s2.ax1x.com/2019/06/26/ZmFwyq.gif" width="300" alt="demo.gif" border="0"></p>
+<img src="https://s2.ax1x.com/2019/06/26/ZeXJmj.png" width="400"/>
 
+<h4 id="预览效果"><a href="#预览效果" class="headerlink" title="预览效果"></a>预览效果</h4><img src="https://s2.ax1x.com/2019/06/26/ZmFwyq.gif" width="300" alt="demo.gif" border="0" />
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/MockingBot/" rel="tag"># MockingBot</a>
-          
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/05/18/%E5%8E%9F%E5%9E%8B%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6MockingBot%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" data-id="ckt2e2y1o001bpnutc5g24f48" data-title="原型设计软件MockingBot学习笔记" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MockingBot/" rel="tag">MockingBot</a></li></ul>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/05/04/系统分析与设计-Homework9/" rel="next" title="系统分析与设计 - Homework9">
-                <i class="fa fa-chevron-left"></i> 系统分析与设计 - Homework9
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/20/vim使用记录/" rel="prev" title="vim使用记录">
-                vim使用记录 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
     </footer>
   </div>
   
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
     
-  </div>
-
-
-        </div>
+<nav id="article-nav">
+  
+    <a href="/2019/06/20/vim%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-          
+          vim使用记录
+        
+      </div>
+    </a>
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  
+    <a href="/2019/05/04/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-Homework9/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">系统分析与设计 - Homework9</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Graphics/" rel="tag">Computer Graphics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Mining/" rel="tag">Data Mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MockingBot/" rel="tag">MockingBot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Analysis-and-Design/" rel="tag">Software Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-System-Analysis-and-Design/" rel="tag">Software System Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Testing/" rel="tag">Software Testing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+
+  
     
-    <div class="sidebar-inner">
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/3D-GAME-DESIGN/" style="font-size: 20px;">3D GAME DESIGN</a> <a href="/tags/Computer-Graphics/" style="font-size: 14px;">Computer Graphics</a> <a href="/tags/Data-Mining/" style="font-size: 12px;">Data Mining</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MockingBot/" style="font-size: 10px;">MockingBot</a> <a href="/tags/Software-Analysis-and-Design/" style="font-size: 10px;">Software Analysis and Design</a> <a href="/tags/Software-System-Analysis-and-Design/" style="font-size: 18px;">Software System Analysis and Design</a> <a href="/tags/Software-Testing/" style="font-size: 10px;">Software Testing</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/pytorch/" style="font-size: 16px;">pytorch</a>
+    </div>
+  </div>
 
-      
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">系统分析与设计 - 画图题注意事项</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+        
+          <li>
+            <a href="/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Attentive Feedback Network for Boundary-Aware Salient Object Detection论文阅读笔记</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
-               alt="Sherry" />
-          <p class="site-author-name" itemprop="name">Sherry</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
         
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
+          <li>
+            <a href="/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/">neural style源代码阅读</a>
+          </li>
         
+          <li>
+            <a href="/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/">系统分析与设计 - 建模部分</a>
+          </li>
         
-
+          <li>
+            <a href="/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Gatys - Image Style Transfer 论文阅读笔记</a>
+          </li>
         
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">2.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础操作"><span class="nav-number">3.</span> <span class="nav-text">基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加页面"><span class="nav-number">3.1.</span> <span class="nav-text">添加页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加组件"><span class="nav-number">3.2.</span> <span class="nav-text">添加组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置组件属性"><span class="nav-number">3.3.</span> <span class="nav-text">设置组件属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加跳转连接"><span class="nav-number">3.4.</span> <span class="nav-text">添加跳转连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助线"><span class="nav-number">3.5.</span> <span class="nav-text">辅助线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶操作"><span class="nav-number">4.</span> <span class="nav-text">进阶操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态组件和母版"><span class="nav-number">4.1.</span> <span class="nav-text">动态组件和母版</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-number">4.1.1.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态组件和母版的转换"><span class="nav-number">4.1.2.</span> <span class="nav-text">动态组件和母版的转换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见应用"><span class="nav-number">4.2.</span> <span class="nav-text">常见应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#底边栏切换"><span class="nav-number">4.2.1.</span> <span class="nav-text">底边栏切换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#外观"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">外观</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#转化为母版"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">转化为母版</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#状态"><span class="nav-number">4.2.1.3.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加链接"><span class="nav-number">4.2.1.4.</span> <span class="nav-text">添加链接</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#切换状态"><span class="nav-number">4.2.1.4.1.</span> <span class="nav-text">切换状态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#切换页面"><span class="nav-number">4.2.1.4.2.</span> <span class="nav-text">切换页面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tab切换"><span class="nav-number">4.2.2.</span> <span class="nav-text">Tab切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">4.2.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预览效果"><span class="nav-number">4.2.4.</span> <span class="nav-text">预览效果</span></a></li></ol></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+      </ul>
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Sherry</span>
-</div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
   </div>
 
   
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
 
-
-
-
-
+<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
+<script src="/js/script.js"></script>
 
 
 
 
 
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
+  </div>
 </body>
 </html>

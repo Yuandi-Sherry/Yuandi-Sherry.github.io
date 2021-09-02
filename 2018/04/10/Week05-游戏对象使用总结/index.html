@@ -1,344 +1,118 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="utf-8">
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="3D GAME DESIGN," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="简要记录了一下近期作业中所使用过的创建、克隆游戏对象，添加、获取组件的方法。以及特殊的游戏对象和组件包括摄像机、terrain、天空盒的少许知识。">
-<meta name="keywords" content="3D GAME DESIGN">
+  <title>Week05 Homework - 游戏对象使用总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="简要记录了一下近期作业中所使用过的创建、克隆游戏对象，添加、获取组件的方法。以及特殊的游戏对象和组件包括摄像机、terrain、天空盒的少许知识。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Week05 Homework - 游戏对象使用总结">
-<meta property="og:url" content="http://yoursite.com/2018/04/10/Week05-游戏对象使用总结/index.html">
-<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:url" content="http://example.com/2018/04/10/Week05-%E6%B8%B8%E6%88%8F%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="简要记录了一下近期作业中所使用过的创建、克隆游戏对象，添加、获取组件的方法。以及特殊的游戏对象和组件包括摄像机、terrain、天空盒的少许知识。">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://github.com/Yuandi-Sherry/3DGameDesign/blob/master/Blog%E9%85%8D%E5%9B%BE/Week05_1.1.PNG?raw=true">
 <meta property="og:image" content="https://github.com/Yuandi-Sherry/3DGameDesign/blob/master/Blog%E9%85%8D%E5%9B%BE/Week05_1.0.PNG?raw=true">
-<meta property="og:updated_time" content="2018-04-10T02:53:31.000Z">
+<meta property="article:published_time" content="2018-04-10T17:00:39.000Z">
+<meta property="article:modified_time" content="2018-04-10T02:53:32.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="3D GAME DESIGN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Week05 Homework - 游戏对象使用总结">
-<meta name="twitter:description" content="简要记录了一下近期作业中所使用过的创建、克隆游戏对象，添加、获取组件的方法。以及特殊的游戏对象和组件包括摄像机、terrain、天空盒的少许知识。">
 <meta name="twitter:image" content="https://github.com/Yuandi-Sherry/3DGameDesign/blob/master/Blog%E9%85%8D%E5%9B%BE/Week05_1.1.PNG?raw=true">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2018/04/10/Week05-游戏对象使用总结/"/>
-
-
-
-
-
-  <title>Week05 Homework - 游戏对象使用总结 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
   
   
     
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
   
+  
+<link rel="stylesheet" href="/css/style.css">
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  
     
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-      
-        <p class="site-subtitle">Recording while Learning</p>
-      
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+      <div class="outer">
+        <section id="main"><article id="post-Week05-游戏对象使用总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/10/Week05-%E6%B8%B8%E6%88%8F%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2018-04-10T17:00:39.000Z" itemprop="datePublished">2018-04-10</time>
+</a>
+    
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+  <div class="article-inner">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/Week05-游戏对象使用总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
     
-      <header class="post-header">
-
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">Week05 Homework - 游戏对象使用总结</h1>
-        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Week05 Homework - 游戏对象使用总结
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T10:00:39+08:00">
-                2018-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <blockquote>
 <p>简要记录了一下近期作业中所使用过的创建、克隆游戏对象，添加、获取组件的方法。以及特殊的游戏对象和组件包括摄像机、terrain、天空盒的少许知识。</p>
 </blockquote>
-<a id="more"></a>
+<span id="more"></span>
+
 <h2 id="游戏对象的创建与克隆"><a href="#游戏对象的创建与克隆" class="headerlink" title="游戏对象的创建与克隆"></a>游戏对象的创建与克隆</h2><ul>
 <li><p>常用函数</p>
 <ul>
 <li><p>创建游戏对象基本类型</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> GameObject <span class="title">CreatePrimitive</span>(<span class="params">PrimitiveType type</span>)</span>;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> GameObject <span class="title">CreatePrimitive</span>(<span class="params">PrimitiveType type</span>)</span>;</span><br></pre></td></tr></table></figure></li>
 <li><p>克隆游戏对象</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">Instantiate</span>(<span class="params">Object original</span>)</span>;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">Instantiate</span>(<span class="params">Object original</span>)</span>;</span><br></pre></td></tr></table></figure></li>
 <li><p>从预制中加载游戏对象</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">Load</span>(<span class="params"><span class="keyword">string</span> path, Type systemTypeInstance</span>)</span>;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Object <span class="title">Load</span>(<span class="params"><span class="built_in">string</span> path, Type systemTypeInstance</span>)</span>;</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ul>
@@ -353,26 +127,27 @@
 <li><p>通过Transform组件可以改变物体的位置、旋转角度以及大小。其中对于positionn的控制是后文中实现游戏对象运动时索要改变的。</p>
 </li>
 <li><p>可以在程序中实现物体之间的组合关系。</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">A.transform.parent = B.transform</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A.transform.parent = B.transform</span><br></pre></td></tr></table></figure></li>
 <li><p>常用函数</p>
 <ul>
 <li>平移</li>
 </ul>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Translate</span>(<span class="params">Vector3 translation, Space relativeTo = Space.Self</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Translate</span>(<span class="params">Vector3 translation, Space relativeTo = Space.Self</span>)</span>;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>旋转</li>
 </ul>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Rotate</span>(<span class="params">Vector3 eulerAngles, Space relativeTo = Space.Self</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Rotate</span>(<span class="params">Vector3 eulerAngles, Space relativeTo = Space.Self</span>)</span>;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>绕轴旋转</li>
 </ul>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">RotateAround</span>(<span class="params">Vector3 point, Vector3 axis, <span class="keyword">float</span> angle</span>)</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">RotateAround</span>(<span class="params">Vector3 point, Vector3 axis, <span class="built_in">float</span> angle</span>)</span>;</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>两点间指定速度直线移动</li>
 </ul>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Vector3 <span class="title">MoveTowards</span>(<span class="params">Vector3 current, Vector3 target, <span class="keyword">float</span> maxDistanceDelta</span>)</span>;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Vector3 <span class="title">MoveTowards</span>(<span class="params">Vector3 current, Vector3 target, <span class="built_in">float</span> maxDistanceDelta</span>)</span>;</span><br></pre></td></tr></table></figure></li>
 </ul>
 <p>这个函数是在魔鬼与牧师的实现中常用的函数，需要注意的是target是<strong>目标位置</strong>的向量，而非移动路径的向量。</p>
 </li>
@@ -394,7 +169,6 @@
 </ul>
 </li>
 </ul>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -402,8 +176,7 @@
 <th>对应情景</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>public Component AddComponent(Type componentType)</code></td>
 <td>向游戏对象添加代码中所定义的类作为组件，调用的时候一般后加<code>as GameObject</code> 进行强制转换。</td>
 </tr>
@@ -415,9 +188,7 @@
 <td><code>XX = this</code></td>
 <td>这是最近两次作业比较常见的实例化方式，所在的实例化的对象本身就在对这个类进行整个游戏中<strong>唯一</strong>的定义。比如，场记要作为导演类唯一场记接口的实现，同样，场记中唯一的动作管理器在实现的时候赋值为this相连接。</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <ul>
 <li><p>Terrain</p>
 <p><img src="https://github.com/Yuandi-Sherry/3DGameDesign/blob/master/Blog%E9%85%8D%E5%9B%BE/Week05_1.0.PNG?raw=true" alt="img"></p>
@@ -447,345 +218,148 @@
 
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/3D-GAME-DESIGN/" rel="tag"># 3D GAME DESIGN</a>
-          
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/04/10/Week05-%E6%B8%B8%E6%88%8F%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" data-id="ckt2e2y1m000spnut037r9uyz" data-title="Week05 Homework - 游戏对象使用总结" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li></ul>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/04/03/MVC-Priests-and-Evils/" rel="next" title="MVC: Priests and Evils">
-                <i class="fa fa-chevron-left"></i> MVC: Priests and Evils
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/17/Week06-GameObject-Factory-Frisbee/" rel="prev" title="Week06-GameObject Factory Frisbee">
-                Week06-GameObject Factory Frisbee <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
     </footer>
   </div>
   
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
     
-  </div>
-
-
-        </div>
+<nav id="article-nav">
+  
+    <a href="/2018/04/17/Week06-GameObject-Factory-Frisbee/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-          
+          Week06-GameObject Factory Frisbee
+        
+      </div>
+    </a>
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  
+    <a href="/2018/04/03/MVC-Priests-and-Evils/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MVC: Priests and Evils</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Graphics/" rel="tag">Computer Graphics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Mining/" rel="tag">Data Mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MockingBot/" rel="tag">MockingBot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Analysis-and-Design/" rel="tag">Software Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-System-Analysis-and-Design/" rel="tag">Software System Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Testing/" rel="tag">Software Testing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+
+  
     
-    <div class="sidebar-inner">
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/3D-GAME-DESIGN/" style="font-size: 20px;">3D GAME DESIGN</a> <a href="/tags/Computer-Graphics/" style="font-size: 14px;">Computer Graphics</a> <a href="/tags/Data-Mining/" style="font-size: 12px;">Data Mining</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MockingBot/" style="font-size: 10px;">MockingBot</a> <a href="/tags/Software-Analysis-and-Design/" style="font-size: 10px;">Software Analysis and Design</a> <a href="/tags/Software-System-Analysis-and-Design/" style="font-size: 18px;">Software System Analysis and Design</a> <a href="/tags/Software-Testing/" style="font-size: 10px;">Software Testing</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/pytorch/" style="font-size: 16px;">pytorch</a>
+    </div>
+  </div>
 
-      
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">系统分析与设计 - 画图题注意事项</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+        
+          <li>
+            <a href="/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Attentive Feedback Network for Boundary-Aware Salient Object Detection论文阅读笔记</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
-               alt="Sherry" />
-          <p class="site-author-name" itemprop="name">Sherry</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
         
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
+          <li>
+            <a href="/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/">neural style源代码阅读</a>
+          </li>
         
+          <li>
+            <a href="/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/">系统分析与设计 - 建模部分</a>
+          </li>
         
-
+          <li>
+            <a href="/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Gatys - Image Style Transfer 论文阅读笔记</a>
+          </li>
         
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏对象的创建与克隆"><span class="nav-number">1.</span> <span class="nav-text">游戏对象的创建与克隆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏对象的组件"><span class="nav-number">2.</span> <span class="nav-text">游戏对象的组件</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+      </ul>
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Sherry</span>
-</div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
   </div>
 
   
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
 
-
-
-
-
+<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
+<script src="/js/script.js"></script>
 
 
 
 
 
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
+  </div>
 </body>
 </html>

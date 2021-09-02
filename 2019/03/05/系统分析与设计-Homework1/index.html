@@ -1,328 +1,105 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="utf-8">
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Software System Analysis and Design," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta name="description" content="简答题1. 软件工程的定义软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。 2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法根本原因造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系">
-<meta name="keywords" content="Software System Analysis and Design">
+  <title>系统分析与设计 - Homework1 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="简答题1. 软件工程的定义软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。 2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法根本原因造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系">
 <meta property="og:type" content="article">
 <meta property="og:title" content="系统分析与设计 - Homework1">
-<meta property="og:url" content="http://yoursite.com/2019/03/05/系统分析与设计-Homework1/index.html">
-<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:url" content="http://example.com/2019/03/05/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-Homework1/index.html">
+<meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="简答题1. 软件工程的定义软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。 2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法根本原因造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-04T16:37:58.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-03-05T08:22:44.000Z">
+<meta property="article:modified_time" content="2019-03-04T16:37:58.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Software System Analysis and Design">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="系统分析与设计 - Homework1">
-<meta name="twitter:description" content="简答题1. 软件工程的定义软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。 2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法根本原因造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2019/03/05/系统分析与设计-Homework1/"/>
-
-
-
-
-
-  <title>系统分析与设计 - Homework1 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
   
   
     
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
   
+  
+<link rel="stylesheet" href="/css/style.css">
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  
     
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-      
-        <p class="site-subtitle">Recording while Learning</p>
-      
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+      <div class="outer">
+        <section id="main"><article id="post-系统分析与设计-Homework1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/05/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-Homework1/" class="article-date">
+  <time class="dt-published" datetime="2019-03-05T08:22:44.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-expand">
+  <div class="article-inner">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/系统分析与设计-Homework1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
     
-      <header class="post-header">
-
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">系统分析与设计 - Homework1</h1>
-        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      系统分析与设计 - Homework1
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T00:22:44+08:00">
-                2019-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
+    <div class="e-content article-entry" itemprop="articleBody">
       
         <h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><h3 id="1-软件工程的定义"><a href="#1-软件工程的定义" class="headerlink" title="1. 软件工程的定义"></a>1. 软件工程的定义</h3><p>软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。</p>
 <h3 id="2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法"><a href="#2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法" class="headerlink" title="2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法"></a>2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法</h3><h5 id="根本原因"><a href="#根本原因" class="headerlink" title="根本原因"></a>根本原因</h5><p>造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系统复杂性和软件开发方法之间的矛盾。</p>
-<a id="more"></a>
+<span id="more"></span>
+
 <h5 id="表现"><a href="#表现" class="headerlink" title="表现"></a>表现</h5><p>其表现为下列几点：</p>
 <ol>
 <li>项目超预算</li>
@@ -339,7 +116,7 @@
 <li>正确认识到软件的本质。</li>
 </ol>
 <h3 id="3-软件生命周期"><a href="#3-软件生命周期" class="headerlink" title="3. 软件生命周期"></a>3. 软件生命周期</h3><p>软件生命周期为软件产生直到报废的生命周期，其在时间维度将软件项目根据软件特点进行任务划分。</p>
-<h3 id="4-SWEBoK-的-15-个知识域（An-Overview-of-the-SWEBOK-Guide-请中文翻译其名称与简短说明）"><a href="#4-SWEBoK-的-15-个知识域（An-Overview-of-the-SWEBOK-Guide-请中文翻译其名称与简短说明）" class="headerlink" title="4. SWEBoK 的 15 个知识域（An Overview of the SWEBOK Guide 请中文翻译其名称与简短说明）"></a>4. SWEBoK 的 15 个知识域（<a href="https://www.sebokwiki.org/wiki/An_Overview_of_the_SWEBOK_Guide" target="_blank" rel="noopener">An Overview of the SWEBOK Guide</a> 请中文翻译其名称与简短说明）</h3><h5 id="软件需求"><a href="#软件需求" class="headerlink" title="软件需求"></a>软件需求</h5><ul>
+<h3 id="4-SWEBoK-的-15-个知识域（An-Overview-of-the-SWEBOK-Guide-请中文翻译其名称与简短说明）"><a href="#4-SWEBoK-的-15-个知识域（An-Overview-of-the-SWEBOK-Guide-请中文翻译其名称与简短说明）" class="headerlink" title="4. SWEBoK 的 15 个知识域（An Overview of the SWEBOK Guide 请中文翻译其名称与简短说明）"></a>4. SWEBoK 的 15 个知识域（<a target="_blank" rel="noopener" href="https://www.sebokwiki.org/wiki/An_Overview_of_the_SWEBOK_Guide">An Overview of the SWEBOK Guide</a> 请中文翻译其名称与简短说明）</h3><h5 id="软件需求"><a href="#软件需求" class="headerlink" title="软件需求"></a>软件需求</h5><ul>
 <li>软件需求知识域关于软件需求的启发、商讨、分析、规格以及确认验证。</li>
 <li>如果上述关于软件需求的活动没有良好地执行，则软件工程项目将会十分脆弱，这一表述在软件工业界是被广泛认可的。</li>
 <li>软件需求表达了对于一个有益于解决现实世界问题的软件产品的需要和限制。</li>
@@ -450,345 +227,148 @@
 
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Software-System-Analysis-and-Design/" rel="tag"># Software System Analysis and Design</a>
-          
-        </div>
-      
-
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/03/05/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-Homework1/" data-id="ckt2e2y1p001gpnuthewc1fhs" data-title="系统分析与设计 - Homework1" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-System-Analysis-and-Design/" rel="tag">Software System Analysis and Design</a></li></ul>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/06/19/Week15-Tanks/" rel="next" title="Week15-Tanks">
-                <i class="fa fa-chevron-left"></i> Week15-Tanks
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/05/OpenGL-vs2017-环境配置/" rel="prev" title="OpenGL + vs2017 环境配置">
-                OpenGL + vs2017 环境配置 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
     </footer>
   </div>
   
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
     
-  </div>
-
-
-        </div>
+<nav id="article-nav">
+  
+    <a href="/2019/03/05/OpenGL-vs2017-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-          
+          OpenGL + vs2017 环境配置
+        
+      </div>
+    </a>
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+  
+    <a href="/2018/06/19/Week15-Tanks/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Week15-Tanks</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Graphics/" rel="tag">Computer Graphics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Mining/" rel="tag">Data Mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MockingBot/" rel="tag">MockingBot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Analysis-and-Design/" rel="tag">Software Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-System-Analysis-and-Design/" rel="tag">Software System Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Testing/" rel="tag">Software Testing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+
+  
     
-    <div class="sidebar-inner">
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/3D-GAME-DESIGN/" style="font-size: 20px;">3D GAME DESIGN</a> <a href="/tags/Computer-Graphics/" style="font-size: 14px;">Computer Graphics</a> <a href="/tags/Data-Mining/" style="font-size: 12px;">Data Mining</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MockingBot/" style="font-size: 10px;">MockingBot</a> <a href="/tags/Software-Analysis-and-Design/" style="font-size: 10px;">Software Analysis and Design</a> <a href="/tags/Software-System-Analysis-and-Design/" style="font-size: 18px;">Software System Analysis and Design</a> <a href="/tags/Software-Testing/" style="font-size: 10px;">Software Testing</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/pytorch/" style="font-size: 16px;">pytorch</a>
+    </div>
+  </div>
 
-      
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
 
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">系统分析与设计 - 画图题注意事项</a>
           </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+        
+          <li>
+            <a href="/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Attentive Feedback Network for Boundary-Aware Salient Object Detection论文阅读笔记</a>
           </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
-               alt="Sherry" />
-          <p class="site-author-name" itemprop="name">Sherry</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
         
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
+          <li>
+            <a href="/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/">neural style源代码阅读</a>
+          </li>
         
+          <li>
+            <a href="/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/">系统分析与设计 - 建模部分</a>
+          </li>
         
-
+          <li>
+            <a href="/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Gatys - Image Style Transfer 论文阅读笔记</a>
+          </li>
         
-        
-
-        
-
-
-      </section>
-
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简答题"><span class="nav-number">1.</span> <span class="nav-text">简答题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-软件工程的定义"><span class="nav-number">1.1.</span> <span class="nav-text">1. 软件工程的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法"><span class="nav-number">1.2.</span> <span class="nav-text">2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#根本原因"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">根本原因</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表现"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">表现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#克服软件危机的方法"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">克服软件危机的方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-软件生命周期"><span class="nav-number">1.3.</span> <span class="nav-text">3. 软件生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-SWEBoK-的-15-个知识域（An-Overview-of-the-SWEBOK-Guide-请中文翻译其名称与简短说明）"><span class="nav-number">1.4.</span> <span class="nav-text">4. SWEBoK 的 15 个知识域（An Overview of the SWEBOK Guide 请中文翻译其名称与简短说明）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#软件需求"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">软件需求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件设计"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">软件设计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件构造"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">软件构造</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件测试"><span class="nav-number">1.4.0.4.</span> <span class="nav-text">软件测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件维护"><span class="nav-number">1.4.0.5.</span> <span class="nav-text">软件维护</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件配置管理"><span class="nav-number">1.4.0.6.</span> <span class="nav-text">软件配置管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程管理"><span class="nav-number">1.4.0.7.</span> <span class="nav-text">软件工程管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程过程"><span class="nav-number">1.4.0.8.</span> <span class="nav-text">软件工程过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程模型和方法"><span class="nav-number">1.4.0.9.</span> <span class="nav-text">软件工程模型和方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件质量"><span class="nav-number">1.4.0.10.</span> <span class="nav-text">软件质量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程专业实践"><span class="nav-number">1.4.0.11.</span> <span class="nav-text">软件工程专业实践</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程经济学"><span class="nav-number">1.4.0.12.</span> <span class="nav-text">软件工程经济学</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#计算基础"><span class="nav-number">1.4.0.13.</span> <span class="nav-text">计算基础</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数学基础"><span class="nav-number">1.4.0.14.</span> <span class="nav-text">数学基础</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#工程基础"><span class="nav-number">1.4.0.15.</span> <span class="nav-text">工程基础</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-简单解释-CMMI-的五个级别。"><span class="nav-number">1.5.</span> <span class="nav-text">5. 简单解释 CMMI 的五个级别。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-用自己语言简述-SWEBok-或-CMMI-（约200字）"><span class="nav-number">1.6.</span> <span class="nav-text">6. 用自己语言简述 SWEBok 或 CMMI （约200字）</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
-
-      
-
+      </ul>
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Sherry</span>
-</div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
   </div>
 
   
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
 
-
-
-
-
+<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
+<script src="/js/script.js"></script>
 
 
 
 
 
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
+  </div>
 </body>
 </html>

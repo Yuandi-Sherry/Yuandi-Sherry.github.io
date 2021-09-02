@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>系统分析与设计 - 画图题注意事项 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="用例图  用例名称使用动词开头 有系统边界，系统名称 一定要有include或者extend，搞不清全都include，虚线箭头 所有用例和Actor关联，关联线实线没有箭头 支持性参与者最右边，GPS, 传感器, 外部设计, 短信, 邮件, 银行卡 画有用的用例，Login不要 判断是否要写：这个功能是否有一个单独的界面 不能太多层 外部设备&lt;&lt;&gt;&gt;  &lt;&lt;s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统分析与设计 - 画图题注意事项">
+<meta property="og:url" content="http://example.com/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="用例图  用例名称使用动词开头 有系统边界，系统名称 一定要有include或者extend，搞不清全都include，虚线箭头 所有用例和Actor关联，关联线实线没有箭头 支持性参与者最右边，GPS, 传感器, 外部设计, 短信, 邮件, 银行卡 画有用的用例，Login不要 判断是否要写：这个功能是否有一个单独的界面 不能太多层 外部设备&lt;&lt;&gt;&gt;  &lt;&lt;s">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg">
+<meta property="article:published_time" content="2019-07-02T22:49:14.000Z">
+<meta property="article:modified_time" content="2019-07-05T00:43:56.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Software Analysis and Design">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-系统分析与设计-画图题注意事项" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="article-date">
+  <time class="dt-published" datetime="2019-07-02T22:49:14.000Z" itemprop="datePublished">2019-07-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      系统分析与设计 - 画图题注意事项
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="用例图"><a href="#用例图" class="headerlink" title="用例图"></a>用例图</h2><ol>
+<li> 用例名称使用<strong>动词</strong>开头</li>
+<li>有<strong>系统边界</strong>，<strong>系统名称</strong></li>
+<li>一定要有<code>include</code>或者<code>extend</code>，搞不清全都<code>include</code>，<strong>虚线箭头</strong></li>
+<li>所有用例和Actor关联，<strong>关联线实线没有箭头</strong></li>
+<li>支持性参与者最右边，GPS, 传感器, 外部设计, 短信, 邮件, 银行卡</li>
+<li>画有用的用例，Login不要</li>
+<li><strong>判断是否要写</strong>：这个功能是否有一个单独的界面</li>
+<li>不能太多层</li>
+<li>外部设备&lt;&lt;&gt;&gt;<ol>
+<li> <code>&lt;&lt;system&gt;&gt;</code> - 系统</li>
+<li> <code>&lt;&lt;service&gt;&gt;</code> - 服务</li>
+<li> <code>&lt;&lt;device&gt;&gt;</code> - 设备</li>
+</ol>
+</li>
+</ol>
+<h2 id="活动图"><a href="#活动图" class="headerlink" title="活动图"></a>活动图</h2><ol>
+<li><strong>起点</strong>只能一个，<strong>终点</strong>可以多个</li>
+<li>有箭头的线，有循环一定有<strong>汇聚</strong>节点</li>
+<li>判定/有条件一定写<strong>guard</strong></li>
+<li>注意分支循环的<strong>菱形</strong>【这里错过】</li>
+<li>活动图的基本动作对应<strong>用例的子用例</strong></li>
+</ol>
+<h2 id="领域建模"><a href="#领域建模" class="headerlink" title="领域建模"></a>领域建模</h2><h3 id="概念和属性"><a href="#概念和属性" class="headerlink" title="概念和属性"></a>概念和属性</h3><ol>
+<li><p>通过<strong>名词</strong>找概念类和属性</p>
+<blockquote>
+<p>不要和UI, database的名词，业务流程没有关系的名词不要，任何计算出的结果，不参与业务运算，模糊术语</p>
+</blockquote>
+<p>每个类写一两个代表属性就好</p>
+</li>
+<li><p>区分概念类和属性：<strong>属性</strong>为现实世界的数字文本，否则不是属性而是概念类；当<strong>需要记录信息</strong>时引入属性</p>
+</li>
+<li><p>一定有计算属性【没有则扣分】</p>
+</li>
+</ol>
+<h3 id="描述类"><a href="#描述类" class="headerlink" title="描述类"></a>描述类</h3><ol>
+<li><strong>描述类</strong>，命名xxxDescription【没有则扣分】：<ol>
+<li>需要商品/服务的描述，独立于实例</li>
+<li>删除所有实例，导致信息丢失</li>
+<li>减少冗余重复</li>
+</ol>
+</li>
+</ol>
+<h3 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h3><ol>
+<li><strong>角色</strong></li>
+<li><strong>多重性</strong>，可以出现多重关联，黑色三角【没有则扣分】</li>
+<li>没有箭头！！</li>
+</ol>
+<h3 id="书写"><a href="#书写" class="headerlink" title="书写"></a>书写</h3><ol>
+<li><p>类元首字母大写</p>
+</li>
+<li><p>关联名称首字母大写（e.g. Uses, Has）</p>
+<ol>
+<li>关联不是动作</li>
+<li>数据之间的约束</li>
+</ol>
+</li>
+</ol>
+<h3 id="不要出现"><a href="#不要出现" class="headerlink" title="不要出现"></a>不要出现</h3><ol>
+<li>database</li>
+<li>方法</li>
+<li>小票</li>
+<li>selection</li>
+</ol>
+<h2 id="状态图"><a href="#状态图" class="headerlink" title="状态图"></a>状态图</h2><ol>
+<li>看清题目要什么东西的状态图<ol>
+<li>系统和用例：过程</li>
+<li>对象：生命周期</li>
+</ol>
+</li>
+<li>寻找主要状态，<strong>名词/名词+动词</strong></li>
+<li>确定转换边：<code>触发事件[监护条件]/动作</code><ol>
+<li>事件被动动词：e.g. onKeyPressed</li>
+<li>监护条件：”如果…”, “在…条件下”</li>
+<li><strong>动作别写了，写错扣分</strong>。是系统的动作</li>
+</ol>
+</li>
+<li>一定有<strong>起点</strong></li>
+<li>横着画！！！！！！</li>
+</ol>
+<h2 id="系统顺序图与操作契约"><a href="#系统顺序图与操作契约" class="headerlink" title="系统顺序图与操作契约"></a>系统顺序图与操作契约</h2><ol>
+<li><strong>系统</strong>：<ol>
+<li>System</li>
+<li>前面<strong>冒号</strong></li>
+<li>直角矩形框</li>
+<li>Actor右边</li>
+<li>下划线</li>
+</ol>
+</li>
+<li><strong>参与者</strong>：<ol>
+<li>Actor</li>
+<li>前面冒号</li>
+<li>最左边</li>
+<li>下划线</li>
+</ol>
+</li>
+<li><strong>外部实体</strong>：<ol>
+<li>最右边</li>
+</ol>
+</li>
+<li><strong>消息不应该超过5个</strong><ol>
+<li>命名为动作</li>
+<li>实心三角实线！！！！</li>
+<li>返回虚线箭头</li>
+<li><strong>控制焦点</strong></li>
+</ol>
+</li>
+<li>后置条件【pml: 至少写一个，表示会，不要都写】【不要忘记】：<ol>
+<li>使用注释写在后面</li>
+<li>类型<ol>
+<li>创建/删除xxx对象</li>
+<li>修改xxx属性</li>
+<li>生成xxx关联（<strong>一般创建对象伴随着生成关联</strong>）</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>看是否需要图框</li>
+<li>pml: <strong>有可能</strong>有循环</li>
+<li>场景名：<u><em>xxxx Scenario</em></u></li>
+</ol>
+<h2 id="逻辑建模（包图）"><a href="#逻辑建模（包图）" class="headerlink" title="逻辑建模（包图）"></a>逻辑建模（包图）</h2><ol>
+<li>三个包M, V, C<ol>
+<li>M都来自领域建模</li>
+<li>理论你是变量都在C，动作命名规则：xxxAction或xxxController, <strong>一个用例一个控制器</strong></li>
+<li>界面都是V</li>
+</ol>
+</li>
+<li>外部资源写在foundation</li>
+<li>依赖关系，都是向下指，UI, controller, domain, foundation，使用<strong>带箭头的虚线</strong></li>
+</ol>
+<h2 id="部署建模"><a href="#部署建模" class="headerlink" title="部署建模"></a>部署建模</h2><ol>
+<li>操作系统表示为<code>OS=XXX</code></li>
+<li>数据库与其他东西的协议为<code>JDBC</code></li>
+</ol>
+<p><img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg" alt="img"></p>
+<ol start="3">
+<li>节点之间<strong>没有箭头</strong>，<strong>实线</strong></li>
+<li>节点是软件还是物理设备需要标记</li>
+<li>写清连接介质</li>
+</ol>
+<h2 id="对象动态建模（顺序图）"><a href="#对象动态建模（顺序图）" class="headerlink" title="对象动态建模（顺序图）"></a>对象动态建模（顺序图）</h2><ol>
+<li>创建实例的create使用<strong>虚线实心箭头</strong></li>
+<li>遵循BCE</li>
+<li><strong>冒号</strong></li>
+<li>下划线表示的静态对象</li>
+<li>最左边的方法是copy SSD的，不能多不能少</li>
+<li>控制器来源于包图，控制器左侧为UI，方法和顺序图和交互图保持一致</li>
+</ol>
+<h2 id="对象静态建模（类图）"><a href="#对象静态建模（类图）" class="headerlink" title="对象静态建模（类图）"></a>对象静态建模（类图）</h2><p>和顺序图对应</p>
+<ul>
+<li>各种关系的连线<ul>
+<li>依赖：虚线箭头</li>
+<li>泛化：实线空心箭头（指向父类）</li>
+<li>实线：虚线空心箭头（指向接口）</li>
+</ul>
+</li>
+<li>关联先表示属性：实线箭头 + 多重性（放在目标一段）+ 角色名（目标一端）+ 不需要关联名称<ul>
+<li><strong>对数据对象使用属性文本表示法</strong>，其他对象使用<strong>关联线</strong></li>
+</ul>
+</li>
+<li>控制器一定无状态</li>
+<li>不要冒号</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li>抄顺序图的类，抄<strong>领域模型的属性和关联</strong>，补充类的方法（<strong>和顺序图一致</strong>）</li>
+<li>领域建模的has, contains, own改为导航箭头（没有关联名）</li>
+<li>多重性保持</li>
+<li>不写get,set</li>
+<li>Domain写所有entity</li>
+<li>Boundary的方法都不考虑</li>
+</ol>
+<hr>
+<p>Summary</p>
+<ul>
+<li>顺序图和系统顺序图中，一个页面内修改的内容，直接传参，不需要一个个set方法</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" data-id="ckt2e2y1v0027pnuta5crauqu" data-title="系统分析与设计 - 画图题注意事项" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Analysis-and-Design/" rel="tag">Software Analysis and Design</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Attentive Feedback Network for Boundary-Aware Salient Object Detection论文阅读笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Graphics/" rel="tag">Computer Graphics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Mining/" rel="tag">Data Mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MockingBot/" rel="tag">MockingBot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Analysis-and-Design/" rel="tag">Software Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-System-Analysis-and-Design/" rel="tag">Software System Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Testing/" rel="tag">Software Testing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/3D-GAME-DESIGN/" style="font-size: 20px;">3D GAME DESIGN</a> <a href="/tags/Computer-Graphics/" style="font-size: 14px;">Computer Graphics</a> <a href="/tags/Data-Mining/" style="font-size: 12px;">Data Mining</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MockingBot/" style="font-size: 10px;">MockingBot</a> <a href="/tags/Software-Analysis-and-Design/" style="font-size: 10px;">Software Analysis and Design</a> <a href="/tags/Software-System-Analysis-and-Design/" style="font-size: 18px;">Software System Analysis and Design</a> <a href="/tags/Software-Testing/" style="font-size: 10px;">Software Testing</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/pytorch/" style="font-size: 16px;">pytorch</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">系统分析与设计 - 画图题注意事项</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Attentive Feedback Network for Boundary-Aware Salient Object Detection论文阅读笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/">neural style源代码阅读</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/">系统分析与设计 - 建模部分</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Gatys - Image Style Transfer 论文阅读笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

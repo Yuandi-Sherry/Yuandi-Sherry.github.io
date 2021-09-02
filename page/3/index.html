@@ -1,576 +1,335 @@
 <!DOCTYPE html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang="zh-Hans">
+<html>
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <meta charset="utf-8">
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sherry&#39;s emmm... Unnamed Blog">
-<meta property="og:url" content="http://yoursite.com/page/3/index.html">
-<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
-<meta property="og:locale" content="zh-Hans">
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/3/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sherry&#39;s emmm... Unnamed Blog">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/page/3/"/>
-
-
-
-
-
-  <title>Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
   
   
     
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
   
+  
+<link rel="stylesheet" href="/css/style.css">
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-   page-home 
- ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  
     
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
     </div>
-      
-        <p class="site-subtitle">Recording while Learning</p>
-      
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-LeetCode" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/05/LeetCode/" class="article-date">
+  <time class="dt-published" datetime="2019-03-06T04:20:12.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
   </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-
-      
-    </ul>
-  
-
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
+  <div class="article-inner">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/系统分析与设计-Homework1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
     
-      <header class="post-header">
-
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/05/系统分析与设计-Homework1/" itemprop="url">系统分析与设计 - Homework1</a></h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/05/LeetCode/">LeetCode</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T00:22:44+08:00">
-                2019-03-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="e-content article-entry" itemprop="articleBody">
       
-      
+        <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="70-Climbing-Stairs"><a href="#70-Climbing-Stairs" class="headerlink" title="70. Climbing Stairs"></a>70. Climbing Stairs</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/climbing-stairs/">https://leetcode.com/problems/climbing-stairs/</a></p>
+<p>主要思路：上第n级台阶 = 从第n-1级台阶上1步 + 从第n-2级台阶上2步。</p>
+<p>由于初始的上第1、2、3阶台阶的方法均可数，因而可以计算出上任意阶台阶的情况。</p>
+<h3 id="62-Unique-Paths"><a href="#62-Unique-Paths" class="headerlink" title="62. Unique Paths"></a>62. Unique Paths</h3><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/unique-paths/">https://leetcode.com/problems/unique-paths/</a></p>
+<p>根据组合数的性质：<br>$$<br>C(n, m) = C(n-1, m-1) + C(n-1, m)<br>$$<br>二维vector初始化：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">ans</span>(rows, vector&lt;<span class="keyword">int</span>&gt;(cols), initNo));</span><br></pre></td></tr></table></figure>
 
-      
+<p><strong>注意：</strong>这里的需要走的横向步数和纵向步数不是m和n，而是m-1和n-1. </p>
         
-          <h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><h3 id="1-软件工程的定义"><a href="#1-软件工程的定义" class="headerlink" title="1. 软件工程的定义"></a>1. 软件工程的定义</h3><p>软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。</p>
+          <p class="article-more-link">
+            <a href="/2019/03/05/LeetCode/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/03/05/LeetCode/" data-id="ckt2e2y1g0007pnuteihw5v8k" data-title="LeetCode" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-软件测试-Homework1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/05/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-Homework1/" class="article-date">
+  <time class="dt-published" datetime="2019-03-06T03:59:02.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/05/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-Homework1/">软件测试 - Homework1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><strong>问题：</strong>正确理解原型方法对软件生命周期不同阶段的支持，分别给出：辅助或代替分析阶段；辅助设计阶段；代替分析与设计阶段；代替分析、设计和实现阶段；代替全部开发阶段所对应的开发活动执行时间顺序。</p>
+<p>原型方法：</p>
+<img src="https://s2.ax1x.com/2019/03/05/kjl9U0.png" width="400">
+        
+          <p class="article-more-link">
+            <a href="/2019/03/05/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-Homework1/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/03/05/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95-Homework1/" data-id="ckt2e2y1v0028pnut4gxr419c" data-title="软件测试 - Homework1" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Testing/" rel="tag">Software Testing</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-OpenGL-vs2017-环境配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/05/OpenGL-vs2017-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2019-03-05T19:03:55.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/05/OpenGL-vs2017-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">OpenGL + vs2017 环境配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>参考链接：<a target="_blank" rel="noopener" href="https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/">https://learnopengl-cn.github.io/01%20Getting%20started/02%20Creating%20a%20window/</a></p>
+        
+          <p class="article-more-link">
+            <a href="/2019/03/05/OpenGL-vs2017-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/03/05/OpenGL-vs2017-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="ckt2e2y1h000cpnute74q67tg" data-title="OpenGL + vs2017 环境配置" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Computer-Graphics/" rel="tag">Computer Graphics</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-系统分析与设计-Homework1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/03/05/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-Homework1/" class="article-date">
+  <time class="dt-published" datetime="2019-03-05T08:22:44.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2019/03/05/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-Homework1/">系统分析与设计 - Homework1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><h3 id="1-软件工程的定义"><a href="#1-软件工程的定义" class="headerlink" title="1. 软件工程的定义"></a>1. 软件工程的定义</h3><p>软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。</p>
 <h3 id="2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法"><a href="#2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法" class="headerlink" title="2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法"></a>2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法</h3><h5 id="根本原因"><a href="#根本原因" class="headerlink" title="根本原因"></a>根本原因</h5><p>造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系统复杂性和软件开发方法之间的矛盾。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/05/系统分析与设计-Homework1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+        
+          <p class="article-more-link">
+            <a href="/2019/03/05/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-Homework1/#more">Read More</a>
+          </p>
         
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/03/05/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-Homework1/" data-id="ckt2e2y1p001gpnuthewc1fhs" data-title="系统分析与设计 - Homework1" class="article-share-link">Share</a>
       
       
-        <div class="post-eof"></div>
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-System-Analysis-and-Design/" rel="tag">Software System Analysis and Design</a></li></ul>
+
     </footer>
   </div>
   
-  
-  
-  </article>
+</article>
 
 
+
+  
+    <article id="post-Week15-Tanks" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/06/19/Week15-Tanks/" class="article-date">
+  <time class="dt-published" datetime="2018-06-20T04:30:29.000Z" itemprop="datePublished">2018-06-19</time>
+</a>
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/19/Week15-Tanks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
+  </div>
+  <div class="article-inner">
     
-      <header class="post-header">
-
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/19/Week15-Tanks/" itemprop="url">Week15-Tanks</a></h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/06/19/Week15-Tanks/">Week15-Tanks</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-19T21:30:29+08:00">
-                2018-06-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="e-content article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <h1 id="Tanks"><a href="#Tanks" class="headerlink" title="Tanks"></a>Tanks</h1><p>整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：</p>
+        <h1 id="Tanks"><a href="#Tanks" class="headerlink" title="Tanks"></a>Tanks</h1><p>整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：</p>
 <p><img src="https://github.com/Yuandi-Sherry/3DGameDesignHomeworkWeek15/blob/master/preview.gif?raw=true" alt="preview"></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/19/Week15-Tanks/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+        
+          <p class="article-more-link">
+            <a href="/2018/06/19/Week15-Tanks/#more">Read More</a>
+          </p>
         
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/06/19/Week15-Tanks/" data-id="ckt2e2y1n000zpnuth2c65ene" data-title="Week15-Tanks" class="article-share-link">Share</a>
       
       
-        <div class="post-eof"></div>
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li></ul>
+
     </footer>
   </div>
   
-  
-  
-  </article>
+</article>
 
 
+
+  
+    <article id="post-Week09-Animator-View-Pattern-patrols" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/05/11/Week09-Animator-View-Pattern-patrols/" class="article-date">
+  <time class="dt-published" datetime="2018-05-11T17:26:28.000Z" itemprop="datePublished">2018-05-11</time>
+</a>
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/Week09-Animator-View-Pattern-patrols/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
+  </div>
+  <div class="article-inner">
     
-      <header class="post-header">
-
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/11/Week09-Animator-View-Pattern-patrols/" itemprop="url">Week09-Animator & View Pattern-patrols</a></h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/05/11/Week09-Animator-View-Pattern-patrols/">Week09-Animator &amp; View Pattern-patrols</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T10:26:28+08:00">
-                2018-05-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="e-content article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <p><img src="https://github.com/Yuandi-Sherry/BLOGpics/blob/master/Week09/ezgif-5-f7e4265d62.gif?raw=true" alt="gameView"></p>
+        <p><img src="https://github.com/Yuandi-Sherry/BLOGpics/blob/master/Week09/ezgif-5-f7e4265d62.gif?raw=true" alt="gameView"></p>
 <h1 id="游戏设计要求"><a href="#游戏设计要求" class="headerlink" title="游戏设计要求"></a>游戏设计要求</h1><ul>
 <li>创建一个地图和若干巡逻兵(使用动画)；</li>
 <li>每个巡逻兵走一个3~5个边的凸多边型，位置数据是相对地址。即每次确定下一个目标位置，用自己当前位置为原点计算；</li>
@@ -586,505 +345,189 @@
 <li>动画的控制取store找一些models，自己建立Animator并在代码中设置相应参数即可；</li>
 <li>本游戏中引入了一种在之前作业中没有过的观察者模式，即事件的发布者与订阅者，采用的方法是构建GameEventManager管理所有事件，发布者在特定情况下发布GameEventManager中相应事件，订阅者用OnEnable()对相关事件进行响应。</li>
 </ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/11/Week09-Animator-View-Pattern-patrols/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+        
+          <p class="article-more-link">
+            <a href="/2018/05/11/Week09-Animator-View-Pattern-patrols/#more">Read More</a>
+          </p>
         
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/05/11/Week09-Animator-View-Pattern-patrols/" data-id="ckt2e2y1m000wpnutdlvu7uo2" data-title="Week09-Animator &amp; View Pattern-patrols" class="article-share-link">Share</a>
       
       
-        <div class="post-eof"></div>
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li></ul>
+
     </footer>
   </div>
   
-  
-  
-  </article>
+</article>
 
 
+
+  
+    <article id="post-Week06-GameObject-Factory-Frisbee" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/17/Week06-GameObject-Factory-Frisbee/" class="article-date">
+  <time class="dt-published" datetime="2018-04-18T04:41:30.000Z" itemprop="datePublished">2018-04-17</time>
+</a>
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/17/Week06-GameObject-Factory-Frisbee/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
+  </div>
+  <div class="article-inner">
     
-      <header class="post-header">
-
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/17/Week06-GameObject-Factory-Frisbee/" itemprop="url">Week06-GameObject Factory Frisbee</a></h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/17/Week06-GameObject-Factory-Frisbee/">Week06-GameObject Factory Frisbee</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T21:41:30+08:00">
-                2018-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="e-content article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <h1 id="游戏对象工厂：打飞碟游戏"><a href="#游戏对象工厂：打飞碟游戏" class="headerlink" title="游戏对象工厂：打飞碟游戏"></a>游戏对象工厂：打飞碟游戏</h1><p>这篇博客会介绍一个打飞碟游戏，主要是引入一个游戏对象的创建与回收机制。</p>
+        <h1 id="游戏对象工厂：打飞碟游戏"><a href="#游戏对象工厂：打飞碟游戏" class="headerlink" title="游戏对象工厂：打飞碟游戏"></a>游戏对象工厂：打飞碟游戏</h1><p>这篇博客会介绍一个打飞碟游戏，主要是引入一个游戏对象的创建与回收机制。</p>
 <p>如果每次需要一个新的游戏对象的时候都重新创建它，用完了又马上销毁它，会造成资源的浪费以及游戏性能的下降。本次作业中的飞碟就是一个很好的例子，需要在游戏过程中源源不断地飞出，之后又被击落或者飞出屏幕。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/17/Week06-GameObject-Factory-Frisbee/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+        
+          <p class="article-more-link">
+            <a href="/2018/04/17/Week06-GameObject-Factory-Frisbee/#more">Read More</a>
+          </p>
         
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/04/17/Week06-GameObject-Factory-Frisbee/" data-id="ckt2e2y1m000upnut7g2xcn8f" data-title="Week06-GameObject Factory Frisbee" class="article-share-link">Share</a>
       
       
-        <div class="post-eof"></div>
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li></ul>
+
     </footer>
   </div>
   
-  
-  
-  </article>
+</article>
 
 
+
+  
+    <article id="post-Week05-游戏对象使用总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/10/Week05-%E6%B8%B8%E6%88%8F%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2018-04-10T17:00:39.000Z" itemprop="datePublished">2018-04-10</time>
+</a>
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/Week05-游戏对象使用总结/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
+  </div>
+  <div class="article-inner">
     
-      <header class="post-header">
-
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/10/Week05-游戏对象使用总结/" itemprop="url">Week05 Homework - 游戏对象使用总结</a></h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/10/Week05-%E6%B8%B8%E6%88%8F%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">Week05 Homework - 游戏对象使用总结</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T10:00:39+08:00">
-                2018-04-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="e-content article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <blockquote>
+        <blockquote>
 <p>简要记录了一下近期作业中所使用过的创建、克隆游戏对象，添加、获取组件的方法。以及特殊的游戏对象和组件包括摄像机、terrain、天空盒的少许知识。</p>
 </blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/10/Week05-游戏对象使用总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+        
+          <p class="article-more-link">
+            <a href="/2018/04/10/Week05-%E6%B8%B8%E6%88%8F%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/#more">Read More</a>
+          </p>
         
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/04/10/Week05-%E6%B8%B8%E6%88%8F%E5%AF%B9%E8%B1%A1%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" data-id="ckt2e2y1m000spnut037r9uyz" data-title="Week05 Homework - 游戏对象使用总结" class="article-share-link">Share</a>
       
       
-        <div class="post-eof"></div>
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li></ul>
+
     </footer>
   </div>
   
-  
-  
-  </article>
+</article>
 
 
+
+  
+    <article id="post-MVC-Priests-and-Evils" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/03/MVC-Priests-and-Evils/" class="article-date">
+  <time class="dt-published" datetime="2018-04-03T22:29:13.000Z" itemprop="datePublished">2018-04-03</time>
+</a>
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/03/MVC-Priests-and-Evils/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
+  </div>
+  <div class="article-inner">
     
-      <header class="post-header">
-
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/03/MVC-Priests-and-Evils/" itemprop="url">MVC: Priests and Evils</a></h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/03/MVC-Priests-and-Evils/">MVC: Priests and Evils</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-03T15:29:13+08:00">
-                2018-04-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="e-content article-entry" itemprop="articleBody">
       
-      
-
-      
+        <p>What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢<a href="">这篇博客</a>给了我很大的启发~如果想看比较专业的讲解可以点它 :)</p>
         
-          <p>What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢<a href="">这篇博客</a>给了我很大的启发~如果想看比较专业的讲解可以点它 :)</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/03/MVC-Priests-and-Evils/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          <p class="article-more-link">
+            <a href="/2018/04/03/MVC-Priests-and-Evils/#more">Read More</a>
+          </p>
         
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/04/03/MVC-Priests-and-Evils/" data-id="ckt2e2y1h000apnuthc775mbn" data-title="MVC: Priests and Evils" class="article-share-link">Share</a>
       
       
-        <div class="post-eof"></div>
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li></ul>
+
     </footer>
   </div>
   
-  
-  
-  </article>
+</article>
 
 
+
+  
+    <article id="post-Week04-Homework" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/04/01/Week04-Homework/" class="article-date">
+  <time class="dt-published" datetime="2018-04-02T00:50:34.000Z" itemprop="datePublished">2018-04-01</time>
+</a>
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/01/Week04-Homework/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
+  </div>
+  <div class="article-inner">
     
-      <header class="post-header">
-
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/01/Week04-Homework/" itemprop="url">Week04 Homework - 游戏对象的运动</a></h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2018/04/01/Week04-Homework/">Week04 Homework - 游戏对象的运动</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T17:50:34+08:00">
-                2018-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
       </header>
     
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="e-content article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <h2 id="游戏对象运动的本质是什么？"><a href="#游戏对象运动的本质是什么？" class="headerlink" title="游戏对象运动的本质是什么？"></a>游戏对象运动的本质是什么？</h2><ul>
+        <h2 id="游戏对象运动的本质是什么？"><a href="#游戏对象运动的本质是什么？" class="headerlink" title="游戏对象运动的本质是什么？"></a>游戏对象运动的本质是什么？</h2><ul>
 <li>游戏对象运动的本质是通过在极短时间<code>Time.deltaTime</code>内改变游戏对象的<code>transform.position</code>实现运动效果的。</li>
 </ul>
 <h2 id="请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…）"><a href="#请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…）" class="headerlink" title="请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…）"></a>请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…）</h2><ol>
@@ -1098,568 +541,145 @@
 </ul>
 </li>
 <li><p>关键代码如下：</p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	count += Time.deltaTime; <span class="comment">//计算从抛出到当前时刻经过的时间</span></span><br><span class="line">	transform.position += <span class="keyword">new</span> Vector3(initialVelocityRight, initialVelocityUp<span class="number">-9.8</span>f*count, <span class="number">0.0</span>f)*Time.deltaTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>)</span> &#123;</span><br><span class="line">	count += Time.deltaTime; <span class="comment">//计算从抛出到当前时刻经过的时间</span></span><br><span class="line">	transform.position += <span class="keyword">new</span> Vector3(initialVelocityRight, initialVelocityUp<span class="number">-9.8f</span>*count, <span class="number">0.0f</span>)*Time.deltaTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/04/01/Week04-Homework/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+        
+          <p class="article-more-link">
+            <a href="/2018/04/01/Week04-Homework/#more">Read More</a>
+          </p>
         
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
+    <footer class="article-footer">
+      <a data-url="http://example.com/2018/04/01/Week04-Homework/" data-id="ckt2e2y1l000ppnut6g6k9d2w" data-title="Week04 Homework - 游戏对象的运动" class="article-share-link">Share</a>
       
       
-        <div class="post-eof"></div>
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li></ul>
+
     </footer>
   </div>
   
-  
-  
-  </article>
+</article>
 
 
-    
-      
 
   
 
-  
-  
-  
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/28/Typora to Github-Page/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
+  <nav id="page-nav">
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/28/Typora to Github-Page/" itemprop="url">Typora编辑的markdown文本post到Github Page时遇到的坑</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T09:01:08+08:00">
-                2018-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="代码高亮问题"><a href="#代码高亮问题" class="headerlink" title="代码高亮问题"></a>代码高亮问题</h1><h2 id="修改-config-yml中highlight-enable"><a href="#修改-config-yml中highlight-enable" class="headerlink" title="修改_config.yml中highlight - enable"></a>修改_config.yml中highlight - enable</h2><p>使用hexo在根目录有_config.yml文件，一般在#writing后有hexo自带的代码高亮开关：<br>     <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#writing</span></span><br><span class="line">...</span><br><span class="line"><span class="selector-tag">highlight</span>:</span><br><span class="line">  <span class="selector-tag">enable</span>: <span class="selector-tag">true</span> #这里</span><br><span class="line">  <span class="selector-tag">line_number</span>: <span class="selector-tag">false</span></span><br><span class="line">  <span class="selector-tag">auto_detect</span>: <span class="selector-tag">false</span></span><br><span class="line">  <span class="selector-tag">tab_replace</span>:</span><br><span class="line">​</span><br></pre></td></tr></table></figure></p>
-<p>在初始化时这个默认为<code>true</code>，但当引用hexo theme时，有些主题会给出视觉效果更好的highlight并在readme中提示关闭系统自带。但倘若没有提示，默认情况下是应该开启的。所以在设置/更换主题时若没有出现预想的代码高亮效果可能是<code>enable</code>的状态不对。</p>
-<p>被hexo用户广泛使用的next系列主题enable是需要为<code>true</code>才能正确使用其预先设定的Tomorrow theme代码高亮。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/28/Typora to Github-Page/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/27/Week03-Homework/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Sherry">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/27/Week03-Homework/" itemprop="url">Week03 Homework - Some Basic Knowledges</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:59:08+08:00">
-                2018-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="解释-游戏对象（GameObjects）-和-资源（Assets）的区别与联系。"><a href="#解释-游戏对象（GameObjects）-和-资源（Assets）的区别与联系。" class="headerlink" title="解释 游戏对象（GameObjects） 和 资源（Assets）的区别与联系。"></a>解释 游戏对象（GameObjects） 和 资源（Assets）的区别与联系。</h2><ul>
-<li><strong>游戏对象</strong>是Unity中最基础的对象，它可以代表游戏角色、 游戏道具和游戏场景。它们本身不会并不会为游戏贡献很多，但是它们却作为<strong>组件</strong>（展现真正游戏效果）的容器发挥着重要作用。<sup><a href="#fn_1" id="reffn_1">1</a></sup></li>
-<li>资源是能够用在游戏中的事物，可以来自Unity外创建的文件，比如3D模型、音频文件、图像，或是任何Unity支持的其他文件类型。同时，Unity内部也可以创建很多资源类型，比如动画控制器、音频混合器和渲染纹理等等。<sup><a href="#fn_2" id="reffn_2">2</a></sup></li>
-<li>区别在于：<ol>
-<li>游戏对象是游戏中的一个逻辑概念，有自身的属性和行为（比如玩家、大BOSS、场景）；而大部分游戏资源是来自外部的文件，仅作为游戏对象的组成部分（比如材料、音乐、图片）。</li>
-<li>游戏对象是游戏过程的一部分；资源是游戏编程过程的一部分。</li>
-</ol>
-</li>
-<li><p>联系在于：</p>
-<ol>
-<li><p>游戏对象可以作为资源的一部分；</p>
-</li>
-<li><p>游戏资源既可以成为游戏对象本身，也可以作为游戏对象的一种属性使游戏对象更为生动。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/03/27/Week03-Homework/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
   </nav>
 
-
-
-          </div>
-          
-
-
-          
-
-        </div>
+</section>
         
-          
+          <aside id="sidebar">
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Graphics/" rel="tag">Computer Graphics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Mining/" rel="tag">Data Mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MockingBot/" rel="tag">MockingBot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Analysis-and-Design/" rel="tag">Software Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-System-Analysis-and-Design/" rel="tag">Software System Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Testing/" rel="tag">Software Testing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
     </div>
   </div>
 
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
 
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
-               alt="Sherry" />
-          <p class="site-author-name" itemprop="name">Sherry</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives/">
-                <span class="site-state-item-count">29</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">12</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
-        </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
   
-  &copy;  2017 - 
-  <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Sherry</span>
-</div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
-
-
-        
-
-        
-      </div>
-    </footer>
-
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/3D-GAME-DESIGN/" style="font-size: 20px;">3D GAME DESIGN</a> <a href="/tags/Computer-Graphics/" style="font-size: 14px;">Computer Graphics</a> <a href="/tags/Data-Mining/" style="font-size: 12px;">Data Mining</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MockingBot/" style="font-size: 10px;">MockingBot</a> <a href="/tags/Software-Analysis-and-Design/" style="font-size: 10px;">Software Analysis and Design</a> <a href="/tags/Software-System-Analysis-and-Design/" style="font-size: 18px;">Software System Analysis and Design</a> <a href="/tags/Software-Testing/" style="font-size: 10px;">Software Testing</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/pytorch/" style="font-size: 16px;">pytorch</a>
+    </div>
   </div>
 
   
-
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
 
 
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">系统分析与设计 - 画图题注意事项</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Attentive Feedback Network for Boundary-Aware Salient Object Detection论文阅读笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/">neural style源代码阅读</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/">系统分析与设计 - 建模部分</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Gatys - Image Style Transfer 论文阅读笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
 
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 
   
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
+<script src="/js/script.js"></script>
 
 
 
 
 
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
-
-
-
-  
-  
-
-  
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-  
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
+  </div>
 </body>
 </html>

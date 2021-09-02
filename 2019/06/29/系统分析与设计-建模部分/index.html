@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>系统分析与设计 - 建模部分 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="用例建模用例图（考点1） 课件地址：https:&#x2F;&#x2F;sysu-swsad.github.io&#x2F;swad-guide&#x2F;06-usecase-modeling  需求识别系统 使用system框并命名，避免命名空泛  参与者 系统左边  依赖的逮捕系统 Neighboursystem框表示，构造型识别 &lt;&lt;system&gt;&gt; - 系统 &lt;&lt;service&gt;&amp;gt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统分析与设计 - 建模部分">
+<meta property="og:url" content="http://example.com/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="用例建模用例图（考点1） 课件地址：https:&#x2F;&#x2F;sysu-swsad.github.io&#x2F;swad-guide&#x2F;06-usecase-modeling  需求识别系统 使用system框并命名，避免命名空泛  参与者 系统左边  依赖的逮捕系统 Neighboursystem框表示，构造型识别 &lt;&lt;system&gt;&gt; - 系统 &lt;&lt;service&gt;&amp;gt">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png">
+<meta property="og:image" content="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png">
+<meta property="og:image" content="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image003.png">
+<meta property="og:image" content="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png">
+<meta property="og:image" content="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image005.png">
+<meta property="og:image" content="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png">
+<meta property="og:image" content="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image007.png">
+<meta property="og:image" content="c:/Users/Sherry/AppData/Roaming/Typora/typora-user-images/1561899453704.png">
+<meta property="article:published_time" content="2019-06-30T02:16:18.000Z">
+<meta property="article:modified_time" content="2019-07-05T01:03:22.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-系统分析与设计-建模部分" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/" class="article-date">
+  <time class="dt-published" datetime="2019-06-30T02:16:18.000Z" itemprop="datePublished">2019-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      系统分析与设计 - 建模部分
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="用例建模"><a href="#用例建模" class="headerlink" title="用例建模"></a>用例建模</h1><h2 id="用例图（考点1）"><a href="#用例图（考点1）" class="headerlink" title="用例图（考点1）"></a>用例图（考点1）</h2><blockquote>
+<p>课件地址：<a target="_blank" rel="noopener" href="https://sysu-swsad.github.io/swad-guide/06-usecase-modeling">https://sysu-swsad.github.io/swad-guide/06-usecase-modeling</a></p>
+</blockquote>
+<h3 id="需求识别"><a href="#需求识别" class="headerlink" title="需求识别"></a>需求识别</h3><h4 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h4><ul>
+<li>使用<code>system框</code>并命名，避免命名空泛</li>
+</ul>
+<h4 id="参与者"><a href="#参与者" class="headerlink" title="参与者"></a>参与者</h4><ul>
+<li>系统左边</li>
+</ul>
+<h4 id="依赖的逮捕系统"><a href="#依赖的逮捕系统" class="headerlink" title="依赖的逮捕系统"></a>依赖的逮捕系统</h4><ul>
+<li><code>Neighboursystem框</code>表示，构造型识别<ul>
+<li><code>&lt;&lt;system&gt;&gt;</code> - 系统</li>
+<li><code>&lt;&lt;service&gt;&gt;</code> - 服务</li>
+<li><code>&lt;&lt;device&gt;&gt;</code> - 设备</li>
+</ul>
+</li>
+</ul>
+<h3 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h3><h4 id="用户级用例"><a href="#用户级用例" class="headerlink" title="用户级用例"></a>用户级用例</h4><ul>
+<li>参与者驱动</li>
+<li>manage 用例</li>
+</ul>
+<h4 id="子用例"><a href="#子用例" class="headerlink" title="子用例"></a>子用例</h4><ul>
+<li>业务复用</li>
+<li>复杂业务分解</li>
+</ul>
+<h4 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h4><ul>
+<li><code>&lt;&lt;include&gt;&gt;</code> - 子用例必须</li>
+<li><code>&lt;&lt;extend&gt;&gt;</code> - 子用例可选</li>
+<li><strong><code>&lt;&lt;include&gt;&gt;</code>箭头指向子用例，<code>&lt;&lt;extend&gt;&gt;</code>箭头指向父用例</strong></li>
+</ul>
+<h3 id="用例和Actor"><a href="#用例和Actor" class="headerlink" title="用例和Actor"></a>用例和Actor</h3><ul>
+<li>无方向线</li>
+</ul>
+<h2 id="活动图（考点2）"><a href="#活动图（考点2）" class="headerlink" title="活动图（考点2）"></a>活动图（考点2）</h2><blockquote>
+<p>课件地址：<a target="_blank" rel="noopener" href="https://sysu-swsad.github.io/swad-guide/07-usecase-modeling">https://sysu-swsad.github.io/swad-guide/07-usecase-modeling</a></p>
+</blockquote>
+<p>以下来自：</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/visualstudio/modeling/uml-activity-diagrams-guidelines?view=vs-2015">UML活动图参考</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/visualstudio/modeling/uml-activity-diagrams-reference?view=vs-2015">UML活动图指南</a></p>
+</blockquote>
+<h4 id="简单的控制流"><a href="#简单的控制流" class="headerlink" title="简单的控制流"></a>简单的控制流</h4><h5 id="分支和循环"><a href="#分支和循环" class="headerlink" title="分支和循环"></a>分支和循环</h5><img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image001.png" width="300"/>
+
+<ol>
+<li><p>操作：圆角矩形，文本 - 指定的操作</p>
+</li>
+<li><p>控制流：箭头</p>
+</li>
+<li><p>初始节点：第一个操作</p>
+</li>
+<li><p>最终结点：活动结束</p>
+</li>
+<li><p>决策节点：条件分支 - 单输入多输出，输入令牌只会在一个输出上显示</p>
+</li>
+<li><p>防护：指定令牌是否可以沿连接线流动</p>
+</li>
+<li><p>合并节点：多输入单输出</p>
+</li>
+<li><p>注释</p>
+</li>
+<li><p>调用行为的操作：在另一个活动图中进行了更详细定义的操作【大概不考】</p>
+</li>
+</ol>
+<h5 id="并发流"><a href="#并发流" class="headerlink" title="并发流"></a>并发流</h5><img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image002.png" width="250"/>
+
+<ol start="11">
+<li><p>分叉节点：单个流划分为并发流，每个传入令牌在<strong>每个传出连线上</strong>生成一个令牌</p>
+</li>
+<li><p>结点加入：并发流合并为单个流，每个输入流有等待令牌，输出生成一个令牌</p>
+</li>
+<li><p>发送信号：将消息/信号发送给另一个活动/同一活动并发线程</p>
+</li>
+</ol>
+<img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image003.png" width="150" />
+
+<ol start="14">
+<li>接受事件：等待消息/信号后才执行</li>
+</ol>
+<img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image004.png" width="150" />
+
+<h5 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h5><p>一个操作到另一个操作</p>
+<ol start="15">
+<li>对象节点：传递的数据</li>
+</ol>
+<img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image005.png" width="150" />
+
+<ol start="16">
+<li>输入插针：操作执行可以接受的数据</li>
+</ol>
+<img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image006.png" width="150" />
+
+<ol start="17">
+<li>输出插针：操作执行时生成的数据</li>
+</ol>
+<img src="file:///C:/Users/Sherry/AppData/Local/Temp/msohtmlclip1/01/clip_image007.png" width="150" />
+
+<p>参数节点：通过节点活动接受/生成数据</p>
+<h4 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h4><ul>
+<li>操作 + 连接器</li>
+<li>每个操作都在控制流的下一个操作开始之前结束</li>
+<li>操作重叠的情况下使用并发流</li>
+</ul>
+<h4 id="决策和循环"><a href="#决策和循环" class="headerlink" title="决策和循环"></a>决策和循环</h4><ul>
+<li><p>决策节点 - 多个传出路径</p>
+</li>
+<li><p>防护条件 - 知道何时采用每条路径</p>
+</li>
+<li><p>合并节点 - 在分叉的两个或多个<strong>替代流</strong>组合在一起</p>
+</li>
+<li><ul>
+<li>不是汇集操作组合，一个操作中组合并发流</li>
+</ul>
+</li>
+</ul>
+<h4 id="结束活动"><a href="#结束活动" class="headerlink" title="结束活动"></a>结束活动</h4><p>所有并发操作和子活动终止</p>
+<p>使用多个活动最终节点减少其他连接线混乱程度</p>
+<h3 id="多泳道图"><a href="#多泳道图" class="headerlink" title="多泳道图"></a>多泳道图</h3><ul>
+<li>描述2个以上组织、角色或系统之间的交互业务流程</li>
+</ul>
+<h1 id="领域建模（考点3）"><a href="#领域建模（考点3）" class="headerlink" title="领域建模（考点3）"></a>领域建模（考点3）</h1><blockquote>
+<p><a target="_blank" rel="noopener" href="https://sysu-swsad.github.io/swad-guide/08-domain-modeling">https://sysu-swsad.github.io/swad-guide/08-domain-modeling</a></p>
+</blockquote>
+<ul>
+<li>描述问题域中事物及其之间的关系与量化的越是</li>
+<li>按照<strong>用例</strong>构建领域模型<ul>
+<li>识别实体（entity）和中介实体（Model）</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>以下内容来自课本</p>
+<h2 id="如何创建领域建模（9-4）"><a href="#如何创建领域建模（9-4）" class="headerlink" title="如何创建领域建模（9.4）"></a>如何创建领域建模（9.4）</h2><ol>
+<li>寻找概念类（9.5）</li>
+<li>绘制为UML类图的类</li>
+<li>添加关联和属性</li>
+</ol>
+<h2 id="如何寻找概念类（9-5）"><a href="#如何寻找概念类（9-5）" class="headerlink" title="如何寻找概念类（9.5）"></a>如何寻找概念类（9.5）</h2><ol>
+<li>重用/修改现有模型</li>
+<li>使用分类列表</li>
+<li>确定<strong>名词短语</strong></li>
+</ol>
+<h3 id="使用分类列表"><a href="#使用分类列表" class="headerlink" title="使用分类列表"></a>使用分类列表</h3><ul>
+<li>P104：业务交易、交易项目、与交易或交易项目相关的产品或服务、交易记录的地方、与交易相关的人或组织的角色+用例的参与者、交易/服务地点、重要事件（需要记录的时间地点）、物理对象、事物的描述、类别、事物的容器、容器中的事物、其他协作系统、金融工作合约法律材料记录、金融手段、执行工作所需的进度表、手册、文档</li>
+</ul>
+<h3 id="使用名词短语"><a href="#使用名词短语" class="headerlink" title="使用名词短语"></a>使用名词短语</h3><ul>
+<li><p>名词/名词短语来自<strong>用例</strong>/其他文档/专家想法</p>
+</li>
+<li><p>名词短语为<strong>候选的</strong>概念类或<strong>概念类的属性</strong></p>
+</li>
+<li><p>事件中直接将概念类绘制为UML类图</p>
+</li>
+</ul>
+<h2 id="报表对象的处理（9-9）"><a href="#报表对象的处理（9-9）" class="headerlink" title="报表对象的处理（9.9）"></a>报表对象的处理（9.9）</h2><ul>
+<li>一般不现实其他信息的报表</li>
+<li>作为凭证/必要属性时需要，e.g.退货需要小票</li>
+</ul>
+<h2 id="使用领域术语（9-10）"><a href="#使用领域术语（9-10）" class="headerlink" title="使用领域术语（9.10）"></a>使用领域术语（9.10）</h2><ul>
+<li>不要凭空增加事物</li>
+</ul>
+<h2 id="属性与类的常见错误（9-12）"><a href="#属性与类的常见错误（9-12）" class="headerlink" title="属性与类的常见错误（9.12）"></a>属性与类的常见错误（9.12）</h2><ul>
+<li><strong>如果概念类XX不是现实中的数字或文本，XX八成为概念类</strong></li>
+</ul>
+<h2 id="描述类（9-13）"><a href="#描述类（9-13）" class="headerlink" title="描述类（9.13）"></a>描述类（9.13）</h2><p>e.g. 价格独立于汉堡，航线独立于航班</p>
+<ul>
+<li>需要有关商品或服务的描述，<strong>独立</strong>于任何商品或服务的现有实例</li>
+<li>删除所描述事物的实例后，导致<strong>信息丢失</strong>，而这些信息是需要维护的，但错误地与所删除事物关联起来</li>
+<li>减少<strong>冗余</strong>或重复信息</li>
+</ul>
+<h2 id="关联（9-14）"><a href="#关联（9-14）" class="headerlink" title="关联（9.14）"></a>关联（9.14）</h2><ul>
+<li>对象之间需要持续一段时间的关系需要关联表示</li>
+</ul>
+<h3 id="避免加入大量关联"><a href="#避免加入大量关联" class="headerlink" title="避免加入大量关联"></a>避免加入大量关联</h3><h3 id="关联表示法"><a href="#关联表示法" class="headerlink" title="关联表示法"></a>关联表示法</h3><ul>
+<li>类之间连线，<strong>首字母大写</strong>的关联名称</li>
+<li>末端<strong>多重性</strong>表达式 -&gt; 类的实例之间的数量关系</li>
+<li>”阅读导向箭头“（实心三角）阅读关联名称的方向</li>
+</ul>
+<h4 id="关联的命名"><a href="#关联的命名" class="headerlink" title="关联的命名"></a>关联的命名</h4><ul>
+<li>类名 - 动词短语 - 类名（动词短语构成可读的和有意义的顺序）</li>
+</ul>
+<h4 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h4><ul>
+<li>定义：关联的<strong>每一端</strong></li>
+<li>可选项：<ul>
+<li>多重性表达式</li>
+<li>名称</li>
+<li>导航</li>
+</ul>
+</li>
+</ul>
+<h4 id="多重性"><a href="#多重性" class="headerlink" title="多重性"></a>多重性</h4><ul>
+<li>类A有多少个实例可以和类B的<strong>一个</strong>实例关联</li>
+<li>对于一个关联在不同时间段/条件/场景下有不同多重性时，根据关注点自行选择</li>
+</ul>
+<h4 id="两个类之间多个关联"><a href="#两个类之间多个关联" class="headerlink" title="两个类之间多个关联"></a>两个类之间多个关联</h4><ul>
+<li>e.g. Flight - <em>Flies from</em> - Airport, Flight - <em>Flies to</em> - Airport, </li>
+</ul>
+<h4 id="如何在常见关联列表中找到关联"><a href="#如何在常见关联列表中找到关联" class="headerlink" title="如何在常见关联列表中找到关联"></a>如何在常见关联列表中找到关联</h4><ul>
+<li>A是B的相关交易(paid-by)、一个项目(contains)、产品(records-sale-of)或服务、相关的角色、物理或逻辑部分、被物理或逻辑地包含在B中、B地描述、在B中被感知(is-on)/记日志/记录/生成报表/捕获、B的成员(member of)、B的组织化子单元、使用/管理/拥有B(contains)、与B相邻</li>
+</ul>
+<h2 id="属性（9-16）"><a href="#属性（9-16）" class="headerlink" title="属性（9.16）"></a>属性（9.16）</h2><ul>
+<li>对象的逻辑数值</li>
+</ul>
+<h3 id="准则：何时展示属性"><a href="#准则：何时展示属性" class="headerlink" title="准则：何时展示属性"></a>准则：何时展示属性</h3><ul>
+<li>当需求（用例）建议或暗示需要记住信息时，引入属性</li>
+</ul>
+<h4 id="属性表示法"><a href="#属性表示法" class="headerlink" title="属性表示法"></a>属性表示法</h4><ul>
+<li><p>类框图的第二格表示，类型和其他信息可选</p>
+</li>
+<li><pre><code class="c">visibility name: type multiplicity = default &#123;property-string&#125;
+</code></pre>
+</li>
+<li><p><strong>visibility</strong>属性可见性一般为私有，一般不显示标出可见性符号</p>
+</li>
+<li><p><strong>multiplicity</strong>可能出现的值或者这填充到集合属性中的对象数量，e.g. [0..1]表示可选值</p>
+</li>
+<li><p>**{property-string}**最常用的值</p>
+</li>
+</ul>
+<h4 id="导出属性"><a href="#导出属性" class="headerlink" title="导出属性"></a>导出属性</h4><ul>
+<li>表示方法：在属性名称前加以<code>/</code>符号 - 从多重性值导出的属性</li>
+</ul>
+<h3 id="准则：什么样的属性类型是适当的"><a href="#准则：什么样的属性类型是适当的" class="headerlink" title="准则：什么样的属性类型是适当的"></a>准则：什么样的属性类型是适当的</h3><h4 id="数据类型属性"><a href="#数据类型属性" class="headerlink" title="数据类型属性"></a>数据类型属性</h4><ul>
+<li>大部分属性应该是“简单”数据类型：Boolean, Date, Number, Character, String(Text)和Time; 以及Address, color, geometrics, phone number, social security number, universal product code, SKU, ZIP以及邮政编码。</li>
+<li><strong>把复杂领域概念建模为属性是错误的</strong> - 通过关联描述概念类的关系</li>
+</ul>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><ul>
+<li>对数据类型等价性检验不是基于标识，而是根据值判断</li>
+</ul>
+<h3 id="准则：何时加入数据类型"><a href="#准则：何时加入数据类型" class="headerlink" title="准则：何时加入数据类型"></a>准则：何时加入数据类型</h3><ul>
+<li>由不同小节组成：电话、人名</li>
+<li>具有与之相关的操作：社会安全号</li>
+<li>其他属性：e.g. 促销价格可能有开始日期和结束日期</li>
+<li>单位的数量：支付总额具有货币单位</li>
+</ul>
+<p>加入的数据类型可以表示为属性也可以表示为单独的类</p>
+<h3 id="准则：任何属性都不表示外键"><a href="#准则：任何属性都不表示外键" class="headerlink" title="准则：任何属性都不表示外键"></a>准则：任何属性都不表示外键</h3><ul>
+<li>属性<strong>不应该</strong>用于表示概念类的关系，应采用关联</li>
+</ul>
+<h3 id="准则：对数量和单位建模"><a href="#准则：对数量和单位建模" class="headerlink" title="准则：对数量和单位建模"></a>准则：对数量和单位建模</h3><ul>
+<li>数量：Quantity类/类型</li>
+<li>单位：Unit</li>
+</ul>
+<h2 id="状态建模（考点4）"><a href="#状态建模（考点4）" class="headerlink" title="状态建模（考点4）"></a>状态建模（考点4）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://sysu-swsad.github.io/swad-guide/09-domain-modeling">https://sysu-swsad.github.io/swad-guide/09-domain-modeling</a></p>
+</blockquote>
+<h3 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h3><ol>
+<li>从实例角度识别业务实践，完善、优化业务过程细节，细化业务过程与领域模型</li>
+<li>给出业务过程合理性与完备性验证</li>
+<li>为程序开发提供业务规范细节</li>
+</ol>
+<h3 id="符号体系"><a href="#符号体系" class="headerlink" title="符号体系"></a>符号体系</h3><ul>
+<li>描述一个<strong>事物或对象</strong>受<strong>事件或消息</strong>刺激产生 可见的状态（属性/属性组合） 的数据变化。</li>
+<li>基础<ul>
+<li>起始 - 黑点</li>
+<li>终止 - 圆圈内黑点</li>
+<li>状态 - 圆角矩形</li>
+</ul>
+</li>
+<li>变迁 - <code>event[guard]/动作</code></li>
+</ul>
+<h5 id="扩展符号（应该不考）"><a href="#扩展符号（应该不考）" class="headerlink" title="扩展符号（应该不考）"></a>扩展符号（应该不考）</h5><ul>
+<li>复合状态</li>
+<li>信号</li>
+</ul>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>研究对象</p>
+<p>识别状态集合</p>
+<p>识别事件和变迁条件</p>
+<p>合理性、完整性检查与逻辑分析</p>
+<hr>
+<p>扣分点：</p>
+<ol>
+<li>必须有起始，通常有终止和取消</li>
+<li>状态命名：<strong>名词短语</strong>、<strong>动词过去时</strong>或<strong>正在进行时</strong> - 延续性词汇</li>
+<li>需求分析不涉及动作</li>
+</ol>
+<hr>
+<h1 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h1><h2 id="逻辑模型-amp-包图（考点5）"><a href="#逻辑模型-amp-包图（考点5）" class="headerlink" title="逻辑模型 &amp; 包图（考点5）"></a>逻辑模型 &amp; 包图（考点5）</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://sysu-swsad.github.io/swad-guide/11-architecture-design-methods">https://sysu-swsad.github.io/swad-guide/11-architecture-design-methods</a></p>
+</blockquote>
+<ul>
+<li>三层模型（表示层、业务层、持久化层）<ul>
+<li>表示层：按用户角色划分分区</li>
+<li>业务层：按业务功能服务划分分区</li>
+<li>持久化层：按核心交易实体管理</li>
+</ul>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>以下内容来自课本chapter13</p>
+</blockquote>
+<ul>
+<li>逻辑架构是软件类的宏观组织结构，将软件类组织为包、子系统和层</li>
+<li><strong>层</strong> - 对类、包、子系统的粗粒度分组</li>
+<li>宽松分层架构 - 可以调用其下任何一层的服务</li>
+</ul>
+<h3 id="包图（13-5）"><a href="#包图（13-5）" class="headerlink" title="包图（13.5）"></a>包图（13.5）</h3><ul>
+<li>描述系统的逻辑结构 - 层、子系统、包</li>
+</ul>
+<h4 id="UML包"><a href="#UML包" class="headerlink" title="UML包"></a>UML包</h4><ul>
+<li>UML能够组织任何事物：类、其他包、用例<ul>
+<li>包内部显示了成员，则在标签上标识包名；否则可以在包体内标识包名</li>
+</ul>
+</li>
+</ul>
+<h4 id="依赖线"><a href="#依赖线" class="headerlink" title="依赖线"></a>依赖线</h4><ul>
+<li>带有箭头的虚线，箭头指向<strong>被依赖</strong>的包</li>
+</ul>
+<h3 id="准则：使用层进行设计（13-6）"><a href="#准则：使用层进行设计（13-6）" class="headerlink" title="准则：使用层进行设计（13.6）"></a>准则：使用层进行设计（13.6）</h3><ul>
+<li>较低层是低级别和一般性服务，较高层与应用相关</li>
+</ul>
+<h4 id="概念区分"><a href="#概念区分" class="headerlink" title="概念区分"></a>概念区分</h4><ul>
+<li><strong>层</strong>：对系统在垂直方向的划分</li>
+<li><strong>分区</strong>：对系统在水平方向的划分</li>
+</ul>
+<h3 id="准则：不要将外部资源表示为最底层"><a href="#准则：不要将外部资源表示为最底层" class="headerlink" title="准则：不要将外部资源表示为最底层"></a>准则：不要将外部资源表示为最底层</h3><ul>
+<li>这是物理，而非逻辑</li>
+</ul>
+<h3 id="准则：模型-视图分离原则"><a href="#准则：模型-视图分离原则" class="headerlink" title="准则：模型 - 视图分离原则"></a>准则：模型 - 视图分离原则</h3><ul>
+<li><p>不要将非UI对象直接与UI对象连接或耦合</p>
+</li>
+<li><p>不要在UI对象方法中加入应用逻辑</p>
+</li>
+<li><p>从UI层发送到领域层的消息是SSD所描述的消息</p>
+</li>
+</ul>
+<h2 id="部署模型（考点6）"><a href="#部署模型（考点6）" class="headerlink" title="部署模型（考点6）"></a>部署模型（考点6）</h2><h3 id="基本元素"><a href="#基本元素" class="headerlink" title="基本元素"></a>基本元素</h3><ul>
+<li>artifacts：项目编译后生成的程序包</li>
+<li>components: 具有特定接口的功能部件，一个artifacts可以包含多个components，一个component也可以涉及多个artifacts</li>
+<li>device, host, execute environment(EEN): 容器/节点<ul>
+<li><code>&lt;&lt;container catalog&gt;&gt; </code>分类</li>
+<li><code>&#123;key: value, ...&#125;</code>表示属性描述</li>
+</ul>
+</li>
+<li>关联：通讯模式或协议、网络连接</li>
+</ul>
+<hr>
+<blockquote>
+<p>以下内容来自课本chapter38</p>
+</blockquote>
+<ul>
+<li>部署图表示如何将具体软件制品分配到计算节点（具有处理服务的某种事物）上。</li>
+<li>表示软件元素在<strong>物理架构上</strong>的部署</li>
+<li>使用<strong>构造型</strong>标记节点类型</li>
+<li>设备节点或EEN可以包含其他EEN</li>
+<li><strong>具体实例名称带有下划线，没有下划线表示类而非实例</strong>；交互图实例（顺序图）中以生命线框图表示的实例名称没有下划线</li>
+</ul>
+<h2 id="构件图（考点7）"><a href="#构件图（考点7）" class="headerlink" title="构件图（考点7）"></a><del>构件图（考点7）</del></h2><blockquote>
+<p>以下内容来自课本chapter38</p>
+</blockquote>
+<ul>
+<li>构件表示封装了其内容的系统模块</li>
+<li>UML是设计级别的试图，并不存在于工具软件试图</li>
+</ul>
+<h2 id="系统顺序图（课本Chapter10）"><a href="#系统顺序图（课本Chapter10）" class="headerlink" title="系统顺序图（课本Chapter10）"></a>系统顺序图（课本Chapter10）</h2><ul>
+<li>系统相关的输入和输出事件</li>
+<li>展示直接与系统交互的外部参与者、系统以及由参与者发起的系统事件</li>
+<li>时间顺序自上而下，遵循场景顺序</li>
+<li>系统被视为黑盒，强调从参与者到系统的跨越系统边界的事件（做什么，而非如何做）</li>
+<li>通常不在SSD中显示用例文本</li>
+<li>系统事件以动词开始</li>
+</ul>
+<h1 id="详细设计"><a href="#详细设计" class="headerlink" title="详细设计"></a>详细设计</h1><h2 id="对象动态建模（考点8）"><a href="#对象动态建模（考点8）" class="headerlink" title="对象动态建模（考点8）"></a>对象动态建模（考点8）</h2><h3 id="顺序图（课本Chapter-15）"><a href="#顺序图（课本Chapter-15）" class="headerlink" title="顺序图（课本Chapter 15）"></a>顺序图（课本Chapter 15）</h3><ul>
+<li>顺序图中没有发送者的起始消息要使用黑点标记起点</li>
+</ul>
+<h4 id="常用的UML交互图表示法（15-3）"><a href="#常用的UML交互图表示法（15-3）" class="headerlink" title="常用的UML交互图表示法（15.3）"></a>常用的UML交互图表示法（15.3）</h4><h5 id="使用生命线框图表示参与者"><a href="#使用生命线框图表示参与者" class="headerlink" title="使用生命线框图表示参与者"></a>使用生命线框图表示参与者</h5><ul>
+<li>生命线框图表示交互的参与者<ul>
+<li>未命名实例 - <code>:类名</code></li>
+<li>命名实例 - <code>实例名:类名</code></li>
+<li>元类 - <code>&lt;&lt;metaclass&gt;&gt; 类名</code></li>
+<li>数组 - <code>实例名:ArrayList&lt;类名&gt;</code></li>
+<li>数组元素 - <code>实例名[i]:类名</code></li>
+<li>接口/抽象类 - <code>实例名:接口/抽象类名</code></li>
+</ul>
+</li>
+</ul>
+<h5 id="单实例对象"><a href="#单实例对象" class="headerlink" title="单实例对象"></a><del>单实例对象</del></h5><ul>
+<li><del>在生命线框图<strong>右上角标识”1”</strong></del></li>
+</ul>
+<h4 id="顺序图的基本表示法（15-4）"><a href="#顺序图的基本表示法（15-4）" class="headerlink" title="顺序图的基本表示法（15.4）"></a>顺序图的基本表示法（15.4）</h4><h5 id="消息"><a href="#消息" class="headerlink" title="消息"></a>消息</h5><ul>
+<li>带实心箭头的实线 - 同步消息</li>
+<li>最开始的消息在UML中称为<strong>创始消息</strong>，实心圆表示</li>
+</ul>
+<h5 id="表示应答或返回"><a href="#表示应答或返回" class="headerlink" title="表示应答或返回"></a>表示应答或返回</h5><ul>
+<li><code>returnVar = message(parameter)</code></li>
+</ul>
+<h5 id="发送给“自身”的消息"><a href="#发送给“自身”的消息" class="headerlink" title="发送给“自身”的消息"></a>发送给“自身”的消息</h5><ul>
+<li>书上和课上不一样</li>
+<li><img src="C:\Users\Sherry\AppData\Roaming\Typora\typora-user-images\1561899453704.png" alt="1561899453704"></li>
+</ul>
+<h5 id="实例的创建"><a href="#实例的创建" class="headerlink" title="实例的创建"></a>实例的创建</h5><ul>
+<li><strong>虚线</strong>，<code>create</code><ul>
+<li>开放箭头 - 暗示调用构造器</li>
+<li>实心箭头 - 调用操作符<code>new</code>并调用构造器</li>
+</ul>
+</li>
+</ul>
+<h5 id="对象生命线和对象的销毁"><a href="#对象生命线和对象的销毁" class="headerlink" title="对象生命线和对象的销毁"></a><del>对象生命线和对象的销毁</del></h5><ul>
+<li><del>显示销毁对象，大X和短生命线（P168）</del></li>
+</ul>
+<h5 id="UML顺序图中图框"><a href="#UML顺序图中图框" class="headerlink" title="UML顺序图中图框"></a>UML顺序图中图框</h5><ul>
+<li>操作符 &amp; 保护信息</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>alt</td>
+<td>选择，互斥条件逻辑</td>
+</tr>
+<tr>
+<td>loop</td>
+<td>保护信息为真的循环片段；<code>loop(n)</code>指明循环次数</td>
+</tr>
+<tr>
+<td>opt</td>
+<td><strong>保护信息为真</strong>时执行的可选片段</td>
+</tr>
+<tr>
+<td>par</td>
+<td>[] 并行执行的并行片段</td>
+</tr>
+<tr>
+<td>region</td>
+<td>[] 只能执行一个线程的临界片段</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意alt和opt的区别在于opt里面只有一个条件，没有else if, else的关系，条件为真就执行；alt使用虚线隔开if, else if, else…</p>
+</blockquote>
+<h5 id="有条件消息-opt"><a href="#有条件消息-opt" class="headerlink" title="有条件消息[opt]"></a>有条件消息[opt]</h5><ul>
+<li><strong>保护信息置于相关的生命线之上</strong></li>
+</ul>
+<h5 id="互斥条件-alt"><a href="#互斥条件-alt" class="headerlink" title="互斥条件[alt]"></a>互斥条件[alt]</h5><ul>
+<li>不同的分支之间在图框内采用<strong>横虚线</strong>隔开</li>
+</ul>
+<h5 id="对集合的迭代-loop"><a href="#对集合的迭代-loop" class="headerlink" title="对集合的迭代[loop]"></a>对集合的迭代[loop]</h5><ul>
+<li><p>在保护信息设置循环条件，并在表示消息的横线下方设置动作图框（圆角矩形），写i++</p>
+</li>
+<li><p>保护信息和动作框图在同一条生命线上</p>
+</li>
+<li><p><strong>右侧框图为选择器表达式<code>实例名[i]:类名</code></strong></p>
+</li>
+<li><p>也可以同时不写保护信息和动作图框</p>
+</li>
+</ul>
+<h5 id="关联交互图"><a href="#关联交互图" class="headerlink" title="关联交互图"></a><del>关联交互图</del></h5><ul>
+<li>整个顺序图周围放置图框，命名为<code>sd 名称</code></li>
+<li>在主顺序图加入标记为ref的图框（引用），内容写需要引用的周围图框的名称（即sd后面的部分）</li>
+</ul>
+<h5 id="对类调用静态方法的消息"><a href="#对类调用静态方法的消息" class="headerlink" title="对类调用静态方法的消息"></a><del>对类调用静态方法的消息</del></h5><ul>
+<li>使用<strong>元类</strong>的生命线框图表示接受消息的对象是类</li>
+</ul>
+<h5 id="多态消息和案例"><a href="#多态消息和案例" class="headerlink" title="多态消息和案例"></a><del>多态消息和案例</del></h5><ul>
+<li><p>消息的接受者直接写<code>:抽象类名&#123;abstract&#125;</code>，并且停止在该消息，不要再展示更多信息</p>
+</li>
+<li><p>也可以选择为多态的每个具体情况做单独的图</p>
+</li>
+</ul>
+<h4 id="通信图的基本表示方法（15-5）"><a href="#通信图的基本表示方法（15-5）" class="headerlink" title="通信图的基本表示方法（15.5）"></a><del>通信图的基本表示方法（15.5）</del></h4><h5 id="链"><a href="#链" class="headerlink" title="链"></a>链</h5><ul>
+<li>连接两个对象，多个消息沿着一条链流转</li>
+</ul>
+<h5 id="消息-1"><a href="#消息-1" class="headerlink" title="消息"></a>消息</h5><ul>
+<li>使用消息表达式和消息方向的小箭头表示</li>
+<li>增加<strong>顺序编号</strong>表示当前控制线程中消息的次序</li>
+</ul>
+<h5 id="自身传递的消息"><a href="#自身传递的消息" class="headerlink" title="自身传递的消息"></a>自身传递的消息</h5><ul>
+<li>使用到自身的链表示</li>
+</ul>
+<h5 id="实例的创建-1"><a href="#实例的创建-1" class="headerlink" title="实例的创建"></a>实例的创建</h5><ul>
+<li><code>create</code></li>
+</ul>
+<h5 id="消息的顺序编号"><a href="#消息的顺序编号" class="headerlink" title="消息的顺序编号"></a>消息的顺序编号</h5><ul>
+<li>不为第一个消息编号</li>
+<li>使用合法编号方案表示后续消息的顺序和嵌套，嵌套消息使用<strong>附加数字</strong></li>
+</ul>
+<h5 id="有条件消息"><a href="#有条件消息" class="headerlink" title="有条件消息"></a>有条件消息</h5><ul>
+<li>顺序编号后使用带有方括号的条件子句表示有条件消息<code>[]</code></li>
+</ul>
+<h5 id="互斥的有条件路径"><a href="#互斥的有条件路径" class="headerlink" title="互斥的有条件路径"></a>互斥的有条件路径</h5><ul>
+<li>使用<strong>条件字母</strong>修改顺序编号，后续的嵌套消息仍然沿用并附加其外部消息的顺序编号</li>
+</ul>
+<h5 id="迭代或循环"><a href="#迭代或循环" class="headerlink" title="迭代或循环"></a>迭代或循环</h5><ul>
+<li>在消息编号后使用<code>[i=1...n]</code>表示迭代，如果迭代子句不重要，使用<code>*</code>简化</li>
+</ul>
+<h5 id="集合的迭代"><a href="#集合的迭代" class="headerlink" title="集合的迭代"></a>集合的迭代</h5><ul>
+<li>和迭代循环类似，消息的接受者变为<code>实例名[i]:类名</code></li>
+</ul>
+<h5 id="调用静态方法的消息-amp-多态消息"><a href="#调用静态方法的消息-amp-多态消息" class="headerlink" title="调用静态方法的消息 &amp; 多态消息"></a>调用静态方法的消息 &amp; 多态消息</h5><ul>
+<li>和顺序图类似，修改框图内容以及具体化多态的每个情况</li>
+</ul>
+<h2 id="对象静态建模（考点9）"><a href="#对象静态建模（考点9）" class="headerlink" title="对象静态建模（考点9）"></a>对象静态建模（考点9）</h2><ul>
+<li><strong>符号</strong><ul>
+<li>虚线空箭头：接口实现</li>
+<li>实线空箭头：继承</li>
+<li>虚线箭头：依赖</li>
+<li>实线箭头：关联（多重性）<ul>
+<li>多重性和角色名放在<strong>箭头一端</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/" data-id="ckt2e2y1u0026pnut0kxfap6i" data-title="系统分析与设计 - 建模部分" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          neural style源代码阅读
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Gatys - Image Style Transfer 论文阅读笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/3D-GAME-DESIGN/" rel="tag">3D GAME DESIGN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Computer-Graphics/" rel="tag">Computer Graphics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Mining/" rel="tag">Data Mining</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Github/" rel="tag">Github</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Markdown/" rel="tag">Markdown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MockingBot/" rel="tag">MockingBot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Analysis-and-Design/" rel="tag">Software Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-System-Analysis-and-Design/" rel="tag">Software System Analysis and Design</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Testing/" rel="tag">Software Testing</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/pytorch/" rel="tag">pytorch</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/3D-GAME-DESIGN/" style="font-size: 20px;">3D GAME DESIGN</a> <a href="/tags/Computer-Graphics/" style="font-size: 14px;">Computer Graphics</a> <a href="/tags/Data-Mining/" style="font-size: 12px;">Data Mining</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/LeetCode/" style="font-size: 10px;">LeetCode</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/MockingBot/" style="font-size: 10px;">MockingBot</a> <a href="/tags/Software-Analysis-and-Design/" style="font-size: 10px;">Software Analysis and Design</a> <a href="/tags/Software-System-Analysis-and-Design/" style="font-size: 18px;">Software System Analysis and Design</a> <a href="/tags/Software-Testing/" style="font-size: 10px;">Software Testing</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/pytorch/" style="font-size: 16px;">pytorch</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/07/02/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%94%BB%E5%9B%BE%E9%A2%98%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">系统分析与设计 - 画图题注意事项</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/Attentive-Feedback-Network-for-Boundary-Aware-Salient-Object-Detection%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Attentive Feedback Network for Boundary-Aware Salient Object Detection论文阅读笔记</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/01/neural-style%E6%BA%90%E4%BB%A3%E7%A0%81%E9%98%85%E8%AF%BB/">neural style源代码阅读</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/29/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E5%BB%BA%E6%A8%A1%E9%83%A8%E5%88%86/">系统分析与设计 - 建模部分</a>
+          </li>
+        
+          <li>
+            <a href="/2019/06/28/Gatys-Image-Style-Transfer-%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">Gatys - Image Style Transfer 论文阅读笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
