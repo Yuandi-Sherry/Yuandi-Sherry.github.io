@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="3D GAME DESIGN," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Tanks整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：">
+<meta name="keywords" content="3D GAME DESIGN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Week15-Tanks">
+<meta property="og:url" content="http://yoursite.com/2018/06/19/Week15-Tanks/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="Tanks整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/Yuandi-Sherry/3DGameDesignHomeworkWeek15/blob/master/preview.gif?raw=true">
+<meta property="og:image" content="https://s1.ax1x.com/2018/06/19/Cz8hzd.png">
+<meta property="og:image" content="https://s1.ax1x.com/2018/06/19/Cz85QA.png">
+<meta property="og:updated_time" content="2018-06-19T13:34:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week15-Tanks">
+<meta name="twitter:description" content="Tanks整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：">
+<meta name="twitter:image" content="https://github.com/Yuandi-Sherry/3DGameDesignHomeworkWeek15/blob/master/preview.gif?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/19/Week15-Tanks/"/>
+
+
+
+
+
+  <title>Week15-Tanks | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/19/Week15-Tanks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Week15-Tanks</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-19T21:30:29+08:00">
+                2018-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Tanks"><a href="#Tanks" class="headerlink" title="Tanks"></a>Tanks</h1><p>整体架构和之前的游戏相似，比如Director类、Factory类以及IUserGUI接口。效果如下：</p>
+<p><img src="https://github.com/Yuandi-Sherry/3DGameDesignHomeworkWeek15/blob/master/preview.gif?raw=true" alt="preview"></p>
+<a id="more"></a>
+<p>首先看一下这次的游戏都有哪些对象以及他们所需要的各种操作：</p>
+<h3 id="Tank"><a href="#Tank" class="headerlink" title="Tank"></a>Tank</h3><p>​    无论是Play还是NPC都具有Tank的属性，而其中的公有部分就是它们的血条。因而创建一个基类Blood，之后让Player和NPC都集成它并发展它们各自不同的功能。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Blood : MonoBehaviour &#123;</span><br><span class="line">	private float blood;</span><br><span class="line">	public float getBlood() &#123;</span><br><span class="line">		return blood;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setBlood(float blood0) &#123;</span><br><span class="line">		blood = blood0;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Player"><a href="#Player" class="headerlink" title="Player"></a>Player</h4><p>​    如果血条降为0，则发送<code>destroyEvent</code>，并且在场控类中对该消息进行监听，以控制游戏的开始结束。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Player.cs</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">destroy</span>(<span class="params"><span class="keyword">int</span> result</span>)</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">event</span> destroy destroyEvent;</span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (getBlood() &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">this</span>.gameObject.SetActive(<span class="literal">false</span>);</span><br><span class="line">		<span class="keyword">if</span>(destroyEvent != <span class="literal">null</span>) &#123;</span><br><span class="line">			destroyEvent(<span class="number">-1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>​    场控一开始就要对Player的destroyEvent事件订阅，并作出将result设为1（表示胜利）的响应。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	...</span><br><span class="line">	Player.destroyEvent += setResult; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="NPC"><a href="#NPC" class="headerlink" title="NPC"></a>NPC</h4><p>NPC需要控制的主要有两方面：一方面，要判断自身是否还活着（即血量是否还&gt;0），另一方面，要追逐Player并对其进行攻击。</p>
+<h5 id="NavMeshAgent"><a href="#NavMeshAgent" class="headerlink" title="NavMeshAgent"></a>NavMeshAgent</h5><p>参考Unity3D官网文档：<a href="https://docs.unity3d.com/Manual/nav-MoveToDestination.html，利用`SeDestination`函数将Player作为寻路`destination`即可。" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/nav-MoveToDestination.html，利用`SeDestination`函数将Player作为寻路`destination`即可。</a></p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(sceneController.getResult()==<span class="number">0</span>) &#123;</span><br><span class="line">		target = sceneController.getPlayerPosition();</span><br><span class="line">		<span class="comment">// 如果NPC没血了，则被摧毁</span></span><br><span class="line">		<span class="keyword">if</span>(getBlood() &lt;= <span class="number">0.0</span>f &amp;&amp; recycleEvent != <span class="literal">null</span>) &#123;</span><br><span class="line">			recycleEvent(<span class="keyword">this</span>.gameObject);</span><br><span class="line">			sceneController.decreaseCountNPC();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// 否则专注攻击玩家</span></span><br><span class="line">			NavMeshAgent agent = GetComponent&lt;NavMeshAgent&gt;();</span><br><span class="line">			agent.SetDestination(target);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="comment">// 游戏结束，停止寻路</span></span><br><span class="line">		NavMeshAgent agent = GetComponent&lt;NavMeshAgent&gt; ();</span><br><span class="line">		agent.velocity = Vector3.zero;</span><br><span class="line">		agent.ResetPath();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="Coroutines"><a href="#Coroutines" class="headerlink" title="Coroutines"></a>Coroutines</h5><p> 对于坦克射击的动作，并不是在游戏的一帧内就完成的，因此需要用到<code>Coroutines</code>.</p>
+<blockquote>
+<p>A coroutine is like a function that has the ability to pause execution and return control to Unity but then to continue where it left off on the following frame. </p>
+</blockquote>
+<p>这里还需要控制坦克发射子弹的间隔。</p>
+<p>发射子弹的主要思路为从工厂中获得子弹，并用物理引擎Rigidbody赋予其水平速度，由于是子弹的发射，因而这里力的模式为<code>Impulse</code>. </p>
+<p>力的模式总结如<a href="https://blog.csdn.net/littlepandas/article/details/56008898" target="_blank" rel="noopener">这篇博客</a>：</p>
+<blockquote>
+<p>ForceMode.Force：给物体添加一个持续的力并使用其质量。</p>
+<p>ForceMode.Acceleration:：给物体添加一个持续的加速度，但是忽略其质量。</p>
+<p>ForceMode.Impulse;：给物体添加一个<strong>瞬间的力</strong>并使用其质量</p>
+<p>ForceMode.VelocityChange;：给物体添加一个瞬间的加速度，但是忽略其质量</p>
+</blockquote>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function">IEnumerator <span class="title">shoot</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 协程实现npc坦克射击</span></span><br><span class="line">	<span class="keyword">while</span>(sceneController.getResult()==<span class="number">0</span>) &#123;</span><br><span class="line">		<span class="comment">// 控制发射子弹间隔</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">double</span> i = <span class="number">3</span>; i &gt; <span class="number">0</span>; i -= Time.deltaTime) &#123;</span><br><span class="line">			<span class="keyword">yield</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (Vector3.Distance(transform.position, target) &lt; <span class="number">20</span>) &#123;</span><br><span class="line">			Factory myFactory = Singleton&lt;Factory&gt;.Instance;</span><br><span class="line">			GameObject bullet = myFactory.getBullet(tankType.NPC);</span><br><span class="line">			bullet.transform.position = <span class="keyword">new</span> Vector3(transform.position.x, <span class="number">1.5</span>f, transform.position.z) + transform.forward*<span class="number">1.5</span>f;</span><br><span class="line">			bullet.transform.forward = transform.forward;</span><br><span class="line">			Rigidbody rb = bullet.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">			rb.AddForce(bullet.transform.forward * <span class="number">20</span>, ForceMode.Impulse);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Bullet"><a href="#Bullet" class="headerlink" title="Bullet"></a>Bullet</h3><p>作为挂载在子弹上的代码，需要处理的就是子弹的碰撞坦克的事件。游戏中的设定为子弹打击到物体会产生爆炸，而所有爆炸所波及到的对立物体（这里指player子弹产生的爆炸会使NPC的血条受损，同样NPC子弹产生的爆炸会使player的血条受损）都到受到损伤，因而采用API：Physics.OverlapSphere. 在<a href="https://blog.csdn.net/u013700908/article/details/52888792" target="_blank" rel="noopener">这篇博客</a>中有详细用法的介绍。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnCollisionEnter</span>(<span class="params">Collision other</span>) </span>&#123;</span><br><span class="line">	Debug.Log(<span class="string">"OnCollisionEnter"</span>);</span><br><span class="line">	Factory myFactory = Singleton&lt;Factory&gt;.Instance;</span><br><span class="line">	ParticleSystem explosion = myFactory.getPS();</span><br><span class="line">	explosion.transform.position = transform.position;</span><br><span class="line">	Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; colliders.Length; i++) &#123;</span><br><span class="line">		<span class="comment">// 如果玩家子弹击中了NPC或者NPC子弹击中了玩家坦克，伤害才有效</span></span><br><span class="line">		<span class="keyword">if</span>(colliders[i].tag == <span class="string">"tankPlayer"</span> &amp;&amp; <span class="keyword">this</span>.type == tankType.NPC || </span><br><span class="line">			colliders[i].tag == <span class="string">"tankNPC"</span> &amp;&amp; <span class="keyword">this</span>.type == tankType.PLAYER ) &#123;</span><br><span class="line">			<span class="comment">//Debug.Log("对" + colliders[i].tag + "造成伤害");</span></span><br><span class="line">			<span class="keyword">float</span> distance = Vector3.Distance(colliders[i].transform.position, transform.position);</span><br><span class="line">			<span class="keyword">float</span> hurt = <span class="number">100</span>f/distance; <span class="comment">// 距离越远伤害越小;</span></span><br><span class="line">			<span class="keyword">float</span> current = colliders[i].GetComponent&lt;Blood&gt;().getBlood();</span><br><span class="line">			colliders[i].GetComponent&lt;Blood&gt;().setBlood(current - hurt);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	explosion.Play();</span><br><span class="line">	<span class="keyword">if</span>(<span class="keyword">this</span>.gameObject.activeSelf) &#123;</span><br><span class="line">		myFactory.recycleBullet(<span class="keyword">this</span>.gameObject);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="IUserGUI"><a href="#IUserGUI" class="headerlink" title="IUserGUI"></a>IUserGUI</h3><p>​    与用户交互的界面主要分为两个部分：</p>
+<h4 id="用户键盘输入操纵游戏"><a href="#用户键盘输入操纵游戏" class="headerlink" title="用户键盘输入操纵游戏"></a>用户键盘输入操纵游戏</h4><p>相应的接口在<code>FirstController</code>中实现：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(action.getResult() == <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="comment">// 读取键盘输入，根据键盘输入调用相应函数</span></span><br><span class="line">		<span class="keyword">if</span>(Input.GetKey(KeyCode.W)) &#123;</span><br><span class="line">			action.moveForward();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(Input.GetKey(KeyCode.S)) &#123;</span><br><span class="line">			action.moveBack();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			action.noMove();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(Input.GetKeyDown(KeyCode.Space)) &#123;</span><br><span class="line">			action.shoot();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">float</span> deltaX = <span class="number">1f</span>;</span><br><span class="line">		<span class="keyword">if</span>(Input.GetKey(KeyCode.A)) &#123;</span><br><span class="line">			action.turn((-<span class="number">1</span>)*deltaX);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(Input.GetKey(KeyCode.D)) &#123;</span><br><span class="line">			action.turn(deltaX);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			action.noTurn();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="信息输出告知结果"><a href="#信息输出告知结果" class="headerlink" title="信息输出告知结果"></a>信息输出告知结果</h4><p>这里的内容第一节课就学过了，代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	labelStyle = <span class="keyword">new</span> GUIStyle(<span class="string">"label"</span>);</span><br><span class="line">	labelStyle.alignment = TextAnchor.MiddleCenter;</span><br><span class="line">	labelStyle.fontSize = Screen.height/<span class="number">15</span>;</span><br><span class="line">	GUI.color = Color.black;</span><br><span class="line">	<span class="keyword">if</span>(action.getResult() == <span class="number">1</span>) &#123;</span><br><span class="line">		Debug.Log(<span class="string">"YOU WIN!"</span>);</span><br><span class="line">		GUI.Label(<span class="keyword">new</span> Rect(Screen.width/<span class="number">2</span> - Screen.width/<span class="number">8</span>,Screen.height/<span class="number">2</span> - Screen.height/<span class="number">8</span>,Screen.width/<span class="number">4</span>,Screen.height/<span class="number">4</span>), <span class="string">"YOU WIN!"</span>,labelStyle);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(action.getResult() == <span class="number">-1</span>) &#123;</span><br><span class="line">		Debug.Log(<span class="string">"Game Over!"</span>);</span><br><span class="line">		GUI.Label(<span class="keyword">new</span> Rect(Screen.width/<span class="number">2</span> - Screen.width/<span class="number">8</span>,Screen.height/<span class="number">2</span> - Screen.height/<span class="number">8</span>,Screen.width/<span class="number">4</span>,Screen.height/<span class="number">4</span>), <span class="string">"Game Over!"</span>,labelStyle);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Director"><a href="#Director" class="headerlink" title="Director"></a>Director</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line">public class Director : System.Object &#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> Director instance;</span><br><span class="line">	<span class="keyword">public</span> FirstController currentSceneController &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Director <span class="title">getDirector</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(instance == <span class="literal">null</span>) &#123;</span><br><span class="line">			instance = <span class="keyword">new</span> Director();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Factory"><a href="#Factory" class="headerlink" title="Factory"></a>Factory</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> tankType: <span class="keyword">int</span> &#123;PLAYER, NPC&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Factory</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> GameObject player;</span><br><span class="line">	<span class="keyword">public</span> GameObject npc;</span><br><span class="line">	<span class="keyword">public</span> GameObject bullet;</span><br><span class="line">	<span class="keyword">public</span> ParticleSystem ps;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> Dictionary&lt;<span class="keyword">int</span>, GameObject&gt; tanks;</span><br><span class="line">    <span class="keyword">private</span> Dictionary&lt;<span class="keyword">int</span>, GameObject&gt; freeTanks;</span><br><span class="line">    <span class="keyword">private</span> Dictionary&lt;<span class="keyword">int</span>, GameObject&gt; bullets;</span><br><span class="line">    <span class="keyword">private</span> Dictionary&lt;<span class="keyword">int</span>, GameObject&gt; freeBullets;</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">private</span> List&lt;ParticleSystem&gt; psQueue;</span><br><span class="line">	<span class="comment">// Use this for initialization</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Awake</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		tanks = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">int</span>, GameObject&gt;();</span><br><span class="line">		freeTanks = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">int</span>, GameObject&gt;();</span><br><span class="line">		bullets = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">int</span>, GameObject&gt;();</span><br><span class="line">		freeBullets = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">int</span>, GameObject&gt;();</span><br><span class="line">		psQueue = <span class="keyword">new</span> List&lt;ParticleSystem&gt;();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		NPC.recycleEvent += recycleTank;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> GameObject <span class="title">getPlayer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> player;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> GameObject <span class="title">getTank</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">// 如果没有坦克可以使用了，则新生成坦克</span></span><br><span class="line">		<span class="keyword">if</span>(freeTanks.Count == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="comment">// 新生成一个坦克的血条</span></span><br><span class="line">			GameObject newTank = Instantiate(Resources.Load&lt;GameObject&gt;(<span class="string">"Prefabs/npc"</span>), <span class="keyword">new</span> Vector3(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),  Quaternion.identity) <span class="keyword">as</span> GameObject;</span><br><span class="line">			<span class="comment">// 将坦克加入坦克生成队列</span></span><br><span class="line">			tanks.Add(newTank.GetInstanceID(), newTank);</span><br><span class="line">			<span class="comment">// 新生成的坦克随机出现在地图上</span></span><br><span class="line">			newTank.transform.position = <span class="keyword">new</span> Vector3(Random.Range(<span class="number">-20</span>,<span class="number">20</span>), <span class="number">0</span>, Random.Range(<span class="number">-20</span>,<span class="number">20</span>));</span><br><span class="line">			<span class="keyword">return</span> newTank;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 否则仍然有可用的坦克，则将工厂中的坦克激活</span></span><br><span class="line">		<span class="keyword">foreach</span> (KeyValuePair&lt;<span class="keyword">int</span>, GameObject&gt; pair <span class="keyword">in</span> freeTanks) &#123;</span><br><span class="line">			pair.Value.SetActive(<span class="literal">true</span>);</span><br><span class="line">			freeTanks.Remove(pair.Key);</span><br><span class="line">			tanks.Add(pair.Key, pair.Value);</span><br><span class="line">			pair.Value.transform.position = <span class="keyword">new</span> Vector3(Random.Range(<span class="number">-20</span>,<span class="number">20</span>), <span class="number">0</span>, Random.Range(<span class="number">-20</span>,<span class="number">20</span>));</span><br><span class="line">			<span class="keyword">return</span> pair.Value;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> GameObject <span class="title">getBullet</span>(<span class="params">tankType type</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(freeBullets.Count == <span class="number">0</span>) &#123;</span><br><span class="line">			GameObject newBullet = Instantiate(Resources.Load&lt;GameObject&gt;(<span class="string">"Prefabs/Shell"</span>), <span class="keyword">new</span> Vector3(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),  Quaternion.identity) <span class="keyword">as</span> GameObject;</span><br><span class="line">			<span class="comment">// npc 和 player 发射子弹的方式不同</span></span><br><span class="line">			newBullet.GetComponent&lt;Bullet&gt;().setTankType(type);</span><br><span class="line">			newBullet.tag = <span class="string">"bullet"</span>;</span><br><span class="line">			bullets.Add(newBullet.GetInstanceID(), newBullet);</span><br><span class="line">			<span class="keyword">return</span> newBullet;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">foreach</span> (KeyValuePair&lt;<span class="keyword">int</span>, GameObject&gt; pair <span class="keyword">in</span> freeBullets) &#123;</span><br><span class="line">			pair.Value.SetActive(<span class="literal">true</span>);</span><br><span class="line">			pair.Value.GetComponent&lt;Bullet&gt;().setTankType(type);</span><br><span class="line">			freeBullets.Remove(pair.Key);</span><br><span class="line">			bullets.Add(pair.Key, pair.Value); </span><br><span class="line">			<span class="keyword">return</span> pair.Value;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ParticleSystem <span class="title">getPS</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; psQueue.Count; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span>(!psQueue[i].isPlaying) &#123;</span><br><span class="line">				<span class="keyword">return</span> psQueue[i];</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		ParticleSystem newPS = Instantiate&lt;ParticleSystem&gt;(ps);</span><br><span class="line">		psQueue.Add(newPS);</span><br><span class="line">		<span class="keyword">return</span> newPS;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/*public void destroyEvent(GameObject tank) &#123;</span></span><br><span class="line"><span class="comment">		tanks.Remove(tank.GetInstanceID());</span></span><br><span class="line"><span class="comment">		freeTanks.Add(tank.GetInstanceID(), tank);</span></span><br><span class="line"><span class="comment">		tank.GetComponent&lt;Rigidbody&gt;().velocity = new Vector3(0,0,0);</span></span><br><span class="line"><span class="comment">		tank.SetActive(false);</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recycleTank</span>(<span class="params">GameObject tank</span>) </span>&#123;</span><br><span class="line">        tanks.Remove(tank.GetInstanceID());</span><br><span class="line">        freeTanks.Add(tank.GetInstanceID(), tank);</span><br><span class="line">        tank.GetComponent&lt;Rigidbody&gt;().velocity = <span class="keyword">new</span> Vector3(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">        tank.SetActive(<span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">recycleBullet</span>(<span class="params">GameObject bullet</span>) </span>&#123;</span><br><span class="line">		<span class="comment">//Debug.Log("recycleBullet");</span></span><br><span class="line">		bullets.Remove(bullet.GetInstanceID());</span><br><span class="line">		freeBullets.Add(bullet.GetInstanceID(), bullet);</span><br><span class="line">		bullet.GetComponent&lt;Rigidbody&gt;().velocity = <span class="keyword">new</span> Vector3(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">		bullet.SetActive(<span class="literal">false</span>);</span><br><span class="line">		<span class="comment">//Debug.Log("recycleBullet" + freeBullets.Count);</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="控制主摄像机"><a href="#控制主摄像机" class="headerlink" title="控制主摄像机"></a>控制主摄像机</h3><p>将脚本挂载到主摄像机上，即可跟随player移动。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class CameraController : MonoBehaviour &#123;</span><br><span class="line">	<span class="keyword">public</span> GameObject player;</span><br><span class="line">	<span class="keyword">private</span> Vector3 offset;<span class="comment">//it's a vector from player to camera</span></span><br><span class="line">	<span class="comment">//offset can be obtained by transform(camera) - player</span></span><br><span class="line">	<span class="comment">// Use this for initialization</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Start</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		offset = transform.position - player.transform.position;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Update is called once per frame</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">LateUpdate</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">		transform.position = player.transform.position + offset;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="控制血条"><a href="#控制血条" class="headerlink" title="控制血条"></a>控制血条</h3><p>将脚本挂载到player上即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine.UI;</span><br><span class="line"></span><br><span class="line">public class BloodController : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> hScrollbarValue;</span><br><span class="line">    <span class="keyword">public</span> Slider healthSlider;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> fullBlood;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Start</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    	fullBlood = <span class="number">500f</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    	GUI.color = Color.red;</span><br><span class="line">        <span class="comment">//hScrollbarValue = GUI.HorizontalScrollbar (new Rect (0, 0, 100, 30), 0.0f, this.gameObject.transform.parent.GetComponent&lt;Blood&gt;().getBlood()*0.02f, 0.0f, 10.0f);</span></span><br><span class="line">    	healthSlider.value = <span class="keyword">this</span>.gameObject.GetComponent&lt;Blood&gt;().getBlood()/fullBlood;</span><br><span class="line">    	<span class="comment">//Debug.Log(this.gameObject.GetComponent&lt;Blood&gt;().getBlood());</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="FirstController"><a href="#FirstController" class="headerlink" title="FirstController"></a>FirstController</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line">public class FirstController : MonoBehaviour, IUserAction &#123;</span><br><span class="line">	<span class="keyword">public</span> GameObject playerTank;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">bool</span> gameOver = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> result = <span class="number">0</span>; <span class="comment">// 0-&gt;onGame, 1-&gt;win, -1-&gt;lose;</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> countNPC = <span class="number">5</span>;</span><br><span class="line">	<span class="keyword">private</span> Factory myFactory;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">float</span> speed = <span class="number">30</span>f;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">float</span> lastX;</span><br><span class="line">	<span class="keyword">float</span> lastY;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		Director director = Director.getDirector();</span><br><span class="line">		director.currentSceneController = <span class="keyword">this</span>;</span><br><span class="line">		myFactory = Singleton&lt;Factory&gt;.Instance;</span><br><span class="line">		playerTank = myFactory.getPlayer();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// Use this for initialization</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; countNPC; i++) &#123; <span class="comment">// 从工厂获得一定数目的NPC</span></span><br><span class="line">			myFactory.getTank();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 订阅Player发布的destroy事件，并响应</span></span><br><span class="line">		Player.destroyEvent += setResult; </span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(countNPC &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">			setResult(<span class="number">1</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveForward</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		playerTank.GetComponent&lt;Rigidbody&gt;().velocity = playerTank.transform.forward*speed;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveBack</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		playerTank.GetComponent&lt;Rigidbody&gt;().velocity = playerTank.transform.forward * (<span class="number">-1</span>)*speed;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turn</span>(<span class="params"><span class="keyword">float</span> deltaX</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">float</span> x = playerTank.transform.localEulerAngles.y + deltaX*<span class="number">5</span>;</span><br><span class="line">		<span class="keyword">float</span> y = playerTank.transform.localEulerAngles.x;</span><br><span class="line">		lastX = x;</span><br><span class="line">		lastY = y;</span><br><span class="line">		playerTank.transform.localEulerAngles = <span class="keyword">new</span> Vector3(y,x,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">noTurn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		playerTank.transform.localEulerAngles = <span class="keyword">new</span> Vector3(lastY,lastX,<span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">noMove</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		playerTank.GetComponent&lt;Rigidbody&gt;().velocity = Vector3.zero;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shoot</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		GameObject bullet = myFactory.getBullet(tankType.PLAYER);</span><br><span class="line">		bullet.transform.position = <span class="keyword">new</span> Vector3(playerTank.transform.position.x, <span class="number">1.5</span>f, playerTank.transform.position.z)</span><br><span class="line">			+ playerTank.transform.forward * <span class="number">1.5</span>f; <span class="comment">// 坦克的位置 + 子弹相对坦克的位置</span></span><br><span class="line">		bullet.transform.forward = playerTank.transform.forward;</span><br><span class="line">		Rigidbody rb = bullet.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">		rb.AddForce(bullet.transform.forward * speed * <span class="number">10</span>, ForceMode.Impulse);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Vector3 <span class="title">getPlayerPosition</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> playerTank.transform.position;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setResult</span>(<span class="params"><span class="keyword">int</span> result</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.result = result;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getResult</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">decreaseCountNPC</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		countNPC--;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="常见问题的处理方法"><a href="#常见问题的处理方法" class="headerlink" title="常见问题的处理方法"></a>常见问题的处理方法</h2><h3 id="碰撞问题"><a href="#碰撞问题" class="headerlink" title="碰撞问题"></a>碰撞问题</h3><h4 id="坦克之间不会互相穿越"><a href="#坦克之间不会互相穿越" class="headerlink" title="坦克之间不会互相穿越"></a>坦克之间不会互相穿越</h4><p>​    修改tank的BoxCollider组件的size（有点像形成了一个盒装结界，就没有办法因为靠得太近发生碰撞啦）。</p>
+<p><img src="https://s1.ax1x.com/2018/06/19/Cz8hzd.png" alt="BoxCollider"></p>
+<h4 id="碰撞不产生莫名的旋转"><a href="#碰撞不产生莫名的旋转" class="headerlink" title="碰撞不产生莫名的旋转"></a>碰撞不产生莫名的旋转</h4><p>​    之前一直用代码控制transform的rotation保持不变，后来发现Rigidbody已经为我们做好了组件。把Constraints的freeze Rotation打勾即可，包括如果不希望发生位移的话，在freeze position打勾就好了。</p>
+<p><img src="https://s1.ax1x.com/2018/06/19/Cz85QA.png" alt="Rigidbody"></p>
+<h3 id="GetKey和GetKeyDown的区别"><a href="#GetKey和GetKeyDown的区别" class="headerlink" title="GetKey和GetKeyDown的区别"></a>GetKey和GetKeyDown的区别</h3><p>顾名思义，一个是按着，一个是按下。作为一个玩家，在控制旋转操作的时候，一开始用的keyDown，但会发现如果想让坦克旋转，则必须一下一下敲击键盘，而更人性化的方法明显是长按，因而这里使用<code>GetKey</code>更为合理。</p>
+<h3 id="挂载脚本的顺序"><a href="#挂载脚本的顺序" class="headerlink" title="挂载脚本的顺序"></a>挂载脚本的顺序</h3><p>​大坑！！制作过程中遇到虽然<code>Bullet</code>每次攻击都调用了<code>Blood</code>脚本的<code>SetBlood</code>函数，但<code>Debug.Log</code>仍然发现玩家和NPC的血条一直是初始值。</p>
+<h2 id="NavMesh相关学习笔记"><a href="#NavMesh相关学习笔记" class="headerlink" title="NavMesh相关学习笔记"></a>NavMesh相关学习笔记</h2><h5 id="启动面板"><a href="#启动面板" class="headerlink" title="启动面板"></a>启动面板</h5><p>​    windows - navigation</p>
+<h5 id="寻路地形"><a href="#寻路地形" class="headerlink" title="寻路地形"></a>寻路地形</h5><p>​    打勾Navigation Static - 使当前物体作为寻路功能的一部分</p>
+<p>​    Object - 当前物体</p>
+<p>​    Bake - 全局</p>
+<h3 id="各种具体功能的实现"><a href="#各种具体功能的实现" class="headerlink" title="各种具体功能的实现"></a>各种具体功能的实现</h3><h4 id="障碍物绕行"><a href="#障碍物绕行" class="headerlink" title="障碍物绕行"></a>障碍物绕行</h4><p>​    将障碍物作为<code>Not Walkable</code></p>
+<h4 id="爬楼梯-跳跃（OffMeshLink）"><a href="#爬楼梯-跳跃（OffMeshLink）" class="headerlink" title="爬楼梯/跳跃（OffMeshLink）"></a>爬楼梯/跳跃（OffMeshLink）</h4><h5 id="爬楼梯"><a href="#爬楼梯" class="headerlink" title="爬楼梯"></a>爬楼梯</h5><p>​    楼梯开始/结束位置放置两个顶点<code>startPoint</code>, <code>endPoint</code>，可以用empty GameObject制作。</p>
+<p>​    选择<strong>楼梯</strong>，添加<code>OffMeshLink</code>，拖入<code>startPoint</code>和<code>endPoint</code>.</p>
+<h5 id="跳跃"><a href="#跳跃" class="headerlink" title="跳跃"></a>跳跃</h5><p>​    跳下：Navigatuon - Bake - Drop Height 掉落高度</p>
+<p>​    跳过：… - Jump Distence 横向跳跃距离</p>
+<p> 或</p>
+<p>​    打勾 Navigation 的 OffMeshLink</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/3D-GAME-DESIGN/" rel="tag"># 3D GAME DESIGN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/11/Week09-Animator-View-Pattern-patrols/" rel="next" title="Week09-Animator & View Pattern-patrols">
+                <i class="fa fa-chevron-left"></i> Week09-Animator & View Pattern-patrols
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/05/系统分析与设计-Homework1/" rel="prev" title="系统分析与设计 - Homework1">
+                系统分析与设计 - Homework1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tanks"><span class="nav-number">1.</span> <span class="nav-text">Tanks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tank"><span class="nav-number">1.0.1.</span> <span class="nav-text">Tank</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Player"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">Player</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NPC"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">NPC</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#NavMeshAgent"><span class="nav-number">1.0.1.2.1.</span> <span class="nav-text">NavMeshAgent</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Coroutines"><span class="nav-number">1.0.1.2.2.</span> <span class="nav-text">Coroutines</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bullet"><span class="nav-number">1.0.2.</span> <span class="nav-text">Bullet</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IUserGUI"><span class="nav-number">1.0.3.</span> <span class="nav-text">IUserGUI</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用户键盘输入操纵游戏"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">用户键盘输入操纵游戏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息输出告知结果"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">信息输出告知结果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Director"><span class="nav-number">1.0.4.</span> <span class="nav-text">Director</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Factory"><span class="nav-number">1.0.5.</span> <span class="nav-text">Factory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制主摄像机"><span class="nav-number">1.0.6.</span> <span class="nav-text">控制主摄像机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制血条"><span class="nav-number">1.0.7.</span> <span class="nav-text">控制血条</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FirstController"><span class="nav-number">1.0.8.</span> <span class="nav-text">FirstController</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见问题的处理方法"><span class="nav-number">1.1.</span> <span class="nav-text">常见问题的处理方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#碰撞问题"><span class="nav-number">1.1.1.</span> <span class="nav-text">碰撞问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#坦克之间不会互相穿越"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">坦克之间不会互相穿越</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#碰撞不产生莫名的旋转"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">碰撞不产生莫名的旋转</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GetKey和GetKeyDown的区别"><span class="nav-number">1.1.2.</span> <span class="nav-text">GetKey和GetKeyDown的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#挂载脚本的顺序"><span class="nav-number">1.1.3.</span> <span class="nav-text">挂载脚本的顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NavMesh相关学习笔记"><span class="nav-number">1.2.</span> <span class="nav-text">NavMesh相关学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#启动面板"><span class="nav-number">1.2.0.0.1.</span> <span class="nav-text">启动面板</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#寻路地形"><span class="nav-number">1.2.0.0.2.</span> <span class="nav-text">寻路地形</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各种具体功能的实现"><span class="nav-number">1.2.1.</span> <span class="nav-text">各种具体功能的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#障碍物绕行"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">障碍物绕行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#爬楼梯-跳跃（OffMeshLink）"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">爬楼梯/跳跃（OffMeshLink）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#爬楼梯"><span class="nav-number">1.2.1.2.1.</span> <span class="nav-text">爬楼梯</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#跳跃"><span class="nav-number">1.2.1.2.2.</span> <span class="nav-text">跳跃</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

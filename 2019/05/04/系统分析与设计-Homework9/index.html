@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Software System Analysis and Design," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="使用 UMLet 建模使用类图，分别对 Asg_RH 文档中 Make Reservation 用例以及 Payment 用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键 注意事项：  对象必须是名词、特别是技术名词、报表、描述类的处理； 关联必须有多重性、部分有名称与导航方向 属性要注意计算字段 数据建模，为了简化描述仅需要给出表清单，例如： Hotel（ID">
+<meta name="keywords" content="Software System Analysis and Design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统分析与设计 - Homework9">
+<meta property="og:url" content="http://yoursite.com/2019/05/04/系统分析与设计-Homework9/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="使用 UMLet 建模使用类图，分别对 Asg_RH 文档中 Make Reservation 用例以及 Payment 用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键 注意事项：  对象必须是名词、特别是技术名词、报表、描述类的处理； 关联必须有多重性、部分有名称与导航方向 属性要注意计算字段 数据建模，为了简化描述仅需要给出表清单，例如： Hotel（ID">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/04/EdYp60.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/04/EdYSlq.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2019/05/04/EdYPmT.jpg">
+<meta property="og:updated_time" content="2019-05-04T10:58:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系统分析与设计 - Homework9">
+<meta name="twitter:description" content="使用 UMLet 建模使用类图，分别对 Asg_RH 文档中 Make Reservation 用例以及 Payment 用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键 注意事项：  对象必须是名词、特别是技术名词、报表、描述类的处理； 关联必须有多重性、部分有名称与导航方向 属性要注意计算字段 数据建模，为了简化描述仅需要给出表清单，例如： Hotel（ID">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/05/04/EdYp60.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/04/系统分析与设计-Homework9/"/>
+
+
+
+
+
+  <title>系统分析与设计 - Homework9 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/04/系统分析与设计-Homework9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">系统分析与设计 - Homework9</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-04T18:39:42+08:00">
+                2019-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="使用-UMLet-建模"><a href="#使用-UMLet-建模" class="headerlink" title="使用 UMLet 建模"></a>使用 <strong>UMLet</strong> 建模</h2><h3 id="使用类图，分别对-Asg-RH-文档中-Make-Reservation-用例以及-Payment-用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键"><a href="#使用类图，分别对-Asg-RH-文档中-Make-Reservation-用例以及-Payment-用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键" class="headerlink" title="使用类图，分别对 Asg_RH 文档中 Make Reservation 用例以及 Payment 用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键"></a>使用类图，分别对 Asg_RH 文档中 Make Reservation 用例以及 Payment 用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键</h3><blockquote>
+<p>注意事项：</p>
+<ul>
+<li>对象必须是名词、特别是技术名词、报表、描述类的处理；</li>
+<li>关联必须有多重性、部分有名称与导航方向</li>
+<li>属性要注意计算字段</li>
+<li>数据建模，为了简化描述仅需要给出表清单，例如：<ul>
+<li>Hotel（ID/Key, Name, LoctionID/Fkey, Address…..）</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="Make-Reservation-用例"><a href="#Make-Reservation-用例" class="headerlink" title="Make Reservation 用例"></a>Make Reservation 用例</h4><p><img src="https://s2.ax1x.com/2019/05/04/EdYp60.jpg" alt="EdYp60.jpg"></p>
+<a id="more"></a>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Customer(ID/key, FullName, EmailAdress)</span><br><span class="line">City(ID/key, Name)</span><br><span class="line">Hotel(ID/key, Name, Adress, CityID/Fkey)</span><br><span class="line">Room(RoomID/key, HotelID/Fkey, Type, Availability)</span><br><span class="line">ReservationItem(ID/key, RoomID/Fkey, BasketID/Fkey, checkInDate, checkOutDate, NumberOfAdults, NumberOfChildren, Price, IsSmoking)</span><br><span class="line">ReservationBasket(ID/key, CustomerID/Key)</span><br></pre></td></tr></table></figure>
+<h4 id="Payment-用例"><a href="#Payment-用例" class="headerlink" title="Payment 用例"></a>Payment 用例</h4><p><img src="https://s2.ax1x.com/2019/05/04/EdYSlq.jpg" alt="EdYSlq.jpg"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Payment(ID/key, totalPrice, reservationID/Fkey, cardID/Fkey)</span><br><span class="line">ReservationItem(ID/key, paymentID/Fkey,checkInDate, ...)</span><br><span class="line">CreditCard(ID/key, Type, CardSecurityCode, ExpiryDate, CardHolderID/Fkey)</span><br><span class="line">CardHolder(ID/key, Title, FirstName, LastName, Address1, Address2, City, CountyOrState, Country, Postcode, DaytimeTelephone, EveningTelephone)</span><br></pre></td></tr></table></figure>
+<h3 id="使用-UML-State-Model，对每个订单对象生命周期建模"><a href="#使用-UML-State-Model，对每个订单对象生命周期建模" class="headerlink" title="使用 UML State Model，对每个订单对象生命周期建模"></a>使用 UML State Model，对每个订单对象生命周期建模</h3><blockquote>
+<p>建模对象： 参考 Asg_RH 文档， 对 Reservation/Order 对象建模。</p>
+<p>建模要求： 参考练习不能提供足够信息帮助你对订单对象建模，请参考现在 定旅馆 的旅游网站，尽可能分析围绕订单发生的各种情况，直到订单通过销售事件（柜台销售）结束订单。</p>
+</blockquote>
+<p><img src="https://s2.ax1x.com/2019/05/04/EdYPmT.jpg" alt="EdYPmT.jpg"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Software-System-Analysis-and-Design/" rel="tag"># Software System Analysis and Design</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/04/系统分析与设计-Homework7/" rel="next" title="系统分析与设计 - Homework7">
+                <i class="fa fa-chevron-left"></i> 系统分析与设计 - Homework7
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/18/原型设计软件MockingBot学习笔记/" rel="prev" title="原型设计软件MockingBot学习笔记">
+                原型设计软件MockingBot学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-UMLet-建模"><span class="nav-number">1.</span> <span class="nav-text">使用 UMLet 建模</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用类图，分别对-Asg-RH-文档中-Make-Reservation-用例以及-Payment-用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键"><span class="nav-number">1.1.</span> <span class="nav-text">使用类图，分别对 Asg_RH 文档中 Make Reservation 用例以及 Payment 用例开展领域建模。然后，根据上述模型，给出建议的数据表以及主要字段，特别是主键和外键</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Make-Reservation-用例"><span class="nav-number">1.1.1.</span> <span class="nav-text">Make Reservation 用例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Payment-用例"><span class="nav-number">1.1.2.</span> <span class="nav-text">Payment 用例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-UML-State-Model，对每个订单对象生命周期建模"><span class="nav-number">1.2.</span> <span class="nav-text">使用 UML State Model，对每个订单对象生命周期建模</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

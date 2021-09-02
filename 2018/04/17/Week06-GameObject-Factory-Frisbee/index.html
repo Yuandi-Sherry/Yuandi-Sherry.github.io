@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="3D GAME DESIGN," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="游戏对象工厂：打飞碟游戏这篇博客会介绍一个打飞碟游戏，主要是引入一个游戏对象的创建与回收机制。 如果每次需要一个新的游戏对象的时候都重新创建它，用完了又马上销毁它，会造成资源的浪费以及游戏性能的下降。本次作业中的飞碟就是一个很好的例子，需要在游戏过程中源源不断地飞出，之后又被击落或者飞出屏幕。">
+<meta name="keywords" content="3D GAME DESIGN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Week06-GameObject Factory Frisbee">
+<meta property="og:url" content="http://yoursite.com/2018/04/17/Week06-GameObject-Factory-Frisbee/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="游戏对象工厂：打飞碟游戏这篇博客会介绍一个打飞碟游戏，主要是引入一个游戏对象的创建与回收机制。 如果每次需要一个新的游戏对象的时候都重新创建它，用完了又马上销毁它，会造成资源的浪费以及游戏性能的下降。本次作业中的飞碟就是一个很好的例子，需要在游戏过程中源源不断地飞出，之后又被击落或者飞出屏幕。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-17T13:54:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week06-GameObject Factory Frisbee">
+<meta name="twitter:description" content="游戏对象工厂：打飞碟游戏这篇博客会介绍一个打飞碟游戏，主要是引入一个游戏对象的创建与回收机制。 如果每次需要一个新的游戏对象的时候都重新创建它，用完了又马上销毁它，会造成资源的浪费以及游戏性能的下降。本次作业中的飞碟就是一个很好的例子，需要在游戏过程中源源不断地飞出，之后又被击落或者飞出屏幕。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/17/Week06-GameObject-Factory-Frisbee/"/>
+
+
+
+
+
+  <title>Week06-GameObject Factory Frisbee | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/17/Week06-GameObject-Factory-Frisbee/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Week06-GameObject Factory Frisbee</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-17T21:41:30+08:00">
+                2018-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="游戏对象工厂：打飞碟游戏"><a href="#游戏对象工厂：打飞碟游戏" class="headerlink" title="游戏对象工厂：打飞碟游戏"></a>游戏对象工厂：打飞碟游戏</h1><p>这篇博客会介绍一个打飞碟游戏，主要是引入一个游戏对象的创建与回收机制。</p>
+<p>如果每次需要一个新的游戏对象的时候都重新创建它，用完了又马上销毁它，会造成资源的浪费以及游戏性能的下降。本次作业中的飞碟就是一个很好的例子，需要在游戏过程中源源不断地飞出，之后又被击落或者飞出屏幕。</p>
+<a id="more"></a>
+<p>因此，首先创建飞碟工厂的类：在游戏中，这个工厂需要根据用户（游戏整体）的需求借出飞碟，当用户不再使用的时候就由工厂将飞碟回收。如果用户需要的时候工厂也没有飞碟了，工厂就再去生产（加载新的预制）。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DiskFactory</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> GameObject disk;</span><br><span class="line">	<span class="comment">//存放已借出飞碟</span></span><br><span class="line">	<span class="keyword">private</span> List&lt;DiskData&gt; used = <span class="keyword">new</span> List&lt;DiskData&gt;();</span><br><span class="line">	<span class="comment">//存放可借出飞碟</span></span><br><span class="line">	<span class="keyword">private</span> List&lt;DiskData&gt; free = <span class="keyword">new</span> List&lt;DiskData&gt;();</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">Awake</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//加载预制</span></span><br><span class="line">		disk = GameObject.Instantiate&lt;GameObject&gt;(Resources.Load&lt;GameObject&gt;(<span class="string">"Prefabs/UFO"</span>), Vector3.zero, Quaternion.identity);</span><br><span class="line">		disk.AddComponent&lt;DiskData&gt;();</span><br><span class="line">		disk.SetActive(<span class="literal">false</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> GameObject <span class="title">getDisk</span>(<span class="params"><span class="keyword">int</span> gameRound</span>) </span>&#123;</span><br><span class="line">      	<span class="comment">//注意：飞碟出厂的时候active为false，外界扔了它才能active</span></span><br><span class="line">		GameObject newDisk = <span class="literal">null</span>;</span><br><span class="line">		<span class="comment">//如果还有飞碟可以借出</span></span><br><span class="line">		<span class="keyword">if</span>(free.Count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">          	<span class="comment">//借出第一个飞碟</span></span><br><span class="line">			newDisk = free[<span class="number">0</span>].gameObject;</span><br><span class="line">          	<span class="comment">//借出飞碟不再在可借出链表中</span></span><br><span class="line">			free.Remove(free[<span class="number">0</span>]);</span><br><span class="line">		&#125; </span><br><span class="line">		<span class="comment">//如果没有飞碟可借出</span></span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="comment">//从预制重新实例化一个飞碟</span></span><br><span class="line">			newDisk = GameObject.Instantiate&lt;GameObject&gt;(Resources.Load&lt;GameObject&gt;(<span class="string">"Prefabs/UFO"</span>), Vector3.zero, Quaternion.identity);</span><br><span class="line">			newDisk.SetActive(<span class="literal">false</span>);</span><br><span class="line">			newDisk.AddComponent&lt;DiskData&gt;();<span class="comment">//挂载记录飞碟属性的DiskData类</span></span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/**游戏规则：这里根据自己的想法设定</span></span><br><span class="line"><span class="comment">		*每个飞碟的初速度在一定范围内随机大小和方向，每轮均出现红黄蓝三种颜色、大中小三种大小的飞碟</span></span><br><span class="line"><span class="comment">		*随回合的增加飞碟速度回变快，扔出飞碟的间隔也会缩小</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">      </span><br><span class="line">		<span class="comment">//随机飞碟颜色</span></span><br><span class="line">		<span class="keyword">int</span> colorNo = Random.Range(<span class="number">0</span>, <span class="number">3</span>)%<span class="number">3</span>;</span><br><span class="line">		<span class="keyword">switch</span>(colorNo) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">				newDisk.GetComponent&lt;DiskData&gt;().color = Color.yellow;</span><br><span class="line">				newDisk.GetComponent&lt;Renderer&gt;().material.color = Color.yellow;  </span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				newDisk.GetComponent&lt;DiskData&gt;().color = Color.red;</span><br><span class="line">				newDisk.GetComponent&lt;Renderer&gt;().material.color = Color.red;  </span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				newDisk.GetComponent&lt;DiskData&gt;().color = Color.blue;</span><br><span class="line">				newDisk.GetComponent&lt;Renderer&gt;().material.color = Color.blue;  </span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">      </span><br><span class="line">		<span class="comment">//随机飞碟大小</span></span><br><span class="line">		<span class="keyword">int</span> sizeNo = Random.Range(<span class="number">0</span>, <span class="number">3</span>)%<span class="number">3</span>;</span><br><span class="line">		<span class="keyword">switch</span>(sizeNo) &#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">				newDisk.transform.localScale = <span class="keyword">new</span> Vector3(<span class="number">1.2</span>f,<span class="number">0.05</span>f,<span class="number">1.2</span>f);</span><br><span class="line">				newDisk.GetComponent&lt;DiskData&gt;().size = <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">				newDisk.transform.localScale = <span class="keyword">new</span> Vector3(<span class="number">2.4</span>f,<span class="number">0.1</span>f,<span class="number">2.4</span>f);</span><br><span class="line">				newDisk.GetComponent&lt;DiskData&gt;().size = <span class="number">2</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">				newDisk.transform.localScale = <span class="keyword">new</span> Vector3(<span class="number">3.6</span>f,<span class="number">0.15</span>f,<span class="number">3.6</span>f);</span><br><span class="line">				newDisk.GetComponent&lt;DiskData&gt;().size = <span class="number">3</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">      	</span><br><span class="line">      	<span class="comment">//随机飞碟的初速度</span></span><br><span class="line">		<span class="keyword">float</span> tempRand = Random.Range(<span class="number">-1</span>f,<span class="number">1</span>f);</span><br><span class="line">		<span class="keyword">int</span> posOrNeg;</span><br><span class="line">		<span class="keyword">if</span>(tempRand &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			posOrNeg = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			posOrNeg = <span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		newDisk.GetComponent&lt;DiskData&gt;().xSpeed =  posOrNeg * Random.Range( <span class="number">1.5</span>f*(gameRound <span class="number">-1</span>),  <span class="number">1.5</span>f*gameRound);</span><br><span class="line">		tempRand = Random.Range(<span class="number">-1</span>f,<span class="number">1</span>f);</span><br><span class="line">		<span class="keyword">if</span>(tempRand &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			posOrNeg = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			posOrNeg = <span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		newDisk.GetComponent&lt;DiskData&gt;().ySpeed =  posOrNeg * Random.Range(<span class="number">2</span>f + (gameRound<span class="number">-1</span>) * <span class="number">0.5</span>f, <span class="number">2</span>f + gameRound * <span class="number">0.5</span>f);</span><br><span class="line">		</span><br><span class="line">		used.Add(newDisk.GetComponent&lt;DiskData&gt;());</span><br><span class="line">		newDisk.name = newDisk.GetInstanceID().ToString();</span><br><span class="line">		<span class="keyword">return</span> newDisk;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">FreeDisk</span>(<span class="params">GameObject disk</span>) </span>&#123;</span><br><span class="line">      	<span class="comment">//用于在工厂中标记disk所对应的used飞碟</span></span><br><span class="line">		DiskData temp = <span class="literal">null</span>;</span><br><span class="line">     	 <span class="comment">//遍历被用过的飞碟</span></span><br><span class="line">		<span class="keyword">foreach</span> (DiskData i <span class="keyword">in</span> used) &#123;</span><br><span class="line">			<span class="comment">//从飞碟工厂生产出飞碟开始，ID就一直不变，不管借出还是回收，永远是那固定的几个</span></span><br><span class="line">			<span class="keyword">if</span>(i.gameObject.GetInstanceID() == disk.GetInstanceID()) &#123;</span><br><span class="line">				temp = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(temp != <span class="literal">null</span>) &#123;<span class="comment">//else在已借出链表中不存在，说明已经在可借出free链表了，就不用管</span></span><br><span class="line">			<span class="comment">//放到free链表</span></span><br><span class="line">			temp.gameObject.SetActive(<span class="literal">false</span>);</span><br><span class="line">			used.Remove(temp);</span><br><span class="line">			free.Add(temp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上文注意到游戏工厂中的飞碟添加了<code>DiskData</code>组件：作用是可以使飞碟工厂中为飞碟设置的种种属性一直挂在飞碟上。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">DiskData</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> size;</span><br><span class="line">	<span class="keyword">public</span> Color color;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">float</span> xSpeed;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">float</span> ySpeed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>目前仅仅完成了飞碟属性的设定，飞碟工厂生产回收飞碟的步骤，但至少还要让飞碟正确地飞入场景中。这就需要用上节课所学的动作管理器。（基类<code>SSAction</code>的代码和PPT上一致，就不放到这里了）</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CCFlyAction</span> : <span class="title">SSAction</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">float</span> g;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">float</span> xSpeed;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">float</span> ySpeed;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">float</span> timeCount;</span><br><span class="line">	Vector3 direction;  </span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		g = <span class="number">5</span>f;</span><br><span class="line">		timeCount = <span class="number">0</span>;</span><br><span class="line">		enable = <span class="literal">true</span>;</span><br><span class="line">		destroy = <span class="literal">false</span>;</span><br><span class="line">      	<span class="comment">//这里就体现出了将飞碟的属性作为组件挂在到飞碟上的重要性，在其他地方不经过飞碟工厂就可以很方便获取飞碟属性</span></span><br><span class="line">		xSpeed = gameobject.GetComponent&lt;DiskData&gt;().xSpeed;  </span><br><span class="line">		ySpeed = gameobject.GetComponent&lt;DiskData&gt;().ySpeed; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(gameobject.activeSelf) &#123;</span><br><span class="line">			timeCount += Time.deltaTime;</span><br><span class="line">			gameobject.transform.Translate(<span class="keyword">new</span> Vector3(xSpeed*Time.deltaTime, (ySpeed - timeCount*g)*Time.deltaTime, <span class="number">0</span>));</span><br><span class="line">				</span><br><span class="line">			<span class="comment">//飞碟坠毁：这里具体的数值设置需要根据摄像机的位置以及视口大小来调节</span></span><br><span class="line">			<span class="keyword">if</span>(gameobject.transform.position.y &lt; <span class="number">-10</span>) &#123;</span><br><span class="line">				<span class="keyword">this</span>.destroy = <span class="literal">true</span>;</span><br><span class="line">				<span class="keyword">this</span>.enable = <span class="literal">false</span>;</span><br><span class="line">				<span class="keyword">this</span>.callback.SSActionEvent(<span class="keyword">this</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> CCFlyAction <span class="title">getSSAction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		CCFlyAction action = ScriptableObject.CreateInstance&lt;CCFlyAction&gt;();</span><br><span class="line">		<span class="keyword">return</span> action;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当飞碟的动作设置完毕之后，需要对飞碟动作进行统一管理，这时候也和上节课内容一样，需要动作管理器：这里与最开始设置游戏对象工厂原理相似，也设置一个动作工厂，飞碟通过调用<code>GetSSAction</code>获得动作。其基类和接口的实现也与PPT一致。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">public class CCActionManager : SSActionManager, ISSActionCallback &#123;</span><br><span class="line">	<span class="keyword">public</span> FirstController sceneController;</span><br><span class="line">	<span class="function"><span class="keyword">protected</span> new <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		sceneController = (FirstController)Director.getInstance().currentSceneController;</span><br><span class="line">		sceneController.actionManager = <span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> numberOfDisks;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> List&lt;SSAction&gt; used = <span class="keyword">new</span> List&lt;SSAction&gt;();</span><br><span class="line">	<span class="keyword">private</span> List&lt;SSAction&gt; free = <span class="keyword">new</span> List&lt;SSAction&gt;();</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//从工厂中获得动作</span></span><br><span class="line">	<span class="function">SSAction <span class="title">GetSSAction</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		SSAction action = <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">if</span>(free.Count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			action = free[<span class="number">0</span>];</span><br><span class="line">			free.Remove(free[<span class="number">0</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			action = ScriptableObject.Instantiate&lt;CCFlyAction&gt;(CCFlyAction.getSSAction());</span><br><span class="line">		&#125;</span><br><span class="line">		used.Add(action);</span><br><span class="line">		<span class="keyword">return</span> action;</span><br><span class="line">	&#125;</span><br><span class="line"> 	 <span class="comment">//回收used中的动作，重新放入free</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">FreeSSAction</span> (<span class="params">SSAction action</span>) </span>&#123;</span><br><span class="line">		SSAction temp = <span class="literal">null</span>;</span><br><span class="line">		<span class="keyword">foreach</span>(SSAction i <span class="keyword">in</span> used) &#123;</span><br><span class="line">			<span class="keyword">if</span>(i.gameobject.GetInstanceID() == action.GetInstanceID()) &#123;</span><br><span class="line">				temp = i;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(temp != <span class="literal">null</span>) &#123;</span><br><span class="line">			temp.reset();</span><br><span class="line">			free.Add(temp);</span><br><span class="line">			used.Remove(temp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		*游戏开始时，</span></span><br><span class="line"><span class="comment">		*1. 将飞碟队列中的每一个飞碟从动作工厂中拿到一个动作</span></span><br><span class="line"><span class="comment">		*2. 用SSActionManager中RunAction让每个动作得以执行同时调用callback</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startGame</span>(<span class="params">Queue &lt;GameObject&gt; diskQueue</span>) </span>&#123;</span><br><span class="line">		Debug.Log(<span class="string">"start game"</span>);</span><br><span class="line">		<span class="keyword">foreach</span> (GameObject temp <span class="keyword">in</span> diskQueue) &#123;</span><br><span class="line">			RunAction(temp, GetSSAction(), <span class="keyword">this</span>);</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">		<span class="comment">// implment interface</span></span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		*当一个飞碟飞起落下的全部动作完成之后</span></span><br><span class="line"><span class="comment">		*1. 需要做的动作总数减少</span></span><br><span class="line"><span class="comment">		*2. 飞碟工厂回收一个飞碟</span></span><br><span class="line"><span class="comment">		*3. 动作管理者回收一个动作</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SSActionEvent</span>(<span class="params">SSAction source,  </span></span></span><br><span class="line"><span class="function"><span class="params">		SSActionEventType events = SSActionEventType.Competeted,  </span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="keyword">int</span> intParam = <span class="number">0</span>,  </span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="keyword">string</span> strParam = <span class="literal">null</span>,  </span></span></span><br><span class="line"><span class="function"><span class="params">		Object objectParam = <span class="literal">null</span></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(source <span class="keyword">is</span> CCFlyAction) &#123;</span><br><span class="line">			numberOfDisks--;</span><br><span class="line">			DiskFactory df = Singleton&lt;DiskFactory&gt;.Instance;  </span><br><span class="line">			df.FreeDisk(source.gameobject);  <span class="comment">//可以用这种方式获取了被挂在了特定component的游戏对象</span></span><br><span class="line">	         FreeSSAction(source);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>飞碟动作控制器设置好之后，需要将其与游戏场景连接，即在合适的时机让飞碟飞入，在<code>FirstController</code>中实现：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*随机扔出飞碟的位置</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">randomThrow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(disks.Count != <span class="number">0</span>) &#123;</span><br><span class="line">      	<span class="comment">//得到队头飞碟</span></span><br><span class="line">		GameObject disk = disks.Dequeue();</span><br><span class="line">		Vector3 randPos = Vector3.zero;</span><br><span class="line">      	<span class="comment">//根据轮数设置难度：即每轮飞碟出现位置的范围不同</span></span><br><span class="line">		<span class="keyword">float</span> x = Random.Range(<span class="number">-0.5</span>f * gameRound - <span class="number">3</span>f, <span class="number">0.5</span>f * gameRound + <span class="number">3</span>f);</span><br><span class="line">		<span class="keyword">float</span> y = Random.Range( - <span class="number">0.1</span>f * gameRound, <span class="number">0.8</span>f * gameRound);</span><br><span class="line">		randPos = <span class="keyword">new</span> Vector3(x, y, <span class="number">0</span>);</span><br><span class="line">		disk.transform.position = randPos;</span><br><span class="line">      	<span class="comment">//激活飞碟</span></span><br><span class="line">		disk.SetActive(<span class="literal">true</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>场景中飞碟飞入飞出的动作设置完毕后，还需要对用户的行为进行相应。先用射线完成鼠标打飞碟的处理：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//用户行为接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IUserAction</span> &#123;</span><br><span class="line">  	<span class="comment">//游戏状态相关</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">getGameStart</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">getGameOver</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getGameState</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setGameState</span>(<span class="params"><span class="keyword">int</span> gameState</span>)</span>;</span><br><span class="line">  	<span class="comment">//获取得分</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getScore</span>(<span class="params"></span>)</span>;</span><br><span class="line"> 	<span class="comment">//获取游戏轮数</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">getRound</span>(<span class="params"></span>)</span>;</span><br><span class="line">  	<span class="comment">//打飞碟</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">hit</span>(<span class="params">Vector3 pos</span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>FirstController</code>中对<code>void hit(Vector3 pos)</code>的实现如下：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hit</span>(<span class="params">Vector3 pos</span>) </span>&#123;</span><br><span class="line">	Ray ray = Camera.main.ScreenPointToRay(pos);</span><br><span class="line">	RaycastHit[] hits;</span><br><span class="line">	hits = Physics.RaycastAll(ray);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; hits.Length; i++) &#123;</span><br><span class="line">		RaycastHit hit = hits[i];</span><br><span class="line">		<span class="keyword">if</span>(hit.collider.gameObject.GetComponent&lt;DiskData&gt;() != <span class="literal">null</span>) &#123;</span><br><span class="line">			scoreRecorder.Record(hit.collider.gameObject);</span><br><span class="line">			hit.collider.gameObject.transform.position = <span class="keyword">new</span> Vector3(<span class="number">0</span>,<span class="number">-20</span>,<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再在<code>UserGUI</code>中检测鼠标点击事件，调用<code>hit</code>：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (Input.GetButtonDown (<span class="string">"Fire1"</span>)) &#123;</span><br><span class="line">		Vector3 mp = Input.mousePosition;</span><br><span class="line">		action.hit(mp);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>把基础的游戏对象工厂、动作管理器实现好了之后，就可以用<code>FirstController</code>整合起来：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> SceneBasicCodes;</span><br><span class="line"><span class="keyword">using</span> ActionBasicCodes;</span><br><span class="line"></span><br><span class="line">public class FirstController : MonoBehaviour, IUserAction, ISceneController &#123;</span><br><span class="line">	<span class="keyword">public</span> CCActionManager actionManager;</span><br><span class="line">	<span class="keyword">public</span> ScoreRecorder scoreRecorder &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">	<span class="keyword">private</span> Queue&lt;GameObject&gt; disks = <span class="keyword">new</span> Queue&lt;GameObject&gt; ();</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> gameRound = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> numberOfDisks; <span class="comment">//每轮有多少个飞碟</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">float</span> throwPeriod = <span class="number">1</span>; <span class="comment">//间隔多少秒出现一个飞碟</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> totalRound = <span class="number">10</span>;<span class="comment">//一共有多少轮</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">float</span> timeInterval = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> gameState = <span class="number">1</span>;<span class="comment">//0-&gt;not in game, 1-&gt;in game</span></span><br><span class="line">	<span class="keyword">private</span> UserGUI userGUI;</span><br><span class="line">	<span class="comment">// Use this for initialization</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Awake</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">      	<span class="comment">//单例模式</span></span><br><span class="line">		Director director = Director.getInstance();</span><br><span class="line">		director.currentSceneController = <span class="keyword">this</span>;</span><br><span class="line">		numberOfDisks = <span class="number">10</span>;</span><br><span class="line">		<span class="keyword">this</span>.gameObject.AddComponent&lt;ScoreRecorder&gt;();</span><br><span class="line">		<span class="keyword">this</span>.gameObject.AddComponent&lt;DiskFactory&gt;();</span><br><span class="line">		userGUI = <span class="keyword">this</span>.gameObject.AddComponent&lt;UserGUI&gt;();</span><br><span class="line">		scoreRecorder = Singleton&lt;ScoreRecorder&gt;.Instance;</span><br><span class="line">		director.currentSceneController.LoadResources();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Update is called once per frame</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;<span class="comment">//manage game state</span></span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		*游戏进入下一轮，增加轮数，同时重置飞碟数重置，分数不重置</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">		<span class="keyword">if</span>(actionManager.numberOfDisks == <span class="number">0</span> &amp;&amp; gameState == <span class="number">1</span>) &#123;</span><br><span class="line">			gameRound = (gameRound + <span class="number">1</span>) % (totalRound + <span class="number">1</span>);</span><br><span class="line">			throwPeriod = (totalRound - gameRound)/<span class="number">2</span>;</span><br><span class="line">			<span class="comment">//从游戏工厂中获得一定数目的飞碟放入飞碟队列</span></span><br><span class="line">			DiskFactory df = Singleton&lt;DiskFactory&gt;.Instance;  </span><br><span class="line">	        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numberOfDisks; i++)  </span><br><span class="line">	        &#123;  </span><br><span class="line">	            disks.Enqueue(df.getDisk(gameRound));  </span><br><span class="line">	        &#125;  </span><br><span class="line">	        <span class="comment">//将每个动作挂在到disks链表的每个元素上面</span></span><br><span class="line">	        actionManager.startGame(disks);  </span><br><span class="line">	        actionManager.numberOfDisks = numberOfDisks;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(gameRound == <span class="number">0</span>) &#123;<span class="comment">//初始化</span></span><br><span class="line">			gameState = <span class="number">0</span>;</span><br><span class="line">			actionManager.numberOfDisks = <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		*判断飞碟扔出的时间间隔</span></span><br><span class="line"><span class="comment">		*/</span></span><br><span class="line">		<span class="keyword">if</span>(gameState == <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span>(timeInterval &gt; throwPeriod) &#123;</span><br><span class="line">				randomThrow();</span><br><span class="line">				timeInterval = <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				timeInterval += Time.deltaTime;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	*随机扔出飞碟的位置</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="comment">//上文实现过，此处省略</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//implementation of interfaces</span></span><br><span class="line">  	<span class="comment">//上文实现过，此处省略</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样打飞碟游戏的大体部分就完成，但还差一个记分员来记录游戏的得分：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ScoreRecorder</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">  	<span class="comment">//计分</span></span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> score;</span><br><span class="line">	<span class="comment">//记录不同颜色和大小对应的分数</span></span><br><span class="line">  	<span class="keyword">private</span> Dictionary&lt;Color, <span class="keyword">int</span>&gt; colorTable = <span class="keyword">new</span> Dictionary&lt;Color, <span class="keyword">int</span>&gt; ();</span><br><span class="line">	<span class="keyword">private</span> Dictionary&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; sizeTable = <span class="keyword">new</span> Dictionary&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; ();</span><br><span class="line">	<span class="comment">//设置每种颜色和大小对应的分数</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		score = <span class="number">0</span>;</span><br><span class="line">		colorTable.Add(Color.yellow, <span class="number">1</span>);</span><br><span class="line">		colorTable.Add(Color.red, <span class="number">2</span>);</span><br><span class="line">		colorTable.Add(Color.blue, <span class="number">3</span>);</span><br><span class="line">		sizeTable.Add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">		sizeTable.Add(<span class="number">2</span>, <span class="number">4</span>);</span><br><span class="line">		sizeTable.Add(<span class="number">3</span>, <span class="number">6</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Record</span> (<span class="params">GameObject disk</span>) </span>&#123;</span><br><span class="line">		score += colorTable[disk.GetComponent&lt;DiskData&gt;().color] + sizeTable[disk.GetComponent&lt;DiskData&gt;().size];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//十轮结束后分数重置</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reset</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		score = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上文中的FirstController其实已经是完整版了，所以只剩下用户面板的UserGUI了，这里的计分和显示关数依然用第一节课学的<code>OnGUI()</code>就可以实现了，并要用<code>Upddate()</code>调用之前定义的hit（因为打飞碟也是用户的动作呀~）：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserGUI</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> IUserAction action;</span><br><span class="line">	<span class="keyword">bool</span> isFirst = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">private</span> GameObject cam;</span><br><span class="line">	GUIStyle buttonStyle;</span><br><span class="line">	GUIStyle labelStyle;</span><br><span class="line">	<span class="comment">// Use this for initialization</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		action = Director.getInstance().currentSceneController <span class="keyword">as</span> IUserAction;</span><br><span class="line">		buttonStyle = <span class="keyword">new</span> GUIStyle(<span class="string">"button"</span>);</span><br><span class="line">		buttonStyle.fontSize = Screen.width/<span class="number">30</span>;</span><br><span class="line">		buttonStyle.alignment = TextAnchor.MiddleCenter;</span><br><span class="line">		labelStyle = <span class="keyword">new</span> GUIStyle(<span class="string">"label"</span>);</span><br><span class="line">		labelStyle.alignment = TextAnchor.MiddleCenter;</span><br><span class="line">		labelStyle.fontSize = Screen.height/<span class="number">40</span>;</span><br><span class="line">		labelStyle.normal.textColor = Color.white;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">OnGUI</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(action.getGameState() == <span class="number">0</span> &amp;&amp; GUI.Button(<span class="keyword">new</span> Rect(Screen.width/<span class="number">2</span> - Screen.width/<span class="number">12</span>, Screen.height/<span class="number">2</span> - Screen.height/<span class="number">16</span>, Screen.width/<span class="number">6</span>, Screen.height/<span class="number">8</span>),<span class="string">"Restart"</span>, buttonStyle)) &#123;</span><br><span class="line">			action.getGameStart();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(action.getGameState() == <span class="number">0</span>)</span><br><span class="line">			GUI.Label(<span class="keyword">new</span> Rect(Screen.width/<span class="number">2</span> - Screen.width/<span class="number">12</span>, Screen.height/<span class="number">5</span> + Screen.height/<span class="number">16</span>, Screen.width/<span class="number">6</span>, Screen.height/<span class="number">8</span>), <span class="string">"Score: "</span>+ action.getScore(), labelStyle);</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			GUI.Label(<span class="keyword">new</span> Rect(Screen.width/<span class="number">10</span>, Screen.height/<span class="number">5</span>,  Screen.width/<span class="number">10</span>,  Screen.height/<span class="number">10</span>), <span class="string">"Round: "</span> + action.getRound(), labelStyle);</span><br><span class="line">			GUI.Label(<span class="keyword">new</span> Rect(Screen.width/<span class="number">10</span>, Screen.height/<span class="number">5</span> + <span class="number">100</span>,  Screen.width/<span class="number">10</span>,  Screen.height/<span class="number">10</span>), <span class="string">"Score: "</span>+ action.getScore(), labelStyle);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (Input.GetButtonDown (<span class="string">"Fire1"</span>)) &#123;</span><br><span class="line">			Vector3 mp = Input.mousePosition;</span><br><span class="line">			action.hit(mp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/3D-GAME-DESIGN/" rel="tag"># 3D GAME DESIGN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/10/Week05-游戏对象使用总结/" rel="next" title="Week05 Homework - 游戏对象使用总结">
+                <i class="fa fa-chevron-left"></i> Week05 Homework - 游戏对象使用总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/11/Week09-Animator-View-Pattern-patrols/" rel="prev" title="Week09-Animator & View Pattern-patrols">
+                Week09-Animator & View Pattern-patrols <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏对象工厂：打飞碟游戏"><span class="nav-number">1.</span> <span class="nav-text">游戏对象工厂：打飞碟游戏</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="reference: http://cs231n.github.io/python-numpy-tutorial/  Basic GrammarBasic data types X  unary increment (x++) or decrement (x--) operators. and instead of &amp;amp;&amp;amp;, or instead of ||, not instea">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/06/20/python学习笔记/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="reference: http://cs231n.github.io/python-numpy-tutorial/  Basic GrammarBasic data types X  unary increment (x++) or decrement (x--) operators. and instead of &amp;amp;&amp;amp;, or instead of ||, not instea">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-23T08:52:41.840Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python学习笔记">
+<meta name="twitter:description" content="reference: http://cs231n.github.io/python-numpy-tutorial/  Basic GrammarBasic data types X  unary increment (x++) or decrement (x--) operators. and instead of &amp;amp;&amp;amp;, or instead of ||, not instea">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/06/20/python学习笔记/"/>
+
+
+
+
+
+  <title>python学习笔记 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/python学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-20T20:19:42+08:00">
+                2019-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>reference: <a href="http://cs231n.github.io/python-numpy-tutorial/" target="_blank" rel="noopener">http://cs231n.github.io/python-numpy-tutorial/</a></p>
+</blockquote>
+<h2 id="Basic-Grammar"><a href="#Basic-Grammar" class="headerlink" title="Basic Grammar"></a>Basic Grammar</h2><h3 id="Basic-data-types"><a href="#Basic-data-types" class="headerlink" title="Basic data types"></a>Basic data types</h3><ul>
+<li>X  unary increment (<code>x++</code>) or decrement (<code>x--</code>) operators.</li>
+<li><code>and</code> instead of <code>&amp;&amp;</code>, <code>or</code> instead of <code>||</code>, <code>not</code> instead of <code>!</code> and <code>!=</code> for <code>XOR</code></li>
+</ul>
+<h4 id="String"><a href="#String" class="headerlink" title="String"></a>String</h4><ul>
+<li><p>length - <code>len(str)</code></p>
+</li>
+<li><p>formatting - <code>&#39;%s %s %d&#39; % (str1, str2, 1)</code></p>
+</li>
+<li><p>capitalize - <code>str.capitalize()</code></p>
+</li>
+<li><p>uppercase -  <code>str.upper()</code></p>
+</li>
+<li><p>Right-justify (右对齐) - <code>str.rjust(totallength)</code></p>
+<blockquote>
+<p>totallength = len(str) + space in left</p>
+</blockquote>
+</li>
+<li><p>Center(居中) - <code>str.center(totallength)</code></p>
+</li>
+<li>Replace - <code>str.replace(str1, str2)</code>, all <code>str1</code> in <code>str</code> will be replaced by <code>str2</code></li>
+<li>Strip leading and trailing whitespace - <code>str.strip()</code></li>
+</ul>
+<h3 id="Containers"><a href="#Containers" class="headerlink" title="Containers"></a>Containers</h3><h4 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h4><ul>
+<li>Negative index count from the end - <code>list[-1]</code></li>
+<li>can contain elements  of different types</li>
+<li>add new ele - <code>list.append(newEle)</code></li>
+<li>remove and <strong>return</strong> the last ele - <code>list.pop()</code></li>
+</ul>
+<h5 id="Slicing"><a href="#Slicing" class="headerlink" title="Slicing"></a>Slicing</h5><ul>
+<li>get sublist from index <code>x</code> to index <code>y</code> - nums[x:y]<ul>
+<li>no <code>x</code>: from the start</li>
+<li>no <code>y</code>: to the end</li>
+<li><code>x</code> and <code>y</code> can be negative </li>
+</ul>
+</li>
+</ul>
+<h5 id="Loops"><a href="#Loops" class="headerlink" title="Loops"></a>Loops</h5><ul>
+<li>get elements in the list - <code>for item in list</code></li>
+<li>get both indices and elements in the list - <code>for index, item in list</code></li>
+</ul>
+<h5 id="List-comprehensions"><a href="#List-comprehensions" class="headerlink" title="List comprehensions"></a>List comprehensions</h5><ul>
+<li><p>transform a list of elements to another: <code>newList = [(do something to item) for item in oldList]</code></p>
+</li>
+<li><p>With conditions: <code>newList = [(do something to item) for item in oldList if (in some  condition)]</code></p>
+</li>
+</ul>
+<h4 id="Dictionaries"><a href="#Dictionaries" class="headerlink" title="Dictionaries"></a>Dictionaries</h4><ul>
+<li>key-value set</li>
+<li>access with a default value - <code>dic.get(key, defaultValue)</code></li>
+<li>delete - <code>del d[key]</code></li>
+</ul>
+<h5 id="Loops-1"><a href="#Loops-1" class="headerlink" title="Loops"></a>Loops</h5><ul>
+<li>get keys in the list - <code>for key in dic</code></li>
+<li>get both keys and value in the list - <code>for key, value in dic.items()</code></li>
+</ul>
+<h5 id="Dictionary-comprehensions"><a href="#Dictionary-comprehensions" class="headerlink" title="Dictionary comprehensions"></a><strong>Dictionary</strong> comprehensions</h5><ul>
+<li>same with list, and change the value part of the dictionary</li>
+<li>use <code>{}</code>, X <code>[]</code></li>
+</ul>
+<h4 id="Sets"><a href="#Sets" class="headerlink" title="Sets"></a>Sets</h4><ul>
+<li><p>an unordered collection of distinct elements</p>
+</li>
+<li><p>judge whether an element is in the set - <code>ele in set</code></p>
+</li>
+<li><p><code>add</code></p>
+</li>
+<li><code>remove</code></li>
+<li><code>len</code></li>
+</ul>
+<h5 id="Loops-2"><a href="#Loops-2" class="headerlink" title="Loops"></a>Loops</h5><ul>
+<li>when access both indices and elements, the order is not as assumptions</li>
+</ul>
+<h5 id="Set-comprehensions"><a href="#Set-comprehensions" class="headerlink" title="Set comprehensions"></a>Set comprehensions</h5><ul>
+<li>same, use <code>{}</code></li>
+</ul>
+<h4 id="Tuples"><a href="#Tuples" class="headerlink" title="Tuples"></a>Tuples</h4><ul>
+<li>ordered list of values</li>
+<li>similar to list, <strong>but</strong> tuples can be used as <strong>keys in dictionaries</strong> and as <strong>element of sets</strong> </li>
+</ul>
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><ul>
+<li><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">def functionName(para1, para2, ...):</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h3><ul>
+<li><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">className</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="comment"># constructor</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, para1, para2, ...)</span>:</span></span><br><span class="line">		<span class="comment"># do sth</span></span><br><span class="line">        </span><br><span class="line">    <span class="comment"># methods, definition of functions</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Numpy"><a href="#Numpy" class="headerlink" title="Numpy"></a>Numpy</h2><h3 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h3><ul>
+<li>all elements are of the same type</li>
+<li>indexed by a <strong>tuple</strong> of nonnegative integers </li>
+<li><strong>rank</strong> - number of dimensions of the array</li>
+<li><p><strong>shape</strong> - a tuple of integers giving the size of the array along each dimension </p>
+</li>
+<li><p>initialize - </p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">np.array([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]])</span><br><span class="line"><span class="comment"># more ranks</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>all zeros - <code>np.zeros(shape)</code></li>
+<li>all ones - <code>np.ones(shape)</code></li>
+<li>all specific number - <code>np.ones(shape, specificNumber)</code></li>
+<li>idenity matrix - <code>np.eye(dimension)</code><ul>
+<li>the shape of this matrix is <code>dimension * dimension</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Array-indexing"><a href="#Array-indexing" class="headerlink" title="Array indexing"></a>Array indexing</h3><h4 id="Slicing-1"><a href="#Slicing-1" class="headerlink" title="Slicing"></a>Slicing</h4><ul>
+<li><strong>slice indexing</strong> -  specify the range for each dimension - <code>array[range in the first dimension, range in the second dimention, ...]</code></li>
+</ul>
+<h4 id="Accessing-elements"><a href="#Accessing-elements" class="headerlink" title="Accessing elements"></a>Accessing elements</h4><ul>
+<li><strong>integer indexing</strong> - <code>array[index in the  first dimension, index in the second dimension]</code></li>
+</ul>
+<h4 id="mix-of-slicing-by-index-and-range"><a href="#mix-of-slicing-by-index-and-range" class="headerlink" title="mix of slicing by index and range"></a>mix of slicing by index and range</h4><ul>
+<li>if use <strong>only slice indexing</strong>, the returning array will be of the same rank</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the following rank 2 array with shape (3, 4)</span></span><br><span class="line"><span class="comment"># [[ 1  2  3  4]</span></span><br><span class="line"><span class="comment">#  [ 5  6  7  8]</span></span><br><span class="line"><span class="comment">#  [ 9 10 11 12]]</span></span><br><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>], [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>], [<span class="number">9</span>,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>]])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Two ways of accessing the data in the middle row of the array.</span></span><br><span class="line"><span class="comment"># Mixing integer indexing with slices yields an array of lower rank,</span></span><br><span class="line"><span class="comment"># while using only slices yields an array of the same rank as the</span></span><br><span class="line"><span class="comment"># original array:</span></span><br><span class="line">row_r1 = a[<span class="number">1</span>, :]    <span class="comment"># Rank 1 view of the second row of a</span></span><br><span class="line">row_r2 = a[<span class="number">1</span>:<span class="number">2</span>, :]  <span class="comment"># Rank 2 view of the second row of a</span></span><br><span class="line">print(row_r1, row_r1.shape)  <span class="comment"># Prints "[5 6 7 8] (4,)"</span></span><br><span class="line">print(row_r2, row_r2.shape)  <span class="comment"># Prints "[[5 6 7 8]] (1, 4)"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># We can make the same distinction when accessing columns of an array:</span></span><br><span class="line">col_r1 = a[:, <span class="number">1</span>]</span><br><span class="line">col_r2 = a[:, <span class="number">1</span>:<span class="number">2</span>]</span><br><span class="line">print(col_r1, col_r1.shape)  <span class="comment"># Prints "[ 2  6 10] (3,)"</span></span><br><span class="line">print(col_r2, col_r2.shape)  <span class="comment"># Prints "[[ 2]</span></span><br><span class="line">                             <span class="comment">#          [ 6]</span></span><br><span class="line">                             <span class="comment">#          [10]] (3, 1)"</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>if use <strong>integer indexing</strong>, arbitrary arrays can be construct.</li>
+<li><p>a[[0,1,2]] =&gt; index 0, 1 and 2 in first dimension</p>
+</li>
+<li><p>Select one element from each row of a using the indices in b(an array of indices, <code>[0, 2, 0, 1]</code>)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">a[np.arange(4), b]</span><br></pre></td></tr></table></figure>
+<p>The output is a[0, 0], a[1, 2], a[2, 0], a[2, 1]. </p>
+</li>
+</ul>
+<h5 id="Boolean-array-indexing"><a href="#Boolean-array-indexing" class="headerlink" title="Boolean array indexing"></a>Boolean array indexing</h5><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = np.array([[<span class="number">1</span>,<span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>], [<span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">bool_idx = (a &gt; <span class="number">2</span>)</span><br><span class="line"><span class="comment"># [[False False]</span></span><br><span class="line"><span class="comment">#  [ True  True]</span></span><br><span class="line"><span class="comment">#  [ True  True]]</span></span><br></pre></td></tr></table></figure>
+<h3 id="Datatypes"><a href="#Datatypes" class="headerlink" title="Datatypes"></a>Datatypes</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">np.array(ARRAYDATA, dtype=ARRAYTYPE)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><code>*</code> and <code>/</code> is <strong>elementwise</strong></p>
+</li>
+<li><p>matrix multiplication or vector multiplication - <code>dot</code></p>
+</li>
+<li>As a <strong>function</strong>: <code>np.dot(x, y)</code></li>
+<li>As an <strong>instance method</strong>: <code>x.dot(y)</code></li>
+<li>Transpose - <code>v.T</code></li>
+<li>`</li>
+</ul>
+<h2 id="SciPy"><a href="#SciPy" class="headerlink" title="SciPy"></a>SciPy</h2><h3 id="Image-operations"><a href="#Image-operations" class="headerlink" title="Image operations"></a>Image operations</h3><ul>
+<li><p>read from file into a numpy arrays - <code>imread(FILEPATH)</code></p>
+</li>
+<li><p>Computing distances between sets of points - <code>scipy.spatial.distance.pdist</code></p>
+</li>
+</ul>
+<h2 id="Matplotlib"><a href="#Matplotlib" class="headerlink" title="Matplotlib"></a>Matplotlib</h2><ul>
+<li><code>plot</code>,  <code>subplot</code> and <code>imshow</code></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/20/jupyter安装笔记/" rel="next" title="jupyter安装笔记">
+                <i class="fa fa-chevron-left"></i> jupyter安装笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/21/PyTorch快速入门/" rel="prev" title="PyTorch快速入门">
+                PyTorch快速入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Basic-Grammar"><span class="nav-number">1.</span> <span class="nav-text">Basic Grammar</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-data-types"><span class="nav-number">1.1.</span> <span class="nav-text">Basic data types</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#String"><span class="nav-number">1.1.1.</span> <span class="nav-text">String</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Containers"><span class="nav-number">1.2.</span> <span class="nav-text">Containers</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Lists"><span class="nav-number">1.2.1.</span> <span class="nav-text">Lists</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Slicing"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">Slicing</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Loops"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#List-comprehensions"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">List comprehensions</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dictionaries"><span class="nav-number">1.2.2.</span> <span class="nav-text">Dictionaries</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Loops-1"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dictionary-comprehensions"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">Dictionary comprehensions</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sets"><span class="nav-number">1.2.3.</span> <span class="nav-text">Sets</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Loops-2"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">Loops</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Set-comprehensions"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">Set comprehensions</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tuples"><span class="nav-number">1.2.4.</span> <span class="nav-text">Tuples</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functions"><span class="nav-number">1.3.</span> <span class="nav-text">Functions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Classes"><span class="nav-number">1.4.</span> <span class="nav-text">Classes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numpy"><span class="nav-number">2.</span> <span class="nav-text">Numpy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arrays"><span class="nav-number">2.1.</span> <span class="nav-text">Arrays</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-indexing"><span class="nav-number">2.2.</span> <span class="nav-text">Array indexing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Slicing-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">Slicing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accessing-elements"><span class="nav-number">2.2.2.</span> <span class="nav-text">Accessing elements</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mix-of-slicing-by-index-and-range"><span class="nav-number">2.2.3.</span> <span class="nav-text">mix of slicing by index and range</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Boolean-array-indexing"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">Boolean array indexing</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Datatypes"><span class="nav-number">2.3.</span> <span class="nav-text">Datatypes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SciPy"><span class="nav-number">3.</span> <span class="nav-text">SciPy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Image-operations"><span class="nav-number">3.1.</span> <span class="nav-text">Image operations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Matplotlib"><span class="nav-number">4.</span> <span class="nav-text">Matplotlib</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="LeetCode," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="动态规划70. Climbing Stairshttps://leetcode.com/problems/climbing-stairs/ 主要思路：上第n级台阶 = 从第n-1级台阶上1步 + 从第n-2级台阶上2步。 由于初始的上第1、2、3阶台阶的方法均可数，因而可以计算出上任意阶台阶的情况。 62. Unique Pathshttps://leetcode.com/problems/uni">
+<meta name="keywords" content="LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/LeetCode/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="动态规划70. Climbing Stairshttps://leetcode.com/problems/climbing-stairs/ 主要思路：上第n级台阶 = 从第n-1级台阶上1步 + 从第n-2级台阶上2步。 由于初始的上第1、2、3阶台阶的方法均可数，因而可以计算出上任意阶台阶的情况。 62. Unique Pathshttps://leetcode.com/problems/uni">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-19T09:26:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode">
+<meta name="twitter:description" content="动态规划70. Climbing Stairshttps://leetcode.com/problems/climbing-stairs/ 主要思路：上第n级台阶 = 从第n-1级台阶上1步 + 从第n-2级台阶上2步。 由于初始的上第1、2、3阶台阶的方法均可数，因而可以计算出上任意阶台阶的情况。 62. Unique Pathshttps://leetcode.com/problems/uni">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/LeetCode/"/>
+
+
+
+
+
+  <title>LeetCode | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/LeetCode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LeetCode</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T20:20:12+08:00">
+                2019-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="70-Climbing-Stairs"><a href="#70-Climbing-Stairs" class="headerlink" title="70. Climbing Stairs"></a>70. Climbing Stairs</h3><p><a href="https://leetcode.com/problems/climbing-stairs/" target="_blank" rel="noopener">https://leetcode.com/problems/climbing-stairs/</a></p>
+<p>主要思路：上第n级台阶 = 从第n-1级台阶上1步 + 从第n-2级台阶上2步。</p>
+<p>由于初始的上第1、2、3阶台阶的方法均可数，因而可以计算出上任意阶台阶的情况。</p>
+<h3 id="62-Unique-Paths"><a href="#62-Unique-Paths" class="headerlink" title="62. Unique Paths"></a>62. Unique Paths</h3><p><a href="https://leetcode.com/problems/unique-paths/" target="_blank" rel="noopener">https://leetcode.com/problems/unique-paths/</a></p>
+<p>根据组合数的性质：</p>
+<script type="math/tex; mode=display">
+C(n, m) = C(n-1, m-1) + C(n-1, m)</script><p>二维vector初始化：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; ans(rows, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(cols), initNo));</span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong>这里的需要走的横向步数和纵向步数不是m和n，而是m-1和n-1. </p>
+<a id="more"></a>
+<h2 id="数组和数字"><a href="#数组和数字" class="headerlink" title="数组和数字"></a>数组和数字</h2><p><a href="https://leetcode.com/problems/plus-one/" target="_blank" rel="noopener">https://leetcode.com/problems/plus-one/</a></p>
+<p>直接数组转化为int计算再转回，会导致越界。循环时考虑连续进位，数组比原始+1.</p>
+<h2 id="238-Product-of-Array-Except-Self"><a href="#238-Product-of-Array-Except-Self" class="headerlink" title="238. Product of Array Except Self"></a>238. Product of Array Except Self</h2><p><a href="https://leetcode.com/problems/product-of-array-except-self/" target="_blank" rel="noopener">https://leetcode.com/problems/product-of-array-except-self/</a></p>
+<blockquote>
+<p>要求复杂度O(n)， 且不能用除法</p>
+</blockquote>
+<p>思路是建立两个新的数组分别从前往后、从后往前计算。</p>
+<p>比如[a, b, c, d]，建立一个数组计算[1, a, ab, abc]，第二个数组计算[bcd, cd, d, 1]。这两次循环复杂度都是O(n). </p>
+<p>这样第一个数组和第二个数组的对应元素相乘即可得到结果。</p>
+<h2 id="148-Sort-List"><a href="#148-Sort-List" class="headerlink" title="148. Sort List"></a>148. Sort List</h2><p><a href="https://leetcode.com/problems/sort-list/submissions/" target="_blank" rel="noopener">https://leetcode.com/problems/sort-list/submissions/</a></p>
+<blockquote>
+<p>时间复杂度O(nlogn) =&gt; 归并排序</p>
+</blockquote>
+<p>递归执行：按照归并树的后序遍历而不是从下到上的“层次遍历”（这种貌似可以用循环实现）</p>
+<ol>
+<li><p>由于是单项链表的数据结构首先遍历一遍记录总个数</p>
+</li>
+<li><p>递归的接口如下：</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="function">ListNode * <span class="title">mergeSort</span><span class="params">(ListNode * <span class="keyword">const</span> node1, ListNode * <span class="keyword">const</span> node2, <span class="keyword">const</span> <span class="keyword">int</span> n)</span></span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>node1：归并的左边链表的头指针</p>
+<p>node2：归并的右边链表的头指针</p>
+<p>n：本轮归并的每段的长度</p>
+</blockquote>
+</li>
+<li><p>递归函数截止条件：两个node地址相同 =&gt; 说明只有一个元素，不再需要拆分，并返回该指针node</p>
+</li>
+<li><p>拆分结束后开始链表的排序操作（这里注意指针真的不要乱指）</p>
+<p>这里考虑右侧链表向左侧链表插入元素，分了头节点和非头节点的情况。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 排序</span></span><br><span class="line"><span class="keyword">while</span>(cur1 != <span class="literal">NULL</span> &amp;&amp; cur2 != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(cur1 -&gt; val &gt; cur2 -&gt; val) &#123; <span class="comment">// cur2 接在 cur1 前面</span></span><br><span class="line">        <span class="comment">// 第一个</span></span><br><span class="line">        <span class="keyword">if</span>(ans == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            ans = cur2;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 否则就插在上一个操作数的next处</span></span><br><span class="line">            lastCur -&gt; next = cur2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 暂存右侧链表的头指针的</span></span><br><span class="line">        ListNode * temp = cur2 -&gt; next;</span><br><span class="line">        <span class="comment">// 修改当前被插入数的下一个为左侧头指针</span></span><br><span class="line">        cur2 -&gt; next = cur1;</span><br><span class="line">        <span class="comment">// 更新lastCur</span></span><br><span class="line">        lastCur = cur2;</span><br><span class="line">        <span class="comment">// 更新右侧链表头指针</span></span><br><span class="line">        cur2 = temp;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 判断头指针</span></span><br><span class="line">        <span class="keyword">if</span>(ans == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            ans = cur1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 更新last</span></span><br><span class="line">        lastCur = cur1;</span><br><span class="line">        <span class="comment">// 左侧链表头指针右移</span></span><br><span class="line">        cur1 = cur1 -&gt; next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 当一个链表已经遍历完而另一个没有遍历完的时候</span></span><br><span class="line"><span class="keyword">if</span>(cur1 != <span class="literal">NULL</span> &amp;&amp; lastCur != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    lastCur -&gt; next = cur1;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(cur2 != <span class="literal">NULL</span>) &#123;</span><br><span class="line">    lastCur -&gt; next = cur2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>需要注意的几个地方：</p>
+<ul>
+<li>当链表长度不为pow(2, x)的时候，每次计算Node2的时候，for循环的截止为(n+1)/2. 否则最后几个不能被整除的元素会被丢下。但是递归的传参不需要，只需要n/2。</li>
+<li><code>lastCur</code>只需要考虑已经排序的链表的上一个操作的位置，不需要分为两个分别考虑参与归并的两个链表。</li>
+</ul>
+<h3 id="常量指针和指针常量"><a href="#常量指针和指针常量" class="headerlink" title="常量指针和指针常量"></a>常量指针和指针常量</h3><p>疯了，怎么也记不住这里。</p>
+<p>参考：<a href="https://blog.csdn.net/weibo_dm/article/details/80445205" target="_blank" rel="noopener">https://blog.csdn.net/weibo_dm/article/details/80445205</a></p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a，b；</span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p=&amp;a <span class="comment">//指针常量</span></span><br><span class="line"><span class="comment">//那么分为一下两种操作</span></span><br><span class="line">*p=<span class="number">9</span>;<span class="comment">//操作成功</span></span><br><span class="line">p=&amp;b;<span class="comment">//操作错误</span></span><br><span class="line">------------------------------------------</span><br><span class="line"><span class="keyword">int</span> a，b；</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p=&amp;a <span class="comment">//常量指针</span></span><br><span class="line"><span class="comment">//那么分为一下两种操作</span></span><br><span class="line">*p=<span class="number">9</span>;<span class="comment">//操作错误</span></span><br><span class="line">p=&amp;b;<span class="comment">//操作成功</span></span><br></pre></td></tr></table></figure>
+<h2 id="347-Top-K-Frequent-Elements"><a href="#347-Top-K-Frequent-Elements" class="headerlink" title="347. Top K Frequent Elements"></a>347. Top K Frequent Elements</h2><p><a href="https://leetcode.com/problems/top-k-frequent-elements/" target="_blank" rel="noopener">https://leetcode.com/problems/top-k-frequent-elements/</a></p>
+<blockquote>
+<p>要求：O(nlogn)</p>
+</blockquote>
+<p>思路：哈希表快速统计每个元素出现的个数。</p>
+<p>之后使用vector + sort快排。</p>
+<p>主要是哈希表<code>unordered_map</code>和快排函数<code>sort</code>的语法：</p>
+<ul>
+<li>哈希表的访问是first, seconnd</li>
+<li>vector + pair = <code>vector&lt;pair&lt;int, int&gt;&gt;</code>. 元素：pair<int, int=""></int,></li>
+</ul>
+<h2 id="454-4-Sum-II"><a href="#454-4-Sum-II" class="headerlink" title="454. 4 Sum II"></a>454. 4 Sum II</h2><p><a href="https://leetcode.com/problems/4sum-ii/" target="_blank" rel="noopener">https://leetcode.com/problems/4sum-ii/</a></p>
+<p>思路：哈希表 + 分治</p>
+<p>四个数组求A+B并存入<code>unordered_map</code>，遍历C+D的同时在HashMap使用find函数查找。（在哈希表中find比遍历快多了）. 默认O(logn)</p>
+<h2 id="11-Container-With-Most-Water"><a href="#11-Container-With-Most-Water" class="headerlink" title="11. Container With Most Water"></a>11. Container With Most Water</h2><p><a href="https://leetcode.com/problems/container-with-most-water/" target="_blank" rel="noopener">https://leetcode.com/problems/container-with-most-water/</a></p>
+<p>思路：剪枝？</p>
+<p>由于短板效应，在确定左侧为短板的时候，右侧不变（这样container的width不减小）才能容量最大。同理，右侧为短板的时候，左侧不变。</p>
+<p>这种思路下不需要循环，只要确定了哪边为短板后，将短板向内（左侧向右，右侧向左）移动1，另一侧保持不变，继续递归。</p>
+<p>每次递归计算新的container，决定是否更新ans。</p>
+<p>参考：<a href="https://leetcode.com/problems/container-with-most-water/discuss/6099/Yet-another-way-to-see-what-happens-in-the-O(n)-algorithm" target="_blank" rel="noopener">https://leetcode.com/problems/container-with-most-water/discuss/6099/Yet-another-way-to-see-what-happens-in-the-O(n)-algorithm</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    recursive(<span class="number">0</span>, height.size()<span class="number">-1</span>, ans, height);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">recursive</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> &amp; leftIndex, <span class="keyword">const</span> <span class="keyword">int</span> &amp; rightIndex, <span class="keyword">int</span> &amp; ans, <span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(leftIndex == height.size() - <span class="number">1</span> || rightIndex == <span class="number">0</span> || leftIndex &gt;= rightIndex)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> minEdge = min(height[leftIndex], height[rightIndex]);</span><br><span class="line">    ans = (rightIndex - leftIndex) * minEdge &gt; ans ?  (rightIndex - leftIndex) * minEdge : ans; <span class="comment">// 更新container size</span></span><br><span class="line">    <span class="keyword">if</span>(height[leftIndex] == minEdge) &#123; <span class="comment">// 左侧为短边，右侧不用看</span></span><br><span class="line">        recursive(leftIndex + <span class="number">1</span>, rightIndex, ans, height);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; <span class="comment">// 右侧为短边，左侧不用遍历</span></span><br><span class="line">        recursive(leftIndex, rightIndex - <span class="number">1</span>, ans, height);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/LeetCode/" rel="tag"># LeetCode</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/05/软件测试-Homework1/" rel="next" title="软件测试 - Homework1">
+                <i class="fa fa-chevron-left"></i> 软件测试 - Homework1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/07/Data-Mining-Homework-1/" rel="prev" title="Data Mining - Homework 1">
+                Data Mining - Homework 1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动态规划"><span class="nav-number">1.</span> <span class="nav-text">动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#70-Climbing-Stairs"><span class="nav-number">1.1.</span> <span class="nav-text">70. Climbing Stairs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#62-Unique-Paths"><span class="nav-number">1.2.</span> <span class="nav-text">62. Unique Paths</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组和数字"><span class="nav-number">2.</span> <span class="nav-text">数组和数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#238-Product-of-Array-Except-Self"><span class="nav-number">3.</span> <span class="nav-text">238. Product of Array Except Self</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#148-Sort-List"><span class="nav-number">4.</span> <span class="nav-text">148. Sort List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常量指针和指针常量"><span class="nav-number">4.1.</span> <span class="nav-text">常量指针和指针常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#347-Top-K-Frequent-Elements"><span class="nav-number">5.</span> <span class="nav-text">347. Top K Frequent Elements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#454-4-Sum-II"><span class="nav-number">6.</span> <span class="nav-text">454. 4 Sum II</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-Container-With-Most-Water"><span class="nav-number">7.</span> <span class="nav-text">11. Container With Most Water</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="3D GAME DESIGN," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢这篇博客给了我很大的启发~如果想看比较专业的讲解可以点它 :)">
+<meta name="keywords" content="3D GAME DESIGN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVC: Priests and Evils">
+<meta property="og:url" content="http://yoursite.com/2018/04/03/MVC-Priests-and-Evils/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢这篇博客给了我很大的启发~如果想看比较专业的讲解可以点它 :)">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-03T07:33:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MVC: Priests and Evils">
+<meta name="twitter:description" content="What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢这篇博客给了我很大的启发~如果想看比较专业的讲解可以点它 :)">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/03/MVC-Priests-and-Evils/"/>
+
+
+
+
+
+  <title>MVC: Priests and Evils | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/03/MVC-Priests-and-Evils/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">MVC: Priests and Evils</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-03T15:29:13+08:00">
+                2018-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>What’s MVC? 简单地说，MVC是将Model, Controller, View分离开来的设计。但对于一个之前没有了解过MVC的初学者，这种说法太过抽象，让人摸不着头脑。借牧师与魔鬼这个作业说一下我对于这个设计模式的初步思考与认识。在此感谢<a href="">这篇博客</a>给了我很大的启发~如果想看比较专业的讲解可以点它 :)</p>
+<a id="more"></a>
+<p>既然不太知道MVC的整体架构，就先从游戏本身入手：</p>
+<h2 id="Model有哪些？"><a href="#Model有哪些？" class="headerlink" title="Model有哪些？"></a>Model有哪些？</h2><p>首先你要思考游戏中有什么：魔鬼、牧师和船。但只有这些吗？这些的确是显而易见的玩家可控的游戏对象，但对于一个游戏设计者，游戏中的每一个对象都是你要负责的，比如：河岸和河水。虽然它们不会移动，从玩家的视角无法直接操控它们，但如果它们与玩家可控的对象有接触（或者概括为信息交换）就需要纳入考虑范围。</p>
+<p>先从简单的河水说起：河水和谁有接触？船。但河水需要知道船的信息吗？船的位置完全可以用世界坐标由船自己控制，而且河水上面只有一艘船，河水也不需要为船安排位置。</p>
+<p>用对河水的几个问题思考一下河岸呢？就会发现，河岸与魔鬼和牧师有直接接触，而且一方面要安排他们的站位（六个角色总不能挤在一起吧），另一方面要统计他们的人数来判断游戏输赢。</p>
+<h3 id="先用面向对象的方法思考游戏对象"><a href="#先用面向对象的方法思考游戏对象" class="headerlink" title="先用面向对象的方法思考游戏对象"></a>先用面向对象的方法思考游戏对象</h3><p>如前文所说，这个游戏中的游戏对象有：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>游戏对象</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Priests</td>
+<td>游戏中的牧师，用正方体表示。有下船、上岸行为。</td>
+</tr>
+<tr>
+<td>Evils</td>
+<td>游戏中的魔鬼，用球体表示。亦有下船、上岸行为。【可以和牧师作为一类】</td>
+</tr>
+<tr>
+<td>Boat</td>
+<td>游戏中的船，用有木纹贴图的长方体表示。有左移、右移行为。</td>
+</tr>
+<tr>
+<td>Coasts</td>
+<td>游戏中的岸，用有沙滩贴图的长方体。有计数行为。</td>
+</tr>
+<tr>
+<td>water</td>
+<td>游戏中的水，用有水纹贴图的长方体表示。无行为。【不需要构造类】</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>当我们清楚了游戏中有哪些对象的时候，就可以开始考虑controller了。</p>
+<h2 id="Controller控制的是什么？"><a href="#Controller控制的是什么？" class="headerlink" title="Controller控制的是什么？"></a>Controller控制的是什么？</h2><p>最初学习别人的代码时，发现这个游戏有很多带有<code>controller</code>的类。包括：<code>MyCharacterController</code>，<code>CoastController</code>，<code>BoatController</code>以及放在与他们不同的另一个文件中的<code>FirstController</code>（在我的代码中叫<code>mainController</code>）</p>
+<p>所以，Controller可以被分为两种：第一种为GameObjectController，就我目前的理解，我认为controller封装了游戏对象（GameObject类）、控制游戏对象的方法和所需的一些变量（例如位置、标记状态、类别的bool或int等等）；第二种为MainController，简单的说就是调用第一种Controller中定义的方法操作Models的。</p>
+<h3 id="声明GameObjectController中方法时需要考虑的两个重要问题"><a href="#声明GameObjectController中方法时需要考虑的两个重要问题" class="headerlink" title="声明GameObjectController中方法时需要考虑的两个重要问题"></a>声明GameObjectController中方法时需要考虑的两个重要问题</h3><p>我真的觉得这里超级重要，理解了这个之后大概就能初步理解这个设计模式了。</p>
+<ol>
+<li><p>Controller的隔离：一个Controller只能控制自己应该控制的游戏对象，比如：魔鬼上岸的时候，调用<code>getOnCoast(CoastController coast0)</code>控制魔鬼上coast0这个河岸，同时，我们导致了coast0河岸上多了一个魔鬼，但不能够在<code>MyCharacterController</code>试图修改coast0的相关属性（如魔鬼的数量），而应当在<code>CoastController</code>中定义相应的方法接收这一事件。</p>
+</li>
+<li><p>Controller的自治：其实这个是第一条隔离导致的结果，正是不能在一个Controller中定义方法修改另一个Controller的字段，所以每个Controller要定义自己的方法解决这个问题。在上面的例子中：<code>CoastController</code>也有一个<code>getOnCoast(MyCharacterController char0)</code>来让河岸自己应对char0游戏对象上岸这一事件。</p>
+<p><strong>总结起来，这两个问题其实是一个问题，也就是一个变化产生的时候，所有关联的物体都要发生变化：getOnCoast()也要相应地在不同物体中被调用。</strong></p>
+</li>
+</ol>
+<p>三个类中所声明的字段和方法如下，也有相应注释。</p>
+<ul>
+<li>MyCharacterController</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">readonly</span> GameObject character;</span><br><span class="line"><span class="keyword">readonly</span> <span class="keyword">int</span> characterType; <span class="comment">//0-&gt;priest, 1-&gt;evil</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">string</span> name;</span><br><span class="line"><span class="keyword">private</span> CoastController coast;</span><br><span class="line"><span class="keyword">bool</span> onBoat;</span><br><span class="line"><span class="keyword">readonly</span> Moveable moveableScript;</span><br><span class="line"><span class="keyword">private</span> ClickGUI clickGUI;</span><br><span class="line"></span><br><span class="line"><span class="comment">//构造函数：实例化预制，判断是魔鬼或牧师，添加ClickGUI组件和MoveScript脚本（这个之后再说）</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">MyCharacterController</span>(<span class="params"><span class="keyword">string</span> charName</span>)</span>;</span><br><span class="line"><span class="comment">//set/get成员</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span> (<span class="params"><span class="keyword">string</span> newName</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">getName</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPos</span>(<span class="params">Vector3 pos0</span>)</span>;</span><br><span class="line"><span class="comment">//对于岸</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getOnCoast</span>(<span class="params">CoastController coast0</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> CoastController <span class="title">getCoast</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="comment">//对于船</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getOnBoat</span> (<span class="params">BoatController boat0</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">whetherOnBoat</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="comment">//移动 - 这一步暂时用不到</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDestination</span>(<span class="params">Vector3 dest0</span>)</span>;</span><br><span class="line"><span class="comment">//重置 - 用户重新开始时被调用</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reset</span>(<span class="params"></span>)</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>MyBoatController</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">readonly</span> GameObject boat;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> boatState; <span class="comment">//0-&gt;left, 1-&gt;right</span></span><br><span class="line"><span class="keyword">private</span> Vector3 moveLeft = <span class="keyword">new</span> Vector3(<span class="number">-2.0</span>f, <span class="number">-0.25</span>f, <span class="number">0.0</span>f);</span><br><span class="line"><span class="keyword">private</span> Vector3 moveRight = <span class="keyword">new</span> Vector3(<span class="number">2.0</span>f, <span class="number">-0.25</span>f, <span class="number">0.0</span>f);</span><br><span class="line"><span class="keyword">readonly</span> MyCharacterController [] boatCharController = <span class="keyword">new</span> MyCharacterController[<span class="number">2</span>];</span><br><span class="line"><span class="keyword">private</span> Vector3 [] positions;</span><br><span class="line"><span class="keyword">private</span> Moveable moveableScript;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">BoatController</span> (<span class="params"></span>)</span>;</span><br><span class="line"><span class="comment">//set/get成员字段</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> GameObject <span class="title">getBoat</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getBoatState</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="comment">//船上空位管理</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getEmptyIndex</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Vector3 <span class="title">getEmptyPos</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="comment">//统计船上人数</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> [] getCount();</span><br><span class="line"><span class="comment">//游戏角色上下船管理</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">getOnBoat</span>(<span class="params">MyCharacterController char0</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getOffBoat</span>(<span class="params">MyCharacterController char0</span>)</span>;</span><br><span class="line"><span class="comment">//船移动的管理</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveBoat</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="comment">//重置 - 用户重新开始时被调用</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reset</span>(<span class="params"></span>)</span>;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>MyCoastController</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> GameObject coast;</span><br><span class="line"><span class="keyword">private</span> Vector3 leftPos = <span class="keyword">new</span> Vector3(<span class="number">-6</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"><span class="keyword">private</span> Vector3 rightPos = <span class="keyword">new</span> Vector3(<span class="number">6</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"><span class="keyword">readonly</span> <span class="keyword">int</span> coastType; <span class="comment">//0-&gt;left, 1-&gt;right</span></span><br><span class="line"><span class="keyword">private</span> Vector3 [] positions;</span><br><span class="line"><span class="keyword">readonly</span> MyCharacterController [] coastCharController;</span><br><span class="line"></span><br><span class="line"><span class="comment">//构造函数：赋值岸为左岸还是右岸，实例化预制，为岸上六个位置申请内存</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">CoastController</span>(<span class="params"><span class="keyword">string</span> coastLeftOrRight</span>)</span>;</span><br><span class="line"><span class="comment">//set/get字段</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> GameObject <span class="title">getCoast</span>(<span class="params"></span>)；</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getType</span>(<span class="params"></span>)；</span></span><br><span class="line"><span class="function"><span class="comment">//characters位置管理</span></span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getEmptyIndex</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Vector3 <span class="title">getEmptyPos</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="comment">//character上岸、下岸管理</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">getOnCoast</span>(<span class="params">MyCharacterController newChar</span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getOffCoast</span>(<span class="params">MyCharacterController removeChar</span>)</span>;</span><br><span class="line"><span class="comment">//character数目统计，判断输赢时调用</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">int</span> [] getCount ();</span><br><span class="line"><span class="comment">//重置 - 用户重新开始时被调用</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reset</span>(<span class="params"></span>)</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="FirstController需要做什么？"><a href="#FirstController需要做什么？" class="headerlink" title="FirstController需要做什么？"></a>FirstController需要做什么？</h3><p>我暂且理解为对游戏整体的初始化，first顾名思义，应是游戏运行时第一个调用的脚本。</p>
+<ol>
+<li><p>第一步：确定导演</p>
+<p>​    在Awake()函数中先初始化导演。这里需要指出的是导演为单例模式，整个场景中只能有一个导演，否则一群导演一个往东一个往西就会乱套。而导演类中还需要一个场记的<strong>接口</strong>，可以理解为单例的导演需要时常呼叫场记跑来跑去去应对各种外界的事情以及安排演员。</p>
+</li>
+<li><p>第二步：指派场记</p>
+<p>​    将现在FirstController赋值给导演里的场记，之后就可以调用FirstController的类成员函数：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加载资源</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LoadResources</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">LoadCharacters</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="comment">//控制船、对象点击时的变化View的部分会讲到，是IUserAction接口中的方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">moveBoat</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">characterClicked</span>(<span class="params">MyCharacterController charController0</span>)</span>;</span><br><span class="line"><span class="comment">//控制游戏状态</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">restart</span>(<span class="params"></span>)</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">judge</span> (<span class="params"></span>) </span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>第三步：动态加载资源</p>
+<p>​    在Awake里调用场记里面的LoadResources(). </p>
+</li>
+<li><p>第四步：初始化一些游戏变量</p>
+</li>
+</ol>
+<p>另外，考虑到GameObjectController之间最好不要彼此控制，所以在FirstController中，对于一个状态的改变，场记要通过调用不同控制器的相应方法，通知这一改变所涉及的所有游戏对象。如在魔鬼下岸上船这一改变中：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(boat.getBoatState() == <span class="number">1</span> &amp;&amp; charController0.getCoast().getType() == <span class="number">1</span> || boat.getBoatState() == <span class="number">0</span> &amp;&amp; charController0.getCoast().getType() == <span class="number">0</span>) &#123; <span class="comment">//船在右侧且要从右岸上船，或船在左侧要从左岸上船，当然这个函数是用来响应Click事件的（在后一部分会说）</span></span><br><span class="line">	Vector3 emptyPos = boat.getEmptyPos();</span><br><span class="line">	<span class="keyword">if</span>(emptyPos != Vector3.zero) &#123;<span class="comment">//判断船上是否有空位</span></span><br><span class="line">		boat.getOnBoat(charController0);<span class="comment">//告诉船：有人要上船啦，占用船上一个空位</span></span><br><span class="line">		charController0.getOnBoat(boat);<span class="comment">//告诉物体：上船（下岸），改变onBoat属性，且tranform的父类变为船</span></span><br><span class="line">		charController0.setDestination(emptyPos);<span class="comment">//告诉物体：你要去这个地方（这里会在后面的对运动的单独控制中简析）</span></span><br><span class="line">		charController0.getCoast().getOffCoast(charController0);<span class="comment">//告诉岸：一个物体离开了你的怀抱，相应的，岸会多一个空位</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="View需要实现哪些功能？"><a href="#View需要实现哪些功能？" class="headerlink" title="View需要实现哪些功能？"></a>View需要实现哪些功能？</h2><p>View主要负责管理与用户交互的<strong>视图</strong>部分，包括Restart按钮、”You Win”/“Game Over”提示。需要声明<code>IUserAction</code>接口来管理用户行为：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title">IUserAction</span> &#123;</span><br><span class="line">	<span class="comment">//Click事件的响应</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">moveBoat</span>(<span class="params"></span>)</span>;<span class="comment">//用户点击船</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">characterClicked</span>(<span class="params">MyCharacterController charContoller0</span>)</span>;<span class="comment">//用户点击魔鬼或牧师，由于有多个，需要在参数中指出具体是哪个</span></span><br><span class="line">	<span class="comment">//用户点击restart按钮时</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">restart</span>(<span class="params"></span>)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="UserGUI"><a href="#UserGUI" class="headerlink" title="UserGUI"></a>UserGUI</h4><p>新建一个<code>UserGUI</code>类，这个类的主要属性是一个由<code>IUserAction</code>类实例化的<code>action</code>，在<code>Start()</code>函数中为：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//将导演的场记强制转化为用户行为管理</span></span><br><span class="line">action = SSDirector.getInstance().currentSceneController <span class="keyword">as</span> IUserAction;</span><br></pre></td></tr></table></figure>
+<p>（我本来想试着不用强制类型转化，在Director里面再建立一个IUserAction的属性，但会出现无法对接口实例化的问题，目前还没有想到更好的方法只能先强制转化）</p>
+<p>这里Button和Label和上次作业中井字棋差不多用<code>OnGUI()</code>实现，主要思路就是Restart Button被点击的时候，调用<code>IUserAction</code>中的<code>restart()</code>函数。当其中的标记状态的int值改变时，相应的按钮/标签表示即可。</p>
+<h3 id="ClickGUI"><a href="#ClickGUI" class="headerlink" title="ClickGUI"></a>ClickGUI</h3><p>和UserGUI类，当游戏对象被点击时，触发游戏对象所在Controller的相应方法。比如，在boat这个游戏对象接收到点击事件时，会调用<code>BoatController</code>中的<code>moveBoat()</code>函数。这里为了MVC设计模式的层次性，在<code>ClickGUI</code>中调用<code>IUserAction</code>实例的<code>characterClicked(MyCharacterController char0)</code>控制魔鬼和牧师被点击的事件或<code>moveBoat()</code>来控制船的移动，在场记<code>FirstController</code>类（上一步中已经把FirstController赋值给场记了）中再定义相应的方法。</p>
+<h2 id="这三者如何关联起来"><a href="#这三者如何关联起来" class="headerlink" title="这三者如何关联起来"></a>这三者如何关联起来</h2><p>首先，FirstController要继承MonoBehavior和定义的两个接口（<code>IUserBehavior</code>和<code>IScenceController</code>）.</p>
+<p>对于需要接收用户点击事件的游戏对象，需要将ClickGUI类作为一个组件添加上去：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//在MyCharacterController中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MyCharacterController</span> &#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">private</span> ClickGUI clickGUI;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyCharacterController</span>(<span class="params"><span class="keyword">string</span> charName</span>) </span>&#123;</span><br><span class="line">		...</span><br><span class="line">		clickGUI = character.AddComponent(<span class="keyword">typeof</span>(ClickGUI)) <span class="keyword">as</span> ClickGUI;</span><br><span class="line">		clickGUI.setController(<span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在BoatController中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">BoatController</span> &#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">BoatController</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		...</span><br><span class="line">		boat.AddComponent (<span class="keyword">typeof</span>(ClickGUI));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>用户界面类<code>UserGUI</code>控制的是整个场景，和<code>ClickGUI</code>的方法类似，只不过作为组件添加到<code>IScenceController</code>的实例<code>FirstController</code>上。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">public class MainController : MonoBehaviour, ISceneController, IUserAction &#123;</span><br><span class="line">	...</span><br><span class="line">	UserGUI userGUI;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Awake</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		...</span><br><span class="line">		userGUI = gameObject.AddComponent(<span class="keyword">typeof</span>(UserGUI)) <span class="keyword">as</span> UserGUI;</span><br><span class="line">		userGUI.gameOn = <span class="number">1</span>;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="对运动的单独控制"><a href="#对运动的单独控制" class="headerlink" title="对运动的单独控制"></a>对运动的单独控制</h3><p>最开始阅读这个游戏的代码时，会发现和所有Controller放在一个文件下的还有一个<code>Moveable</code>用来控制有位置变化的对象的运动。</p>
+<p>最开始觉得，将position的变化在定义每个改变状态的函数（如<code>MyCharacterController.getOnBoat()</code>），但会发现这里需要改变牧师/魔鬼的<code>onBoat</code>，而且还要将boat的空位作为参数传入或者是在<code>MyCharacterController</code>的函数中调用<code>BoatController</code>的<code>getEmptyPosition()</code>。</p>
+<p>虽然这样做看上去没有大问题，但这里的位置变化并不是简单地从起点到终点直线运动那么简单。因为魔鬼和牧师不可能穿越河岸到船上，所以对于一个折线运动的控制倘若在每个上岸下船、下岸上船的运动中都实现一遍，不仅会增加代码量、出错几率，假如将来运动的轨迹要变得更加复杂或者说有更多的对象要在更多的位置之间移动，还是单独建立一个控制运动的类<code>Moveable</code>比较方便。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Moveable</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">	Vector3 dest;<span class="comment">//目的地绝对坐标</span></span><br><span class="line">	Vector3 middle;<span class="comment">//中间位置绝对坐标</span></span><br><span class="line">	<span class="keyword">int</span> state = <span class="number">0</span>;<span class="comment">//0-&gt;stop, 1-&gt;start-middle, 2-&gt;middle-dest</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> moveSpeed = <span class="number">5</span>;</span><br><span class="line">	<span class="comment">//</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDestination</span>(<span class="params"> Vector3 dest0</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(dest0.y - transform.position.y &lt; <span class="number">0.0000000001</span> &amp;&amp; dest0.y - transform.position.y &gt; <span class="number">-0.0000000001</span>) &#123;<span class="comment">//船移动</span></span><br><span class="line">			dest = dest0;</span><br><span class="line">			state = <span class="number">3</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(dest0.y &gt; transform.position.y) &#123;<span class="comment">//上岸下船 ↑ →</span></span><br><span class="line">			middle.y = dest0.y;</span><br><span class="line">			middle.x = transform.position.x;</span><br><span class="line">			dest = dest0;</span><br><span class="line">			state = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> &#123;<span class="comment">//下岸上船</span></span><br><span class="line">			middle.x = dest0.x;</span><br><span class="line">			middle.y = transform.position.y;</span><br><span class="line">			dest = dest0;</span><br><span class="line">			state = <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外从软件工程多人合作实现一个项目的角度看，将运动的实现单独分出一个人负责实现，而另一个人只需要调用相应的函数，告知目的地，游戏对象即可按照<code>Moveable</code>中定义的轨迹运行而不需了解运动函数内部的实现原理。在更复杂的工程项目中，将各个控制板块分离会更易于分工合作，提高开发效率。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/3D-GAME-DESIGN/" rel="tag"># 3D GAME DESIGN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/01/Week04-Homework/" rel="next" title="Week04 Homework - 游戏对象的运动">
+                <i class="fa fa-chevron-left"></i> Week04 Homework - 游戏对象的运动
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/10/Week05-游戏对象使用总结/" rel="prev" title="Week05 Homework - 游戏对象使用总结">
+                Week05 Homework - 游戏对象使用总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Model有哪些？"><span class="nav-number">1.</span> <span class="nav-text">Model有哪些？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先用面向对象的方法思考游戏对象"><span class="nav-number">1.1.</span> <span class="nav-text">先用面向对象的方法思考游戏对象</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller控制的是什么？"><span class="nav-number">2.</span> <span class="nav-text">Controller控制的是什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#声明GameObjectController中方法时需要考虑的两个重要问题"><span class="nav-number">2.1.</span> <span class="nav-text">声明GameObjectController中方法时需要考虑的两个重要问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FirstController需要做什么？"><span class="nav-number">2.2.</span> <span class="nav-text">FirstController需要做什么？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View需要实现哪些功能？"><span class="nav-number">3.</span> <span class="nav-text">View需要实现哪些功能？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UserGUI"><span class="nav-number">3.0.1.</span> <span class="nav-text">UserGUI</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ClickGUI"><span class="nav-number">3.1.</span> <span class="nav-text">ClickGUI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#这三者如何关联起来"><span class="nav-number">4.</span> <span class="nav-text">这三者如何关联起来</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对运动的单独控制"><span class="nav-number">4.1.</span> <span class="nav-text">对运动的单独控制</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

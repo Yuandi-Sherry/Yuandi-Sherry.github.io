@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="3D GAME DESIGN," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="游戏对象运动的本质是什么？ 游戏对象运动的本质是通过在极短时间Time.deltaTime内改变游戏对象的transform.position实现运动效果的。  请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…） 方法一【计算每一时刻x, y方向的分速度】：根据斜抛公式计算物体每个Time.deltaTime内沿x,y方向的分速度，用Ve">
+<meta name="keywords" content="3D GAME DESIGN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Week04 Homework - 游戏对象的运动">
+<meta property="og:url" content="http://yoursite.com/2018/04/01/Week04-Homework/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="游戏对象运动的本质是什么？ 游戏对象运动的本质是通过在极短时间Time.deltaTime内改变游戏对象的transform.position实现运动效果的。  请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…） 方法一【计算每一时刻x, y方向的分速度】：根据斜抛公式计算物体每个Time.deltaTime内沿x,y方向的分速度，用Ve">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/Yuandi-Sherry/3DGameDesign/blob/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/4.1sun%E7%BB%93%E6%9E%84.PNG?raw=true">
+<meta property="og:image" content="https://github.com/Yuandi-Sherry/3DGameDesign/blob/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/4.2%E5%A4%AA%E9%98%B3%E7%B3%BB%E6%95%88%E6%9E%9C%E5%9B%BE.PNG?raw=true">
+<meta property="og:updated_time" content="2018-04-01T13:18:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week04 Homework - 游戏对象的运动">
+<meta name="twitter:description" content="游戏对象运动的本质是什么？ 游戏对象运动的本质是通过在极短时间Time.deltaTime内改变游戏对象的transform.position实现运动效果的。  请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…） 方法一【计算每一时刻x, y方向的分速度】：根据斜抛公式计算物体每个Time.deltaTime内沿x,y方向的分速度，用Ve">
+<meta name="twitter:image" content="https://github.com/Yuandi-Sherry/3DGameDesign/blob/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/4.1sun%E7%BB%93%E6%9E%84.PNG?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/01/Week04-Homework/"/>
+
+
+
+
+
+  <title>Week04 Homework - 游戏对象的运动 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/01/Week04-Homework/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Week04 Homework - 游戏对象的运动</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T17:50:34+08:00">
+                2018-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="游戏对象运动的本质是什么？"><a href="#游戏对象运动的本质是什么？" class="headerlink" title="游戏对象运动的本质是什么？"></a>游戏对象运动的本质是什么？</h2><ul>
+<li>游戏对象运动的本质是通过在极短时间<code>Time.deltaTime</code>内改变游戏对象的<code>transform.position</code>实现运动效果的。</li>
+</ul>
+<h2 id="请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…）"><a href="#请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…）" class="headerlink" title="请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…）"></a>请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…）</h2><ol>
+<li><p>方法一【计算每一时刻x, y方向的分速度】：根据斜抛公式计算物体每个Time.deltaTime内沿x,y方向的分速度，用<code>Vector3*Time.deltaTime</code>计算每个deltaTime过后物体的所在位置。</p>
+<ul>
+<li><p>分速度计算公式如下：</p>
+<p>​    为简便计算，假设物体斜抛的水平方向初速度为<code>initialVelocityRight</code>，竖直方向初速度为<code>initialVelocityUp</code>：</p>
+<ul>
+<li>$ V_x = initialVelocityRight $</li>
+<li>$ V_y = initialVelocityUp - g\sum\delta t $</li>
+</ul>
+</li>
+<li><p>关键代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	count += Time.deltaTime; <span class="comment">//计算从抛出到当前时刻经过的时间</span></span><br><span class="line">	transform.position += <span class="keyword">new</span> Vector3(initialVelocityRight, initialVelocityUp<span class="number">-9.8</span>f*count, <span class="number">0.0</span>f)*Time.deltaTime;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+</li>
+<li><p>方法二【计算物体每一时刻的和速度和位置】：和方法一类似，根据斜抛公式计算物体每一时刻的位移向量，根据能量守恒公式计算物体某一时刻的合速度。</p>
+<p>​    运用<code>MoveTowards</code>函数，它表示的是表示以<code>maxDistanceDelta</code>速度从<code>current</code>直线移动到<code>target</code>：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Vector3 <span class="title">MoveTowards</span>(<span class="params">Vector3 current, Vector3 target, <span class="keyword">float</span> maxDistanceDelta</span>)</span>;</span><br></pre></td></tr></table></figure>
+<p>可以将<code>current</code> 设置为物体当前位置，<code>target</code>设置为物体目标位置，<code>maxDistanceDelta</code>用能量守恒计算的某一时刻的合速度得到。</p>
+<p>​    虽然从current到target不是真正的速度方向，由于$\delta t$很短，可以将位移方向近似为速度方向。</p>
+<ul>
+<li><p>关键代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    count += Time.deltaTime;</span><br><span class="line">    <span class="comment">//极短时间内的下一个位置</span></span><br><span class="line">    Vector3 nextPos = <span class="keyword">new</span> Vector3(initialVelocityRight*count, initialVelocityUp* count - <span class="number">0.5</span>f*<span class="number">9.8</span>f*count*count);</span><br><span class="line">    <span class="comment">//能量守恒计算此时的和速度</span></span><br><span class="line">    <span class="keyword">float</span> currentSpeed = Mathf.Sqrt(initialVelocityRight*initialVelocityRight+initialVelocityUp*initialVelocityUp - <span class="number">2</span>*<span class="number">9.8</span>f*(initialVelocityUp* count - <span class="number">0.5</span>f*<span class="number">9.8</span>f*count*count));</span><br><span class="line">    <span class="comment">//因为这里的deltaTime是很小的，所以速度方向近似等于位移方向</span></span><br><span class="line">    transform.position = Vector3.MoveTowards(transform.position, nextPos, currentSpeed*Time.deltaTime);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>方法三【给定物体初速度并添加恒力】：通过rigidbody模拟给物体施加重力，并设置初速度。</p>
+<ul>
+<li><p>关键代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	gameObject.AddComponent&lt;Rigidbody&gt;(); <span class="comment">//添加rigidbody组件</span></span><br><span class="line">	rb = gameObject.GetComponent&lt;Rigidbody&gt;();</span><br><span class="line">	rb.useGravity = <span class="literal">true</span>;<span class="comment">//添加重力</span></span><br><span class="line">	rb.velocity = <span class="keyword">new</span> Vector3(initialVelocityRight, initialVelocityUp, <span class="number">0.0</span>f);<span class="comment">//设置初速度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="写一个程序，实现一个完整的太阳系，-其他星球围绕太阳的转速必须不一样，且不在一个法平面上。"><a href="#写一个程序，实现一个完整的太阳系，-其他星球围绕太阳的转速必须不一样，且不在一个法平面上。" class="headerlink" title="写一个程序，实现一个完整的太阳系， 其他星球围绕太阳的转速必须不一样，且不在一个法平面上。"></a>写一个程序，实现一个完整的太阳系， 其他星球围绕太阳的转速必须不一样，且不在一个法平面上。</h2><p>​    这个程序中用到的函数主要有：</p>
+<ol>
+<li><p><code>RotateAround</code>：用于控制八大行星绕太阳的公转和月亮绕地球的公转</p>
+<blockquote>
+<p><code>public void RotateAround(Vector3 point, Vector3 axis, float angle)</code></p>
+<p>​    Rotates the transform about <code>axis</code> passing through <code>point</code> in world coordinates by <code>angle</code> degrees.</p>
+</blockquote>
+</li>
+<li><p><code>Rotate</code>：用于控制行星的自转</p>
+<blockquote>
+<p><code>public void Rotate(Vector3 eulerAngles, Space relativeTo = Space.Self)</code></p>
+<p>​    Applies a rotation of <code>eulerAngles.z</code> degrees around the z axis, <code>eulerAngles.x</code> degrees around the x axis, and <code>eulerAngles.y</code>degrees around the y axis (in that order).</p>
+<p>​    If <code>relativeTo</code> is not specified or set to Space.Self the rotation is applied around the transform’s local axes. If <code>relativeTo</code> is set to Space.World the rotation is applied around the world x, y, z axes.</p>
+</blockquote>
+<ul>
+<li>第一步：创建Sphere作为太阳、八大行星、月球，贴图Sphere，这个<a href="https://tieba.baidu.com/p/4876471245?red_tag=0043515197" target="_blank" rel="noopener">连接</a>有比较好看的贴图；并在Hierarchy构造好他们的继承关系。（如果愿意的话可以查一下各个行星的大小比例会做得更逼真一点）</li>
+</ul>
+<p><img src="https://github.com/Yuandi-Sherry/3DGameDesign/blob/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/4.1sun%E7%BB%93%E6%9E%84.PNG?raw=true" alt="hierarchy in sun system"></p>
+<ul>
+<li>第二步：Start函数初始化行星环绕半径以及所在法平面。这里初始化直接根据八大行星的半径进行相对位置的初始化（其中太阳的位置我设置在原点），然后用<a href="https://docs.unity3d.com/ScriptReference/Random.Range.html" target="_blank" rel="noopener"><code>public static float Range(float min, float max)</code></a>随机RotateAround中aixs参数的值。</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	sun.position = Vector3.zero;</span><br><span class="line">	Mercury.position = <span class="keyword">new</span> Vector3 (<span class="number">6</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	...</span><br><span class="line">	Neptune.position = <span class="keyword">new</span> Vector3 (<span class="number">32</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">	axisMercury = <span class="keyword">new</span> Vector3 (<span class="number">0</span>, Random.Range(<span class="number">0</span>, <span class="number">100</span>), Random.Range(<span class="number">0</span>, <span class="number">100</span>));</span><br><span class="line">	...</span><br><span class="line">	axisNeptune = <span class="keyword">new</span> Vector3 (<span class="number">0</span>, Random.Range(<span class="number">0</span>, <span class="number">100</span>), Random.Range(<span class="number">0</span>, <span class="number">100</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第三步：Update函数中每个极短时间deltaTime内用两个旋转函数更新自转和公转的状态。 </li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="comment">//RotateAround第三个参数都是不同的</span></span><br><span class="line">	Mercury.RotateAround (sun.position, axisMercury, <span class="number">20</span>*Time.deltaTime);</span><br><span class="line">	Mercury.Rotate (Vector3.up*<span class="number">50</span>*Time.deltaTime);</span><br><span class="line">	...</span><br><span class="line">	Earth.RotateAround (sun.position, axisEarth, <span class="number">10</span>*Time.deltaTime);</span><br><span class="line">	Earth.Rotate (Vector3.up*<span class="number">30</span>*Time.deltaTime);</span><br><span class="line">	moon.transform.RotateAround (Earth.position, Vector3.up, <span class="number">359</span> * Time.deltaTime);</span><br><span class="line">	...</span><br><span class="line">	Neptune.RotateAround (sun.position, axisNeptune, <span class="number">4</span>*Time.deltaTime);</span><br><span class="line">	Neptune.Rotate (Vector3.up*<span class="number">30</span>*Time.deltaTime);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>最后把这个脚本挂在sun上面就可以啦~效果如下：</li>
+</ul>
+<p><img src="https://github.com/Yuandi-Sherry/3DGameDesign/blob/master/%E7%AE%80%E7%AD%94%E9%A2%98%E9%85%8D%E5%9B%BE/4.2%E5%A4%AA%E9%98%B3%E7%B3%BB%E6%95%88%E6%9E%9C%E5%9B%BE.PNG?raw=true" alt="效果图"></p>
+<p>这幅图大概做了一下各个行星比例的不同，实际太阳系各个行星的比例更加悬殊 :-|</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/3D-GAME-DESIGN/" rel="tag"># 3D GAME DESIGN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/28/Typora to Github-Page/" rel="next" title="Typora编辑的markdown文本post到Github Page时遇到的坑">
+                <i class="fa fa-chevron-left"></i> Typora编辑的markdown文本post到Github Page时遇到的坑
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/03/MVC-Priests-and-Evils/" rel="prev" title="MVC: Priests and Evils">
+                MVC: Priests and Evils <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#游戏对象运动的本质是什么？"><span class="nav-number">1.</span> <span class="nav-text">游戏对象运动的本质是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…）"><span class="nav-number">2.</span> <span class="nav-text">请用三种方法以上方法，实现物体的抛物线运动。（如，修改Transform属性，使用向量Vector3的方法…）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写一个程序，实现一个完整的太阳系，-其他星球围绕太阳的转速必须不一样，且不在一个法平面上。"><span class="nav-number">3.</span> <span class="nav-text">写一个程序，实现一个完整的太阳系， 其他星球围绕太阳的转速必须不一样，且不在一个法平面上。</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

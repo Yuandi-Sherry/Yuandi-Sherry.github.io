@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MockingBot," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="安装首先去官网下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。 最初有几天的试用期，之后就需要续费了。下面正式开始吧~ 创建项目最开始新建项目就是基础的选择设备，建立一个完全空白的项目。 由于我们组要做微信小程序，因此选择手机。  实际上也可以选择右侧的从模板中创建项目，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。 基础操作">
+<meta name="keywords" content="MockingBot">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原型设计软件MockingBot学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/05/18/原型设计软件MockingBot学习笔记/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="安装首先去官网下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。 最初有几天的试用期，之后就需要续费了。下面正式开始吧~ 创建项目最开始新建项目就是基础的选择设备，建立一个完全空白的项目。 由于我们组要做微信小程序，因此选择手机。  实际上也可以选择右侧的从模板中创建项目，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。 基础操作">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeO7F0.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeOLSU.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeOjOJ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeOxm9.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeOzwR.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXat0.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeX36g.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeOXy4.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXST1.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXUkq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXt7n.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXY0s.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXdhV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeOHYV.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeOOlF.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeOooq.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXCY6.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeX9Fx.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXFSO.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXPfK.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXklD.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXA6e.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXEOH.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXZmd.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXe0A.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXukt.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXmTI.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXMff.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXlp8.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeX11S.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeX8XQ.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZeXJmj.png">
+<meta property="og:image" content="https://s2.ax1x.com/2019/06/26/ZmFwyq.gif">
+<meta property="og:updated_time" content="2019-06-26T12:09:36.809Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原型设计软件MockingBot学习笔记">
+<meta name="twitter:description" content="安装首先去官网下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。 最初有几天的试用期，之后就需要续费了。下面正式开始吧~ 创建项目最开始新建项目就是基础的选择设备，建立一个完全空白的项目。 由于我们组要做微信小程序，因此选择手机。  实际上也可以选择右侧的从模板中创建项目，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。 基础操作">
+<meta name="twitter:image" content="https://s2.ax1x.com/2019/06/26/ZeO7F0.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/18/原型设计软件MockingBot学习笔记/"/>
+
+
+
+
+
+  <title>原型设计软件MockingBot学习笔记 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/18/原型设计软件MockingBot学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">原型设计软件MockingBot学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-18T11:34:18+08:00">
+                2019-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>首先去<a href="https://modao.cc/" target="_blank" rel="noopener">官网</a>下载安装包并进行安装，这个解压后直接是一个可运行exe. 最开始运行失败可以考虑重装一下。</p>
+<p>最初有几天的试用期，之后就需要续费了。下面正式开始吧~</p>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>最开始新建项目就是基础的选择设备，建立一个完全空白的项目。</p>
+<p>由于我们组要做微信小程序，因此选择手机。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeO7F0.png" width="500"></p>
+<p>实际上也可以选择右侧的<code>从模板中创建项目</code>，但是没有发现很符合我们的产品需求的组件。因此这里我还是选择从空白项目做起了。</p>
+<h2 id="基础操作"><a href="#基础操作" class="headerlink" title="基础操作"></a>基础操作</h2><h3 id="添加页面"><a href="#添加页面" class="headerlink" title="添加页面"></a>添加页面</h3><p>左上角<code>添加新页面</code>就可以根据创建项目。</p>
+<h3 id="添加组件"><a href="#添加组件" class="headerlink" title="添加组件"></a>添加组件</h3><p>添加组件有三个方法：</p>
+<ol>
+<li><p>最左侧边栏（左图）：根据图标一目了然为文字、矩形、原型、直线、图片、链接</p>
+<center>
+<figure class="half">
+    <img src="https://s2.ax1x.com/2019/06/26/ZeOLSU.png" width="50">
+    <img src="https://s2.ax1x.com/2019/06/26/ZeOjOJ.png" width="50">
+</figure>
+</center>
+</li>
+<li><p>右侧边栏（右图）</p>
+<p>第一个是状态（主要用于动态组件，后面会说）。横线下面第一个提供了很多内置组件（如右图），还有IOS风格的弹窗、按钮、键盘等。（因此我觉得有了很多方便的内置组件，其实也就不需要最开始的模板了）。</p>
+<p>第二个为我的组件，在设计过程中有很多需要复用的部分，比如我们的项目中选择学科和年级的地方既需要在个人资料那里显示，也需要问卷发布者在限制接收者的时候用作限制。我一般会把需要复用的内容打包成我的组件，以便在后面的页面中使用。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeOxm9.png" width="200"></p>
+<p>第三个为图标，有三个图标集合，都是些常用的图标，比起自己一个个去上网寻找还是很方便的。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeOzwR.png" width="200"></p>
+</li>
+</ol>
+<p>最后一个为母版，是一个可以有多个状态的组件设计，这里在tab切换时比较好用，下面会介绍。</p>
+<blockquote>
+<p>注意母版如果被修改，则所有嵌入该组件的地方都会修改，因此在不同的地方复用需要修改最好重新建立母版。</p>
+</blockquote>
+<h3 id="设置组件属性"><a href="#设置组件属性" class="headerlink" title="设置组件属性"></a>设置组件属性</h3><p>右侧边栏调整页面大小、底色，点击每个组件的时候右侧调节对应的字体、字号、底色、圆角、阴影等等都一目了然。不过多介绍了。</p>
+<h3 id="添加跳转连接"><a href="#添加跳转连接" class="headerlink" title="添加跳转连接"></a>添加跳转连接</h3><p>原型和UI设计图最大的区别在于有动态的页面跳转。这个在墨刀中的实现只需要一步简单地拖动即可完成。</p>
+<ul>
+<li><p>选择任意想要添加链接的按钮/文本，拖动闪电形状的按钮：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeXat0.png" width="200"></p>
+<p>拖拽到要跳转到的页面上：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeX36g.png" width="600"></p>
+</li>
+</ul>
+<h3 id="辅助线"><a href="#辅助线" class="headerlink" title="辅助线"></a>辅助线</h3><p>很多时候，为了保证软件的美观，我们需要各种左对齐、居中对齐等等，尽管页面可以显示网格的参考线（如下图），但很费眼睛。</p>
+<center>
+    <figure>
+        <img src="https://s2.ax1x.com/2019/06/26/ZeOXy4.png" width="200">
+        <img src="https://s2.ax1x.com/2019/06/26/ZeXST1.png" width="200">
+    </figure>
+</center>
+
+<p>整个窗口的上方和左侧有一个像尺子一样的东西，可以在上面绘制辅助线，这样对齐某些文本框和按钮就方便了很多。</p>
+<h2 id="进阶操作"><a href="#进阶操作" class="headerlink" title="进阶操作"></a>进阶操作</h2><h3 id="动态组件和母版"><a href="#动态组件和母版" class="headerlink" title="动态组件和母版"></a>动态组件和母版</h3><ul>
+<li>如果原型中每个界面都是静态，则和平面设计图没有很大的区别，也不能很好地辅助前端进行编码。因此有时候还需要界面内的变化</li>
+<li>使用过程中个人认为动态组件和母版是差不多的，总结一下微小的区别以免在使用中踩坑：</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>动态组件</th>
+<th>母版</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>修改内容</td>
+<td>其他的已经嵌入原型的相同组件<strong>不会</strong>被更改</td>
+<td>其他的已经嵌入原型的相同组件<strong>会</strong>被更改</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><ul>
+<li><p>比如下面的例子中，两个选择学科都来自同一个母版</p>
+<center>
+    <figure>
+        <img src="https://s2.ax1x.com/2019/06/26/ZeXUkq.png" width="200">
+        <img src="https://s2.ax1x.com/2019/06/26/ZeXt7n.png" width="200">
+    </figure>
+</center>
+</li>
+<li><p>假设我从第一个页面进入，编辑了母版</p>
+<ul>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXY0s.png" width="200"></li>
+</ul>
+</li>
+<li><p>结果如下</p>
+<ul>
+<li><center>
+<img src="https://s2.ax1x.com/2019/06/26/ZeXdhV.png" width="200">
+    <img src="https://s2.ax1x.com/2019/06/26/ZeOHYV.png" width="200">
+</center>
+
+<p>两个引用母版的地方都被修改。</p>
+</li>
+<li><p>但其实如果将母版转换为动态组件后再进行修改就不会有问题</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="动态组件和母版的转换"><a href="#动态组件和母版的转换" class="headerlink" title="动态组件和母版的转换"></a>动态组件和母版的转换</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>动态组件 -&gt; 母版</th>
+<th>母版 -&gt; 动态组件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>转换方法</td>
+<td><img src="https://s2.ax1x.com/2019/06/26/ZeOOlF.png" width="200"></td>
+<td><img src="https://s2.ax1x.com/2019/06/26/ZeOooq.png" width="300"></td>
+</tr>
+<tr>
+<td>效果</td>
+<td>双击修改动态组件，另一个页面的母版不会发生改变</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="常见应用"><a href="#常见应用" class="headerlink" title="常见应用"></a>常见应用</h3><h4 id="底边栏切换"><a href="#底边栏切换" class="headerlink" title="底边栏切换"></a>底边栏切换</h4><h5 id="外观"><a href="#外观" class="headerlink" title="外观"></a>外观</h5><p>我们的项目中主要分了三个边栏：主页、任务页和个人页。因此底边栏只需要三个图标。</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeXCY6.png" width="300"></p>
+<h5 id="转化为母版"><a href="#转化为母版" class="headerlink" title="转化为母版"></a>转化为母版</h5><p>下面就需要转换为动态组件然后添加状态了：</p>
+<ul>
+<li>首先选中三个图标和背景，右键选择<code>转换为母版</code>ZeX9Fx</li>
+</ul>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeX9Fx.png" width="300"></p>
+<ul>
+<li><p>之后把鼠标放到上面就会出现<code>双击编辑母版</code></p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeXFSO.png" width="300"></p>
+</li>
+</ul>
+<h5 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h5><p>由于需要动态切换，需要在这个模板中添加不同的状态：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>主页按钮</th>
+<th>任务页按钮</th>
+<th>个人页按钮</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主页</td>
+<td>\</td>
+<td>-&gt; 任务页</td>
+<td>-&gt; 个人页</td>
+</tr>
+<tr>
+<td>任务页</td>
+<td>-&gt; 主页</td>
+<td>\</td>
+<td>-&gt; 个人页</td>
+</tr>
+<tr>
+<td>个人页</td>
+<td>-&gt; 主页</td>
+<td>-&gt; 任务页</td>
+<td>\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>右上角的类似靶心的图标可以对母版的状态进行管理，比如这里需要三个状态ZeXPfK</li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXPfK.png" width="200"></li>
+<li><p>全局状态可以同时修改所有状态的组件（添加删除等）以及组件属性；默认状态用于当母版添加到原型中没有选择状态的时候展示的内容</p>
+</li>
+<li><p>下面需要根据每个状态修改状态中的外观：</p>
+<ul>
+<li>个人主页<ul>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXklD.png" width="400"></li>
+</ul>
+</li>
+<li>主页<ul>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXA6e.png" width="400"></li>
+</ul>
+</li>
+<li>任务页<ul>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXEOH.png" width="400"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="添加链接"><a href="#添加链接" class="headerlink" title="添加链接"></a>添加链接</h5><ul>
+<li>在小程序中，程序中的切换一般有两种方式：1. 页面内切换 2. 页面间切换</li>
+</ul>
+<h6 id="切换状态"><a href="#切换状态" class="headerlink" title="切换状态"></a>切换状态</h6><ul>
+<li>页面内的切换对应着母版中不同状态间的切换，同一页面的状态共享部分组件</li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXZmd.png" width="500"></li>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXe0A.png" width="200"></li>
+</ul>
+<h6 id="切换页面"><a href="#切换页面" class="headerlink" title="切换页面"></a>切换页面</h6><ul>
+<li><p>可以发现当编辑母版的时候，左侧的页面列表不见了，需要返回工作区到母版所在的页面上选择对应的状态进行修改：</p>
+<ul>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXukt.png" width="500"></li>
+</ul>
+<p>这里需要在母版所在的页面对选择对应的状态，对链接进行修改，添加链接的方法和对于基础组件一样（这里以在主页的底边栏为例）</p>
+<ul>
+<li><p><img src="https://s2.ax1x.com/2019/06/26/ZeXmTI.png" width="500"></p>
+</li>
+<li><p>然后选中其中具体的图标链接到对应界面</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeXMff.png" width="600"></p>
+</li>
+</ul>
+</li>
+<li><p>记得还需要设置这个母版当前的默认状态（右侧边栏）：</p>
+<ul>
+<li><img src="https://s2.ax1x.com/2019/06/26/ZeXlp8.png" width="200"></li>
+</ul>
+</li>
+</ul>
+<h4 id="Tab切换"><a href="#Tab切换" class="headerlink" title="Tab切换"></a>Tab切换</h4><ul>
+<li>这里和底边栏切换使用的都是母版，区别在于这里点击tab的切换是界面内状态的切换，而不是页面的切换（当然用页面切换也可以实现）</li>
+</ul>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul>
+<li><p>首先需要在全局状态下部署需要的组件</p>
+<blockquote>
+<p>一个页面中的不同状态组件是共享的，因此如果在某个状态删除了一个组件，则其他状态也会删除。我会选择将某个状态不需要的组件移除屏幕范围</p>
+</blockquote>
+</li>
+<li><p><img src="https://s2.ax1x.com/2019/06/26/ZeX11S.png" width="200"></p>
+</li>
+<li><p>添加状态，然后对<code>我接收的</code>页面进行布局：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeX8XQ.png" width="200"></p>
+</li>
+<li><p>之后的步骤就是页面间状态的切换了，这里就是</p>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>点击<code>我接收的</code></th>
+<th>点击<code>我发布的</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>我接收的</td>
+<td>\</td>
+<td>跳转到<code>我发布的</code>状态</td>
+</tr>
+<tr>
+<td>我发布的</td>
+<td>跳转到<code>我接受的</code>状态</td>
+<td>\</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>  在右侧进行设置：</p>
+<p><img src="https://s2.ax1x.com/2019/06/26/ZeXJmj.png" width="400"></p>
+<h4 id="预览效果"><a href="#预览效果" class="headerlink" title="预览效果"></a>预览效果</h4><p><img src="https://s2.ax1x.com/2019/06/26/ZmFwyq.gif" width="300" alt="demo.gif" border="0"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MockingBot/" rel="tag"># MockingBot</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/04/系统分析与设计-Homework9/" rel="next" title="系统分析与设计 - Homework9">
+                <i class="fa fa-chevron-left"></i> 系统分析与设计 - Homework9
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/20/vim使用记录/" rel="prev" title="vim使用记录">
+                vim使用记录 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">2.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础操作"><span class="nav-number">3.</span> <span class="nav-text">基础操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加页面"><span class="nav-number">3.1.</span> <span class="nav-text">添加页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加组件"><span class="nav-number">3.2.</span> <span class="nav-text">添加组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置组件属性"><span class="nav-number">3.3.</span> <span class="nav-text">设置组件属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加跳转连接"><span class="nav-number">3.4.</span> <span class="nav-text">添加跳转连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助线"><span class="nav-number">3.5.</span> <span class="nav-text">辅助线</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶操作"><span class="nav-number">4.</span> <span class="nav-text">进阶操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动态组件和母版"><span class="nav-number">4.1.</span> <span class="nav-text">动态组件和母版</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实例"><span class="nav-number">4.1.1.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态组件和母版的转换"><span class="nav-number">4.1.2.</span> <span class="nav-text">动态组件和母版的转换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见应用"><span class="nav-number">4.2.</span> <span class="nav-text">常见应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#底边栏切换"><span class="nav-number">4.2.1.</span> <span class="nav-text">底边栏切换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#外观"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">外观</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#转化为母版"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">转化为母版</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#状态"><span class="nav-number">4.2.1.3.</span> <span class="nav-text">状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#添加链接"><span class="nav-number">4.2.1.4.</span> <span class="nav-text">添加链接</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#切换状态"><span class="nav-number">4.2.1.4.1.</span> <span class="nav-text">切换状态</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#切换页面"><span class="nav-number">4.2.1.4.2.</span> <span class="nav-text">切换页面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tab切换"><span class="nav-number">4.2.2.</span> <span class="nav-text">Tab切换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">4.2.3.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预览效果"><span class="nav-number">4.2.4.</span> <span class="nav-text">预览效果</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

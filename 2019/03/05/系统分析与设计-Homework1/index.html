@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Software System Analysis and Design," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="简答题1. 软件工程的定义软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。 2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法根本原因造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系">
+<meta name="keywords" content="Software System Analysis and Design">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系统分析与设计 - Homework1">
+<meta property="og:url" content="http://yoursite.com/2019/03/05/系统分析与设计-Homework1/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="简答题1. 软件工程的定义软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。 2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法根本原因造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-04T16:37:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="系统分析与设计 - Homework1">
+<meta name="twitter:description" content="简答题1. 软件工程的定义软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。 2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法根本原因造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/05/系统分析与设计-Homework1/"/>
+
+
+
+
+
+  <title>系统分析与设计 - Homework1 | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/系统分析与设计-Homework1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">系统分析与设计 - Homework1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-05T00:22:44+08:00">
+                2019-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简答题"><a href="#简答题" class="headerlink" title="简答题"></a>简答题</h2><h3 id="1-软件工程的定义"><a href="#1-软件工程的定义" class="headerlink" title="1. 软件工程的定义"></a>1. 软件工程的定义</h3><p>软件工程是指导计算机软件开发和维护的工程学科，结合了工程、管理和技术的方法，是将系统的、规范的、可度量的方法应用于软件的开发、运行和维护的过程。</p>
+<h3 id="2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法"><a href="#2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法" class="headerlink" title="2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法"></a>2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法</h3><h5 id="根本原因"><a href="#根本原因" class="headerlink" title="根本原因"></a>根本原因</h5><p>造成软件危机的本质原因是计算机性能和软件复杂性的快速增长导致了当前的解决方案不能胜任，是软件的大量需求和软件生产效率之间的矛盾和软件系统复杂性和软件开发方法之间的矛盾。</p>
+<a id="more"></a>
+<h5 id="表现"><a href="#表现" class="headerlink" title="表现"></a>表现</h5><p>其表现为下列几点：</p>
+<ol>
+<li>项目超预算</li>
+<li>项目超时</li>
+<li>软件低效</li>
+<li>软件低质量</li>
+<li>软件经常不满足需求</li>
+<li>程序不能管理、代码不易维护</li>
+<li>软件不发布</li>
+</ol>
+<h5 id="克服软件危机的方法"><a href="#克服软件危机的方法" class="headerlink" title="克服软件危机的方法"></a>克服软件危机的方法</h5><ol>
+<li>采用工程项目管理的方法组织管理软件开发，使其成为一种组织良好、管理严密、协同配合的活动。</li>
+<li>采用成熟的开发方法和技术，使用适合且高效的软件开发工具。</li>
+<li>正确认识到软件的本质。</li>
+</ol>
+<h3 id="3-软件生命周期"><a href="#3-软件生命周期" class="headerlink" title="3. 软件生命周期"></a>3. 软件生命周期</h3><p>软件生命周期为软件产生直到报废的生命周期，其在时间维度将软件项目根据软件特点进行任务划分。</p>
+<h3 id="4-SWEBoK-的-15-个知识域（An-Overview-of-the-SWEBOK-Guide-请中文翻译其名称与简短说明）"><a href="#4-SWEBoK-的-15-个知识域（An-Overview-of-the-SWEBOK-Guide-请中文翻译其名称与简短说明）" class="headerlink" title="4. SWEBoK 的 15 个知识域（An Overview of the SWEBOK Guide 请中文翻译其名称与简短说明）"></a>4. SWEBoK 的 15 个知识域（<a href="https://www.sebokwiki.org/wiki/An_Overview_of_the_SWEBOK_Guide" target="_blank" rel="noopener">An Overview of the SWEBOK Guide</a> 请中文翻译其名称与简短说明）</h3><h5 id="软件需求"><a href="#软件需求" class="headerlink" title="软件需求"></a>软件需求</h5><ul>
+<li>软件需求知识域关于软件需求的启发、商讨、分析、规格以及确认验证。</li>
+<li>如果上述关于软件需求的活动没有良好地执行，则软件工程项目将会十分脆弱，这一表述在软件工业界是被广泛认可的。</li>
+<li>软件需求表达了对于一个有益于解决现实世界问题的软件产品的需要和限制。</li>
+</ul>
+<h5 id="软件设计"><a href="#软件设计" class="headerlink" title="软件设计"></a>软件设计</h5><ul>
+<li>软件设计知识域包含了设计过程和结果产品。</li>
+<li>软件设计过程软件工程生命周期中的活动，其间为了得到对于软件内部结构和作为架构基础的行为的描述而进行软件需求分析。</li>
+<li>软件设计产生的结果必须描述软件架构——软件是如何分解、组织为一个个组件的，以及这些组件之间的接口；还需要较为详细的描述这些组件使得其构造过程可行。</li>
+</ul>
+<h5 id="软件构造"><a href="#软件构造" class="headerlink" title="软件构造"></a>软件构造</h5><ul>
+<li>软件构造为通过详细设计、编码、单元测试、综合测试、debug和验证的组合，得到的工作软件的详细构造。</li>
+<li>软件构造知识域涵盖了关于满足需求和设计规范的软件程序发展的话题。</li>
+<li>这一知识域覆盖了软件构造基础、管理软件构造、构造技术、实用性考虑和软件构造工具。</li>
+</ul>
+<h5 id="软件测试"><a href="#软件测试" class="headerlink" title="软件测试"></a>软件测试</h5><ul>
+<li>测试是一个用于评估产品质量、通过检测缺陷提升产品的活动。</li>
+<li>软件测试包括对于违背了预期行为的软件行为在有限测试集合的动态认证（这些测试样例是从通常较大的执行域中选取的）。</li>
+<li>软件测试知识域包括软件测试基础、测试技术、人及用户交互测试和评价、测试有关的方法和实用性考虑。</li>
+</ul>
+<h5 id="软件维护"><a href="#软件维护" class="headerlink" title="软件维护"></a>软件维护</h5><ul>
+<li>软件维护包括提升现有功能、调整软件使其能够在新的修复过的操作环境中执行和修正缺陷。这些类别被称为完善的、适应的和修正的软件维护。</li>
+<li>软件维护知识域涵盖了软件维护基础、软件维护中的关键事件、维护过程、软件维护技术、灾难恢复技术和软件维护工具。</li>
+</ul>
+<h5 id="软件配置管理"><a href="#软件配置管理" class="headerlink" title="软件配置管理"></a>软件配置管理</h5><ul>
+<li>软件配置管理是确定一个系统在不同时间点上为了系统控制配置变化的目的而进行的配置和在整个软件生命中其中维护配置的完整性和可追踪性的规范。</li>
+<li>软件配置管理知识域涵盖了SCM过程的管理、软件配置认证、控制、状态报告、审计，软件发布管理和交付和软件配置管理工具。</li>
+</ul>
+<h5 id="软件工程管理"><a href="#软件工程管理" class="headerlink" title="软件工程管理"></a>软件工程管理</h5><ul>
+<li>软件工程管理包含计划、协调、测量、报告和控制项目或程序确保软件开发和维护是系统的、规范的、量化的。</li>
+<li>软件工程管理知识域包含了初衷和范围定义、软件项目计划、软件项目设定、产品验收、产品性能重审和分析、项目关闭和软件管理工具。</li>
+</ul>
+<h5 id="软件工程过程"><a href="#软件工程过程" class="headerlink" title="软件工程过程"></a>软件工程过程</h5><ul>
+<li>软件工程过程知识域包含了软件生命周期过程中的定义、实现、评估、测量、管理和改进。其话题涵盖了过程的实现和修改、过程定义、过程评估模型和方法、测量和软件过程工具。</li>
+</ul>
+<h5 id="软件工程模型和方法"><a href="#软件工程模型和方法" class="headerlink" title="软件工程模型和方法"></a>软件工程模型和方法</h5><ul>
+<li>软件工程模型和方法知识域提出了围绕多个生命周期阶段的方法。</li>
+<li>包括建模、模型类型、分析和软件开发方法。</li>
+</ul>
+<h5 id="软件质量"><a href="#软件质量" class="headerlink" title="软件质量"></a>软件质量</h5><ul>
+<li>软件质量是软件生命周期中无处不在的关注点。</li>
+<li>软件质量知识域涵盖了软件质量基础、软件质量管理过程和实际考虑。</li>
+</ul>
+<h5 id="软件工程专业实践"><a href="#软件工程专业实践" class="headerlink" title="软件工程专业实践"></a>软件工程专业实践</h5><ul>
+<li>软件工程专业实践关于知识、技术和为了在一种专业、负责和合乎道德的行为中进行软件工程实践的软件工程师必须的态度。</li>
+<li>软件工程专业实践知识域包含敬业精神、道德准则、小组活力和交流技巧。</li>
+</ul>
+<h5 id="软件工程经济学"><a href="#软件工程经济学" class="headerlink" title="软件工程经济学"></a>软件工程经济学</h5><ul>
+<li>软件工程经济学知识域是关于在商业背景下为了将技术上的决策和组织的商业目标相统一而做决定，相关话题涵盖了软件工程经济学基础、非营利决策、评估、经济风险和不确定性和多属性决策。</li>
+</ul>
+<h5 id="计算基础"><a href="#计算基础" class="headerlink" title="计算基础"></a>计算基础</h5><ul>
+<li>计算基础知识域涵盖了提供软件工程实践所需的计算背景的基础话题，包括问题解决结束、抽象、算法和复杂度、编程基础、并行和分布式计算基础、计算机组成、操作系统和网络通信。</li>
+</ul>
+<h5 id="数学基础"><a href="#数学基础" class="headerlink" title="数学基础"></a>数学基础</h5><ul>
+<li>数学基础知识域涵盖了提供了软件工程实践所需的数学背景的基础话题，包括集合、关系、函数，基础命题和谓词逻辑、声明方法、图和树、离散概率、语法和有限状态机和数论。</li>
+</ul>
+<h5 id="工程基础"><a href="#工程基础" class="headerlink" title="工程基础"></a>工程基础</h5><ul>
+<li>工程基础只属于包含了提供软件工程实践所需的工程背景的基础话题，涵盖了经验方法和实验技术、统计分析、测量和指标、工程设计、模拟和建模和根本原因分析。</li>
+</ul>
+<h3 id="5-简单解释-CMMI-的五个级别。"><a href="#5-简单解释-CMMI-的五个级别。" class="headerlink" title="5. 简单解释 CMMI 的五个级别。"></a>5. 简单解释 CMMI 的五个级别。</h3><blockquote>
+<p>例如：Level 1 - Initial：无序，自发生产模式。</p>
+</blockquote>
+<ol>
+<li>Level 1 - Initial<ul>
+<li>过程不可预测<ul>
+<li>这种时候企业规模一般较小，所接手的项目较为简单、目标清晰，因而任务较容易完成。然而由于任务的完成并没有一套规范来确保，因而并不能保证将来仍然能完成任务。</li>
+</ul>
+</li>
+<li>控制、反应糟糕</li>
+</ul>
+</li>
+<li>Level 2 - Managed<ul>
+<li>项目过程<ul>
+<li>企业针对项目实施的过程由计划和管理，使得上一级任务的不确定得以保证。</li>
+</ul>
+</li>
+<li>经常反应</li>
+</ul>
+</li>
+<li>Level 3 - Defined<ul>
+<li>组织过程<ul>
+<li>此时的企业不仅仅针对于逐个项目进行管理，保证其完成度和水准质量，还将企业本身管理起来，使得无论项目的多变，企业本身仍能保持稳定的业务水平。</li>
+</ul>
+</li>
+<li>主动</li>
+</ul>
+</li>
+<li>Level 4 - Quantitatively Managed<ul>
+<li>被度量和控制的过程<ul>
+<li>在上一级的基础上使得管理变得量化和数字化，使得管理更加精确，波动得以显示。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Level 5 - Optimizing<ul>
+<li>关注过程改进<ul>
+<li>优化级水平是企业项目管理的最高境界。不仅可以以较高水平完成任务，还能在项目中改进、优化技术和流程。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="6-用自己语言简述-SWEBok-或-CMMI-（约200字）"><a href="#6-用自己语言简述-SWEBok-或-CMMI-（约200字）" class="headerlink" title="6. 用自己语言简述 SWEBok 或 CMMI （约200字）"></a>6. 用自己语言简述 SWEBok 或 CMMI （约200字）</h3><p>SWEBok为软件工程知识体系，主要目的是描述当今被广泛接受的软件工程的必备基础、规范等。</p>
+<p>其确定了软件工程规范的内容、提成了软件工程在世界范围内的一致认识、划清软件工程范围以及和其他规范之间的界限、提供了软件工程的训练材料和课程开发的基础、为软件工程师的资质和准则奠定基础。是软件工程在开发中的重要指南，其从软件工程实践和软件工程教育需求两方面阐述了软件工程的过程和基础，涉及软件结构本身、软件生命周期和软件工程师等多个方面。</p>
+<p>SWEBok主要针对软件以及其他影响因素对于软件产品结果的干扰和影响，而CMMI更面向软件开发企业整体。</p>
+<p>CMMI为能力成熟度模型集成，CMU提出的度量企业的软件工程能力的指标。但是实际上，出于成本，企业不同阶段并不能完全遵守软件工程规范。随着人数的上升，管理和组织所占据的部分越来越大。</p>
+<p>当然由于开发的软件也愈加复杂，根据随着代码行数增多人月呈指数增长的规律，组织和任务分配必将承担着很大的责任和经历。这诞生了软件开发过程中的管理、规范。</p>
+<p>与此同时，除了员工之间的相互作用，这是组织和管理需要解决的问题，不考虑相互作用时的员工本身也是企业成熟度的影响因素。这大概是人才管理、数字报表管理诞生的原因。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Software-System-Analysis-and-Design/" rel="tag"># Software System Analysis and Design</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/19/Week15-Tanks/" rel="next" title="Week15-Tanks">
+                <i class="fa fa-chevron-left"></i> Week15-Tanks
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/05/OpenGL-vs2017-环境配置/" rel="prev" title="OpenGL + vs2017 环境配置">
+                OpenGL + vs2017 环境配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简答题"><span class="nav-number">1.</span> <span class="nav-text">简答题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-软件工程的定义"><span class="nav-number">1.1.</span> <span class="nav-text">1. 软件工程的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-解释导致-software-crisis-本质原因、表现，述说克服软件危机的方法"><span class="nav-number">1.2.</span> <span class="nav-text">2. 解释导致 software crisis 本质原因、表现，述说克服软件危机的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#根本原因"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">根本原因</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#表现"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">表现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#克服软件危机的方法"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">克服软件危机的方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-软件生命周期"><span class="nav-number">1.3.</span> <span class="nav-text">3. 软件生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-SWEBoK-的-15-个知识域（An-Overview-of-the-SWEBOK-Guide-请中文翻译其名称与简短说明）"><span class="nav-number">1.4.</span> <span class="nav-text">4. SWEBoK 的 15 个知识域（An Overview of the SWEBOK Guide 请中文翻译其名称与简短说明）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#软件需求"><span class="nav-number">1.4.0.1.</span> <span class="nav-text">软件需求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件设计"><span class="nav-number">1.4.0.2.</span> <span class="nav-text">软件设计</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件构造"><span class="nav-number">1.4.0.3.</span> <span class="nav-text">软件构造</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件测试"><span class="nav-number">1.4.0.4.</span> <span class="nav-text">软件测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件维护"><span class="nav-number">1.4.0.5.</span> <span class="nav-text">软件维护</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件配置管理"><span class="nav-number">1.4.0.6.</span> <span class="nav-text">软件配置管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程管理"><span class="nav-number">1.4.0.7.</span> <span class="nav-text">软件工程管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程过程"><span class="nav-number">1.4.0.8.</span> <span class="nav-text">软件工程过程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程模型和方法"><span class="nav-number">1.4.0.9.</span> <span class="nav-text">软件工程模型和方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件质量"><span class="nav-number">1.4.0.10.</span> <span class="nav-text">软件质量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程专业实践"><span class="nav-number">1.4.0.11.</span> <span class="nav-text">软件工程专业实践</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#软件工程经济学"><span class="nav-number">1.4.0.12.</span> <span class="nav-text">软件工程经济学</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#计算基础"><span class="nav-number">1.4.0.13.</span> <span class="nav-text">计算基础</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数学基础"><span class="nav-number">1.4.0.14.</span> <span class="nav-text">数学基础</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#工程基础"><span class="nav-number">1.4.0.15.</span> <span class="nav-text">工程基础</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-简单解释-CMMI-的五个级别。"><span class="nav-number">1.5.</span> <span class="nav-text">5. 简单解释 CMMI 的五个级别。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-用自己语言简述-SWEBok-或-CMMI-（约200字）"><span class="nav-number">1.6.</span> <span class="nav-text">6. 用自己语言简述 SWEBok 或 CMMI （约200字）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

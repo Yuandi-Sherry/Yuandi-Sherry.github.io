@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="3D GAME DESIGN," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="游戏设计要求 创建一个地图和若干巡逻兵(使用动画)； 每个巡逻兵走一个3~5个边的凸多边型，位置数据是相对地址。即每次确定下一个目标位置，用自己当前位置为原点计算； 巡逻兵碰撞到障碍物，则会自动选下一个点为目标； 巡逻兵在设定范围内感知到玩家，会自动追击玩家； 失去玩家目标后，继续巡逻； 计分：玩家每次甩掉一个巡逻兵计一分，与巡逻兵碰撞游戏结束；  设计要点 关于游戏对象动作的控制，继承SSAc">
+<meta name="keywords" content="3D GAME DESIGN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Week09-Animator &amp; View Pattern-patrols">
+<meta property="og:url" content="http://yoursite.com/2018/05/11/Week09-Animator-View-Pattern-patrols/index.html">
+<meta property="og:site_name" content="Sherry&#39;s emmm... Unnamed Blog">
+<meta property="og:description" content="游戏设计要求 创建一个地图和若干巡逻兵(使用动画)； 每个巡逻兵走一个3~5个边的凸多边型，位置数据是相对地址。即每次确定下一个目标位置，用自己当前位置为原点计算； 巡逻兵碰撞到障碍物，则会自动选下一个点为目标； 巡逻兵在设定范围内感知到玩家，会自动追击玩家； 失去玩家目标后，继续巡逻； 计分：玩家每次甩掉一个巡逻兵计一分，与巡逻兵碰撞游戏结束；  设计要点 关于游戏对象动作的控制，继承SSAc">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/Yuandi-Sherry/BLOGpics/blob/master/Week09/ezgif-5-f7e4265d62.gif?raw=true">
+<meta property="og:image" content="https://github.com/Yuandi-Sherry/BLOGpics/blob/master/Week09/UML1.0.jpg?raw=true">
+<meta property="og:image" content="https://github.com/Yuandi-Sherry/BLOGpics/blob/master/Week09/7colliders.PNG?raw=true">
+<meta property="og:updated_time" content="2018-05-11T02:31:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Week09-Animator &amp; View Pattern-patrols">
+<meta name="twitter:description" content="游戏设计要求 创建一个地图和若干巡逻兵(使用动画)； 每个巡逻兵走一个3~5个边的凸多边型，位置数据是相对地址。即每次确定下一个目标位置，用自己当前位置为原点计算； 巡逻兵碰撞到障碍物，则会自动选下一个点为目标； 巡逻兵在设定范围内感知到玩家，会自动追击玩家； 失去玩家目标后，继续巡逻； 计分：玩家每次甩掉一个巡逻兵计一分，与巡逻兵碰撞游戏结束；  设计要点 关于游戏对象动作的控制，继承SSAc">
+<meta name="twitter:image" content="https://github.com/Yuandi-Sherry/BLOGpics/blob/master/Week09/ezgif-5-f7e4265d62.gif?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/11/Week09-Animator-View-Pattern-patrols/"/>
+
+
+
+
+
+  <title>Week09-Animator & View Pattern-patrols | Sherry's emmm... Unnamed Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Sherry's emmm... Unnamed Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Recording while Learning</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/11/Week09-Animator-View-Pattern-patrols/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Sherry">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Sherry's emmm... Unnamed Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Week09-Animator & View Pattern-patrols</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T10:26:28+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://github.com/Yuandi-Sherry/BLOGpics/blob/master/Week09/ezgif-5-f7e4265d62.gif?raw=true" alt="gameView"></p>
+<h1 id="游戏设计要求"><a href="#游戏设计要求" class="headerlink" title="游戏设计要求"></a>游戏设计要求</h1><ul>
+<li>创建一个地图和若干巡逻兵(使用动画)；</li>
+<li>每个巡逻兵走一个3~5个边的凸多边型，位置数据是相对地址。即每次确定下一个目标位置，用自己当前位置为原点计算；</li>
+<li>巡逻兵碰撞到障碍物，则会自动选下一个点为目标；</li>
+<li>巡逻兵在设定范围内感知到玩家，会自动追击玩家；</li>
+<li>失去玩家目标后，继续巡逻；</li>
+<li>计分：玩家每次甩掉一个巡逻兵计一分，与巡逻兵碰撞游戏结束；</li>
+</ul>
+<h1 id="设计要点"><a href="#设计要点" class="headerlink" title="设计要点"></a>设计要点</h1><ul>
+<li>关于游戏对象动作的控制，继承SSAction（动作基类）定义巡逻兵巡逻和追逐两个动作；</li>
+<li>对于玩家直接在FirstController中实现movePlayer方法根据UserGUI传入的键盘输入数据控制玩家的移动即可；</li>
+<li>这次任务的关键是控制游戏对象和游戏对象的接触、游戏对象和场景的接触（包括collision和trigger）；</li>
+<li>动画的控制取store找一些models，自己建立Animator并在代码中设置相应参数即可；</li>
+<li>本游戏中引入了一种在之前作业中没有过的观察者模式，即事件的发布者与订阅者，采用的方法是构建GameEventManager管理所有事件，发布者在特定情况下发布GameEventManager中相应事件，订阅者用OnEnable()对相关事件进行响应。</li>
+</ul>
+<a id="more"></a>
+<h1 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h1><h2 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h2><p><img src="https://github.com/Yuandi-Sherry/BLOGpics/blob/master/Week09/UML1.0.jpg?raw=true" alt="UML"></p>
+<h2 id="场景搭建"><a href="#场景搭建" class="headerlink" title="场景搭建"></a>场景搭建</h2><p>我设计了六个格子的场景，用栅栏分割，并防止树木作为障碍物，在距离player最远的格子设置终点——宝箱。</p>
+<h3 id="障碍物属性"><a href="#障碍物属性" class="headerlink" title="障碍物属性"></a>障碍物属性</h3><p>为了增加游戏的挑战性，我对巡逻兵的巡逻路线是随机设定的，不是沿着固定的矩形行走，因而会导致巡逻兵撞障碍物的事件发生。我用横三纵四，共计7个tage为<code>grid</code>的<code>triggered collider</code>解决了这一问题。</p>
+<p><img src="https://github.com/Yuandi-Sherry/BLOGpics/blob/master/Week09/7colliders.PNG?raw=true" alt="3*4"></p>
+<p>方法是用观察者模式，如果patrol进入到<code>tag == &quot;grid&quot;</code>的触发器中，则发布<code>hitWall</code>事件，并传递撞墙patrol给订阅者。订阅者在<code>patrolAction</code>中获得具体的patrol信息，并在动作中让其掉头。</p>
+<h4 id="区域划分"><a href="#区域划分" class="headerlink" title="区域划分"></a>区域划分</h4><p>考虑到巡逻兵应当在自己的管辖范围内巡逻，也就是说，巡逻兵不应走出巡逻区域，因而给每个格子设置了一个透明度collider。</p>
+<p>每个collider和在其范围内巡逻的一个巡逻兵有相同的号码，player当前所在的区域号码记录在FirstController的<code>CurSec</code>字段中（后用于判断追逐条件时，巡逻兵应和player在同一区域）。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AreaCollider</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> sign;</span><br><span class="line">	FirstController sceneController;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		sceneController = (FirstController)SSDirector.GetInstance().currentSceneController;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">OnTriggerEnter</span> (<span class="params">Collider collider</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(collider.gameObject.tag == <span class="string">"Player"</span>) &#123;</span><br><span class="line">			sceneController.curAreaSign = sign;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里出过一个小Bug，由于AreaCollider是直接挂在在场景中的collider上的，如果firstController的<code>Start</code>比这里<code>Start</code>后被调用，则会出现<code>sceneController</code>为<code>null</code>的情况，我使用把FirstController中的<code>Start</code>改为<code>Awake</code>解决的这一问题。 </p>
+<h2 id="巡逻兵数据"><a href="#巡逻兵数据" class="headerlink" title="巡逻兵数据"></a>巡逻兵数据</h2><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PatrolData</span> : <span class="title">MonoBehaviour</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> PatSec;                      <span class="comment">//标志巡逻兵在哪一块区域</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> PlySec = <span class="number">-1</span>;            <span class="comment">//当前玩家所在区域标志</span></span><br><span class="line">    <span class="keyword">public</span> Vector3 startPosition;        <span class="comment">//当前巡逻兵初始位置</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="巡逻兵工厂"><a href="#巡逻兵工厂" class="headerlink" title="巡逻兵工厂"></a>巡逻兵工厂</h2><p>这里和飞碟工厂近似，重要是初始化时参数的设计。比如由于player最开始的位置是固定的，所以在该格子随机巡逻兵的初始位置时要控制其不能距离<code>player</code>太近： </p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PatrolFactory</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">	<span class="keyword">private</span> List&lt;GameObject&gt; products = <span class="keyword">new</span> List&lt;GameObject&gt; ();</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;GameObject&gt; <span class="title">getPatrols</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">			GameObject newPatrol = Instantiate(Resources.Load&lt;GameObject&gt;(<span class="string">"Prefabs/Patrol"</span>), <span class="keyword">new</span> Vector3(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>),  Quaternion.identity) <span class="keyword">as</span> GameObject;</span><br><span class="line">			<span class="keyword">if</span>(i == <span class="number">2</span>) &#123;</span><br><span class="line">				newPatrol.transform.position = <span class="keyword">new</span> Vector3(<span class="number">-30</span> + <span class="number">20</span>*(i%<span class="number">3</span>) + <span class="number">10</span> + Random.Range(<span class="number">-3</span>, <span class="number">0</span>), <span class="number">0</span>, <span class="number">-20</span> +  + <span class="number">20</span>*(i/<span class="number">3</span>) + <span class="number">10</span> + Random.Range(<span class="number">0</span>, <span class="number">3</span>));</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				newPatrol.transform.position = <span class="keyword">new</span> Vector3(<span class="number">-30</span> + <span class="number">20</span>*(i%<span class="number">3</span>) + <span class="number">10</span> + Random.Range(<span class="number">-3</span>, <span class="number">3</span>), <span class="number">0</span>, <span class="number">-20</span> +  + <span class="number">20</span>*(i/<span class="number">3</span>) + <span class="number">10</span> + Random.Range(<span class="number">-3</span>, <span class="number">3</span>));</span><br><span class="line">			</span><br><span class="line">			newPatrol.AddComponent&lt;PatrolData&gt;();</span><br><span class="line">			newPatrol.GetComponent&lt;PatrolData&gt;().startPosition = newPatrol.transform.position;</span><br><span class="line">			newPatrol.GetComponent&lt;PatrolData&gt;().rangeX = <span class="number">-30</span> + <span class="number">20</span>*(i%<span class="number">3</span>);</span><br><span class="line">			newPatrol.GetComponent&lt;PatrolData&gt;().rangeZ = <span class="number">-20</span> + <span class="number">20</span>*(i/<span class="number">3</span>);</span><br><span class="line">			newPatrol.GetComponent&lt;PatrolData&gt;().PatSec = i+<span class="number">1</span>;</span><br><span class="line">			products.Add(newPatrol);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> products;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="巡逻兵动作"><a href="#巡逻兵动作" class="headerlink" title="巡逻兵动作"></a>巡逻兵动作</h2><h3 id="Patrolling"><a href="#Patrolling" class="headerlink" title="Patrolling"></a>Patrolling</h3><p>这个函数的关键在于要根据巡逻兵当前的朝向生成他下一步移动的目标，还有要处理巡逻兵离目标位置过远的情况以控制巡逻兵的巡逻范围。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PatrolAction</span> : <span class="title">SSAction</span> &#123;</span><br><span class="line">	<span class="comment">// 巡逻四个方向</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">enum</span> Direction &#123;backward, right, forward, left&#125;;</span><br><span class="line">	<span class="comment">// 目的地坐标</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">float</span> posX, posZ;</span><br><span class="line">	<span class="comment">// 随机步长</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">float</span> stepLength;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">float</span> speed = <span class="number">5</span>f;</span><br><span class="line">	<span class="comment">// 常规巡逻根据方向走矩形，否则就要直接向目的地靠近</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">bool</span> regular = <span class="literal">true</span>; </span><br><span class="line">	<span class="keyword">private</span> Direction direction = Direction.forward;</span><br><span class="line">	<span class="keyword">private</span> PatrolData data;</span><br><span class="line">	<span class="keyword">private</span> FirstController sceneController;</span><br><span class="line">	...</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">patrolling</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(!handle) &#123; <span class="comment">//这里暂时不用管，在处理撞墙事件的时候不进行巡逻操作</span></span><br><span class="line">			<span class="keyword">if</span>(regular) &#123;</span><br><span class="line">				<span class="comment">// 用朝向和随机步长确定下一小节的目标位置</span></span><br><span class="line">				<span class="keyword">switch</span>(direction) &#123;</span><br><span class="line">					<span class="keyword">case</span> Direction.forward:</span><br><span class="line">						posZ -= stepLength;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					<span class="keyword">case</span> Direction.backward:</span><br><span class="line">						posZ += stepLength;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					<span class="keyword">case</span> Direction.left:</span><br><span class="line">						posX -= stepLength;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">					<span class="keyword">case</span> Direction.right:</span><br><span class="line">						posX += stepLength;</span><br><span class="line">						<span class="keyword">break</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				regular = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			gameobject.transform.LookAt(<span class="keyword">new</span> Vector3(posX, <span class="number">0</span>, posZ));</span><br><span class="line">			<span class="comment">// 如果巡逻兵走远了，向巡逻中心靠拢</span></span><br><span class="line">			<span class="keyword">if</span> (Vector3.Distance(gameobject.transform.position, <span class="keyword">new</span> Vector3 (posX, <span class="number">0</span>, posZ)) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">				<span class="comment">// 走远</span></span><br><span class="line">				gameobject.transform.position = Vector3.MoveTowards(gameobject.transform.position, <span class="keyword">new</span> Vector3(posX,<span class="number">0</span>,posZ), Time.deltaTime*speed);	</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				<span class="comment">// 拐弯</span></span><br><span class="line">				direction = direction + <span class="number">1</span>;</span><br><span class="line">				<span class="keyword">if</span>(direction &gt; Direction.left)</span><br><span class="line">					direction = Direction.backward;</span><br><span class="line">				regular = <span class="literal">true</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Following"><a href="#Following" class="headerlink" title="Following"></a>Following</h3><p>巡逻动作比较简单，一直<code>moveTowards(player)</code>即可。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">PatrolFollowAction</span> : <span class="title">SSAction</span> &#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">float</span> speed = <span class="number">3</span>f;</span><br><span class="line">	<span class="keyword">private</span> GameObject player;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> stepLength;</span><br><span class="line">	<span class="keyword">private</span> PatrolData data;</span><br><span class="line">	<span class="keyword">private</span> FirstController sceneController;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">follow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.gameobject.transform.LookAt(sceneController.player.transform.position);</span><br><span class="line">		<span class="keyword">this</span>.gameobject.transform.position = Vector3.MoveTowards(gameobject.transform.position, sceneController.player.transform.position, Time.deltaTime*speed);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Player控制"><a href="#Player控制" class="headerlink" title="Player控制"></a>Player控制</h2><p>这里是用物理引擎控制的，其实直接修改transform.position进行移动会更好控制（鉴于这和Roll a Ball不同之处在于ball是用键盘施加力后一直存在，而player是只有键盘有输入的时候才会移动。虽然这里用velocity属性可以解决这个问题，但与其这样不如用transform.position。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line">public class FirstController : MonoBehaviour, ISceneController, IUserAction &#123;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">movePlayer</span> (<span class="params"><span class="keyword">float</span> inputX, <span class="keyword">float</span> inputZ</span>) </span>&#123;</span><br><span class="line">		player.transform.LookAt(player.transform.position + <span class="number">10000</span> * <span class="keyword">new</span> Vector3(inputX, <span class="number">0</span>, inputZ));</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 如果玩家让player移动，则player的动画为奔跑状态</span></span><br><span class="line">		<span class="keyword">if</span>(inputX != <span class="number">0</span> || inputZ != <span class="number">0</span>) &#123;</span><br><span class="line">			player.GetComponent&lt;Animator&gt;().SetBool(<span class="string">"run"</span>, <span class="literal">true</span>);</span><br><span class="line">			Vector3 movement = <span class="keyword">new</span> Vector3(inputX, <span class="number">0</span>, inputZ);</span><br><span class="line">			player.GetComponent&lt;Rigidbody&gt;().velocity = <span class="keyword">new</span> Vector3(inputX*playerSpeed, <span class="number">0</span>, inputZ*playerSpeed) ;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在UserGUI中用FixedUpdate接收键盘输入并传入movePlayer函数：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UserGUI</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line"></span><br><span class="line">	IUserAction userAction;</span><br><span class="line">  </span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">FixedUpdate</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(userAction.getGameState() == <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">float</span> inputX = Input.GetAxis(<span class="string">"Horizontal"</span>);</span><br><span class="line">	    	<span class="keyword">float</span> inputZ = Input.GetAxis(<span class="string">"Vertical"</span>);</span><br><span class="line">	    	<span class="comment">//移动玩家</span></span><br><span class="line">	    	userAction.movePlayer(inputX, inputZ);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="防止碰撞带来的移动和旋转"><a href="#防止碰撞带来的移动和旋转" class="headerlink" title="防止碰撞带来的移动和旋转"></a>防止碰撞带来的移动和旋转</h2><p>这是刚刚实现好上述代码，初步开始玩游戏时遇到的坑。无论是player还是巡逻兵，撞到障碍物会反弹、旋转甚至飞起。</p>
+<p>所以需要在FirstController中加入以下代码对<code>player</code>的角度和y轴坐标进行控制：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(player.transform.position.y != <span class="number">0</span>) &#123;</span><br><span class="line">	player.transform.position = <span class="keyword">new</span> Vector3(player.transform.position.x, <span class="number">0</span>,player.transform.position.z);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(player.transform.rotation.x != <span class="number">0</span> || player.transform.rotation.z != <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">switch</span>((<span class="keyword">int</span>)(player.transform.rotation.y*<span class="number">10</span>)) &#123;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">			player.transform.rotation = Quaternion.Euler(<span class="keyword">new</span> Vector3(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>));</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">			player.transform.rotation = Quaternion.Euler(<span class="keyword">new</span> Vector3(<span class="number">0</span>,<span class="number">90</span>,<span class="number">0</span>));</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">9</span>:</span><br><span class="line">			player.transform.rotation = Quaternion.Euler(<span class="keyword">new</span> Vector3(<span class="number">0</span>,<span class="number">180</span>,<span class="number">0</span>));</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">		<span class="keyword">case</span> <span class="number">-7</span>:</span><br><span class="line">			player.transform.rotation = Quaternion.Euler(<span class="keyword">new</span> Vector3(<span class="number">0</span>,<span class="number">-90</span>,<span class="number">0</span>));</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于Patrol对象，在两个动作：<code>PatrolAction</code>和<code>PatrolFollowAction</code>中加入类似函数即可。这里不多赘述。</p>
+<h2 id="Patrol的动作切换"><a href="#Patrol的动作切换" class="headerlink" title="Patrol的动作切换"></a>Patrol的动作切换</h2><p>本游戏中Patrol有两个动作分别为patrolling和following，正常情况下六个巡逻兵均在patrolling状态，只有当<code>player</code>到达某一section且距离该section的巡逻兵足够近的时候才会使该Patrol进行follow动作；同理，当<code>player</code>在被某区域巡逻兵follow的情况下，player逃离该区域或距离该patrol足够远都会使该patrol停止追逐继续巡逻。</p>
+<p>为了使动作管理器更好地管理这两个动作，采用向<code>callback.SSActionEvent()</code>中传递参数来制定当前是什么动作（1-&gt;patrolling, 0-&gt;following）. 这里注意当传入下一个动作的时候需要将当前动作摧毁掉：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//PatrolAction.cs</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Update</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">	<span class="keyword">if</span>(sceneController.curAreaSign == <span class="keyword">this</span>.gameobject.GetComponent&lt;PatrolData&gt;().PatSec &amp;&amp; </span><br><span class="line">		Vector3.Distance( sceneController.player.transform.position, <span class="keyword">this</span>.gameobject.transform.position) &lt; <span class="number">7</span>) &#123;</span><br><span class="line">		<span class="keyword">this</span>.destroy = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">this</span>.callback.SSActionEvent(<span class="keyword">this</span>,<span class="number">0</span>,<span class="keyword">this</span>.gameobject);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//PatrolFollowAction.cs</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	...</span><br><span class="line">	<span class="keyword">if</span>(sceneController.curAreaSign != data.PatSec || Vector3.Distance(</span><br><span class="line">		<span class="keyword">this</span>.gameobject.transform.position, sceneController.player.transform.position) &gt;= <span class="number">7</span>) &#123;</span><br><span class="line">		<span class="keyword">this</span>.destroy = <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">this</span>.callback.SSActionEvent(<span class="keyword">this</span>, <span class="number">1</span>, <span class="keyword">this</span>.gameobject);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还需要在SSActioManager中实现ISSActionCallback接口的<code>void SSActionEvent(SSAction source,int intParam = 0,   GameObject objectParam = null)</code>方法对传入的两个参数进行响应：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SSActionEvent</span>(<span class="params">SSAction source,  </span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">int</span> intParam,  </span></span></span><br><span class="line"><span class="function"><span class="params">	GameObject objectParam</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(intParam == <span class="number">0</span>) &#123;</span><br><span class="line">		PatrolFollowAction follow = PatrolFollowAction.getSSAction(objectParam);</span><br><span class="line">		<span class="keyword">this</span>.RunAction(objectParam, follow, <span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		PatrolAction move = PatrolAction.getSSAction(objectParam.transform.position);</span><br><span class="line">		<span class="keyword">this</span>.RunAction(objectParam, move, <span class="keyword">this</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="订阅与发布模式"><a href="#订阅与发布模式" class="headerlink" title="订阅与发布模式"></a>订阅与发布模式</h2><p>整个游戏过程中主要涉及到三个事件：输、赢、撞墙（在场景搭建中提到过这个问题）。</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">GameEventManager</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">GameOverEvent</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">event</span> GameOverEvent gameoverChange;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">winEvent</span>(<span class="params"></span>)</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">event</span> winEvent win;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">delegate</span> <span class="keyword">void</span> <span class="title">HitWall</span>(<span class="params">GameObject a</span>)</span>;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">event</span> HitWall hitWall;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">gameOver</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(gameoverChange != <span class="literal">null</span>) &#123;</span><br><span class="line">			gameoverChange();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hitWallEvent</span>(<span class="params">GameObject a</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(hitWall != <span class="literal">null</span>) &#123;</span><br><span class="line">			hitWall(a);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">winning</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(win != <span class="literal">null</span>) &#123;</span><br><span class="line">			win();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输的实现方法是<code>FirstController</code>订阅<code>GameOver</code>事件，该事件的发布者为挂在<code>patrol</code>上的<code>playerCollider</code>脚本，代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//PlayerCollider.cs</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnCollisionEnter</span>(<span class="params">Collision other</span>) </span>&#123;	</span><br><span class="line">	<span class="keyword">if</span>(other.gameObject.tag == <span class="string">"Player"</span>) &#123;</span><br><span class="line">    	other.gameObject.GetComponent&lt;Animator&gt; ().SetBool(<span class="string">"death"</span>, <span class="literal">true</span>);</span><br><span class="line">		other.gameObject.GetComponent&lt;Rigidbody&gt;().AddForce(Vector3.zero);</span><br><span class="line">		other.gameObject.GetComponent&lt;Rigidbody&gt;().velocity = Vector3.zero;</span><br><span class="line">		Singleton&lt;GameEventManager&gt;.Instance.gameOver();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//FirstControler.cs</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnEnable</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	GameEventManager.gameoverChange += gameOverEvent;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">gameOverEvent</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	gameJudge = <span class="number">-1</span>;</span><br><span class="line">	actionManager.DestroyAll();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; patrols.Count; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(patrols[i].transform.position.y != <span class="number">0</span>) &#123;</span><br><span class="line">			patrols[i].transform.position = <span class="keyword">new</span> Vector3(patrols[i].transform.position.x, <span class="number">0</span>,patrols[i].transform.position.z);</span><br><span class="line">		&#125;</span><br><span class="line">		patrols[i].GetComponent&lt;Animator&gt;().SetBool(<span class="string">"run"</span>,<span class="literal">false</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	timer.End();</span><br><span class="line">	player.GetComponent&lt;Rigidbody&gt;().velocity = Vector3.zero;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>赢的实现方法是<code>FirstController</code>订阅<code>win</code>事件，该事件的发布者为挂在<code>treasure</code>上的<code>TreasureCollider</code>脚本，代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//TreasureCollider.cs</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">TreasureCollider</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">OnCollisionEnter</span> (<span class="params">Collision collider</span>) </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(collider.gameObject.tag == <span class="string">"Player"</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>.GetComponent&lt;Animator&gt;().SetBool(<span class="string">"open"</span>, <span class="literal">true</span>);</span><br><span class="line">			Singleton&lt;GameEventManager&gt;.Instance.winning();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//FirstController.cs</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnEnable</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	GameEventManager.win += win;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">win</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	gameJudge = <span class="number">1</span>;</span><br><span class="line">	actionManager.DestroyAll();</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; patrols.Count; i++) &#123;</span><br><span class="line">		<span class="keyword">if</span>(patrols[i].transform.position.y != <span class="number">0</span>) &#123;</span><br><span class="line">			patrols[i].transform.position = <span class="keyword">new</span> Vector3(patrols[i].transform.position.x, <span class="number">0</span>,patrols[i].transform.position.z);</span><br><span class="line">		&#125;</span><br><span class="line">		patrols[i].GetComponent&lt;Animator&gt;().SetBool(<span class="string">"run"</span>,<span class="literal">false</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	timer.End();</span><br><span class="line">	player.GetComponent&lt;Rigidbody&gt;().velocity = Vector3.zero;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>撞墙事件是当<code>patrol</code>进入前文提到的七个<code>grid</code>的时候发布的，接受者为<code>PatrolAction</code>:</p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnTriggerEnter</span>(<span class="params">Collider other</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(other.gameObject.tag==<span class="string">"grid"</span>) &#123;</span><br><span class="line">		Singleton&lt;GameEventManager&gt;.Instance.hitWallEvent(<span class="keyword">this</span>.gameObject);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// PatrolAction.cs</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">OnEnable</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	GameEventManager.hitWall += handleHitWall;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">handleHitWall</span>(<span class="params">GameObject a</span>) </span>&#123;</span><br><span class="line">	handle = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">if</span>(a == gameobject) &#123;</span><br><span class="line">		<span class="keyword">switch</span>(direction) &#123;</span><br><span class="line">			<span class="keyword">case</span> Direction.backward:</span><br><span class="line">				direction = Direction.forward;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> Direction.forward:</span><br><span class="line">				direction = Direction.backward;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> Direction.left:</span><br><span class="line">				direction = Direction.right;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> Direction.right:</span><br><span class="line">				direction = Direction.left;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        regular = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	handle = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="其他类"><a href="#其他类" class="headerlink" title="其他类"></a>其他类</h2><h3 id="摄像机跟随"><a href="#摄像机跟随" class="headerlink" title="摄像机跟随"></a>摄像机跟随</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">CameraController</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> GameObject player;</span><br><span class="line">	<span class="keyword">private</span> Vector3 offset;<span class="comment">//it's a vector from player to camera</span></span><br><span class="line">	<span class="comment">//offset can be obtained by transform(camera) - player</span></span><br><span class="line">	<span class="comment">// Use this for initialization</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">Start</span> (<span class="params"></span>) </span>&#123;	</span><br><span class="line">		player = ((FirstController)SSDirector.GetInstance().currentSceneController).player;</span><br><span class="line">		offset = transform.position - player.transform.position;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// Update is called once per frame</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">LateUpdate</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		transform.position = player.transform.position + offset;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="计时器"><a href="#计时器" class="headerlink" title="计时器"></a>计时器</h3><figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Timer</span> : <span class="title">MonoBehaviour</span> &#123;</span><br><span class="line">    <span class="comment">//开始时间</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> StartTime &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment">//持续时间</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> Duration &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment">//结束时间</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> EndTime &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment">//当前时间</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">float</span> CurTime &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//运行标识</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">bool</span> IsStart &#123; <span class="keyword">get</span>; <span class="keyword">private</span> <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//开始和结束事件，这里直接用System.Action（相当于空返回值无参数委托）</span></span><br><span class="line">    <span class="keyword">public</span> Action OnStart &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> Action OnEnd &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> Action OnUpdate &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//构造函数，设置计时器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Timer</span>(<span class="params"><span class="keyword">float</span> duration</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Duration = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Start</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        IsStart = <span class="literal">true</span>;</span><br><span class="line">        StartTime = Time.time;</span><br><span class="line">        CurTime = StartTime;</span><br><span class="line">        EndTime = StartTime + Duration;</span><br><span class="line">        <span class="keyword">if</span>(OnStart != <span class="literal">null</span>) OnStart();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Update</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!IsStart) <span class="keyword">return</span>;</span><br><span class="line">        Duration = CurTime/<span class="number">3</span>;</span><br><span class="line">        CurTime += Time.deltaTime;</span><br><span class="line">        <span class="keyword">if</span> (OnUpdate != <span class="literal">null</span>) </span><br><span class="line">        	OnUpdate();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//计时器结束</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">End</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        IsStart = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(OnEnd!= <span class="literal">null</span>) OnEnd();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样的话这个游戏就大体完成了，至于FirstController和UserGUI配合控制游戏逻辑、OnGUI()等等的细节之处这篇blog就不过多赘述了，这里附上Github链接，可以到这里查看：<a href="https://github.com/Yuandi-Sherry/3DGameDesign-Patrols" target="_blank" rel="noopener">https://github.com/Yuandi-Sherry/3DGameDesign-Patrols</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/3D-GAME-DESIGN/" rel="tag"># 3D GAME DESIGN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/17/Week06-GameObject-Factory-Frisbee/" rel="next" title="Week06-GameObject Factory Frisbee">
+                <i class="fa fa-chevron-left"></i> Week06-GameObject Factory Frisbee
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/19/Week15-Tanks/" rel="prev" title="Week15-Tanks">
+                Week15-Tanks <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/31603947?s=400&u=6098dc25e90fd4bd1b141cb27899479730ef16cd&v=4"
+               alt="Sherry" />
+          <p class="site-author-name" itemprop="name">Sherry</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏设计要求"><span class="nav-number">1.</span> <span class="nav-text">游戏设计要求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计要点"><span class="nav-number">2.</span> <span class="nav-text">设计要点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现过程"><span class="nav-number">3.</span> <span class="nav-text">实现过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#UML图"><span class="nav-number">3.1.</span> <span class="nav-text">UML图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#场景搭建"><span class="nav-number">3.2.</span> <span class="nav-text">场景搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#障碍物属性"><span class="nav-number">3.2.1.</span> <span class="nav-text">障碍物属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#区域划分"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">区域划分</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巡逻兵数据"><span class="nav-number">3.3.</span> <span class="nav-text">巡逻兵数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巡逻兵工厂"><span class="nav-number">3.4.</span> <span class="nav-text">巡逻兵工厂</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巡逻兵动作"><span class="nav-number">3.5.</span> <span class="nav-text">巡逻兵动作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Patrolling"><span class="nav-number">3.5.1.</span> <span class="nav-text">Patrolling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Following"><span class="nav-number">3.5.2.</span> <span class="nav-text">Following</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Player控制"><span class="nav-number">3.6.</span> <span class="nav-text">Player控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防止碰撞带来的移动和旋转"><span class="nav-number">3.7.</span> <span class="nav-text">防止碰撞带来的移动和旋转</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Patrol的动作切换"><span class="nav-number">3.8.</span> <span class="nav-text">Patrol的动作切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#订阅与发布模式"><span class="nav-number">3.9.</span> <span class="nav-text">订阅与发布模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他类"><span class="nav-number">3.10.</span> <span class="nav-text">其他类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#摄像机跟随"><span class="nav-number">3.10.1.</span> <span class="nav-text">摄像机跟随</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计时器"><span class="nav-number">3.10.2.</span> <span class="nav-text">计时器</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Sherry</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
